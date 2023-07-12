@@ -175,10 +175,10 @@ const BlobText = styled.p<blobProp>`
   display: flex;
   /* flex-direction: column; */
   align-items: center;
-  font-family: "Silkscreen";
+  font-family: "Macan";
 
   span {
-    font-family: "Silkscreen";
+    font-family: "Macan";
     margin-right: 8px;
     /* color: ${(props) => props.color}; */
   }

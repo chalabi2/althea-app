@@ -76,17 +76,18 @@ const Governance = () => {
         color="white"
         style={{
           margin: "3rem 1rem",
+          fontFamily: "Macan",
         }}
       >
         <a
           style={{
-            fontFamily: "Silkscreen",
+            fontFamily: "Macan",
             textDecoration: "underline",
           }}
           href="/staking"
           onClick={() => Mixpanel.events.governanceActions.openedStakingPage()}
         >
-          stake
+          STAKE
         </a>{" "}
         your canto to participate in governance
       </Text>

@@ -78,7 +78,8 @@ const Proposal = () => {
           }}
         >
           <p>Description</p>
-          <p>{proposal.content.description}</p>
+          <p
+          >{proposal.content.description}</p>
         </div>
         <div
           role={"button"}

@@ -1,12 +1,11 @@
-# Canto-io
+# Althea Web App
 
 ## Overview
 
 ---
 
-Canto.io public repository.
-
-[Live site](https://www.canto.io/)
+This is a fork of [canto.io](https://www.canto.io/)
+Reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 
 ## Installation
 

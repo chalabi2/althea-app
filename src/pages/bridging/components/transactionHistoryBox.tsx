@@ -79,7 +79,7 @@ const Styled = styled.div`
   }
   .balance {
     grid-area: balance;
-    font-family: "Silkscreen";
+    font-family: "Macan";
     font-size: 20px;
     letter-spacing: -0.07em;
   }

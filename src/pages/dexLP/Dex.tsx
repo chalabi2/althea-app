@@ -93,7 +93,7 @@ const LP_Interface = () => {
               style={{
                 color: "#a2fca3",
                 textDecoration: "underline",
-                fontFamily: "Silkscreen",
+                fontFamily: "Macan",
               }}
               href="https://app.slingshot.finance/trade/"
               target="_blank"

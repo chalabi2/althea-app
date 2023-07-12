@@ -11,7 +11,7 @@ const Styled = styled.div`
     flex-direction: column;
   }
   h1 {
-    font-family: "Silkscreen", cursive;
+    font-family: "Macan", cursive;
     font-size: 26px;
     font-weight: 400;
     line-height: 34px;
