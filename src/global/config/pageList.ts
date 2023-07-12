@@ -111,7 +111,7 @@ interface BalanceLimits {
 
 export const pageList: PageObject[] = [
   {
-    name: PAGES.bridge.name,
+    name: PAGES.bridge.name.toUpperCase(),
     link: PAGES.bridge.link,
     pageTitle: PAGES.bridge.pageTitle,
     networks: PAGES.bridge.networks,
@@ -120,7 +120,7 @@ export const pageList: PageObject[] = [
     subpages: [PAGES.bridge.subPages.walkthrough],
   },
   {
-    name: PAGES.staking.name,
+    name: PAGES.staking.name.toUpperCase(),
     link: PAGES.staking.link,
     pageTitle: PAGES.staking.pageTitle,
     networks: PAGES.staking.networks,
@@ -128,21 +128,7 @@ export const pageList: PageObject[] = [
     balanceLimits: PAGES.staking.balanceLimits,
   },
   {
-    name: PAGES.lp.name,
-    link: PAGES.lp.link,
-    pageTitle: PAGES.lp.pageTitle,
-    networks: PAGES.lp.networks,
-    showInMenu: PAGES.lp.showInMenu,
-  },
-  {
-    name: PAGES.lending.name,
-    link: PAGES.lending.link,
-    pageTitle: PAGES.lending.pageTitle,
-    networks: PAGES.lending.networks,
-    showInMenu: PAGES.lending.showInMenu,
-  },
-  {
-    name: PAGES.governance.name,
+    name: PAGES.governance.name.toUpperCase(),
     link: PAGES.governance.link,
     pageTitle: PAGES.governance.pageTitle,
     networks: PAGES.governance.networks,

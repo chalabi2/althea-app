@@ -1,4 +1,14 @@
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="16" height="16" rx="8" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M3.52002 5.08423H5.216V3.52002H12V12.48H5.21596V10.9157H3.52002V5.08423ZM6.52761 4.96004H10.4364V6.54121H6.52761V9.43991H4.96412V6.54109H6.52761V4.96004ZM10.4364 9.44009H6.52761V11.0213H10.4364V9.44009Z" fill="#06FC99"/>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="16.000000pt" height="16.000000pt" viewBox="0 0 16.000000 16.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,16.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M70 116 c0 -2 -7 -20 -15 -39 l-15 -36 27 14 c23 12 28 12 40 -3 10
+-13 10 -7 -2 22 -8 21 -15 40 -15 42 0 2 -4 4 -10 4 -5 0 -10 -2 -10 -4z m20
+-31 c0 -8 -4 -15 -10 -15 -5 0 -10 7 -10 15 0 8 5 15 10 15 6 0 10 -7 10 -15z"/>
+</g>
 </svg>

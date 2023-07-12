@@ -28,7 +28,7 @@ export const Text = styled.p<Props>`
   color: ${({ color }) => Mapper[color ?? "primary"]};
   letter-spacing: ${({ type }) => (type == "title" ? "-8%" : "-3%")};
   font-family: ${({ type }) =>
-    type == "title" ? "Silkscreen" : "IBM Plex Mono"};
+    type == "title" ? "MacanFont" : "Macan"};
   line-height: 140%;
   font-size: ${({ size }) => Mapper.size[size ?? "text2"] + "px"};
   text-align: ${({ align }) => align ?? "center"};

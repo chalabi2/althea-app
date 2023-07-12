@@ -27,7 +27,7 @@ const WalletModal = ({
       <div className="address">
         <CopyToClipboard
           text={account}
-          onCopy={() => toastHandler("copied address", true, "0", 300)}
+          onCopy={() => toastHandler("COPIED ADDRESS", true, "0", 300)}
         >
           <Text
             type="text"
@@ -73,6 +73,7 @@ const WalletModal = ({
       <OutlinedButton
         style={{
           marginTop: "32px",
+          fontFamily: "Macan",
         }}
         height="small"
         onClick={() => {
@@ -81,15 +82,15 @@ const WalletModal = ({
           window.location.reload();
         }}
       >
-        disconnect
+        DISCONNECT
       </OutlinedButton>
     </Styled>
   );
 };
 
 const Styled = styled.div`
-  width: 287px;
-  background-color: #d9d9d933;
+  width: 250px;
+  background-color: #0F1924;
   border-radius: 4px;
   backdrop-filter: blur(35px);
   display: flex;
@@ -125,7 +126,7 @@ const Styled = styled.div`
     margin-bottom: 24px;
   }
   .address p {
-    font-family: "Silkscreen";
+    font-family: "Macan";
   }
 
   .row {

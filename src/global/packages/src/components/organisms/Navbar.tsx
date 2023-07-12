@@ -47,10 +47,10 @@ export const NavBar = (props: Props) => {
             <img src={logo} />
             <div
               style={{
+                paddingLeft: "1",
                 transform: "translateY(-2px)",
               }}
             >
-              <Glitch title={"canto"} />
             </div>
           </a>
         </div>

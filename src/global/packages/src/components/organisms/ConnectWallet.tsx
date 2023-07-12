@@ -28,11 +28,12 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
             <div>
               <OutlinedButton
                 style={{
-                  fontSize: "12px",
+                  fontSize: "18px",
                   fontWeight: "500",
                   letterSpacing: "-0.03em",
                   borderRadius: "4px",
                   height: "32px",
+                  fontFamily: "Macan"
                 }}
               >
                 <span className="center ">
@@ -44,6 +45,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                   style={{
                     fontWeight: "500",
                     gap: "10px",
+                    fontFamily: "Macan"
                   }}
                 >
                   {currency != "CANTO" && currency != "ETH" ? currency : null}
@@ -56,6 +58,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                     height: "32px",
                     background: "var(--primary-color)",
                     width: "1px",
+                    fontFamily: "Macan"
                   }}
                 ></div>
                 <span className="hide-on-mobile">
@@ -80,12 +83,14 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
             onClick();
           }}
           style={{
+            fontSize: "18px",
             borderRadius: "4px",
             height: "32px",
+            fontFamily: "Macan"
           }}
         >
           <Text type="text" size="text4" bold>
-            connect<span className="hide-on-mobile">&nbsp;wallet</span>
+            CONNECT WALLET
           </Text>
         </OutlinedButton>
       )}

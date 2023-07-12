@@ -7,9 +7,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
 
 :root {
-  --primary-color: #06fc99;
-  --primary-dark-color: #11d888;
-  --primary-darker-color: #05955b;
+  --primary-color: #0000ec;
+  --primary-dark-color: #1122d8;
+  --primary-darker-color: #3700ff;
 
   --error-color: #ff4141;
   --warning-color: #ffda58;
@@ -24,8 +24,8 @@
 
   //colors
 
-  --matrix-green: #06fc99;
-  --matrix-green10: rgba(6, 252, 153, 0.1);
+  --matrix-green: #0077FF;
+  --matrix-green10: #0077FF;
   --danger-red: #ef4444;
   --danger-red10: #ef44441a;
   --warning-yellow: #e8d211;
@@ -35,8 +35,8 @@
 }
 
 :root {
-  --primary-color: #06fc99;
-  --primary-color-dark: #05de87;
+  --primary-color: #0077FF;
+  --primary-color-dark: #0269E1;
   --off-white-color: #efefef;
   //   --error-color: #fe4256;
 
@@ -60,14 +60,11 @@ input[type="number"] {
 }
 
 .App {
-  background: repeating-linear-gradient(
-    0deg,
-    #151515 0%,
-    #151515 4px,
-    #141a18 4px,
-    #141a18 8px
+  background: linear-gradient(
+    90deg,
+    #0D2642 0%,
+    #101112 100%
   );
-  background-repeat: repeat-y;
   display: flex;
   height: 100%;
   flex-direction: column;

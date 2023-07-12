@@ -61,7 +61,7 @@ const OutlinedButton = styled(PrimaryButton)<Props>`
   border: 1px solid var(--primary-color);
 
   &:hover {
-    background-color: #172b23;
+    background-color: rgba(0, 0, 0, 0.25);
     /* background: rgba(6, 252, 153, 0.1); */
     cursor: pointer;
   }

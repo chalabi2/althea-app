@@ -4,16 +4,47 @@ import closeImg from "assets/icons/close.svg";
 import ImageButton from "global/components/ImageButton";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import cantoFullImg from "assets/logo-full.svg";
+import cantoFullImg from "assets/altheaMenu.svg";
 import { Link } from "react-router-dom";
 import { OutlinedButton } from "../atoms/Button";
 import { addCantoToKeplr } from "../../utils/walletFunctionality";
 import useGlobalModals, { ModalType } from "../../stores/useModals";
 import { Text } from "../atoms/Text";
 import { PageObject } from "global/config/pageList";
+import { Mixpanel } from "mixpanel";
 interface BurgerMenuProps {
   pageList?: PageObject[];
   currentPage?: string;
+}
+
+const FontOne = styled.span`
+font-family: 'Macan'; // Replace with your actual font name
+font-size: '12px;
+`;
+
+const FontTwo = styled.span`
+font-family: 'MacanFont'; // Replace with your actual font name
+font-size: '12px;
+`;
+
+function parseText(text: string) {
+  const words = text.split(' ');
+  return words.map((word, idx) => {
+    const usedChars = new Set();
+    return (
+      <>
+        {word.split('').map(char => {
+          if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
+            usedChars.add(char.toUpperCase());
+            return <FontTwo>{char}</FontTwo>;
+          } else {
+            return <FontOne>{char}</FontOne>;
+          }
+        })}
+        {(idx < words.length - 1) && <>&nbsp;</>}
+      </>
+    );
+  });
 }
 
 const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
@@ -31,9 +62,10 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
       >
         <ImageButton
           src={menuImg}
-          height={27}
+          height={45}
           width={27}
           alt="menu"
+          rotateImage={true}
           onClick={() => {
             setIsOpen(true);
           }}
@@ -47,7 +79,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
       ></div>
       <div className="content">
         <header>
-          <img src={cantoFullImg} alt="canto logo" />
+          <img width={140} src={cantoFullImg} alt="canto logo" />
           <div className="menu-btn" id="close">
             <ImageButton
               src={closeImg}
@@ -70,25 +102,34 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
               setIsHovering(false);
             }}
           >
-            {pageList?.map((page, idx) => {
+            {pageList?.map((page) => {
               return page.showInMenu ? (
-                <Navlink
-                  id={page.name}
-                  className={`menu-item ${
-                    currentPage == page.name && !isHovering
-                      ? "active-bar active"
-                      : currentPage == page.name && isHovering
-                      ? "active-bar "
-                      : ""
-                  }`}
-                  to={page.link}
-                  key={page.name}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Text size="text2" type="title" align="left" id={page.name}>
-                    {"0" + (idx + 1) + " " + page.name}
-                  </Text>
-                </Navlink>
+<Navlink
+    id={page.name}
+    to={page.link}
+    key={page.name}
+    className={`menu-item ${
+        currentPage == page.name && !isHovering
+        ? "active-bar active"
+        : currentPage == page.name && isHovering
+        ? "active-bar "
+        : ""
+    }`}
+    onClick={() => {
+        setIsOpen(false);
+        Mixpanel.events.landingPageActions.navigatedTo(page.name);
+    }}
+>
+    <Text
+        size="title2"
+        type="title"
+        align="left"
+        id={page.name}
+        className="navLink"
+    >
+        {parseText(page.name)}
+    </Text>
+</Navlink>
               ) : null;
             })}
           </div>
@@ -102,7 +143,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
               setModalType(ModalType.TOKENS);
             }}
           >
-            import tokens
+            IMPORT TOKENS
           </OutlinedButton>
           {/* <OutlinedButton
           onClick={() => {
@@ -119,7 +160,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
               addCantoToKeplr();
             }}
           >
-            add to keplr
+            ADD TO KEPLR
           </OutlinedButton>
           <div className="links">
             <a href="https://canto.canny.io/" target="_blank" rel="noreferrer">
@@ -149,6 +190,7 @@ const Styled = styled.div<MenuState>`
 
   #close {
     transition: transform 0.3s;
+    padding-top: -10px;
 
     &:hover {
       transform: rotateZ(90deg);
@@ -184,7 +226,7 @@ const Styled = styled.div<MenuState>`
     position: absolute;
     top: 0%;
     left: ${({ isOpen }) => (isOpen ? "0px" : "-260px")};
-    background-color: black;
+    background-color: #101112;
     width: 260px;
     height: 100vh;
     z-index: 100;
@@ -199,16 +241,19 @@ const Styled = styled.div<MenuState>`
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-
-    font-size: 12px;
+    font-size: 18px;
     line-height: 16px;
-
     letter-spacing: -0.03em;
     text-decoration-line: underline;
-
-    color: #06fc99;
-
+    color: #101112;
     opacity: 0.7;
+    a {
+      transition: color 0.2s ease;
+
+      &:hover {
+          color: #0099FF;
+      }
+  }
   }
 
   header {
@@ -237,7 +282,7 @@ const Styled = styled.div<MenuState>`
 
   .active-bar {
     opacity: 1;
-    border-right: 4px solid var(--primary-color);
+    border-right: 4px solid ;
   }
 
   @media (max-width: 1000px) {
@@ -257,7 +302,7 @@ const Navlink = styled(Link)`
   transition: all 0.1s;
 
   /* &:hover {
-    background-color: #01190f;
+    background-color: #101112;
     opacity: 1;
   } */
 
@@ -271,7 +316,7 @@ const Navlink = styled(Link)`
     content: " ";
     position: absolute;
     transition: all 130ms ease-in;
-    background-color: #01190f;
+    background-color: #101112;
     transform: scaleY(0);
     left: 0;
     top: 0;

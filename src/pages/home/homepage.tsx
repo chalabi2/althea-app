@@ -7,40 +7,68 @@ import { NavLink } from "react-router-dom";
 import bg from "assets/bg.jpg";
 import { Banner } from "./components/Banner";
 
+const FontOne = styled.span`
+font-family: 'Macan'; // Replace with your actual font name
+`;
+
+const FontTwo = styled.span`
+font-family: 'MacanFont'; // Replace with your actual font name
+`;
+
+function parseText(text: string) {
+  const words = text.split(' ');
+  return words.map((word, idx) => {
+    const usedChars = new Set();
+    return (
+      <>
+        {word.split('').map(char => {
+          if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
+            usedChars.add(char.toUpperCase());
+            return <FontTwo>{char}</FontTwo>;
+          } else {
+            return <FontOne>{char}</FontOne>;
+          }
+        })}
+        {(idx < words.length - 1) && <>&nbsp;</>}
+      </>
+    );
+  });
+}
+
 const Homepage = () => {
+
   return (
     <>
       <HelmetSEO
-        title="Canto - Home Page"
-        description="Canto Homepage serves De-fi applications"
+        title="Althea Web App"
+        description="Althea Web App enables IFi accesibility"
         link=""
       />
       <Styled>
         <ul className="options" id="routes">
           {pageList.map((page, idx) => {
             return page.showInMenu ? (
-              <NavLink
-                to={page.link}
-                key={page.name}
-                id={page.name}
-                onClick={() =>
-                  Mixpanel.events.landingPageActions.navigatedTo(page.name)
-                }
-              >
-                <Text
-                  type="title"
-                  size="title1"
-                  align="left"
-                  className="navLink"
-                >
-                  {"0" + (idx + 1) + " " + page.name}
-                </Text>
-              </NavLink>
+<NavLink
+    to={page.link}
+    key={page.name}
+    id={page.name}
+    onClick={() =>
+        Mixpanel.events.landingPageActions.navigatedTo(page.name)
+    }
+>
+    <Text
+        type="title"
+        size="title1"
+        align="left"
+        className="navLink"
+    >
+        {parseText(page.name)}
+    </Text>
+</NavLink>
             ) : null;
           })}
         </ul>
         <div className="right">
-          <Banner />
         </div>
         {/* <div className="bg"> </div> */}
       </Styled>
@@ -127,12 +155,12 @@ const Styled = styled.div`
     &:hover {
       padding-left: 1rem;
 
-      color: black;
+      color: white;
       background-image: linear-gradient(
         to right,
-        #06fc99 0%,
-        #06fc99 40%,
-        #06fc99 100%
+        #0E2137 0%,
+        #0E2137 40%,
+        #0E2137 100%
       );
       background-repeat: no-repeat;
       background-size: 200% 100%;

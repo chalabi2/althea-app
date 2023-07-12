@@ -6,6 +6,7 @@ interface Props {
   alt: string;
   height?: number;
   width?: number;
+  rotateImage?: boolean; // New Prop
 }
 
 const Style = styled.button`
@@ -14,13 +15,13 @@ const Style = styled.button`
   cursor: pointer;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.2;
   }
   &:active {
-    opacity: 0.6;
+    opacity: 0.2;
   }
 `;
-const ImageButton = ({ onClick, alt, src, height, width }: Props) => {
+const ImageButton = ({ onClick, alt, src, height, width, rotateImage }: Props) => {
   return (
     <Style
       onClick={onClick}
@@ -29,7 +30,7 @@ const ImageButton = ({ onClick, alt, src, height, width }: Props) => {
         width,
       }}
     >
-      <img src={src} alt={alt} height={height} width={width} />
+      <img src={src} alt={alt} height={height} width={width} style={{ transform: rotateImage ? 'rotate(180deg)' : 'none' }} />
     </Style>
   );
 };
