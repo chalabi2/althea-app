@@ -36,7 +36,9 @@ function App() {
       <ToastContainer />
 
       <GlobalStyle />
-      <Router>
+      <Router
+      basename="/althea-app"
+      >
         <Container className="App">
           <CantoNav />
           <div className="main-body">
