@@ -23,9 +23,9 @@ export async function addCantoToKeplr() {
           // The name of the chain to be displayed to the user.
           chainName: "Althea",
           // RPC endpoint of the chain. In this case we are using blockapsis, as it's accepts connections from any host currently. No Cors limitations.
-          rpc: "http://66.172.36.142:3945",
+          rpc: "https://althea.rpc.chandrastation.com",
           // REST endpoint of the chain.
-          rest: "http://66.172.36.142:3917",
+          rest: "https://althea.api.chandrastation.com",
           // Staking coin information
           stakeCurrency: {
             // Coin denomination to be displayed to the user.

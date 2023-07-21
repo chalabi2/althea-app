@@ -62,7 +62,7 @@ export const CantoMainnet: CantoNetwork = {
   },
   icon: cantoIcon,
   chainId: 417834,
-  rpcUrl: "http://66.172.36.142:3845",
+  rpcUrl: "https://althea.evm.chandrastation.com",
   isTestChain: false,
   isLocalChain: false,
   multicallAddress: "0x5785e0027a8c937627C01C9EB5F543bA42f8BB6b",
@@ -73,7 +73,7 @@ export const CantoMainnet: CantoNetwork = {
   //canto specific
   coreContracts: CORE_ADDRESSES.CantoMainnet,
   cosmosBlockExplorerUrl: "https://www.mintscan.io/canto",
-  cosmosAPIEndpoint: "http://66.172.36.142:3817",
+  cosmosAPIEndpoint: "https://althea.api.chandrastation.com",
   cosmosChainId: "althea_417834-3",
 };
 export const ETHMainnet: ETHBridgeNetwork = {
