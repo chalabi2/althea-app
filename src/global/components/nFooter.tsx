@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <Styled>
       <div className="links">
-        <a href="https://canto.mirror.xyz/" target="_blank" rel="noreferrer">
+        <a href="https://www.althea.net/about" target="_blank" rel="noreferrer">
           <Text type="text">about Althea</Text>
         </a>
         <a href="https://docs.canto.io/" target="_blank" rel="noreferrer">
@@ -31,7 +31,7 @@ const Footer = () => {
             alt="discord"
             height={40}
             onClick={() => {
-              window.open("https://discord.gg/ucRX6XCFbr");
+              window.open("https://discord.gg/VPnPzYXTV8");
             }}
           />
           <ImageButton
@@ -39,7 +39,7 @@ const Footer = () => {
             alt="github"
             height={40}
             onClick={() => {
-              window.open("https://github.com/Canto-Network");
+              window.open("https://github.com/althea-net");
             }}
           />
           <ImageButton
@@ -47,7 +47,7 @@ const Footer = () => {
             alt="twitter"
             height={40}
             onClick={() => {
-              window.open("https://twitter.com/CantoPublic");
+              window.open("https://twitter.com/AltheaNetwork");
             }}
           />
         </div>
