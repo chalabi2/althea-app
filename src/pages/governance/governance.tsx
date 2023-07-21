@@ -90,7 +90,7 @@ const Governance = () => {
         >
           STAKE
         </a>{" "}
-        your canto to participate in governance
+        your Althea to participate in governance
       </Text>
       <div className="grid">
         <AllGovBars />

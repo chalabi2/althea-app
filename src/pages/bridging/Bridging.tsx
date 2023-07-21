@@ -6,7 +6,7 @@ import Transactions from "./TransactionHistory";
 import { useTransactionHistory } from "./hooks/useTransactionHistory";
 import { useNetworkInfo } from "global/stores/networkInfo";
 import { createConvertTransactions } from "./utils/utils";
-import walletIcon from "assets/wallet.svg";
+import walletIcon from "assets/favicon.ico";
 import { useEthers } from "@usedapp/core";
 import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
 import NotConnected from "global/packages/src/components/molecules/NotConnected";

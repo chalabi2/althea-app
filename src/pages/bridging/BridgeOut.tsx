@@ -37,10 +37,10 @@ const BridgeOut = (props: BridgeOutProps) => {
           title="instructions"
           QA={[
             {
-              question: "Step 1: Send Funds from Canto",
+              question: "Step 1: Send Funds from Althea",
               answer: (
                 <>
-                  To bridge out of canto, select the network and token you want
+                  To bridge out of althea, select the network and token you want
                   to bridge out.{" "}
                   <a
                     role="button"
@@ -70,7 +70,7 @@ const BridgeOut = (props: BridgeOutProps) => {
             {
               question: "Where are my tokens?",
               answer:
-                "If you cannot find your token on the receiving network, check on the 'bridge in' page to see if your token is on the native canto network. If the token is shown, click 'complete' on the box to move this token back to Canto's EVM. Then retry bridging out.",
+                "If you cannot find your token on the receiving network, check on the 'bridge in' page to see if your token is on the native althea network. If the token is shown, click 'complete' on the box to move this token back to Althea's EVM. Then retry bridging out.",
             },
           ]}
         />

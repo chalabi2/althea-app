@@ -86,7 +86,7 @@ const Styled = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: #13a068;
+      background-color: rgba(159, 204, 255);
     }
   }
 `;

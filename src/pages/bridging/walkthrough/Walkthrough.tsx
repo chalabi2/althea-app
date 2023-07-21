@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import NotConnected from "global/packages/src/components/molecules/NotConnected";
-import walletIcon from "assets/wallet.svg";
+import walletIcon from "assets/favicon.ico";
 import warningRedIcon from "assets/warning_red.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -38,8 +38,8 @@ const Walkthrough = () => {
       return (
         <PubKeyStyled>
           <NotConnected
-            title="you don’t have enough Canto or ETH to generate a public key"
-            subtext="In order to generate a public key, you must have at least 0.5 CANTO or 0.01 ETH on mainnet"
+            title="you don’t have enough Althea or ETH to generate a public key"
+            subtext="In order to generate a public key, you must have at least 0.5 Althea or 0.01 ETH on mainnet"
             buttonText="Home"
             onClick={() => {
               navigate("/");

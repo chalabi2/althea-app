@@ -38,7 +38,7 @@ const BridgeIn = (props: BridgeInProps) => {
           title="instructions"
           QA={[
             {
-              question: "Step 1: Send Funds to Canto",
+              question: "Step 1: Send Funds to Althea",
               answer: (
                 <>
                   To start bridging, select the network and token you want to
@@ -70,7 +70,7 @@ const BridgeIn = (props: BridgeInProps) => {
             {
               question: "Step 2: Complete Queued Transactions",
               answer:
-                "The 'Complete' button will appear in the bridge queue on the bottom half of this page once the tokens arrive at the Canto native chain. Click the 'Complete' button to move the tokens from the Canto native chain to Canto's EVM",
+                "The 'Complete' button will appear in the bridge queue on the bottom half of this page once the tokens arrive at the Althea native chain. Click the 'Complete' button to move the tokens from the Althea native chain to Althea's EVM",
             },
           ]}
         />
@@ -80,7 +80,7 @@ const BridgeIn = (props: BridgeInProps) => {
             {
               question: "How long does it take?",
               answer:
-                "Sending tokens from Ethereum to the Canto native chain (Step 1) takes 20-30 minutes. IBC transactions usually complete in a few seconds. Completing a queued transaction (Step 2) usually takes a few seconds.",
+                "Sending tokens from Ethereum to the Althea native chain (Step 1) takes 20-30 minutes. IBC transactions usually complete in a few seconds. Completing a queued transaction (Step 2) usually takes a few seconds.",
             },
             {
               question: "Where are my tokens?",

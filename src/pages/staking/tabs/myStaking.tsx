@@ -7,7 +7,7 @@ import InfoBar from "../components/InfoBar";
 import { ValidatorTable } from "../components/stakingTable";
 import { UndelegatingTable } from "../components/undelegatingTable";
 import { MyStakingProps } from "../config/interfaces";
-import walletIcon from "assets/wallet.svg";
+import walletIcon from "assets/favicon.ico";
 import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
 import { useEthers } from "@usedapp/core";
 

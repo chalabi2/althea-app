@@ -32,7 +32,7 @@ const Step2TxBox = (props: Step2TxBoxProps) => {
       <Text type="text" size="text3">
         {props.bridgeIn
           ? `once the transaction is done, please click on complete to get the funds
-        from bridge to canto (evm)`
+        from bridge to althea (evm)`
           : "once the transactions is done, please click on complete to get the funds to the desired cosmos network"}
       </Text>
       <div className="scroll-port">

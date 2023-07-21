@@ -50,7 +50,7 @@ const Modal = (props: Props) => {
 const StyledPopup = styled(Popup)`
   // use your custom style for ".popup-overlay"
   &-overlay {
-    background-color: #1f4a2c6e;
+    background-color: rgba(0, 119, 255, 0.15);
     backdrop-filter: blur(2px);
     z-index: 10;
     animation: fadein 0.2s;
