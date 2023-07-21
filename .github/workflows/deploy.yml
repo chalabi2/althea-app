@@ -14,13 +14,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16  # replace with your Node.js version
+          node-version: 18.15.0  # replace with your Node.js version
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
