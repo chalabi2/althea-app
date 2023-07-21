@@ -1,6 +1,6 @@
 {
-  "name": "canto-mono",
-  "description": "This project consists of all the first party supported apps for canto network.",
+  "name": "althea-app",
+  "description": "This project consists of all the first party supported apps for althea network.",
   "version": "0.3.3",
   "private": true,
   "author": {
