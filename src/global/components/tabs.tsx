@@ -63,7 +63,7 @@ const Styled = styled.div`
 
     &:hover {
       border: none;
-      background-color: #06fc9a4c;
+      background-color: rgba(0, 119, 255, 0.25);
       border-bottom: 4px solid var(--primary-color);
       border-top: 4px solid transparent;
     }
@@ -77,7 +77,7 @@ const Styled = styled.div`
     border-bottom: 4px solid var(--primary-color);
     border-top: 4px solid transparent;
 
-    background-color: #0077FF;
+    background-color: rgba(0, 119, 255, 0.1);
   }
   .react-tabs__tab--disabled {
   }

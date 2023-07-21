@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import warningIcon from "assets/warning.svg";
+import warningIcon from "assets/favicon.ico";
 import { Text } from "global/packages/src";
 import NotConnected from "global/packages/src/components/molecules/NotConnected";
 import { useNavigate } from "react-router-dom";
