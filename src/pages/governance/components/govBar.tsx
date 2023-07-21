@@ -37,7 +37,7 @@ const GovBar = (props: barProps) => {
         )}
       </div>
       <div className="votes-grp">
-        <BlobText color="#06fc99">
+        <BlobText color="#1122D8">
           <span className="label">yes :</span> {props.yesPecterage.toFixed(2)}%
         </BlobText>
         <BlobText color="#ff4646">
@@ -141,7 +141,7 @@ const Bar = styled.div<minibarProps>`
     height: 6px;
   }
   .yes {
-    background-color: #06fc99;
+    background-color: #1122D8;
     width: ${(props) => props.yesPecterage + "%"};
   }
   .no {
