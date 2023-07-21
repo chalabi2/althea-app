@@ -74,7 +74,7 @@ export const emptyProposal: ProposalData = {
   total_deposit: [
     {
       amount: "0",
-      denom: "aCanto",
+      denom: "aalthea",
     },
   ],
   voting_end_time: "000000",

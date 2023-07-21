@@ -19,16 +19,14 @@ export const CantoNav = () => {
   const alert = useAlert();
   const { activateBrowserWallet, account, chainId, active } = useEthers();
   const balance = useEtherBalance(account);
-  const cantoBalance = useEtherBalance(account, {
-    chainId: getCantoNetwork(Number(networkInfo.chainId)).chainId,
-  });
-  const ethBalance = useEtherBalance(networkInfo.account, { chainId: 417834 });
+  const cantoBalance = balance
+  const ethBalance = useEtherBalance(networkInfo.account, { chainId: 1 });
   const signer = useSigner();
   const canPubKey =
     (ethBalance?.gte(parseUnits("0.01")) ||
       networkInfo.balance?.gte(parseUnits("0.5"))) ??
     false;
-
+console.log(balance)
   const location = useLocation();
   const currentNetwork = getSupportedNetwork(Number(networkInfo.chainId));
 
@@ -108,7 +106,6 @@ export const CantoNav = () => {
     }
   }, []);
 
-  console.log(networkInfo.chainId)
   return (
     <NavBar
       onClick={() => {

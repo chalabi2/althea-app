@@ -43,7 +43,7 @@ export async function txStake(
   const params = {
     validatorAddress: validator,
     amount: amount,
-    denom: "acanto",
+    denom: "aalthea",
   };
 
   // create the msg to delegate
@@ -81,7 +81,7 @@ export async function txUnstake(
   const params = {
     validatorAddress: validator,
     amount: amount,
-    denom: "acanto",
+    denom: "aalthea",
   };
 
   // create the msg to delegate
@@ -121,7 +121,7 @@ export async function txRedelegate(
     validatorSrcAddress: source,
     validatorDstAddress: dest,
     amount: amount,
-    denom: "acanto",
+    denom: "aalthea",
   };
 
   // create the msg to delegate
@@ -344,7 +344,7 @@ export async function getCantoBalance(nodeAddressIP, address) {
       const balances = result.balances;
       let cantoBalance = BigNumber.from("0");
       balances.forEach((coin) => {
-        if (coin.denom === "acanto") {
+        if (coin.denom === "aalthea") {
           cantoBalance = BigNumber.from(coin.amount);
         }
       });
@@ -377,7 +377,7 @@ export async function getDistributionRewards(nodeAddressIP, address) {
     .then((result) => {
       let cantoRewards = BigNumber.from("0");
       result.total.forEach((reward) => {
-        if (reward.denom.includes("acanto")) {
+        if (reward.denom.includes("aalthea")) {
           cantoRewards = BigNumber.from(reward.amount.split(".")[0]);
         }
       });

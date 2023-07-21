@@ -93,12 +93,12 @@ export const StakingModal = ({
         <div className="dual-h-row">
           <p className="type">delegation</p>
           <p className="value">
-            {formatEther(validator.userDelegations?.balance.amount ?? 0)} canto
+            {formatEther(validator.userDelegations?.balance.amount ?? 0)} althea
           </p>
         </div>
         <div className="dual-h-row">
           <p className="type">available balance</p>
-          <p className="value">{truncateNumber(formatEther(balance))} canto</p>
+          <p className="value">{truncateNumber(formatEther(balance))} althea</p>
         </div>
         <div className="dual-h-row">
           <p className="type">commission</p>

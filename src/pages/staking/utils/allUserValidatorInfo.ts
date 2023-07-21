@@ -39,7 +39,7 @@ export function getAllValidatorData(
 export const calculateTotalStaked = (delegations: DelegationResponse[]) => {
   let total = BigNumber.from("0");
   delegations.forEach((delegation) => {
-    if (delegation.balance.denom.includes("acanto")) {
+    if (delegation.balance.denom.includes("aalthea")) {
       total = total.add(delegation.balance.amount);
     }
   });

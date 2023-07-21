@@ -145,7 +145,7 @@ export async function checkCantoBalance(
     nodeURLMain +
       "/cosmos/bank/v1beta1/balances/" +
       bech32Address +
-      "/by_denom?denom=acanto",
+      "/by_denom?denom=aalthea",
     {
       method: "GET",
       headers: {
@@ -154,7 +154,7 @@ export async function checkCantoBalance(
     }
   );
   const balance = BigNumber.from((await result.json()).balance.amount);
-  // console.log(balance);
+   console.log(balance);
 
   return !balance.lt(BigNumber.from("300000000000000000"));
 }

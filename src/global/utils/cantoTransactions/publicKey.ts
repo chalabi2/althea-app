@@ -112,7 +112,7 @@ async function txSend(
   const params = {
     destinationAddress: destinationBech32,
     amount: amount,
-    denom: "acanto",
+    denom: "aalthea",
   };
   const msg = createMessageSend(
     getCosmosChainObj(chainId),

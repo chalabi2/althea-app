@@ -129,7 +129,7 @@ const WalletModal = ({ onClose }: IProps) => {
     return (
       <Container>
         <img src={logo} alt="Canto" height={40} />
-        <p>connect wallet to start using canto</p>
+        <p>connect wallet to start using althea</p>
 
         <div className="wallet-list">
           <div
@@ -161,7 +161,7 @@ const WalletModal = ({ onClose }: IProps) => {
         </div>
 
         <footer>
-          by connecting, I accept canto’s <u>terms of service</u>
+          by connecting, I accept alhtea's <u>terms of service</u>
         </footer>
       </Container>
     );

@@ -61,7 +61,7 @@ const RecoveryPage = ({
           );
 
           return (
-            token.denom !== "acanto" && (
+            token.denom !== "aalthea" && (
               <RecoveryTransactionBox
                 key={token.denom}
                 txStore={txStore}
