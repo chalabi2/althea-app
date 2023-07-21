@@ -39,8 +39,8 @@ const Staking = () => {
   return (
     <>
       <HelmetSEO
-        title="Canto - Staking"
-        description="A test message written for staking using validators"
+        title="Althea - Staking"
+        description="Stake your ALTG tokens to participate in governance"
         link="staking"
       />
       <Styled>

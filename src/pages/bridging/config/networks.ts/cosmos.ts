@@ -39,7 +39,7 @@ export const CANTO_IBC_NETWORK: IBCNetwork = {
   name: "althea",
   chainId: "althea_417834-3",
   icon: TOKENS.cantoMainnet.CANTO.icon,
-  nativeCurrency: { denom: "aaltg", decimals: 18 },
+  nativeCurrency: { denom: "althea", decimals: 18 },
   channelFromCanto: "",
   channelToCanto: "",
   restEndpoint: "",

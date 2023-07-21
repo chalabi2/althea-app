@@ -24,7 +24,7 @@ const Governance = () => {
     return (
       <>
         <HelmetSEO
-          title="Canto - Governance"
+          title="Althea - Governance"
           description="Vote on proposals"
           link="governance"
         />

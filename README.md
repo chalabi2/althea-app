@@ -50,3 +50,10 @@ All tests are written using the Jest testing library.
 yarn test 
 ```
 Governance Font
+Title fonts
+Staking apr
+token balance
+IBC
+Bridge Backend
+Token lists
+Remove Lending

@@ -48,7 +48,7 @@ export const calculateTotalStaked = (delegations: DelegationResponse[]) => {
 
 export async function getStakingApr(nodeAddressIP: string) {
   const urlInflation =
-    nodeAddressIP + "/canto/inflation/v1/epoch_mint_provision";
+    nodeAddressIP + "/althea/inflation/v1/epoch_mint_provision";
   const urlStake = nodeAddressIP + "/cosmos/staking/v1beta1/pool";
 
   const options = {

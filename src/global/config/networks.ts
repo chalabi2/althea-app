@@ -54,10 +54,10 @@ export interface ETHBridgeNetwork extends Network {
 //MAIN CHAINS
 export const CantoMainnet: CantoNetwork = {
   name: "Althea",
-  chainName: "althea_417834-3",
+  chainName: "Althea Mainnet",
   nativeCurrency: {
     name: "Althea",
-    symbol: "ALTG",
+    symbol: "althea",
     decimals: 18,
   },
   icon: cantoIcon,

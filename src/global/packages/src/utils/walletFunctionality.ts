@@ -29,9 +29,9 @@ export async function addCantoToKeplr() {
           // Staking coin information
           stakeCurrency: {
             // Coin denomination to be displayed to the user.
-            coinDenom: "ALTG",
+            coinDenom: "althea",
             // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-            coinMinimalDenom: "aaltg",
+            coinMinimalDenom: "aalthea",
             // # of decimal points to convert minimal denomination to user-facing denomination.
             coinDecimals: 18,
             // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
@@ -69,9 +69,9 @@ export async function addCantoToKeplr() {
           currencies: [
             {
               // Coin denomination to be displayed to the user.
-              coinDenom: "ALTG",
+              coinDenom: "althea",
               // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-              coinMinimalDenom: "aaltg",
+              coinMinimalDenom: "aalthea",
               // # of decimal points to convert minimal denomination to user-facing denomination.
               coinDecimals: 18,
               // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
@@ -83,9 +83,9 @@ export async function addCantoToKeplr() {
           feeCurrencies: [
             {
               // Coin denomination to be displayed to the user.
-              coinDenom: "ALTG",
+              coinDenom: "althea",
               // Actual denom (i.e. ucanto, uscrt) used by the blockchain.
-              coinMinimalDenom: "aaltg",
+              coinMinimalDenom: "aalthea",
               // # of decimal points to convert minimal denomination to user-facing denomination.
               coinDecimals: 18,
               // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.

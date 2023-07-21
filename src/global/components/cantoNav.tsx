@@ -22,7 +22,7 @@ export const CantoNav = () => {
   const cantoBalance = useEtherBalance(account, {
     chainId: getCantoNetwork(Number(networkInfo.chainId)).chainId,
   });
-  const ethBalance = useEtherBalance(networkInfo.account, { chainId: 1 });
+  const ethBalance = useEtherBalance(networkInfo.account, { chainId: 417834 });
   const signer = useSigner();
   const canPubKey =
     (ethBalance?.gte(parseUnits("0.01")) ||
@@ -107,6 +107,8 @@ export const CantoNav = () => {
       });
     }
   }, []);
+
+  console.log(networkInfo.chainId)
   return (
     <NavBar
       onClick={() => {

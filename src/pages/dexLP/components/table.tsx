@@ -26,7 +26,7 @@ const Table = (props: Props) => {
                 style={{
                   backgroundColor:
                     wasColumnClicked && key == props.columnClicked
-                      ? "#14392a"
+                      ? "rgba(0, 119, 255, 0.25)"
                       : "",
                 }}
                 onClick={() => {
