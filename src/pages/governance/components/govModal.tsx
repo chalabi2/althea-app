@@ -30,7 +30,7 @@ const Container = styled.div`
   }
 
   .selected {
-    background: rgba(6, 252, 153, 0.15);
+    background: rgba(0, 119, 255, 0.25);
     border-radius: 1px;
     color: var(--primary-color);
   }
@@ -139,17 +139,17 @@ const GovRadioStyle = styled.div`
   &.active {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    background-color: #06fc9a1d;
+    background-color: rgba(0, 119, 255, 0.25);
     .unchecked {
       border: 1px solid var(--primary-color);
     }
   }
 
   &:hover {
-    border: 1px solid #06fc9aac;
-    color: #06fc9aac;
+    border: 1px solid rgba(0, 119, 255, 0.25);
+    color: rgba(0, 119, 255, 1);
     .unchecked {
-      border: 1px solid #06fc9aac;
+      border: 1px solid rgba(0, 119, 255, 1);
     }
   }
 

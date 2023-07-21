@@ -212,7 +212,7 @@ const Proposal = () => {
           </PrimaryButton>
           <Popup
             overlayStyle={{
-              backgroundColor: "#1f4a2c6e",
+              backgroundColor: "rgba(0, 119, 255, 0.11)",
               backdropFilter: "blur(2px)",
             }}
             lockScroll

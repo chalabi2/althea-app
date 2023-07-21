@@ -42,7 +42,7 @@ const Tooltip = (props: Props) => {
       on={["hover", "focus"]}
       arrow={true}
       arrowStyle={{
-        color: "rgba(217, 217, 217, 0.25)",
+        color: "rgba(0, 119, 255, 0.25)",
         backdropFilter: "blur(35px)",
       }}
     >
@@ -51,7 +51,7 @@ const Tooltip = (props: Props) => {
   );
 };
 const Styled = styled.div`
-  background: rgba(217, 217, 217, 0.2);
+  background: rgba(0, 119, 255, 0.25);
   backdrop-filter: blur(35px);
   border-radius: 4px;
   padding: 8px 12px;

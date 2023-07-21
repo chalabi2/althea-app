@@ -31,7 +31,7 @@ export const Selected = styled.div`
   }
   .react-select__menu {
     backdrop-filter: blur(35px);
-    background: #d9d9d933;
+    background: rgba(0, 119, 255, 0.25);
     border-radius: 4px;
     overflow-x: hidden !important;
     color: var(--primary-color) !important;

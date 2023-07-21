@@ -52,8 +52,8 @@ yarn test
 Governance Font
 Title fonts
 Staking apr
-token balance
 IBC
 Bridge Backend
 Token lists
 Remove Lending
+claim rewards modal

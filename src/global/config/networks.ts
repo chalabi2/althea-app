@@ -57,7 +57,7 @@ export const CantoMainnet: CantoNetwork = {
   chainName: "Althea Mainnet",
   nativeCurrency: {
     name: "Althea",
-    symbol: "aalthea",
+    symbol: "althea",
     decimals: 18,
   },
   icon: cantoIcon,

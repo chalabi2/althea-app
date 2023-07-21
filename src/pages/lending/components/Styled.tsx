@@ -217,7 +217,7 @@ export const LimitBar = styled.div`
   } */
 `;
 export const ToolTipL = styled.div`
-  background: rgba(217, 217, 217, 0.2);
+  background: rgba(0, 119, 255, 0.25);
   backdrop-filter: blur(35px);
   border-radius: 4px;
   padding: 8px 12px;
