@@ -36,15 +36,15 @@ function addressCheck(address: string | undefined, addressBeginning: string) {
 const blockEndpoint = "/cosmos/base/tendermint/v1beta1";
 
 export const CANTO_IBC_NETWORK: IBCNetwork = {
-  name: "canto",
-  chainId: "canto_7700-1",
+  name: "althea",
+  chainId: "althea_417834-3",
   icon: TOKENS.cantoMainnet.CANTO.icon,
-  nativeCurrency: { denom: "acanto", decimals: 18 },
+  nativeCurrency: { denom: "aaltg", decimals: 18 },
   channelFromCanto: "",
   channelToCanto: "",
   restEndpoint: "",
   rpcEndpoint: "",
-  addressBeginning: "canto",
+  addressBeginning: "althea",
   checkAddress: function (address) {
     return addressCheck(address, this.addressBeginning);
   },

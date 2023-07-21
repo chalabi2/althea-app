@@ -48,7 +48,7 @@ const Container = styled.table`
     font-weight: 400;
     line-height: 1rem;
     &:hover {
-      background-color: #14392a;
+      background-color: rgba(0, 119, 255, 0.25);
       cursor: pointer;
     }
   }
@@ -98,7 +98,7 @@ const Container = styled.table`
       transition: all 0.2s;
 
       &:hover {
-        background-color: #163429;
+        background-color: rgba(0, 119, 255, 0.25);
         cursor: pointer;
         transform: scale(1.02);
       }
@@ -154,7 +154,7 @@ const Table: React.FC<Props> = (props: Props) => {
                 style={{
                   backgroundColor:
                     wasColumnClicked && key == props.columnClicked
-                      ? "#14392a"
+                      ? "rgba(0, 119, 255, 0.25)"
                       : "",
                 }}
                 onClick={() => {

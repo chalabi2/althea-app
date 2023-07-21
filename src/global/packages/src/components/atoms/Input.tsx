@@ -46,7 +46,7 @@ export const CSearch = styled.input`
     background-color: #0e0e0e;
   }
   &::placeholder {
-    color: #00925a;
+    color: #0077FF;
   }
   &:focus {
     outline: 1px solid var(--primary-color);

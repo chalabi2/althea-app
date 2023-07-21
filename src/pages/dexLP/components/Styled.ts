@@ -12,7 +12,7 @@ export const DexModalContainer = styled.div`
   //! marked for deletion
   .title {
     width: 100%;
-    /* background-color: #06fc991a; */
+    /* background-color: #0077FF; */
     padding: 1rem;
     border-bottom: 1px solid #222;
     z-index: 2;
@@ -236,7 +236,7 @@ export const FieldContainer = styled.div<fieldProps>`
   /* flex-direction: column; */
   background-color: ${(props) => (props.focused ? "#001A0E" : "#191919")};
   border: ${(props) =>
-    props.focused ? "1px solid #06FC99" : "1px solid #191919"};
+    props.focused ? "1px solid #0077FF" : "1px solid #191919"};
   border-radius: 4px;
   color: #efefef;
   height: 80px;

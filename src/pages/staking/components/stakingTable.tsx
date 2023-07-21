@@ -1,8 +1,8 @@
 import { BigNumber } from "ethers";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
-import cantoIcon from "assets/logo.svg";
-import cantoJailedIcon from "assets/jailed/logo.svg";
+import cantoIcon from "assets/favicon.ico";
+import cantoJailedIcon from "assets/favicon.ico";
 import { MasterValidatorProps } from "../config/interfaces";
 import useValidatorModalStore, {
   ValidatorModalType,

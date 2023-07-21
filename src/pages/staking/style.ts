@@ -43,7 +43,7 @@ const Styled = styled.div`
     font-weight: 500;
     &:hover {
       border: none;
-      background-color: #06fc991a;
+      background-color: rgba(0, 119, 255, 0.25);
     }
   }
 
@@ -55,10 +55,10 @@ const Styled = styled.div`
     border: none;
     border-bottom: 4px solid var(--primary-color);
     border-top: 4px solid transparent;
-    background-color: #06fc991a;
+    background-color: rgba(0, 119, 255, 0.25);
     &:hover {
       border-top: 4px solid transparent;
-      background-color: #06fc991a !important;
+      background-color: rgba(0, 119, 255, 0.25) !important;
 
       border-bottom: 4px solid var(--primary-color);
     }

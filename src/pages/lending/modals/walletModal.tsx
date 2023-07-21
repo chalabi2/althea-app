@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import logo from "assets/logo.svg";
+import logo from "assets/favicon.ico";
 import metamask from "assets/wallets/metamask.svg";
 import walletConnect from "assets/wallets/walletconnect.svg";
 import tally from "assets/wallets/tally.svg";

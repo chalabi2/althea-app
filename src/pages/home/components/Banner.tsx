@@ -30,7 +30,7 @@ const Styled = styled.div`
   height: 500px;
   border-radius: 4px;
   padding: 1rem;
-  border: 1px solid #06fc99b8;
+  border: 1px solid #0077FF;
   display: flex;
   flex-direction: column;
   gap: 1rem;

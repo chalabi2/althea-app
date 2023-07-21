@@ -10,7 +10,7 @@ import {
 import { CORE_ADDRESSES } from "./addresses";
 import ethIcon from "assets/icons/ETH.svg";
 import bridgeIcon from "assets/icons/canto-bridge.svg";
-import cantoIcon from "assets/icons/canto-evm.svg";
+import cantoIcon from "assets/favicon.ico";
 
 //CONSTANTS
 const cantoBlockExplorerUrl = "https://tuber.build";
@@ -53,16 +53,16 @@ export interface ETHBridgeNetwork extends Network {
 
 //MAIN CHAINS
 export const CantoMainnet: CantoNetwork = {
-  name: "Canto",
-  chainName: "Canto",
+  name: "Althea",
+  chainName: "althea_417834-3",
   nativeCurrency: {
-    name: "Canto",
-    symbol: "CANTO",
+    name: "Althea",
+    symbol: "ALTG",
     decimals: 18,
   },
   icon: cantoIcon,
-  chainId: 7700,
-  rpcUrl: "https://mainnode.plexnode.org:8545",
+  chainId: 417834,
+  rpcUrl: "http://66.172.36.142:3845",
   isTestChain: false,
   isLocalChain: false,
   multicallAddress: "0x210b88d5Ad4BEbc8FAC4383cC7F84Cd4F03d18c6",
@@ -73,8 +73,8 @@ export const CantoMainnet: CantoNetwork = {
   //canto specific
   coreContracts: CORE_ADDRESSES.CantoMainnet,
   cosmosBlockExplorerUrl: "https://www.mintscan.io/canto",
-  cosmosAPIEndpoint: "https://mainnode.plexnode.org:1317",
-  cosmosChainId: "canto_7700-1",
+  cosmosAPIEndpoint: "http://66.172.36.142:3817",
+  cosmosChainId: "althea_417834-3",
 };
 export const ETHMainnet: ETHBridgeNetwork = {
   ...Mainnet,

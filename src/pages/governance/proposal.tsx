@@ -92,7 +92,7 @@ const Proposal = () => {
         >
           <div className="row">
             <RowCell
-              color="#06fc99"
+              color="#0077FF"
               type="Yes:"
               value={
                 customizeData.showPercentVote ? (
@@ -102,7 +102,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.yes)
                     )}{" "}
-                    <img src={cantoIcon} height={16} alt="canto" />
+                   <div>ALTG</div>
                   </>
                 )
               }
@@ -118,7 +118,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.no)
                     )}{" "}
-                    <img src={cantoIcon} height={16} alt="canto" />
+                    <div>ALTG</div>
                   </>
                 )
               }
@@ -135,7 +135,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.no_with_veto)
                     )}{" "}
-                    <img src={cantoIcon} height={16} alt="canto" />
+                    <div>ALTG</div>
                   </>
                 )
               }
@@ -152,7 +152,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.abstain)
                     )}{" "}
-                    <img src={cantoIcon} height={16} alt="canto" />
+                    <div>ALTG</div>
                   </>
                 )
               }

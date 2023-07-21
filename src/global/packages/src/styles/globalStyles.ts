@@ -3,7 +3,7 @@ import { Global } from "@emotion/react";
 
 export const GlobalStyle = styled.div`
   :root {
-    --primary-color: #06fc99;
+    --primary-color: #0077FF;
     --primary-dark-color: #11d888;
     --primary-darker-color: #05955b;
 

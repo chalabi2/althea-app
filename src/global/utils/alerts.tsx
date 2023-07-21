@@ -25,7 +25,7 @@ export function ShowAlerts(
   if (!currentPageObj) {
     return;
   } else if (!account && !currentPageObj.walletNotRequired) {
-    openAlert("Warning", <p> please connect your wallet to use canto</p>);
+    openAlert("Warning", <p> please connect your wallet to use Althea</p>);
     return;
   } else if (
     (chainId == undefined || !currentPageObj.networks.includes(chainId)) &&

@@ -131,7 +131,7 @@ export const StakingModalContainer = styled.div`
     line-height: 147%;
     letter-spacing: -0.03em;
     text-transform: lowercase;
-    color: #06fc99;
+    color: #0077FF;
 
     opacity: 0.4;
   }
@@ -162,7 +162,7 @@ export const StakingModalContainer = styled.div`
     color: #efefef;
     font-weight: 400;
     .selected {
-      background: rgba(6, 252, 153, 0.1);
+      background: rgba(0, 119, 255, 0.25);
       border-bottom: 4px solid var(--primary-color);
     }
     .tab {
@@ -175,7 +175,7 @@ export const StakingModalContainer = styled.div`
       justify-content: center;
       align-items: center;
       &:hover:not(.selected) {
-        background: #a7efd218;
+        background: rgba(0, 119, 255, 0.1);
       }
       &:focus {
         outline: none;

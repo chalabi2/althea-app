@@ -77,7 +77,7 @@ const Styled = styled.div`
     border-bottom: 4px solid var(--primary-color);
     border-top: 4px solid transparent;
 
-    background-color: #06fc991a;
+    background-color: #0077FF;
   }
   .react-tabs__tab--disabled {
   }

@@ -9,6 +9,7 @@ import HelmetSEO from "global/components/seo";
 import { useNavigate } from "react-router-dom";
 import { Text } from "global/packages/src";
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
+
 const Governance = () => {
   //network info store
   const networkInfo = useNetworkInfo();
@@ -24,7 +25,7 @@ const Governance = () => {
       <>
         <HelmetSEO
           title="Canto - Governance"
-          description="A test message written for Governance only"
+          description="Vote on proposals"
           link="governance"
         />
         {!proposals.proposals

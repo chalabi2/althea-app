@@ -19,24 +19,24 @@ export async function addCantoToKeplr() {
         //@ts-ignore
         await window.keplr.experimentalSuggestChain({
           // Chain-id of the cantosis chain.
-          chainId: "canto_7700-1",
+          chainId: "althea_417834-3",
           // The name of the chain to be displayed to the user.
-          chainName: "Canto Mainnet",
+          chainName: "Althea",
           // RPC endpoint of the chain. In this case we are using blockapsis, as it's accepts connections from any host currently. No Cors limitations.
-          rpc: "https://rpc.canto.nodestake.top",
+          rpc: "http://66.172.36.142:3945",
           // REST endpoint of the chain.
-          rest: "https://api.canto.nodestake.top",
+          rest: "http://66.172.36.142:3917",
           // Staking coin information
           stakeCurrency: {
             // Coin denomination to be displayed to the user.
-            coinDenom: "CANTO",
+            coinDenom: "ALTG",
             // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-            coinMinimalDenom: "acanto",
+            coinMinimalDenom: "aaltg",
             // # of decimal points to convert minimal denomination to user-facing denomination.
             coinDecimals: 18,
             // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
             // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
-            coinGeckoId: "canto",
+            coinGeckoId: "althea",
           },
           // (Optional) If you have a wallet webpage used to stake the coin then provide the url to the website in `walletUrlForStaking`.
           // The 'stake' button in Keplr extension will link to the webpage.
@@ -58,39 +58,39 @@ export async function addCantoToKeplr() {
           //   bech32PrefixConsPub: string;
           // }
           bech32Config: {
-            bech32PrefixAccAddr: "canto",
-            bech32PrefixAccPub: "cantopub",
-            bech32PrefixValAddr: "cantovaloper",
-            bech32PrefixValPub: "cantovaloperpub",
-            bech32PrefixConsAddr: "cantovalcons",
-            bech32PrefixConsPub: "cantovalconspub",
+            bech32PrefixAccAddr: "althea",
+            bech32PrefixAccPub: "altheapub",
+            bech32PrefixValAddr: "altheavaloper",
+            bech32PrefixValPub: "altheavaloperpub",
+            bech32PrefixConsAddr: "altheavalcons",
+            bech32PrefixConsPub: "altheavalconspub",
           },
           // List of all coin/tokens used in this chain.
           currencies: [
             {
               // Coin denomination to be displayed to the user.
-              coinDenom: "CANTO",
+              coinDenom: "ALTG",
               // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-              coinMinimalDenom: "acanto",
+              coinMinimalDenom: "aaltg",
               // # of decimal points to convert minimal denomination to user-facing denomination.
               coinDecimals: 18,
               // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
               // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
-              coinGeckoId: "canto",
+              coinGeckoId: "althea",
             },
           ],
           // List of coin/tokens used as a fee token in this chain.
           feeCurrencies: [
             {
               // Coin denomination to be displayed to the user.
-              coinDenom: "CANTO",
+              coinDenom: "ALTG",
               // Actual denom (i.e. ucanto, uscrt) used by the blockchain.
-              coinMinimalDenom: "acanto",
+              coinMinimalDenom: "aaltg",
               // # of decimal points to convert minimal denomination to user-facing denomination.
               coinDecimals: 18,
               // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
               // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
-              coinGeckoId: "canto",
+              coinGeckoId: "althea",
               gasPriceStep: {
                 low: 125000000000,
                 average: 250000000000,
@@ -124,7 +124,7 @@ export async function addCantoToKeplr() {
     }
   }
 
-  const chainId = "canto_7700-1";
+  const chainId = "althea_417834-3";
 
   // You should request Keplr to enable the wallet.
   // This method will ask the user whether or not to allow access if they haven't visited this website.

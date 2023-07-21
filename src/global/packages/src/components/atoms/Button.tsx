@@ -49,7 +49,7 @@ const PrimaryButton = styled.button<Props>`
   }
 
   &:disabled {
-    background-color: #005732;
+    background-color: blue;
     color: black;
   }
 `;
@@ -67,9 +67,9 @@ const OutlinedButton = styled(PrimaryButton)<Props>`
   }
 
   &:disabled {
-    color: #006739;
+    color: rgba(0, 119, 255, 0.25);
     background-color: var(--pitch-black-color);
-    border: 1px solid #006739;
+    border: 1px solid rgba(0, 119, 255, 0.25);
   }
 `;
 

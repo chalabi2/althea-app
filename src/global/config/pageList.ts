@@ -38,16 +38,16 @@ export const PAGES = {
   governance: {
     name: "governance",
     link: "/governance",
-    pageTitle: "governance",
+    pageTitle: "Governance",
     networks: [CantoMainnet.chainId, CantoTestnet.chainId],
     showInMenu: true,
     subpages: {
       proposal: {
         name: "proposal",
         link: "/governance/proposal/:id",
-        pageTitle: "proposal #0",
+        pageTitle: "Proposal #0",
         pageTitleFunction: (link: string) => {
-          return "proposal #" + link.split("/")[3];
+          return "Proposal #" + link.split("/")[3];
         },
         networks: [CantoMainnet.chainId, CantoTestnet.chainId],
         showInMenu: false,
@@ -77,9 +77,9 @@ export const PAGES = {
     walletNotRequired: true,
   },
   staking: {
-    name: "staking",
+    name: "Staking",
     link: "/staking",
-    pageTitle: "staking",
+    pageTitle: "Staking",
     networks: [CantoMainnet.chainId, CantoTestnet.chainId],
     showInMenu: true,
     balanceLimits: [

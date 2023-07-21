@@ -274,7 +274,7 @@ const ItemStyled = styled.div`
   }
 
   &:hover {
-    background-color: #06fc991a;
+    background-color: #0077FF;
     cursor: pointer;
   }
 `;

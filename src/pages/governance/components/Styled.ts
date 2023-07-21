@@ -14,6 +14,7 @@ export const GovernanceContainer = styled.div`
     padding: 0.6rem 2.4rem;
     font-size: 1rem;
     font-weight: 500;
+    font-style: Macan;
     letter-spacing: -0.03em;
     width: fit-content;
     margin: 0 auto;
@@ -80,9 +81,10 @@ export const ProposalContainer = styled.div`
     font-weight: 300;
     font-size: 184px;
     line-height: 130%;
+    font-style: Macan;
     text-align: center;
     letter-spacing: -0.13em;
-    color: #06fc99;
+    color: #0077FF;
     text-shadow: 0px 12.2818px 12.2818px rgba(6, 252, 153, 0.2);
   }
   .row {
@@ -115,6 +117,7 @@ export const ProposalContainer = styled.div`
   .tiny {
     font-weight: 400;
     font-size: 14px;
+    font-style: Macan;
     line-height: 18px;
     display: flex;
     justify-content: space-between;

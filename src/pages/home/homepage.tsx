@@ -5,34 +5,38 @@ import { Text } from "global/packages/src";
 import { Mixpanel } from "mixpanel";
 import { NavLink } from "react-router-dom";
 import bg from "assets/bg.jpg";
-import { Banner } from "./components/Banner";
+import React from "react";
 
 const FontOne = styled.span`
-font-family: 'Macan'; // Replace with your actual font name
+font-family: 'Macan';
 `;
 
 const FontTwo = styled.span`
-font-family: 'MacanFont'; // Replace with your actual font name
+font-family: 'MacanFont';
 `;
 
-function parseText(text: string) {
+export function parseText(text: string): JSX.Element {
   const words = text.split(' ');
-  return words.map((word, idx) => {
-    const usedChars = new Set();
-    return (
-      <>
-        {word.split('').map(char => {
-          if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
-            usedChars.add(char.toUpperCase());
-            return <FontTwo>{char}</FontTwo>;
-          } else {
-            return <FontOne>{char}</FontOne>;
-          }
-        })}
-        {(idx < words.length - 1) && <>&nbsp;</>}
-      </>
-    );
-  });
+  return (
+    <>
+      {words.map((word, idx) => {
+        const usedChars = new Set();
+        return (
+          <React.Fragment key={idx}>
+            {word.split('').map((char, i) => {
+              if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
+                usedChars.add(char.toUpperCase());
+                return <FontTwo key={i}>{char}</FontTwo>;
+              } else {
+                return <FontOne key={i}>{char}</FontOne>;
+              }
+            })}
+            {(idx < words.length - 1) && <>&nbsp;</>}
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
 }
 
 const Homepage = () => {
@@ -104,7 +108,7 @@ const Styled = styled.div`
     background-color: black;
     background: url(${bg}),
       linear-gradient(90deg, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 60%),
-      linear-gradient(180deg, #06fc99 0%, #06fc99 50%, rgba(0, 0, 0, 1) 100%);
+      linear-gradient(180deg, #0077FF 0%, #0077FF 50%, rgba(0, 0, 0, 1) 100%);
     background-position: 100%;
     background-size: auto 100%;
     top: 0;

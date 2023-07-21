@@ -16,8 +16,8 @@ import { CANTO_IBC_NETWORK } from "../config/bridgeOutNetworks";
 import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
 
 const chain = {
-  chainId: 7700,
-  cosmosChainId: "canto_7700-1",
+  chainId: 417834,
+  cosmosChainId: "althea_417834-3",
 };
 export interface BridgeTransaction {
   state: TransactionState;
