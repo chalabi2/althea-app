@@ -66,7 +66,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
             borderColor: "#333",
           }}
         >
-          canto
+          althea
         </Text>
         {tokens.map((token) =>
           token.main == "-1" ? null : (

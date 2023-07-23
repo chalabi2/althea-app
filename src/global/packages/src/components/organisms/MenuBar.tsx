@@ -12,6 +12,7 @@ import useGlobalModals, { ModalType } from "../../stores/useModals";
 import { Text } from "../atoms/Text";
 import { PageObject } from "global/config/pageList";
 import { Mixpanel } from "mixpanel";
+import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
 interface BurgerMenuProps {
   pageList?: PageObject[];
   currentPage?: string;
@@ -135,16 +136,16 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
           </div>
         </div>
         <footer>
-          <OutlinedButton
-            filled
-            weight="bold"
-            onClick={() => {
-              // addTokens(chainId);
-              setModalType(ModalType.TOKENS);
-            }}
-          >
-            IMPORT TOKENS
-          </OutlinedButton>
+        <OutlinedButton
+    filled
+    weight="bold"
+    onClick={async () => {
+        // addTokens(chainId);
+        await addNetwork();
+    }}
+>
+    ADD TO METAMASK
+</OutlinedButton>
           {/* <OutlinedButton
           onClick={() => {
             addCTokens(chainId);
