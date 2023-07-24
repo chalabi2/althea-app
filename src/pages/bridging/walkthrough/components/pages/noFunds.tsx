@@ -7,12 +7,12 @@ const NoFunds = () => {
   return (
     <Styled>
       <img src={WarningIcon} height={80} />
-      <Text type="title" size="title2">
+      <Text type="text" size="title2">
         Oops, looks like you have no funds to transfer
       </Text>
       <Text type="text">
         To use the bridge, you must have either USDC, USDT, or WETH on the
-        Ethereum network, or USDC, USDT, ETH, or ATOM on the Canto network.
+        Ethereum network, or USDC, USDT, ETH, or ATOM on the Althea network.
         Currently, it appears that you do not have any funds on either network.
       </Text>
     </Styled>

@@ -37,7 +37,7 @@ const Modal = (props: Props) => {
       </div>
       {props.title ? (
         <div className="modal-title">
-          <Text type="title" size="title2">
+          <Text type="text" size="title2">
             {props.title}
           </Text>
         </div>

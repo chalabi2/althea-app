@@ -18,7 +18,7 @@ const LoadingWalkthrough = ({ delay }: Props) => {
   }
   return (
     <Styled>
-      <Text type="title" size="title2">
+      <Text type="text" size="title2">
         Bridge Walkthrough
       </Text>
 
@@ -28,7 +28,7 @@ const LoadingWalkthrough = ({ delay }: Props) => {
           maxWidth: "500px",
         }}
       >
-        <Text type="title">Setting up the walkthrough for you</Text>
+        <Text type="text">Setting up the walkthrough for you</Text>
         <Text type="text" size="text3">
           This walkthrough steps you through bridging for a simpler experience
         </Text>

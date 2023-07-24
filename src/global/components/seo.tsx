@@ -8,7 +8,7 @@ interface Props {
   link: string;
 }
 const HelmetSEO = (props: Props) => {
-  const baseUrl = "https://canto.io/";
+  const baseUrl = "https://app.althea.net/";
   return (
     <>
       <Helmet prioritizeSeoTags>

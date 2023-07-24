@@ -44,7 +44,7 @@ const MyStaking = (props: MyStakingProps) => {
               canClaim={props.canClaim}
             />
             <Text
-              type="title"
+              type="text"
               size="title3"
               color="primary"
               align="left"
@@ -58,7 +58,7 @@ const MyStaking = (props: MyStakingProps) => {
             />
 
             <Text
-              type="title"
+              type="text"
               size="title3"
               color="primary"
               align="left"

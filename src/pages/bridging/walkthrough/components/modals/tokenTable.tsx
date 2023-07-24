@@ -18,7 +18,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
   }
   return (
     <Styled>
-      <Text type="title" align="left">
+      <Text type="text" align="left">
         Ethereum Tokens
       </Text>
       <div className="table">

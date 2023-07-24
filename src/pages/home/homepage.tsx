@@ -6,6 +6,7 @@ import { Mixpanel } from "mixpanel";
 import { NavLink } from "react-router-dom";
 import bg from "assets/bg.jpg";
 import React from "react";
+import { Banner } from "./components/Banner";
 
 const FontOne = styled.span`
 font-family: 'Macan';
@@ -73,6 +74,7 @@ const Homepage = () => {
           })}
         </ul>
         <div className="right">
+        {/*<Banner />*/}
         </div>
         {/* <div className="bg"> </div> */}
       </Styled>

@@ -14,7 +14,7 @@ export const PAGES = {
   bridge: {
     name: "bridge",
     link: "/bridge",
-    pageTitle: "bridge",
+    pageTitle: "BRIDGE",
     networks: [],
     showInMenu: true,
     balanceLimits: [
@@ -29,7 +29,7 @@ export const PAGES = {
       walkthrough: {
         name: "walkthrough",
         link: "/bridge/walkthrough",
-        pageTitle: "guide",
+        pageTitle: "GUIDE",
         networks: [CantoMainnet.chainId, CantoTestnet.chainId, 1],
         showInMenu: false,
       },
@@ -38,7 +38,7 @@ export const PAGES = {
   governance: {
     name: "governance",
     link: "/governance",
-    pageTitle: "Governance",
+    pageTitle: "GOVERNANCE",
     networks: [CantoMainnet.chainId, CantoTestnet.chainId],
     showInMenu: true,
     subpages: {
@@ -79,7 +79,7 @@ export const PAGES = {
   staking: {
     name: "Staking",
     link: "/staking",
-    pageTitle: "Staking",
+    pageTitle: "STAKING",
     networks: [CantoMainnet.chainId, CantoTestnet.chainId],
     showInMenu: true,
     balanceLimits: [
@@ -87,7 +87,7 @@ export const PAGES = {
         minBalance: parseUnits("3.5", 18),
         description: "claim rewards",
         warningMessage:
-          "you may not have enough CANTO to claim rewards, we recommend at least 3.5 CANTO to avoid transaction failure",
+          "you may not have enough althea to claim rewards, we recommend at least 3.5 althea to avoid transaction failure",
       },
     ],
   },

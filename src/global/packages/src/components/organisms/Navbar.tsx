@@ -21,6 +21,36 @@ interface Props {
   currentPage?: string;
 }
 
+const FontOne = styled.span`
+font-family: 'Macan';
+font-size: '12px;
+`;
+
+const FontTwo = styled.span`
+font-family: 'MacanFont';
+font-size: '12px;
+`;
+
+function parseText(text: string) {
+  const words = text.split(' ');
+  return words.map((word, idx) => {
+    const usedChars = new Set();
+    return (
+      <>
+        {word.split('').map(char => {
+          if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
+            usedChars.add(char.toUpperCase());
+            return <FontTwo>{char}</FontTwo>;
+          } else {
+            return <FontOne>{char}</FontOne>;
+          }
+        })}
+        {(idx < words.length - 1) && <>&nbsp;</>}
+      </>
+    );
+  });
+}
+
 export const NavBar = (props: Props) => {
   const { chainId, siteLogo: logo, currentPage, pageList } = props;
 
@@ -63,7 +93,7 @@ export const NavBar = (props: Props) => {
             transform: "translateY(-3px)",
           }}
         >
-          {currentPage}
+          {parseText(currentPage)}
         </Text>
 
         <ConnectWallet {...props} />

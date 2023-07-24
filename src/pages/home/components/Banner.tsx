@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
 import { OutlinedButton, Text } from "global/packages/src";
-import bannerImg from "assets/coh-banner.png";
+import bannerImg from "assets/blocksbackground.png";
+
 export const Banner = () => {
   return (
     <Styled>
-      <Text type="title" size="title2" align="left">
-        The canto online hackathon
+      <Text type="text" size="title2" align="left" >
+        The Althea iFI Hackathon
       </Text>
-      <Text align="left">/chapter 1 : season 8</Text>
-      <Text align="left">/june 19 - july 21</Text>
+      <Text align="left">- 40 Days</Text>
+      <Text align="left">- june 19 - August 16</Text>
       <Text align="left">
-        Join the Canto Online Hackathon for apps, infrastructure, and original
+        Join the Althea iFI Hackathon for apps, infrastructure, and original
         work.
       </Text>
       <div className="spacer"></div>
@@ -26,6 +27,7 @@ export const Banner = () => {
 };
 
 const Styled = styled.div`
+  color: grey; // This will apply the grey color to all text within this component
   width: 400px;
   height: 500px;
   border-radius: 4px;

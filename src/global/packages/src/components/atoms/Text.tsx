@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 interface Props {
   type?: "title" | "text";
-  color?: "white" | "primary" | "dark" | "primaryDark";
+  color?: "white" | "primary" | "dark" | "primaryDark" | "darkFont";
   bold?: boolean;
   align?: "left" | "center" | "right";
   size?: "text1" | "text2" | "text3" | "text4" | "title1" | "title2" | "title3";
@@ -13,6 +13,7 @@ const Mapper = {
   primary: "var(--primary-color)",
   primaryDark: "#08ac6b",
   dark: "#111",
+  darkFont: "#101113",
   size: {
     title1: 44,
     title2: 26,

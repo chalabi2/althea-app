@@ -19,12 +19,12 @@ interface BurgerMenuProps {
 }
 
 const FontOne = styled.span`
-font-family: 'Macan'; // Replace with your actual font name
+font-family: 'Macan';
 font-size: '12px;
 `;
 
 const FontTwo = styled.span`
-font-family: 'MacanFont'; // Replace with your actual font name
+font-family: 'MacanFont';
 font-size: '12px;
 `;
 

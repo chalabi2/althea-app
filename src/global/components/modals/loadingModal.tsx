@@ -114,7 +114,7 @@ const GlobalLoadingModal = (props: GlobalLoadingProps) => {
         height={80}
         width={80}
       />
-      <Text size="title2" type="title" style={{ marginBottom: "2rem" }}>
+      <Text size="title2" type="text" style={{ marginBottom: "2rem" }}>
         {props.tokenName}
       </Text>
       <Text size="text1" type="text">

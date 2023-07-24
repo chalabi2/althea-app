@@ -43,6 +43,38 @@ interface Step1TxBoxProps {
   //tx
   tx: (amount: BigNumber, toAddress: string) => Promise<boolean>;
 }
+
+const FontOne = styled.span`
+font-family: 'Macan';
+font-size: '12px;
+`;
+
+const FontTwo = styled.span`
+font-family: 'MacanFont';
+font-size: '12px;
+`;
+
+function parseText(text: string) {
+  const words = text.split(' ');
+  return words.map((word, idx) => {
+    const usedChars = new Set();
+    return (
+      <>
+        {word.split('').map(char => {
+          if (!usedChars.has(char.toUpperCase()) && 'GANTO'.includes(char.toUpperCase())) {
+            usedChars.add(char.toUpperCase());
+            return <FontTwo>{char}</FontTwo>;
+          } else {
+            return <FontOne>{char}</FontOne>;
+          }
+        })}
+        {(idx < words.length - 1) && <>&nbsp;</>}
+      </>
+    );
+  });
+}
+
+
 const Step1TxBox = (props: Step1TxBoxProps) => {
   //regular confirmation modal
   const [isModalOpen, setModalOpen] = useState(false);
@@ -121,6 +153,9 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
       setUserHasEnoughGas(true);
     }
   }, [amount, gasEstimation]);
+
+  const bridgeWords = `send funds ${props.bridgeIn ? "to" : "from"} Althea`
+
   return (
     <Styled>
       <Modal
@@ -219,7 +254,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
         />
       </Modal>
       <Text type="title" size="title2">
-        send funds {props.bridgeIn ? "to" : "from"} canto
+        {parseText(bridgeWords)}
       </Text>
       <div className="icons-indicator">
         <div className="center-element">

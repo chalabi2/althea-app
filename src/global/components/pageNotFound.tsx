@@ -7,7 +7,7 @@ const PageNotFound = () => {
   return (
     <Styled>
       <Text
-        type="title"
+        type="text"
         size="title1"
         style={{
           fontSize: "8rem",
@@ -15,7 +15,7 @@ const PageNotFound = () => {
       >
         404
       </Text>
-      <Text type="title" size="title1">
+      <Text type="text" size="title1">
         Page not found
       </Text>
       <Text type="text" size="text3">

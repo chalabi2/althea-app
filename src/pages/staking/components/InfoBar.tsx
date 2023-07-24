@@ -20,35 +20,35 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
         }}
       >
         <div className="top">
-          <Text type="title" size="text1">
+          <Text type="text" size="text1">
             total staked
           </Text>
         </div>
         <div className="bottom">
-          <Text type="title">{totalStaked}</Text>
+          <Text type="text">{totalStaked}</Text>
         </div>
       </div>
       <div className="separator"></div>
       <div className="dual-item">
         <div className="top">
-          <Text type="title" size="text1">
+          <Text type="text" size="text1">
             apr
           </Text>
         </div>
         <div className="bottom">
-          <Text type="title">{apr}%</Text>
+          <Text type="text">{apr}%</Text>
         </div>
       </div>
       <div className="separator"></div>
 
       <div className="dual-item">
         <div className="top">
-          <Text type="title" size="text1">
+          <Text type="text" size="text1">
             rewards
           </Text>
         </div>
         <div className="bottom">
-          <Text type="title">{rewards}</Text>
+          <Text type="text">{rewards}</Text>
         </div>
       </div>
       <OutlinedButton

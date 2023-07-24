@@ -26,7 +26,7 @@ const Step2TxBox = (props: Step2TxBoxProps) => {
           <OngoingTxModal onClose={() => setIsModalOpen(false)} />
         </div>
       </Modal>
-      <Text type="title" size="title2">
+      <Text size="title2">
         Bridge Queue
       </Text>
       <Text type="text" size="text3">
