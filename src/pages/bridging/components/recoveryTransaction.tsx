@@ -13,18 +13,18 @@ import rightArrow from "assets/next.svg";
 import { getBridgeExtraDetails } from "./bridgeDetails";
 import { ibcOutTx } from "../utils/transactions";
 import { TransactionStore } from "global/stores/transactionStore";
-import { CantoMainnet } from "global/config/networks";
+import { AltheaMainnet } from "global/config/networks";
 import { MAINNET_IBC_NETWORKS } from "../config/networks.ts/cosmos";
 import { IBCNetwork, RecoveryTransaction } from "../config/bridgingInterfaces";
 
 interface Props {
   transaction: RecoveryTransaction;
-  cantoAddress: string;
+  altheaAddress: string;
   txStore: TransactionStore;
 }
 const RecoveryTransactionBox = ({
   transaction,
-  cantoAddress,
+  altheaAddress,
   txStore,
 }: Props) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -60,7 +60,7 @@ const RecoveryTransactionBox = ({
             </div>
           }
           confirmationValues={[
-            { title: "from", value: formatAddress(cantoAddress, 6) },
+            { title: "from", value: formatAddress(altheaAddress, 6) },
             { title: "to", value: formatAddress(userInputAddress, 6) },
             {
               title: "amount",
@@ -83,7 +83,7 @@ const RecoveryTransactionBox = ({
           disableConfirm={!selectedNetwork.checkAddress(userInputAddress)}
           onConfirm={() => {
             ibcOutTx(
-              CantoMainnet.chainId,
+              AltheaMainnet.chainId,
               txStore,
               selectedNetwork,
               userInputAddress,
@@ -101,7 +101,7 @@ const RecoveryTransactionBox = ({
           extraDetails={getBridgeExtraDetails(
             false,
             true,
-            formatAddress(cantoAddress, 6),
+            formatAddress(altheaAddress, 6),
             selectedNetwork.name
           )}
           onClose={() => {
@@ -169,7 +169,7 @@ const RecoveryTransactionBox = ({
           channel id
         </Text>
         <Text type="title" align="left">
-          {selectedNetwork.channelFromCanto.replace("channel-", "")}
+          {selectedNetwork.channelFromAlthea.replace("channel-", "")}
           {/* 5 */}
         </Text>
       </div>

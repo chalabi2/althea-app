@@ -1,11 +1,11 @@
 import { BigNumber } from "ethers";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import { createTransactionMessges } from "global/utils/formatTxDetails";
 
 export function getButtonText(
   BNValue: BigNumber,
   max: BigNumber,
-  transactionType: CantoTransactionType
+  transactionType: AltheaTransactionType
 ): [string, boolean] {
   if (BNValue.isZero()) {
     return ["enter amount", true];

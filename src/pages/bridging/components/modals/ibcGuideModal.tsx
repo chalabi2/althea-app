@@ -10,9 +10,9 @@ import { coin, SigningStargateClient, GasPrice } from "@cosmjs/stargate";
 import { getBlockTimestamp } from "pages/bridging/utils/IBC/IBCTransfer";
 import { CInput } from "global/packages/src/components/atoms/Input";
 import { TransactionState } from "@usedapp/core";
-import { CantoMainnet } from "global/config/networks";
+import { AltheaMainnet } from "global/config/networks";
 import GlobalLoadingModal from "global/components/modals/loadingModal";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import { truncateNumber } from "global/utils/formattingNumbers";
 import { formatUnits, parseUnits } from "ethers/lib/utils";
 import { IBCNetwork } from "pages/bridging/config/bridgingInterfaces";
@@ -22,7 +22,7 @@ import { GenPubKeyWalkthrough } from "pages/bridging/walkthrough/components/page
 interface IBCGuideModalProps {
   token: NativeToken;
   network: IBCNetwork;
-  cantoAddress: string;
+  altheaAddress: string;
   onClose: () => void;
 }
 declare global {
@@ -84,7 +84,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
   }
   async function createIBCMsg() {
     const blockTimestamp = await getBlockTimestamp(
-      CantoMainnet.cosmosAPIEndpoint
+      AltheaMainnet.cosmosAPIEndpoint
     );
     setTxStatus("PendingSignature");
     try {
@@ -92,13 +92,13 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
       if (canIBC) {
         const ibcResponse = await keplrClient?.sendIbcTokens(
           userKeplrAddress,
-          props.cantoAddress,
+          props.altheaAddress,
           coin(
             parseUnits(amount, props.token.decimals).toString(),
             props.token.nativeName
           ),
           "transfer",
-          props.network.channelToCanto,
+          props.network.channelToAlthea,
           undefined,
           Number(blockTimestamp),
           "auto",
@@ -137,13 +137,13 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
             }
           }}
           tokenName={props.token.name}
-          transactionType={CantoTransactionType.IBC_IN}
+          transactionType={AltheaTransactionType.IBC_IN}
           status={txStatus}
           additionalMessage={
             txStatus === "Fail"
               ? "please make sure you have enough balance left over for gas fees"
               : txStatus === "Success"
-              ? "please allow time for the funds to be received on the canto network"
+              ? "please allow time for the funds to be received on the althea network"
               : ""
           }
         />
@@ -159,7 +159,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
           </div>
           <Text size="text3" align="center" color="primaryDark">
             To bridge {props.token.name} from the {props.network.name} network
-            into Canto, you will need to do an IBC transfer to Canto Mainnet.
+            into Althea, you will need to do an IBC transfer to Althea Mainnet.
           </Text>
           <div className="values">
             <ConfirmationRow
@@ -168,7 +168,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
             />
             <ConfirmationRow
               title="channel"
-              value={<Text type="title">{props.network.channelToCanto} </Text>}
+              value={<Text type="title">{props.network.channelToAlthea} </Text>}
             />
             <ConfirmationRow
               title="balance"
@@ -246,9 +246,9 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
             <ConfirmationRow
               title="to"
               value={
-                <CopyToClipboard text={props.cantoAddress} onCopy={copyAddress}>
+                <CopyToClipboard text={props.altheaAddress} onCopy={copyAddress}>
                   <Text type="title" style={{ cursor: "pointer" }}>
-                    {formatAddress(props.cantoAddress, 6)}
+                    {formatAddress(props.altheaAddress, 6)}
                     <img
                       src={CopyIcon}
                       style={{
@@ -270,7 +270,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
               tabIndex={0}
               onClick={() =>
                 window.open(
-                  "https://docs.canto.io/user-guides/bridging-assets/to-canto#from-cosmos-hub-or-other-ibc-enabled-chain",
+                  "https://docs.althea.io/user-guides/bridging-assets/to-althea#from-cosmos-hub-or-other-ibc-enabled-chain",
                   "_blank"
                 )
               }

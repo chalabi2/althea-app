@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import CANTO from "assets/icons/canto.png";
+import ALTHEA from "assets/icons/althea.png";
 import {
   convertBigNumberRatioIntoPercentage,
   truncateNumber,
@@ -16,7 +16,7 @@ import {
   newBorrowAmount,
 } from "../utils/borrowRepayLimits";
 import React from "react";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import { Text } from "global/packages/src";
 import { noteSymbol } from "global/config/tokenInfo";
 
@@ -26,7 +26,7 @@ interface Props {
   stringAmount: string;
   token: UserLMTokenDetails;
   isBorrowing: boolean;
-  transactionType: CantoTransactionType;
+  transactionType: AltheaTransactionType;
   borrowBalance: BigNumber;
   userBalanceType: string;
   userBalance: string;
@@ -70,13 +70,13 @@ const Details = ({
   const cBorrowLimitHypo = formatUnits(
     isBorrowing
       ? newBorrowAmount(
-          transactionType == CantoTransactionType.BORROW,
+          transactionType == AltheaTransactionType.BORROW,
           amount,
           borrowBalance,
           token.price
         )
       : newBorrowLimit(
-          transactionType == CantoTransactionType.SUPPLY,
+          transactionType == AltheaTransactionType.SUPPLY,
           amount,
           token.collateralFactor,
           token.price,
@@ -87,14 +87,14 @@ const Details = ({
 
   const cBorrowLimitUsedHypo = isBorrowing
     ? expectedBorrowLimitUsedInBorrowOrRepay(
-        transactionType == CantoTransactionType.BORROW,
+        transactionType == AltheaTransactionType.BORROW,
         amount,
         borrowBalance,
         token.price,
         borrowLimit
       ) * 100
     : expectedBorrowLimitUsedInSupplyOrWithdraw(
-        transactionType == CantoTransactionType.SUPPLY,
+        transactionType == AltheaTransactionType.SUPPLY,
         amount,
         token.collateralFactor,
         token.price,
@@ -122,7 +122,7 @@ const Details = ({
             visibility: isBorrowing ? "hidden" : "visible",
           }}
         >
-          <img src={CANTO} height={30} />
+          <img src={ALTHEA} height={30} />
           <Text type="title">dist apr : {token.distAPY.toFixed(2)}%</Text>
         </div>
       </Limits>

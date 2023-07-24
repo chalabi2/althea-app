@@ -6,7 +6,7 @@ import { Token } from "global/config/interfaces/tokens";
 
 interface ConfirmationProps {
   token: Token;
-  notEnoughCantoBalance: boolean;
+  notEnoughAltheaBalance: boolean;
   amount: string;
   txType: string;
   txShortDesc: string;
@@ -88,18 +88,18 @@ export const ConfirmTransactionPage = (props: ConfirmationProps) => {
         </div>
         <PrimaryButton
           disabled={
-            props.canContinue || props.notEnoughCantoBalance || txInProgress
+            props.canContinue || props.notEnoughAltheaBalance || txInProgress
           }
           onClick={props.onTxConfirm}
         >
           Confirm
         </PrimaryButton>
-        {props.notEnoughCantoBalance && (
+        {props.notEnoughAltheaBalance && (
           <Text type="text">
-            you do not have enough canto to perform this transaction you must
-            have at leat 3 Canto in your Metamask wallet. If necessary, you can
+            you do not have enough althea to perform this transaction you must
+            have at leat 3 Althea in your Metamask wallet. If necessary, you can
             request a drip from the #social-faucet on the{" "}
-            <a href="https://discord.gg/ucRX6XCFbr"> Canto discord</a>
+            <a href="https://discord.gg/ucRX6XCFbr"> Althea discord</a>
           </Text>
         )}
         {props.canContinue && props.txCompletedDesc && (

@@ -1,18 +1,18 @@
 import { CallResult, useCalls } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
-import { CantoMainnet } from "global/config/networks";
+import { AltheaMainnet } from "global/config/networks";
 import { ERC20Abi, routerAbi } from "global/config/abi";
 import { LPPairInfo } from "../config/interfaces";
 import { getLPPairRatio } from "../utils/utils";
-import { checkMultiCallForUndefined } from "global/utils/cantoTransactions/transactionChecks";
+import { checkMultiCallForUndefined } from "global/utils/altheaTransactions/transactionChecks";
 import {
-  getAddressesForCantoNetwork,
-  onCantoNetwork,
+  getAddressesForAltheaNetwork,
+  onAltheaNetwork,
 } from "global/utils/getAddressUtils";
 import { getPairsForChainId } from "../config/pairs";
 import { getCTokensForChainId } from "pages/lending/config/lendingMarketTokens";
 const useLPTokenData = (chainId: number | undefined): LPPairInfo[] => {
-  const routerAddress = getAddressesForCantoNetwork(chainId).Router;
+  const routerAddress = getAddressesForAltheaNetwork(chainId).Router;
   const RouterContract = new Contract(routerAddress, routerAbi);
 
   const PAIRS = getPairsForChainId(chainId);
@@ -65,7 +65,7 @@ const useLPTokenData = (chainId: number | undefined): LPPairInfo[] => {
 
   const results =
     useCalls(!PAIRS ? [] : calls.flat(), {
-      chainId: onCantoNetwork(chainId) ? chainId : CantoMainnet.chainId,
+      chainId: onAltheaNetwork(chainId) ? chainId : AltheaMainnet.chainId,
     }) ?? {};
 
   const chuckSize = !PAIRS ? 0 : results.length / PAIRS.length;

@@ -8,7 +8,7 @@ import { ValidatorTable } from "../components/stakingTable";
 import { UndelegatingTable } from "../components/undelegatingTable";
 import { MyStakingProps } from "../config/interfaces";
 import walletIcon from "assets/favicon.ico";
-import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { addNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 import { useEthers } from "@usedapp/core";
 
 const MyStaking = (props: MyStakingProps) => {

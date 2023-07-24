@@ -13,11 +13,11 @@ export interface BridgingNetwork {
   id: string;
   name: string;
   icon: string;
-  isCanto: boolean; //will be used to determine token lists, and bridge in or out
+  isAlthea: boolean; //will be used to determine token lists, and bridge in or out
   isEVM: boolean; //determines how to perform transactions
   evmChainId?: number; //if isEVM, this is the chain id
-  supportedBridgeInMethods: BridgingMethods[]; //from canto
-  supportedBridgeOutMethods: BridgingMethods[]; //to canto
+  supportedBridgeInMethods: BridgingMethods[]; //from althea
+  supportedBridgeOutMethods: BridgingMethods[]; //to althea
   //networks will only be here if supported by either bridge in or bridge out
   [BridgingMethods.GBRIDGE]?: GravityBridgeNetwork;
   [BridgingMethods.LAYER_ZERO]?: LayerZeroNetwork;
@@ -28,16 +28,16 @@ export interface GravityBridgeNetwork extends Network {
   gravityBridgeAddress: string;
   wethAddress: string;
   tokens: {
-    toCanto: Token[]; //tokens on network to bridge into canto
-    fromCanto: Token[]; //tokens on canto to bridge into network
+    toAlthea: Token[]; //tokens on network to bridge into althea
+    fromAlthea: Token[]; //tokens on althea to bridge into network
   };
 }
 
 export interface LayerZeroNetwork extends Network {
   lzChainId: number;
   tokens: {
-    toCanto: LayerZeroToken[]; //tokens on network to bridge into canto
-    fromCanto: LayerZeroToken[]; //tokens on canto to bridge into network
+    toAlthea: LayerZeroToken[]; //tokens on network to bridge into althea
+    fromAlthea: LayerZeroToken[]; //tokens on althea to bridge into network
   };
 }
 
@@ -54,8 +54,8 @@ export interface IBCNetwork {
     denom: string;
     decimals: number;
   };
-  channelFromCanto: string;
-  channelToCanto: string;
+  channelFromAlthea: string;
+  channelToAlthea: string;
   restEndpoint: string;
   rpcEndpoint: string;
   extraEndpoints?: string[];
@@ -63,8 +63,8 @@ export interface IBCNetwork {
   addressBeginning: string;
   checkAddress: (address?: string) => boolean;
   tokens: {
-    toCanto: NativeToken[]; //tokens on network to bridge into canto
-    fromCanto: NativeToken[]; //tokens on canto to bridge into network
+    toAlthea: NativeToken[]; //tokens on network to bridge into althea
+    fromAlthea: NativeToken[]; //tokens on althea to bridge into network
   };
 }
 
@@ -72,7 +72,7 @@ export const EMPTYNETWORK: BridgingNetwork = {
   id: "empty",
   name: "",
   icon: "",
-  isCanto: false,
+  isAlthea: false,
   isEVM: false,
   supportedBridgeInMethods: [],
   supportedBridgeOutMethods: [],

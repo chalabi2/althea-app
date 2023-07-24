@@ -6,16 +6,16 @@ export function getBridgeExtraDetails1(
   bridgeIn: boolean,
   from: string,
   to: string,
-  nonCantoNetwork: BridgingNetwork
+  nonAltheaNetwork: BridgingNetwork
 ) {
   return (
     <Text size="text4" align="left" style={{ color: "#474747" }}>
       {`by completing bridge ${
         bridgeIn ? "in" : "out"
       }, you are transferring your assets from ${
-        bridgeIn ? `${nonCantoNetwork.name}` : "canto"
+        bridgeIn ? `${nonAltheaNetwork.name}` : "althea"
       } (${from}) to ${
-        bridgeIn ? "canto" : `${nonCantoNetwork.name}`
+        bridgeIn ? "althea" : `${nonAltheaNetwork.name}`
       } (${to}).`}
     </Text>
   );
@@ -33,9 +33,9 @@ export function getBridgeExtraDetails(
         <>
           {`by completing bridge ${
             bridgeIn ? "in" : "out"
-          }, you are transferring your assets from your canto native address (${from}) to your ${
+          }, you are transferring your assets from your althea native address (${from}) to your ${
             bridgeIn
-              ? "canto EVM address (" + to + ")"
+              ? "althea EVM address (" + to + ")"
               : "address on the " + to + " network"
           }. Read more about this `}
           <a
@@ -44,8 +44,8 @@ export function getBridgeExtraDetails(
             onClick={() =>
               window.open(
                 bridgeIn
-                  ? "https://docs.canto.io/user-guides/converting-assets"
-                  : "https://docs.canto.io/user-guides/bridging-assets/from-canto",
+                  ? "https://docs.althea.io/user-guides/converting-assets"
+                  : "https://docs.althea.io/user-guides/bridging-assets/from-althea",
                 "_blank"
               )
             }
@@ -62,8 +62,8 @@ export function getBridgeExtraDetails(
         `by bridging ${
           bridgeIn ? "in" : "out"
         }, you are transferring your assets from your ${
-          bridgeIn ? "ethereum " : "canto "
-        } EVM address (${from}) to your canto native address (${to}) ${
+          bridgeIn ? "ethereum " : "althea "
+        } EVM address (${from}) to your althea native address (${to}) ${
           bridgeIn ? "through gravity bridge." : "."
         }`
       )}

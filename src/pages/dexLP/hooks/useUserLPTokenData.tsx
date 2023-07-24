@@ -4,20 +4,20 @@ import { cERC20Abi, ERC20Abi, routerAbi } from "global/config/abi";
 import { LPPairInfo, UserLPPairInfo } from "../config/interfaces";
 import { getSupplyBalanceFromCTokens } from "pages/lending/utils/supplyWithdrawLimits";
 import { formatUnits } from "ethers/lib/utils";
-import { checkForCantoInPair } from "../utils/pairCheck";
-import { checkMultiCallForUndefined } from "global/utils/cantoTransactions/transactionChecks";
+import { checkForAltheaInPair } from "../utils/pairCheck";
+import { checkMultiCallForUndefined } from "global/utils/altheaTransactions/transactionChecks";
 import {
-  getAddressesForCantoNetwork,
-  onCantoNetwork,
+  getAddressesForAltheaNetwork,
+  onAltheaNetwork,
 } from "global/utils/getAddressUtils";
 const useUserLPTokenInfo = (
   LPTokens: LPPairInfo[],
   account: string | undefined,
   chainId: number | undefined
 ): UserLPPairInfo[] => {
-  const routerAddress = getAddressesForCantoNetwork(chainId).Router;
+  const routerAddress = getAddressesForAltheaNetwork(chainId).Router;
   const RouterContract = new Contract(routerAddress, routerAbi);
-  const CANTOBalance = useEtherBalance(account) ?? BigNumber.from(0);
+  const ALTHEABalance = useEtherBalance(account) ?? BigNumber.from(0);
 
   const calls = LPTokens.map((pair) => {
     const ERC20Contract = new Contract(pair.basePairInfo.address, ERC20Abi);
@@ -85,7 +85,7 @@ const useUserLPTokenInfo = (
 
   const results =
     useCalls(
-      LPTokens && onCantoNetwork(chainId) && account ? calls.flat() : []
+      LPTokens && onAltheaNetwork(chainId) && account ? calls.flat() : []
     ) ?? {};
 
   const chuckSize = !LPTokens ? 0 : results.length / LPTokens.length;
@@ -110,12 +110,12 @@ const useUserLPTokenInfo = (
     return processedTokens.map((tokenData, idx) => {
       const userLP = tokenData[0][0];
 
-      const [isToken1Canto, isToken2Canto] = checkForCantoInPair(
+      const [isToken1Althea, isToken2Althea] = checkForAltheaInPair(
         LPTokens[idx].basePairInfo,
         chainId
       );
-      const token1Balance = isToken1Canto ? CANTOBalance : tokenData[1][0];
-      const token2Balance = isToken2Canto ? CANTOBalance : tokenData[2][0];
+      const token1Balance = isToken1Althea ? ALTHEABalance : tokenData[1][0];
+      const token2Balance = isToken2Althea ? ALTHEABalance : tokenData[2][0];
 
       //if the user has supplied in the market, we can get this balance from the cLP tokens and exchange rate stored
       const userLPSupplyBalance = getSupplyBalanceFromCTokens(

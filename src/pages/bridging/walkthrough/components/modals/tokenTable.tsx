@@ -5,7 +5,7 @@ interface Props {
     name: string;
     main: string;
     gBridge: string;
-    canto: string;
+    althea: string;
   }[];
   onClose: () => void;
 }
@@ -81,7 +81,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
                 {token.gBridge}
               </Text>
               <Text type="text" color="white" size="title3">
-                {token.canto}
+                {token.althea}
               </Text>
             </>
           )
@@ -90,7 +90,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
 
       {tokens.filter(
         (token) =>
-          token.main == "-1" && isValidToken("0", token.gBridge, token.canto)
+          token.main == "-1" && isValidToken("0", token.gBridge, token.althea)
       ).length > 0 && (
         <>
           <Text
@@ -141,12 +141,12 @@ const TokenTable = ({ tokens, onClose }: Props) => {
                 borderColor: "#333",
               }}
             >
-              canto
+              althea
             </Text>
             {tokens.map(
               (token) =>
                 token.main == "-1" &&
-                isValidToken("0", token.gBridge, token.canto) && (
+                isValidToken("0", token.gBridge, token.althea) && (
                   <>
                     <Text type="text" color="white" size="title3">
                       {token.name}
@@ -155,7 +155,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
                       {token.gBridge}
                     </Text>
                     <Text type="text" color="white" size="title3">
-                      {token.canto}
+                      {token.althea}
                     </Text>
                   </>
                 )

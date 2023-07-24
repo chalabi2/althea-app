@@ -2,7 +2,7 @@ import create from "zustand";
 import { BridgingNetwork, EMPTYNETWORK } from "../config/bridgingInterfaces";
 import { Token } from "global/config/interfaces/tokens";
 import {
-  CANTO_MAIN_BRIDGE_NETWORK,
+  ALTHEA_MAIN_BRIDGE_NETWORK,
   getBridgingNetworksFromChainId,
 } from "../config/networks.ts";
 import { getUserTokenBalances } from "global/utils/api/tokenBalances";
@@ -34,7 +34,7 @@ interface BridgingStore {
 const useBridgingStore = create<BridgingStore>((set, get) => ({
   allNetworks: getBridgingNetworksFromChainId(),
   fromNetwork: getBridgingNetworksFromChainId()[1], //defualt will be ETH
-  toNetwork: CANTO_MAIN_BRIDGE_NETWORK, //default will be CANTO
+  toNetwork: ALTHEA_MAIN_BRIDGE_NETWORK, //default will be ALTHEA
   setNetwork: async (network, isFrom) => {
     //reset tokens first
     set({ selectedToken: undefined, allTokens: [] });
@@ -138,7 +138,7 @@ const useBridgingStore = create<BridgingStore>((set, get) => ({
     await bridgeTxRouter(
       useTransactionStore.getState(),
       useNetworkInfo.getState().account,
-      useNetworkInfo.getState().cantoAddress,
+      useNetworkInfo.getState().altheaAddress,
       get().fromNetwork,
       get().toNetwork,
       get().selectedToken,
@@ -152,15 +152,15 @@ function getTokensFromBridgingNetworks(
   to: BridgingNetwork
 ) {
   const allTokens = [];
-  if (to.isCanto) {
+  if (to.isAlthea) {
     //BRIDGE IN: look to see how to bridge from the other network
     for (const method of from.supportedBridgeOutMethods) {
-      allTokens.push(...(from[method]?.tokens?.toCanto ?? []));
+      allTokens.push(...(from[method]?.tokens?.toAlthea ?? []));
     }
-  } else if (from.isCanto) {
+  } else if (from.isAlthea) {
     //BRIDGE OUT: look to see how to bridge into other network
     for (const method of to.supportedBridgeInMethods) {
-      allTokens.push(...(to[method]?.tokens.fromCanto ?? []));
+      allTokens.push(...(to[method]?.tokens.fromAlthea ?? []));
     }
   }
   return allTokens;

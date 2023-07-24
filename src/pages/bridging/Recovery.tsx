@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Text } from "global/packages/src";
 import {
   findNativeToken,
-  getNetworkFromCantoChannel,
+  getNetworkFromAltheaChannel,
 } from "./utils/findTokens";
 import RecoveryTransactionBox from "./components/recoveryTransaction";
 import { BigNumber } from "ethers";
@@ -12,12 +12,12 @@ import { IBCTokenTrace, EMPTY_NATIVE_TOKEN } from "./config/bridgingInterfaces";
 
 interface RecoveryModalProps {
   tokens: IBCTokenTrace[];
-  cantoAddress: string;
+  altheaAddress: string;
   txStore: TransactionStore;
 }
 const RecoveryPage = ({
   tokens,
-  cantoAddress,
+  altheaAddress,
   txStore,
 }: RecoveryModalProps) => {
   return (
@@ -32,7 +32,7 @@ const RecoveryPage = ({
         </Text>
         <ol>
           <li>
-            Each token below represents all unidentified ibc tokens on the canto
+            Each token below represents all unidentified ibc tokens on the althea
             network.
           </li>
           <li>
@@ -56,7 +56,7 @@ const RecoveryPage = ({
           const tokenInfo = findNativeToken(
             token.ibcInfo.denom_trace.base_denom
           );
-          const transferFrom = getNetworkFromCantoChannel(
+          const transferFrom = getNetworkFromAltheaChannel(
             token.ibcInfo.denom_trace.path.split("/")?.[1] ?? ""
           );
 
@@ -65,7 +65,7 @@ const RecoveryPage = ({
               <RecoveryTransactionBox
                 key={token.denom}
                 txStore={txStore}
-                cantoAddress={cantoAddress}
+                altheaAddress={altheaAddress}
                 transaction={{
                   origin: transferFrom?.name ?? "unkown",
                   amount: BigNumber.from(token.amount),

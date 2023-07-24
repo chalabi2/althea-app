@@ -4,15 +4,15 @@ import closeImg from "assets/icons/close.svg";
 import ImageButton from "global/components/ImageButton";
 import { useState } from "react";
 import styled from "@emotion/styled";
-import cantoFullImg from "assets/altheaMenu.svg";
+import altheaFullImg from "assets/altheaMenu.svg";
 import { Link } from "react-router-dom";
 import { OutlinedButton } from "../atoms/Button";
-import { addCantoToKeplr } from "../../utils/walletFunctionality";
+import { addAltheaToKeplr } from "../../utils/walletFunctionality";
 import useGlobalModals, { ModalType } from "../../stores/useModals";
 import { Text } from "../atoms/Text";
 import { PageObject } from "global/config/pageList";
 import { Mixpanel } from "mixpanel";
-import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { addNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 interface BurgerMenuProps {
   pageList?: PageObject[];
   currentPage?: string;
@@ -80,7 +80,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
       ></div>
       <div className="content">
         <header>
-          <img width={140} src={cantoFullImg} alt="canto logo" />
+          <img width={140} src={altheaFullImg} alt="althea logo" />
           <div className="menu-btn" id="close">
             <ImageButton
               src={closeImg}
@@ -158,16 +158,16 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
             filled
             weight="bold"
             onClick={() => {
-              addCantoToKeplr();
+              addAltheaToKeplr();
             }}
           >
             ADD TO KEPLR
           </OutlinedButton>
           <div className="links">
-            <a href="https://canto.canny.io/" target="_blank" rel="noreferrer">
+            <a href="https://althea.canny.io/" target="_blank" rel="noreferrer">
               report a bug
             </a>
-            <a href="https://docs.canto.io/" target="_blank" rel="noreferrer">
+            <a href="https://docs.althea.io/" target="_blank" rel="noreferrer">
               docs
             </a>
           </div>

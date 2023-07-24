@@ -1,6 +1,6 @@
 import { Chain, Fee, votingFee } from "global/config/cosmosConstants";
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   CosmosTx,
   ExtraProps,
 } from "global/config/interfaces/transactionTypes";
@@ -62,7 +62,7 @@ const _voteTx = (
   extraDetails?: ExtraProps
 ): CosmosTx => ({
   chainId,
-  txType: CantoTransactionType.VOTING,
+  txType: AltheaTransactionType.VOTING,
   tx: txVote,
   params: [account, proposalID, option, nodeAddressIP, fee, chain, memo],
   extraDetails,

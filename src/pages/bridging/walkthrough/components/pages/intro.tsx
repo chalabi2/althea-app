@@ -30,7 +30,7 @@ const IntroPage = (props: IntroPageProps) => {
       <section>
         <div className="row">
           <TextSwitch
-            text="move funds into canto"
+            text="move funds into althea"
             active={props.currentBridgeType == "IN"}
             onClick={() => {
               props.setBridgeType("IN");
@@ -38,7 +38,7 @@ const IntroPage = (props: IntroPageProps) => {
             disabled={!props.canBridgeIn}
           />
           <TextSwitch
-            text="move funds out of canto"
+            text="move funds out of althea"
             active={props.currentBridgeType == "OUT"}
             onClick={() => props.setBridgeType("OUT")}
             disabled={!props.canBridgeOut}
@@ -50,7 +50,7 @@ const IntroPage = (props: IntroPageProps) => {
             <Text type="text" size="title3">
               {props.currentBridgeType == "IN"
                 ? "Has your gravity Bridge transaction completed ?"
-                : "Have you already sent funds to the canto bridge ?"}
+                : "Have you already sent funds to the althea bridge ?"}
             </Text>
             <div className="row">
               <TextSwitch

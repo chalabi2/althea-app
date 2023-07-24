@@ -13,7 +13,7 @@ import GovModal from "./components/govModal";
 import GBar from "./components/gBar";
 import { useSingleProposalData } from "./hooks/useSingleProposalData";
 import { useState } from "react";
-import cantoIcon from "assets/logo.svg";
+import altheaIcon from "assets/logo.svg";
 import OngoingTxModal from "global/components/modals/ongoingTxModal";
 const Proposal = () => {
   const {
@@ -179,7 +179,7 @@ const Proposal = () => {
             value={
               <>
                 {truncateNumber(formatUnits(proposal.total_deposit[0].amount))}{" "}
-                <img src={cantoIcon} height={16} alt="canto" />
+                <img src={altheaIcon} height={16} alt="althea" />
               </>
             }
           />
@@ -262,7 +262,7 @@ const Proposal = () => {
                       (100 * userVoteData.votingPowerPercent).toString()
                     ) + "%"
                   : truncateNumber(formatEther(userVoteData.votingPower)) +
-                    " canto"
+                    " althea"
               }`}
         </div>
       </div>

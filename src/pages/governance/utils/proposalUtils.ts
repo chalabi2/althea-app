@@ -26,7 +26,7 @@ export async function getSingleProposalData(id: string, chainId: number) {
   return emptyProposal;
 }
 
-export async function getTotalCantoStaked(chainId: number): Promise<BigNumber> {
+export async function getTotalAltheaStaked(chainId: number): Promise<BigNumber> {
   const stakingData = await (
     await fetch(
       getCosmosAPIEndpoint(chainId) + "/cosmos/staking/v1beta1/pool",

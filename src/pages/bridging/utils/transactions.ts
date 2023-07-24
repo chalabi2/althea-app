@@ -1,7 +1,7 @@
 import { BigNumber, Contract, ethers } from "ethers";
 import { OFTAbi, gravityBridgeAbi, wethAbi } from "global/config/abi";
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   CosmosTx,
   EVMTx,
   ExtraProps,
@@ -31,10 +31,10 @@ import {
 } from "../config/bridgingInterfaces";
 import { Token } from "global/config/interfaces/tokens";
 import { getAllowance, getTokenBalance } from "global/utils/api/tokenBalances";
-import { CANTO_IBC_NETWORK } from "../config/networks.ts/cosmos";
-import { checkPubKey } from "global/utils/cantoTransactions/publicKey";
-import { CantoMainnet, onTestnet } from "global/config/networks";
-import { CantoTestnet } from "@usedapp/core";
+import { ALTHEA_IBC_NETWORK } from "../config/networks.ts/cosmos";
+import { checkPubKey } from "global/utils/altheaTransactions/publicKey";
+import { AltheaMainnet, onTestnet } from "global/config/networks";
+import { AltheaTestnet } from "@usedapp/core";
 
 const doesMethodSupportToken = (
   network: BridgingNetwork,
@@ -42,7 +42,7 @@ const doesMethodSupportToken = (
   token: Token,
   bridgeIn: boolean
 ) =>
-  network[method]?.tokens[bridgeIn ? "toCanto" : "fromCanto"].some(
+  network[method]?.tokens[bridgeIn ? "toAlthea" : "fromAlthea"].some(
     (t) => t.address.toLowerCase() === token.address.toLowerCase()
   ) ?? false;
 
@@ -50,7 +50,7 @@ const doesMethodSupportToken = (
 export async function bridgeTxRouter(
   txStore: TransactionStore,
   ethAddress: string | undefined,
-  cantoAddress: string | undefined,
+  altheaAddress: string | undefined,
   fromNetwork: BridgingNetwork,
   toNetwork: BridgingNetwork,
   token: Token | undefined,
@@ -62,7 +62,7 @@ export async function bridgeTxRouter(
     txStore.setStatus({ error: "Invalid network" });
     return false;
   }
-  if (!ethAddress || !cantoAddress || !token) {
+  if (!ethAddress || !altheaAddress || !token) {
     txStore.setStatus({ error: "Invalid address" });
     return false;
   }
@@ -70,7 +70,7 @@ export async function bridgeTxRouter(
     symbol: token.symbol,
     amount: formatUnits(amount, token.decimals),
   };
-  if (toNetwork.isCanto) {
+  if (toNetwork.isAlthea) {
     //BRIDGE IN
     //the method to bridge must include the token that is selected
     if (
@@ -85,7 +85,7 @@ export async function bridgeTxRouter(
         gBridgeNetwork?.gravityBridgeAddress,
         gBridgeNetwork?.wethAddress,
         token.address,
-        cantoAddress,
+        altheaAddress,
         ethAddress,
         amount,
         tokenDetails
@@ -110,7 +110,7 @@ export async function bridgeTxRouter(
         tokenDetails
       );
     }
-  } else if (fromNetwork.isCanto) {
+  } else if (fromNetwork.isAlthea) {
     if (
       doesMethodSupportToken(
         toNetwork,
@@ -136,7 +136,7 @@ export async function bridgeTxRouter(
       return await convertAndIbcOutTx(
         fromNetwork.evmChainId,
         txStore,
-        cantoAddress,
+        altheaAddress,
         token.address,
         amount.toString(),
         toNetwork.IBC,
@@ -146,7 +146,7 @@ export async function bridgeTxRouter(
       );
     }
   }
-  //neither to and from are CANTO network
+  //neither to and from are ALTHEA network
   return false;
 }
 
@@ -158,16 +158,16 @@ async function sendToComsosTx(
   gravityAddresss: string,
   WETHAddress: string,
   tokenAddress: string,
-  cantoAddress: string | undefined,
+  altheaAddress: string | undefined,
   ethAddress: string | undefined,
   amount: BigNumber,
   extraDetails?: ExtraProps
 ): Promise<boolean> {
-  //check canto address
+  //check althea address
   if (
-    !CANTO_IBC_NETWORK.checkAddress(cantoAddress) ||
+    !ALTHEA_IBC_NETWORK.checkAddress(altheaAddress) ||
     !ethAddress ||
-    !cantoAddress ||
+    !altheaAddress ||
     !chainId
   ) {
     txStore.setStatus({ error: "Invalid Address" });
@@ -177,14 +177,14 @@ async function sendToComsosTx(
     txStore.setStatus({ loading: true });
   }
   //must check public key information before performing this tx
-  //if no public key exists, the tx will succeed, but the tokens will not be received on canto
+  //if no public key exists, the tx will succeed, but the tokens will not be received on althea
   const hasPubKey = await checkPubKey(
-    cantoAddress,
-    onTestnet(chainId) ? CantoTestnet.chainId : CantoMainnet.chainId
+    altheaAddress,
+    onTestnet(chainId) ? AltheaTestnet.chainId : AltheaMainnet.chainId
   );
 
   if (!hasPubKey) {
-    // since this must be done on the canto network, return the error
+    // since this must be done on the althea network, return the error
     // ongoingTxModal will deal with public key generation before transactions
     txStore.setStatus({ error: "public key" });
   }
@@ -236,7 +236,7 @@ async function sendToComsosTx(
       chainId,
       gravityAddresss,
       tokenAddress,
-      cantoAddress,
+      altheaAddress,
       amount,
       extraDetails
     )
@@ -244,7 +244,7 @@ async function sendToComsosTx(
   return await txStore.addTransactionList(
     allTxs,
     {
-      title: "Bridge Into Canto",
+      title: "Bridge Into Althea",
       txListMethod: TxMethod.EVM,
       chainId,
     },
@@ -254,13 +254,13 @@ async function sendToComsosTx(
 /**
  * @notice If convertIn, tokenAddress must be its IBC denom
  * @notice If convertOut, tokenAddress must be its EVM address
- * @notice This will perform check on cantoAddress to make sure it is valid
+ * @notice This will perform check on altheaAddress to make sure it is valid
  */
 export async function convertTx(
   chainId: number | undefined,
   txStore: TransactionStore,
   convertIn: boolean,
-  cantoAddress: string,
+  altheaAddress: string,
   tokenAddressOrDenom: string,
   amount: string,
   extraProps?: ExtraProps
@@ -273,7 +273,7 @@ export async function convertTx(
       _convertCoinTx(
         chainId,
         convertIn,
-        cantoAddress,
+        altheaAddress,
         tokenAddressOrDenom,
         amount,
         getCosmosAPIEndpoint(chainId),
@@ -293,7 +293,7 @@ export async function convertTx(
 export async function completeAllConvertIn(
   chainId: number | undefined,
   txStore: TransactionStore,
-  cantoAddress: string,
+  altheaAddress: string,
   transactions: NativeTransaction[]
 ): Promise<boolean> {
   if (!chainId) {
@@ -304,7 +304,7 @@ export async function completeAllConvertIn(
       _convertCoinTx(
         chainId,
         true,
-        cantoAddress,
+        altheaAddress,
         tx.token.ibcDenom,
         tx.amount.toString(),
         getCosmosAPIEndpoint(chainId),
@@ -345,7 +345,7 @@ export async function ibcOutTx(
       _ibcTransferOutTx(
         chainId,
         toChainAddress,
-        bridgeOutNetwork.channelFromCanto,
+        bridgeOutNetwork.channelFromAlthea,
         amount,
         ibcDenom,
         getCosmosAPIEndpoint(chainId),
@@ -358,7 +358,7 @@ export async function ibcOutTx(
       ),
     ],
     {
-      title: "Bridge Out Of Canto",
+      title: "Bridge Out Of Althea",
       txListMethod: TxMethod.COSMOS,
       chainId,
     }
@@ -367,7 +367,7 @@ export async function ibcOutTx(
 async function convertAndIbcOutTx(
   chainId: number | undefined,
   txStore: TransactionStore,
-  cantoAddress: string | undefined,
+  altheaAddress: string | undefined,
   tokenEVMAddress: string,
   amount: string,
   bridgeOutNetwork: IBCNetwork | undefined,
@@ -378,7 +378,7 @@ async function convertAndIbcOutTx(
   //check receiver address
   if (
     !bridgeOutNetwork ||
-    !cantoAddress ||
+    !altheaAddress ||
     !toChainAddress ||
     !bridgeOutNetwork.checkAddress(toChainAddress)
   ) {
@@ -390,7 +390,7 @@ async function convertAndIbcOutTx(
       _convertCoinTx(
         chainId,
         false,
-        cantoAddress,
+        altheaAddress,
         tokenEVMAddress,
         amount,
         getCosmosAPIEndpoint(chainId),
@@ -402,7 +402,7 @@ async function convertAndIbcOutTx(
       _ibcTransferOutTx(
         chainId,
         toChainAddress,
-        bridgeOutNetwork.channelFromCanto,
+        bridgeOutNetwork.channelFromAlthea,
         amount,
         ibcDenom,
         getCosmosAPIEndpoint(chainId),
@@ -511,16 +511,16 @@ const _sendToCosmosTx = (
   chainId: number | undefined,
   gravityAddress: string,
   tokenAddress: string,
-  cantoReceiverAddress: string,
+  altheaReceiverAddress: string,
   amount: BigNumber,
   extraDetails?: ExtraProps
 ): EVMTx => ({
   chainId: chainId,
-  txType: CantoTransactionType.SEND_TO_COSMOS,
+  txType: AltheaTransactionType.SEND_TO_COSMOS,
   address: gravityAddress,
   abi: gravityBridgeAbi,
   method: "sendToCosmos",
-  params: [tokenAddress, cantoReceiverAddress, amount],
+  params: [tokenAddress, altheaReceiverAddress, amount],
   value: "0",
   extraDetails,
 });
@@ -531,7 +531,7 @@ const _sendToCosmosTx = (
 const _convertCoinTx = (
   chainId: number | undefined,
   convertIn: boolean,
-  cantoAddress: string,
+  altheaAddress: string,
   tokenAddressOrDenom: string,
   amount: string,
   endpoint: string,
@@ -542,11 +542,11 @@ const _convertCoinTx = (
 ): CosmosTx => ({
   chainId,
   txType: convertIn
-    ? CantoTransactionType.CONVERT_TO_EVM
-    : CantoTransactionType.CONVERT_TO_NATIVE,
+    ? AltheaTransactionType.CONVERT_TO_EVM
+    : AltheaTransactionType.CONVERT_TO_NATIVE,
   tx: convertIn ? txConvertCoin : txConvertERC20,
   params: [
-    cantoAddress,
+    altheaAddress,
     tokenAddressOrDenom,
     amount,
     endpoint,
@@ -559,10 +559,10 @@ const _convertCoinTx = (
 const _ibcTransferOutTx = (
   chainId: number | undefined,
   toChainAddress: string,
-  cantoChannel: string,
+  altheaChannel: string,
   amount: string,
   tokenDenom: string,
-  cantoEndpoint: string,
+  altheaEndpoint: string,
   toChainRestEndpoint: string,
   toChainBlockEndpoint: string | undefined,
   fee: Fee,
@@ -571,14 +571,14 @@ const _ibcTransferOutTx = (
   extraDetails?: ExtraProps
 ): CosmosTx => ({
   chainId: chainId,
-  txType: CantoTransactionType.IBC_OUT,
+  txType: AltheaTransactionType.IBC_OUT,
   tx: txIBCTransfer,
   params: [
     toChainAddress,
-    cantoChannel,
+    altheaChannel,
     amount,
     tokenDenom,
-    cantoEndpoint,
+    altheaEndpoint,
     toChainRestEndpoint,
     toChainBlockEndpoint,
     fee,
@@ -594,7 +594,7 @@ const _wrapTx = (
   extraDetails?: ExtraProps
 ): EVMTx => ({
   chainId: chainId,
-  txType: CantoTransactionType.WRAP,
+  txType: AltheaTransactionType.WRAP,
   address: wethAddress,
   abi: wethAbi,
   method: "deposit",
@@ -616,7 +616,7 @@ const _oftTransferTx = (
   extraDetails?: ExtraProps
 ): EVMTx => ({
   chainId: chainId,
-  txType: bridgeIn ? CantoTransactionType.OFT_IN : CantoTransactionType.OFT_OUT,
+  txType: bridgeIn ? AltheaTransactionType.OFT_IN : AltheaTransactionType.OFT_OUT,
   address: oftAddress,
   abi: OFTAbi,
   method: "sendFrom",
@@ -640,8 +640,8 @@ const _oftDepositOrWithdrawTx = (
 ): EVMTx => ({
   chainId: chainId,
   txType: deposit
-    ? CantoTransactionType.OFT_DEPOSIT
-    : CantoTransactionType.OFT_WITHDRAW,
+    ? AltheaTransactionType.OFT_DEPOSIT
+    : AltheaTransactionType.OFT_WITHDRAW,
   address: oftAddress,
   abi: OFTAbi,
   method: deposit ? "deposit" : "withdraw",

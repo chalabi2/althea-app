@@ -1,6 +1,6 @@
 import { formatUnits } from "ethers/lib/utils";
-import { CantoMainnet } from "global/config/networks";
-import { switchNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { AltheaMainnet } from "global/config/networks";
+import { switchNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 import BarIndicator from "../components/barIndicator";
 import AmountPage from "../components/pages/amount";
 import { CompletePage } from "../components/pages/complete";
@@ -11,7 +11,7 @@ import { BridgeTransaction } from "pages/bridging/walkthrough/hooks/useBridgingT
 import { BridgeOutStep } from "../config/interfacesSteps";
 import {
   BridgeOutNetworkInfo,
-  CantoMainBridgeOutNetworks,
+  AltheaMainBridgeOutNetworks,
   UserERC20BridgeToken,
   UserNativeToken,
 } from "pages/bridging/walkthrough/config/interfaces";
@@ -22,11 +22,11 @@ import { WalkthroughSelectedTokens } from "../store/customUseWalkthrough";
 interface BridgeOutManagerProps {
   networkInfo: {
     chainId: number;
-    cantoAddress: string;
+    altheaAddress: string;
     needPubKey: boolean;
     canPubKey: boolean;
     gravityAddress: string;
-    notEnoughCantoBalance: boolean;
+    notEnoughAltheaBalance: boolean;
   };
   transactions: {
     convertOut: BridgeTransaction;
@@ -38,7 +38,7 @@ interface BridgeOutManagerProps {
     address: string;
     setAddress: (s: string) => void;
     selectedNetwork: BridgeOutNetworkInfo;
-    setNetwork: (network: CantoMainBridgeOutNetworks) => void;
+    setNetwork: (network: AltheaMainBridgeOutNetworks) => void;
   };
   currentStep: BridgeOutStep;
   canContinue: boolean;
@@ -55,12 +55,12 @@ interface BridgeOutManagerProps {
 export const BridgeOutManager = (props: BridgeOutManagerProps) => {
   return (
     <>
-      {(props.currentStep === BridgeOutStep.SWITCH_TO_CANTO ||
-        props.currentStep === BridgeOutStep.SWITCH_TO_CANTO_2) && (
+      {(props.currentStep === BridgeOutStep.SWITCH_TO_ALTHEA ||
+        props.currentStep === BridgeOutStep.SWITCH_TO_ALTHEA_2) && (
         <SwitchNetworkPage
-          toChainId={CantoMainnet.chainId}
+          toChainId={AltheaMainnet.chainId}
           fromChainId={props.networkInfo.chainId}
-          onClick={() => switchNetwork(CantoMainnet.chainId)}
+          onClick={() => switchNetwork(AltheaMainnet.chainId)}
           canContinue={props.canContinue}
           onNext={props.onNext}
           onPrev={props.onPrev}
@@ -101,7 +101,7 @@ export const BridgeOutManager = (props: BridgeOutManagerProps) => {
       {props.currentStep === BridgeOutStep.CONVERT_COIN && (
         <ConfirmTransactionPage
           amount={props.userInputs.amount}
-          notEnoughCantoBalance={props.networkInfo.notEnoughCantoBalance}
+          notEnoughAltheaBalance={props.networkInfo.notEnoughAltheaBalance}
           token={props.currentConvertToken}
           onTxConfirm={() => {
             props.transactions.convertOut.send(
@@ -111,7 +111,7 @@ export const BridgeOutManager = (props: BridgeOutManagerProps) => {
               ).toString()
             );
           }}
-          txType={"Canto EVM -> Canto Bridge"}
+          txType={"Althea EVM -> Althea Bridge"}
           txShortDesc={`send ${props.userInputs.amount} ${props.currentConvertToken.name}`}
           txStatus={props.transactions.convertOut.state}
           canContinue={props.canContinue}
@@ -153,7 +153,7 @@ export const BridgeOutManager = (props: BridgeOutManagerProps) => {
       {props.currentStep === BridgeOutStep.SEND_TO_GRBIDGE && (
         <ConfirmTransactionPage
           amount={props.userInputs.amount}
-          notEnoughCantoBalance={props.networkInfo.notEnoughCantoBalance}
+          notEnoughAltheaBalance={props.networkInfo.notEnoughAltheaBalance}
           token={props.currentBridgeOutToken}
           onTxConfirm={() => {
             props.transactions.ibcOut.send(
@@ -165,7 +165,7 @@ export const BridgeOutManager = (props: BridgeOutManagerProps) => {
               props.userInputs.selectedNetwork
             );
           }}
-          txType={"Canto Bridge -> " + props.userInputs.selectedNetwork.name}
+          txType={"Althea Bridge -> " + props.userInputs.selectedNetwork.name}
           txShortDesc={`send ${props.userInputs.amount} ${props.currentBridgeOutToken.name} to ${props.userInputs.address}`}
           txStatus={props.transactions.ibcOut.state}
           onNext={props.onNext}

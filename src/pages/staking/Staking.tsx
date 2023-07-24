@@ -17,7 +17,7 @@ import Select from "react-select";
 import { CSearch } from "global/packages/src/components/atoms/Input";
 import useStakingStore from "./stores/stakingStore";
 import useStaking from "./hooks/useStaking";
-import { onCantoNetwork } from "global/utils/getAddressUtils";
+import { onAltheaNetwork } from "global/utils/getAddressUtils";
 
 const Staking = () => {
   const networkInfo = useNetworkInfo();
@@ -140,7 +140,7 @@ const Staking = () => {
           <TabPanel>
             <MyStaking
               onRewards={handleClaimRewards}
-              connected={onCantoNetwork(Number(networkInfo.chainId))}
+              connected={onAltheaNetwork(Number(networkInfo.chainId))}
               account={networkInfo.account ?? ""}
               balance={networkInfo.balance}
               totalStaked={calculateTotalStaked(delegations)}

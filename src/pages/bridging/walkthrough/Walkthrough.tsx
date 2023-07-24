@@ -15,9 +15,9 @@ import NoFunds from "./components/pages/noFunds";
 import IntroPage from "./components/pages/intro";
 import { BridgeInManager } from "./managers/BridgeInManager";
 import { BridgeOutManager } from "./managers/BridgeOutManager";
-import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
-import { CANTO_MAIN_CONVERT_COIN_TOKENS } from "../config/tokens.ts/bridgingTokens";
-import { CantoMainnet } from "global/config/networks";
+import { addNetwork } from "global/utils/walletConnect/addAltheaToWallet";
+import { ALTHEA_MAIN_CONVERT_COIN_TOKENS } from "../config/tokens.ts/bridgingTokens";
+import { AltheaMainnet } from "global/config/networks";
 
 const Walkthrough = () => {
   const walkthrough = useBridgeWalkthroughStore();
@@ -77,8 +77,8 @@ const Walkthrough = () => {
       <BalanceTableModal
         ethTokens={tokens.allUserTokens.userBridgeInTokens}
         nativeTokens={tokens.allUserTokens.userNativeTokens}
-        cantoTokens={tokens.allUserTokens.userBridgeOutTokens}
-        allConvertCoinTokens={CANTO_MAIN_CONVERT_COIN_TOKENS}
+        altheaTokens={tokens.allUserTokens.userBridgeOutTokens}
+        allConvertCoinTokens={ALTHEA_MAIN_CONVERT_COIN_TOKENS}
       />
       <LoadingWalkthrough delay={2500} />
       {!hasFunds && <NoFunds />}
@@ -92,9 +92,9 @@ const Walkthrough = () => {
           onNext={() => {
             if (walkthrough.userSkip) {
               if (walkthrough.currentBridgeType === "IN") {
-                walkthrough.setBridgeInStep(BridgeInStep.SWITCH_TO_CANTO);
+                walkthrough.setBridgeInStep(BridgeInStep.SWITCH_TO_ALTHEA);
               } else {
-                walkthrough.setBridgeOutStep(BridgeOutStep.SWITCH_TO_CANTO_2);
+                walkthrough.setBridgeOutStep(BridgeOutStep.SWITCH_TO_ALTHEA_2);
               }
             }
             setFinishedBridgeSelection(true);

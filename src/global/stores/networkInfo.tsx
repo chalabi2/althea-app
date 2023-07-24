@@ -1,6 +1,6 @@
 import { BigNumber, Contract, ContractInterface } from "ethers";
-import { checkPubKey } from "global/utils/cantoTransactions/publicKey";
-import { getCantoAddressFromMetaMask } from "global/utils/walletConnect/addCantoToWallet";
+import { checkPubKey } from "global/utils/altheaTransactions/publicKey";
+import { getAltheaAddressFromMetaMask } from "global/utils/walletConnect/addAltheaToWallet";
 import create from "zustand";
 import { devtools } from "zustand/middleware";
 import { JsonRpcSigner } from "@ethersproject/providers";
@@ -12,7 +12,7 @@ export interface NetworkProps {
   setAccount: (account: string | undefined) => void;
   signer: JsonRpcSigner | undefined;
   setSigner: (signer: JsonRpcSigner) => void;
-  cantoAddress: string;
+  altheaAddress: string;
   hasPubKey: boolean;
   balance: BigNumber;
   setBalance: (balance: BigNumber) => void;
@@ -29,20 +29,20 @@ export const useNetworkInfo = create<NetworkProps>()(
     account: undefined,
     signer: undefined,
     setSigner: (signer) => set({ signer: signer }),
-    cantoAddress: "",
+    altheaAddress: "",
     hasPubKey: true,
     setAccount: async (account) => {
       if (account) {
         set({ account: account });
-        const cantoAddress = await getCantoAddressFromMetaMask(
+        const altheaAddress = await getAltheaAddressFromMetaMask(
           account,
           Number(get().chainId)
         );
         const hasPubKey = await checkPubKey(
-          cantoAddress,
+          altheaAddress,
           Number(get().chainId)
         );
-        set({ cantoAddress: cantoAddress });
+        set({ altheaAddress: altheaAddress });
         set({ hasPubKey: hasPubKey });
       }
     },

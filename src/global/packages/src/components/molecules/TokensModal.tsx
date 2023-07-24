@@ -4,9 +4,9 @@ import CheckBox from "global/components/checkBox";
 import { PrimaryButton } from "../atoms/Button";
 import { Text } from "../atoms/Text";
 import { CInput } from "../atoms/Input";
-import { onCantoNetwork } from "global/utils/getAddressUtils";
+import { onAltheaNetwork } from "global/utils/getAddressUtils";
 import { getCTokensForChainId } from "pages/lending/config/lendingMarketTokens";
-import { CantoTestnet } from "global/config/networks";
+import { AltheaTestnet } from "global/config/networks";
 import { TOKENS } from "global/config/tokenInfo";
 
 const Styled = styled.div`
@@ -74,12 +74,12 @@ const fullTokenList = (chainId: number): TokenListCategory[] => {
   const lpTokens: AddTokenItemProps[] = [];
   // const allTokens = getSupportedNetwork(chainId).tokens;
   const allTokens =
-    chainId === CantoTestnet.chainId
-      ? TOKENS.cantoTestnet
-      : TOKENS.cantoMainnet;
+    chainId === AltheaTestnet.chainId
+      ? TOKENS.altheaTestnet
+      : TOKENS.altheaMainnet;
   if (allTokens)
     Object.entries(allTokens).forEach(([, token]) => {
-      if (token.name == "Canto") return;
+      if (token.name == "Althea") return;
       if (token.isLP) {
         lpTokens.push({
           symbol: token.name,
@@ -96,7 +96,7 @@ const fullTokenList = (chainId: number): TokenListCategory[] => {
         });
       }
     });
-  const allCTokens = onCantoNetwork(chainId)
+  const allCTokens = onAltheaNetwork(chainId)
     ? getCTokensForChainId(chainId)
     : [];
   for (const token of allCTokens) {
@@ -244,7 +244,7 @@ const TokensModal = ({ chainId }: TokenModalProps) => {
             <Text type="title">no tokens match search</Text>
           ) : (
             <Text type="title">
-              please switch to canto network to add tokens
+              please switch to althea network to add tokens
             </Text>
           )}
         </div>
@@ -298,7 +298,7 @@ const TokenItem = ({ token, onSelect, isSelected }: TokenItemProps) => {
 export async function addTokens(tokens: AddTokenItemProps[]) {
   for (const tokenObj of tokens) {
     try {
-      if (tokenObj.symbol != "Canto") {
+      if (tokenObj.symbol != "Althea") {
         //@ts-ignore
         ethereum.request({
           method: "wallet_watchAsset",

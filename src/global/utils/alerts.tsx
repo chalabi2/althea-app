@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { GenPubKey } from "global/components/genPubKey";
 import { PageObject } from "global/config/pageList";
 import { ReactNode } from "react";
-import { switchNetwork } from "./walletConnect/addCantoToWallet";
+import { switchNetwork } from "./walletConnect/addAltheaToWallet";
 
 export function ShowAlerts(
   openAlert: (

@@ -38,10 +38,10 @@ const Row = (props: RowProps) => {
       <td>{props.rank}</td>
       <td>{props.name}</td>
       <td>
-        {commify(truncateNumber(formatEther(props.totalStake))) + " canto"}
+        {commify(truncateNumber(formatEther(props.totalStake))) + " althea"}
       </td>
       <td>
-        {commify(truncateNumber(formatEther(props.userStake))) + " canto"}
+        {commify(truncateNumber(formatEther(props.userStake))) + " althea"}
       </td>
       <td>{props.undelegationInfo?.validator_unbonding.toString()}</td>
       <td>{props.commission * 100 + "%"}</td>

@@ -1,5 +1,5 @@
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   CosmosTx,
   ExtraProps,
 } from "global/config/interfaces/transactionTypes";
@@ -109,7 +109,7 @@ export async function claimStakingRewards(
     [
       {
         chainId,
-        txType: CantoTransactionType.CLAIM_REWARDS_STAKING,
+        txType: AltheaTransactionType.CLAIM_REWARDS_STAKING,
         tx: txClaimRewards,
         params: [
           account,
@@ -148,8 +148,8 @@ const _delegateTx = (
 ): CosmosTx => ({
   chainId,
   txType: isStaking
-    ? CantoTransactionType.DELEGATE
-    : CantoTransactionType.UNDELEGATE,
+    ? AltheaTransactionType.DELEGATE
+    : AltheaTransactionType.UNDELEGATE,
   tx: isStaking ? txStake : txUnstake,
   params: [account, operatorAddress, amount, endpoint, fee, chain, memo],
   extraDetails,
@@ -167,7 +167,7 @@ const _redelegateTx = (
   extraDetails?: ExtraProps
 ): CosmosTx => ({
   chainId,
-  txType: CantoTransactionType.REDELEGATE,
+  txType: AltheaTransactionType.REDELEGATE,
   tx: txRedelegate,
   params: [
     account,

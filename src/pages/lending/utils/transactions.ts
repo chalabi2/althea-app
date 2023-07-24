@@ -2,14 +2,14 @@ import { BigNumber } from "ethers";
 import { UserLMTokenDetails } from "../config/interfaces";
 import { cERC20Abi, comptrollerAbi, reservoirAbi } from "global/config/abi";
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   EVMTx,
   ExtraProps,
 } from "global/config/interfaces/transactionTypes";
 import { formatUnits } from "ethers/lib/utils";
 import { _enableTx } from "global/stores/transactionUtils";
 import { TOKENS } from "global/config/tokenInfo";
-import { getAddressesForCantoNetwork } from "global/utils/getAddressUtils";
+import { getAddressesForAltheaNetwork } from "global/utils/getAddressUtils";
 import {
   TransactionStore as NewTxStore,
   TxMethod,
@@ -33,8 +33,8 @@ export async function claimLendingRewardsTx(
   if (needDrip) {
     transactions.push({
       chainId,
-      txType: CantoTransactionType.DRIP,
-      address: getAddressesForCantoNetwork(chainId).Reservoir,
+      txType: AltheaTransactionType.DRIP,
+      address: getAddressesForAltheaNetwork(chainId).Reservoir,
       abi: reservoirAbi,
       method: "drip",
       params: [],
@@ -43,15 +43,15 @@ export async function claimLendingRewardsTx(
   }
   transactions.push({
     chainId,
-    txType: CantoTransactionType.CLAIM_REWARDS_LENDING,
+    txType: AltheaTransactionType.CLAIM_REWARDS_LENDING,
     address: comptrollerAddress,
     abi: comptrollerAbi,
     method: "claimComp",
     params: [account],
     value: "0",
     extraDetails: {
-      symbol: "WCANTO",
-      icon: TOKENS.cantoMainnet.CANTO.icon,
+      symbol: "WALTHEA",
+      icon: TOKENS.altheaMainnet.ALTHEA.icon,
       amount: formatUnits(amountToClaim, 18),
     },
   });
@@ -65,7 +65,7 @@ export async function claimLendingRewardsTx(
 export async function lendingMarketTx(
   chainId: number | undefined,
   txStore: NewTxStore,
-  txType: CantoTransactionType,
+  txType: AltheaTransactionType,
   cToken: UserLMTokenDetails,
   amount: BigNumber
 ): Promise<boolean> {
@@ -73,7 +73,7 @@ export async function lendingMarketTx(
     txStore.setStatus({ error: "No chainId found" });
     return false;
   }
-  const isCanto = cToken.data.underlying.symbol === "CANTO";
+  const isAlthea = cToken.data.underlying.symbol === "ALTHEA";
   const tokenInfo = {
     symbol: cToken.data.underlying.symbol,
     icon: cToken.data.underlying.icon,
@@ -82,14 +82,14 @@ export async function lendingMarketTx(
   const transactions = [];
 
   switch (txType) {
-    case CantoTransactionType.SUPPLY:
-    case CantoTransactionType.REPAY:
-    case CantoTransactionType.BORROW:
-    case CantoTransactionType.WITHDRAW:
+    case AltheaTransactionType.SUPPLY:
+    case AltheaTransactionType.REPAY:
+    case AltheaTransactionType.BORROW:
+    case AltheaTransactionType.WITHDRAW:
       if (
-        (txType === CantoTransactionType.SUPPLY ||
-          txType === CantoTransactionType.REPAY) &&
-        !isCanto
+        (txType === AltheaTransactionType.SUPPLY ||
+          txType === AltheaTransactionType.REPAY) &&
+        !isAlthea
       ) {
         transactions.push(
           _enableTx(
@@ -107,20 +107,20 @@ export async function lendingMarketTx(
           chainId,
           txType,
           cToken.data.address,
-          isCanto,
+          isAlthea,
           amount,
           tokenInfo
         )
       );
       break;
-    case CantoTransactionType.COLLATERALIZE:
-    case CantoTransactionType.DECOLLATERLIZE:
+    case AltheaTransactionType.COLLATERALIZE:
+    case AltheaTransactionType.DECOLLATERLIZE:
       transactions.push(
         _collateralizeTx(
           chainId,
-          getAddressesForCantoNetwork(chainId).Comptroller,
+          getAddressesForAltheaNetwork(chainId).Comptroller,
           cToken.data.address,
-          txType === CantoTransactionType.COLLATERALIZE,
+          txType === AltheaTransactionType.COLLATERALIZE,
           tokenInfo
         )
       );
@@ -144,9 +144,9 @@ export async function lendingMarketTx(
 //exported for use in DexLP
 export const _lendingTx = (
   chainId: number | undefined,
-  txType: CantoTransactionType,
+  txType: AltheaTransactionType,
   cTokenAddress: string,
-  isCanto: boolean,
+  isAlthea: boolean,
   //could be a function that returns a promise BigNumber
   amount: BigNumber | (() => Promise<BigNumber>),
   extraDetails?: ExtraProps
@@ -156,8 +156,8 @@ export const _lendingTx = (
     txType,
     address: cTokenAddress,
     abi: cERC20Abi,
-    method: methodFromLMTxType(txType, isCanto),
-    ...paramsAndValueFromLMTxType(txType, isCanto, amount),
+    method: methodFromLMTxType(txType, isAlthea),
+    ...paramsAndValueFromLMTxType(txType, isAlthea, amount),
     extraDetails,
   };
 };
@@ -172,8 +172,8 @@ const _collateralizeTx = (
   return {
     chainId,
     txType: collateralize
-      ? CantoTransactionType.COLLATERALIZE
-      : CantoTransactionType.DECOLLATERLIZE,
+      ? AltheaTransactionType.COLLATERALIZE
+      : AltheaTransactionType.DECOLLATERLIZE,
     address: comptrollerAddress,
     abi: comptrollerAbi,
     method: collateralize ? "enterMarkets" : "exitMarket",
@@ -184,33 +184,33 @@ const _collateralizeTx = (
 };
 
 //functions for determing name and values for LM txs
-function methodFromLMTxType(txType: CantoTransactionType, isCanto: boolean) {
+function methodFromLMTxType(txType: AltheaTransactionType, isAlthea: boolean) {
   switch (txType) {
-    case CantoTransactionType.SUPPLY:
-      return isCanto ? "mint()" : "mint(uint256)";
-    case CantoTransactionType.REPAY:
-      return isCanto ? "repayBorrow()" : "repayBorrow(uint256)";
-    case CantoTransactionType.BORROW:
+    case AltheaTransactionType.SUPPLY:
+      return isAlthea ? "mint()" : "mint(uint256)";
+    case AltheaTransactionType.REPAY:
+      return isAlthea ? "repayBorrow()" : "repayBorrow(uint256)";
+    case AltheaTransactionType.BORROW:
       return "borrow";
-    case CantoTransactionType.WITHDRAW:
+    case AltheaTransactionType.WITHDRAW:
       return "redeem";
     default:
       return "";
   }
 }
 function paramsAndValueFromLMTxType(
-  txType: CantoTransactionType,
-  isCanto: boolean,
+  txType: AltheaTransactionType,
+  isAlthea: boolean,
   amount: BigNumber | (() => Promise<BigNumber>)
 ) {
   switch (txType) {
-    case CantoTransactionType.SUPPLY:
-    case CantoTransactionType.REPAY:
-      return isCanto
+    case AltheaTransactionType.SUPPLY:
+    case AltheaTransactionType.REPAY:
+      return isAlthea
         ? { params: [], value: amount }
         : { params: [amount], value: "0" };
-    case CantoTransactionType.BORROW:
-    case CantoTransactionType.WITHDRAW:
+    case AltheaTransactionType.BORROW:
+    case AltheaTransactionType.WITHDRAW:
       return { params: [amount], value: "0" };
     default:
       return { params: [], value: "0" };

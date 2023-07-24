@@ -1,11 +1,11 @@
 import { TOKENS } from "global/config/tokenInfo";
 import { LayerZeroToken } from "../bridgingInterfaces";
 
-export const CANTO_OFT = (
+export const ALTHEA_OFT = (
   address: string,
   native: boolean
 ): LayerZeroToken => ({
-  ...TOKENS.cantoMainnet.CANTO,
+  ...TOKENS.altheaMainnet.ALTHEA,
   address,
   isNative: native,
   isOFT: true,

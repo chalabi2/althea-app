@@ -13,7 +13,7 @@ import { NativeTransaction } from "../config/bridgingInterfaces";
 
 interface Props {
   transaction: NativeTransaction;
-  cantoAddress: string;
+  altheaAddress: string;
   ethAddress: string;
   tx?: (...args: any[]) => void;
 }
@@ -37,7 +37,7 @@ const MiniConvert = (props: Props) => {
           disableConfirm={false}
           extraInputs={[]}
           confirmationValues={[
-            { title: "from", value: formatAddress(props.cantoAddress, 6) },
+            { title: "from", value: formatAddress(props.altheaAddress, 6) },
             {
               title: "to",
               value: formatAddress(props.ethAddress, 6),
@@ -59,7 +59,7 @@ const MiniConvert = (props: Props) => {
           extraDetails={getBridgeExtraDetails(
             true,
             true,
-            formatAddress(props.cantoAddress, 6),
+            formatAddress(props.altheaAddress, 6),
             formatAddress(props.ethAddress, 6)
           )}
           onClose={() => {

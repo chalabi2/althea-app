@@ -1,5 +1,5 @@
 import { useBridgeTokenInfo } from "./hooks/useBridgeTokenInfo";
-import CantoTabs from "global/components/tabs";
+import AltheaTabs from "global/components/tabs";
 import BridgeIn from "./BridgeIn";
 import BridgeOut from "./BridgeOut";
 import Transactions from "./TransactionHistory";
@@ -8,7 +8,7 @@ import { useNetworkInfo } from "global/stores/networkInfo";
 import { createConvertTransactions } from "./utils/utils";
 import walletIcon from "assets/favicon.ico";
 import { useEthers } from "@usedapp/core";
-import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { addNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 import NotConnected from "global/packages/src/components/molecules/NotConnected";
 import BalanceTableModal from "./walkthrough/components/modals/BalanceTableModal";
 import styled from "@emotion/styled";
@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import RecoveryPage from "./Recovery";
 import { useTransactionStore } from "global/stores/transactionStore";
 import useBridgingStore from "./stores/bridgingStore";
-import { CANTO_MAIN_CONVERT_COIN_TOKENS } from "./config/tokens.ts/bridgingTokens";
+import { ALTHEA_MAIN_CONVERT_COIN_TOKENS } from "./config/tokens.ts/bridgingTokens";
 
 const Bridging = () => {
   const txStore = useTransactionStore();
@@ -85,13 +85,13 @@ const Bridging = () => {
       <div className="floating-buttons">
         <BalanceTableModal
           ethTokens={bridgingTokens.userBridgeInTokens}
-          cantoTokens={bridgingTokens.userBridgeOutTokens}
+          altheaTokens={bridgingTokens.userBridgeOutTokens}
           nativeTokens={bridgingTokens.userNativeTokens}
-          allConvertCoinTokens={CANTO_MAIN_CONVERT_COIN_TOKENS}
+          allConvertCoinTokens={ALTHEA_MAIN_CONVERT_COIN_TOKENS}
         />
       </div>
 
-      <CantoTabs
+      <AltheaTabs
         names={[
           "bridge in",
           "bridge out",
@@ -126,7 +126,7 @@ const Bridging = () => {
                   toNetwork={bridgeStore.toNetwork}
                   selectNetwork={bridgeStore.setNetwork}
                   ethAddress={networkInfo.account}
-                  cantoAddress={networkInfo.cantoAddress}
+                  altheaAddress={networkInfo.altheaAddress}
                   tx={bridgeStore.bridgeTx}
                   step2Transactions={createConvertTransactions(
                     bridgingHistory.pendingBridgeInTransactions,
@@ -148,7 +148,7 @@ const Bridging = () => {
                   toNetwork={bridgeStore.toNetwork}
                   selectNetwork={bridgeStore.setNetwork}
                   ethAddress={networkInfo.account}
-                  cantoAddress={networkInfo.cantoAddress}
+                  altheaAddress={networkInfo.altheaAddress}
                   tx={bridgeStore.bridgeTx}
                   chainId={Number(networkInfo.chainId)}
                   txStore={txStore}
@@ -162,7 +162,7 @@ const Bridging = () => {
                       <RecoveryPage
                         key={"recovery"}
                         tokens={bridgingTokens.unkownIBCTokens}
-                        cantoAddress={networkInfo.cantoAddress}
+                        altheaAddress={networkInfo.altheaAddress}
                         txStore={txStore}
                       />,
                     ]

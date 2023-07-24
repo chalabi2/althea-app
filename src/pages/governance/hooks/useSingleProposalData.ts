@@ -19,7 +19,7 @@ import { queryTally } from "../stores/proposals";
 import {
   calculatePercentVotes,
   getSingleProposalData,
-  getTotalCantoStaked,
+  getTotalAltheaStaked,
   PercentVotesType,
 } from "../utils/proposalUtils";
 import { getAccountVote } from "../utils/voting";
@@ -90,7 +90,7 @@ export function useSingleProposalData(): SingleProposalReturnProps {
     if (singleProposal == emptyProposal) {
       setProposalFound(false);
     }
-    setTotalGlobalStake(await getTotalCantoStaked(chainId));
+    setTotalGlobalStake(await getTotalAltheaStaked(chainId));
   }
   const [accountVote, setAccountVote] = useState(VotingOption.NONE);
   async function showAccountVote() {

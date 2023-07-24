@@ -10,7 +10,7 @@ import { PrimaryButton } from "global/packages/src";
 import { EnableCollateralContainer } from "../components/Styled";
 import { lendingMarketTx } from "../utils/transactions";
 import { BigNumber } from "ethers";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import { TransactionStore } from "global/stores/transactionStore";
 
 const APY = styled.div`
@@ -74,7 +74,7 @@ const CollatModal = (props: Props) => {
         style={{
           marginBottom: "2rem",
         }}
-        alt="canto"
+        alt="althea"
       />
       <h2>{props.activeToken.data.underlying.name}</h2>
       <h2>{modalText}</h2>
@@ -99,8 +99,8 @@ const CollatModal = (props: Props) => {
                 props.chainId,
                 props.txStore,
                 props.decollateralize
-                  ? CantoTransactionType.DECOLLATERLIZE
-                  : CantoTransactionType.COLLATERALIZE,
+                  ? AltheaTransactionType.DECOLLATERLIZE
+                  : AltheaTransactionType.COLLATERALIZE,
                 props.activeToken,
                 BigNumber.from("0")
               )

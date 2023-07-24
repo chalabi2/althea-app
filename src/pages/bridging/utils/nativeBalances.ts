@@ -13,15 +13,15 @@ const options = {
     Accept: "application/json",
   },
 };
-export async function getNativeCantoBalances(
+export async function getNativeAltheaBalances(
   nodeAddressIP: string,
-  cantoAddress: string,
+  altheaAddress: string,
   nativeTokens: NativeToken[]
 ): Promise<{
   foundTokens: UserNativeToken[];
   notFoundTokens: BasicNativeBalance[];
 }> {
-  const url = nodeAddressIP + "/" + generateEndpointBalances(cantoAddress);
+  const url = nodeAddressIP + "/" + generateEndpointBalances(altheaAddress);
   const results = await fetch(url, options)
     .then((response) => response.json())
     .then((result) => {

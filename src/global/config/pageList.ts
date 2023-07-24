@@ -1,4 +1,4 @@
-import { CantoMainnet, CantoTestnet } from "global/config/networks";
+import { AltheaMainnet, AltheaTestnet } from "global/config/networks";
 import { BigNumber } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
 
@@ -22,7 +22,7 @@ export const PAGES = {
         minBalance: parseUnits("2.5", 18),
         description: "bridge",
         warningMessage:
-          "you may not have enough CANTO to complete all bridging actions, we recommend at least 2.5 CANTO to avoid transaction failure",
+          "you may not have enough ALTHEA to complete all bridging actions, we recommend at least 2.5 ALTHEA to avoid transaction failure",
       },
     ],
     subPages: {
@@ -30,7 +30,7 @@ export const PAGES = {
         name: "walkthrough",
         link: "/bridge/walkthrough",
         pageTitle: "GUIDE",
-        networks: [CantoMainnet.chainId, CantoTestnet.chainId, 1],
+        networks: [AltheaMainnet.chainId, AltheaTestnet.chainId, 1],
         showInMenu: false,
       },
     },
@@ -39,7 +39,7 @@ export const PAGES = {
     name: "governance",
     link: "/governance",
     pageTitle: "GOVERNANCE",
-    networks: [CantoMainnet.chainId, CantoTestnet.chainId],
+    networks: [AltheaMainnet.chainId, AltheaTestnet.chainId],
     showInMenu: true,
     subpages: {
       proposal: {
@@ -49,7 +49,7 @@ export const PAGES = {
         pageTitleFunction: (link: string) => {
           return "Proposal #" + link.split("/")[3];
         },
-        networks: [CantoMainnet.chainId, CantoTestnet.chainId],
+        networks: [AltheaMainnet.chainId, AltheaTestnet.chainId],
         showInMenu: false,
       },
     },
@@ -58,14 +58,14 @@ export const PAGES = {
     name: "lending",
     link: "/lending",
     pageTitle: "lending",
-    networks: [CantoMainnet.chainId, CantoTestnet.chainId],
+    networks: [AltheaMainnet.chainId, AltheaTestnet.chainId],
     showInMenu: true,
   },
   lp: {
     name: "lp interface",
     link: "/lp",
     pageTitle: "lp interface",
-    networks: [CantoMainnet.chainId, CantoTestnet.chainId],
+    networks: [AltheaMainnet.chainId, AltheaTestnet.chainId],
     showInMenu: true,
   },
   changelog: {
@@ -80,7 +80,7 @@ export const PAGES = {
     name: "Staking",
     link: "/staking",
     pageTitle: "STAKING",
-    networks: [CantoMainnet.chainId, CantoTestnet.chainId],
+    networks: [AltheaMainnet.chainId, AltheaTestnet.chainId],
     showInMenu: true,
     balanceLimits: [
       {

@@ -23,7 +23,7 @@ interface BridgeInProps {
   selectNetwork: (network: BridgingNetwork, isFrom: boolean) => void;
   //addresses
   ethAddress?: string;
-  cantoAddress?: string;
+  altheaAddress?: string;
   //tx
   tx: (amount: BigNumber, toChainAddress?: string) => Promise<boolean>;
   txStore: TransactionStore;
@@ -52,7 +52,7 @@ const BridgeIn = (props: BridgeInProps) => {
                     tabIndex={0}
                     onClick={() =>
                       window.open(
-                        "https://docs.canto.io/user-guides/bridging-assets/to-canto",
+                        "https://docs.althea.io/user-guides/bridging-assets/to-althea",
                         "_blank"
                       )
                     }
@@ -85,7 +85,7 @@ const BridgeIn = (props: BridgeInProps) => {
             {
               question: "Where are my tokens?",
               answer:
-                "If you can’t find your tokens, first check to see if the queued transaction is complete at the bottom half of the page. If the transaction is complete, you can click the “Balances” button to see a table of your token balances that are either queued or on Ethereum or Canto.",
+                "If you can’t find your tokens, first check to see if the queued transaction is complete at the bottom half of the page. If the transaction is complete, you can click the “Balances” button to see a table of your token balances that are either queued or on Ethereum or Althea.",
             },
           ]}
         />
@@ -99,7 +99,7 @@ const BridgeIn = (props: BridgeInProps) => {
           selectNetwork={(network) => props.selectNetwork(network, true)}
           fromAddress={props.ethAddress}
           toAddress={
-            props.selectedToken?.isOFT ? props.ethAddress : props.cantoAddress
+            props.selectedToken?.isOFT ? props.ethAddress : props.altheaAddress
           }
           allTokens={props.bridgeTokens}
           selectedToken={props.selectedToken}
@@ -109,7 +109,7 @@ const BridgeIn = (props: BridgeInProps) => {
         <Step2TxBox
           bridgeIn
           transactions={props.step2Transactions}
-          cantoAddress={props.cantoAddress ?? ""}
+          altheaAddress={props.altheaAddress ?? ""}
           ethAddress={props.ethAddress ?? ""}
           txStore={props.txStore}
           chainId={props.chainId}

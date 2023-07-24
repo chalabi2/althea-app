@@ -2,7 +2,7 @@ import { BigNumber, ContractInterface } from "ethers";
 import { CosmosTxResponse } from "../cosmosConstants";
 import { TxMethod } from "global/stores/transactionStore";
 
-export enum CantoTransactionType {
+export enum AltheaTransactionType {
   //GENERAL
   ENABLE = "Enable",
   WRAP = "Wrap",
@@ -57,7 +57,7 @@ export type TransactionState =
 
 export interface TransactionDetails {
   txId: string;
-  txType: CantoTransactionType;
+  txType: AltheaTransactionType;
   extra?: ExtraProps;
   status: TransactionState;
   currentMessage: string;
@@ -85,7 +85,7 @@ interface BaseTx {
   //will let the transaction store if this needs to be signed or skipped
   mustPerform?: boolean; //if not set, default is true
   chainId?: number; // if not set, mainnet defaults are used
-  txType: CantoTransactionType;
+  txType: AltheaTransactionType;
   extraDetails?: ExtraProps;
 }
 export interface EVMTx extends BaseTx {
@@ -93,7 +93,7 @@ export interface EVMTx extends BaseTx {
   abi: ContractInterface;
   method: string;
   params: unknown[];
-  //if sending canto
+  //if sending althea
   value: string | BigNumber | (() => Promise<string | BigNumber>);
 }
 export interface CosmosTx extends BaseTx {

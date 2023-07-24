@@ -48,7 +48,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                     fontFamily: "Macan"
                   }}
                 >
-                  {currency != "CANTO" && currency != "ETH" ? currency : null}
+                  {currency != "ALTHEA" && currency != "ETH" ? currency : null}
                 </span>
                 <div
                   className="hide-on-mobile"

@@ -1,8 +1,8 @@
 import cosmosIcon from "assets/icons/ATOM.svg";
 import GravitonGrey from "assets/icons/Graviton-Grey.svg";
 import { TOKENS } from "global/config/tokenInfo";
-import { CANTO_MAIN_IBC_TOKENS_WITH_DENOMS } from "../../config/tokens.ts/bridgingTokens";
-import { BridgeOutNetworkInfo, CantoMainBridgeOutNetworks } from "./interfaces";
+import { ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS } from "../../config/tokens.ts/bridgingTokens";
+import { BridgeOutNetworkInfo, AltheaMainBridgeOutNetworks } from "./interfaces";
 
 type BridgeOutNetworkData = {
   [key: string]: BridgeOutNetworkInfo;
@@ -19,35 +19,35 @@ function addressCheck(address: string | undefined, addressBeginning: string) {
 }
 const blockEndpoint = "/cosmos/base/tendermint/v1beta1";
 
-export const CANTO_IBC_NETWORK: BridgeOutNetworkInfo = {
-  name: "canto",
+export const ALTHEA_IBC_NETWORK: BridgeOutNetworkInfo = {
+  name: "althea",
   chainId: "",
-  icon: TOKENS.cantoMainnet.CANTO.icon,
+  icon: TOKENS.altheaMainnet.ALTHEA.icon,
   tokens: [],
-  nativeDenom: "canto",
-  cantoChannel: "",
+  nativeDenom: "althea",
+  altheaChannel: "",
   networkChannel: "",
   restEndpoint: "",
   rpcEndpoint: "",
-  addressBeginning: "canto",
+  addressBeginning: "althea",
   checkAddress: function (address) {
     return addressCheck(address, this.addressBeginning);
   },
 };
-export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
-  [CantoMainBridgeOutNetworks.GRAVITY_BRIDGE]: {
+export const ALTHEA_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
+  [AltheaMainBridgeOutNetworks.GRAVITY_BRIDGE]: {
     name: "gravity bridge",
     chainId: "gravity-bridge-3",
     icon: GravitonGrey,
     tokens: [
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
     ],
     nativeDenom: "ugraviton",
-    cantoChannel: "channel-0",
+    altheaChannel: "channel-0",
     networkChannel: "channel-88",
     restEndpoint: "https://gravitychain.io:1317",
     rpcEndpoint: "https://gravitychain.io:26657",
@@ -57,13 +57,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.COSMOS_HUB]: {
+  [AltheaMainBridgeOutNetworks.COSMOS_HUB]: {
     name: "cosmos hub",
     chainId: "cosmoshub-4",
     icon: cosmosIcon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
     nativeDenom: "uatom",
-    cantoChannel: "channel-2",
+    altheaChannel: "channel-2",
     networkChannel: "channel-358",
     restEndpoint: "https://api-cosmoshub-ia.cosmosia.notional.ventures",
     rpcEndpoint: "https://rpc-cosmoshub.blockapsis.com",
@@ -72,13 +72,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.OSMOSIS]: {
+  [AltheaMainBridgeOutNetworks.OSMOSIS]: {
     name: "osmosis",
     chainId: "osmosis-1",
-    icon: TOKENS.cantoMainnet.OSMOSIS.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
+    icon: TOKENS.altheaMainnet.OSMOSIS.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
     nativeDenom: "uosmo",
-    cantoChannel: "channel-5",
+    altheaChannel: "channel-5",
     networkChannel: "channel-550",
     restEndpoint: "https://lcd.osmosis.zone",
     rpcEndpoint: "https://rpc.osmosis.zone",
@@ -87,13 +87,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.COMDEX]: {
+  [AltheaMainBridgeOutNetworks.COMDEX]: {
     name: "comdex",
     chainId: "comdex-1",
-    icon: TOKENS.cantoMainnet.COMDEX.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
+    icon: TOKENS.altheaMainnet.COMDEX.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
     nativeDenom: "ucmdx",
-    cantoChannel: "channel-7",
+    altheaChannel: "channel-7",
     networkChannel: "channel-58",
     restEndpoint: "https://rest.comdex.one",
     rpcEndpoint: "https://rpc.comdex.one",
@@ -102,13 +102,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.INJECTIVE]: {
+  [AltheaMainBridgeOutNetworks.INJECTIVE]: {
     name: "injective",
     chainId: "injective-1",
-    icon: TOKENS.cantoMainnet.INJECTIVE.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
+    icon: TOKENS.altheaMainnet.INJECTIVE.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
     nativeDenom: "inj",
-    cantoChannel: "channel-8",
+    altheaChannel: "channel-8",
     networkChannel: "channel-99",
     restEndpoint: "https://lcd.injective.network",
     rpcEndpoint: "https://injective-rpc.polkachu.com",
@@ -118,13 +118,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.CRESCENT]: {
+  [AltheaMainBridgeOutNetworks.CRESCENT]: {
     name: "crescent",
     chainId: "crescent-1",
-    icon: TOKENS.cantoMainnet.CRESCENT.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
+    icon: TOKENS.altheaMainnet.CRESCENT.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
     nativeDenom: "ucre",
-    cantoChannel: "channel-9",
+    altheaChannel: "channel-9",
     networkChannel: "channel-34",
     restEndpoint: "https://mainnet.crescent.network:1317",
     rpcEndpoint: "https://mainnet.crescent.network:26657",
@@ -133,13 +133,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.SOMMELIER]: {
+  [AltheaMainBridgeOutNetworks.SOMMELIER]: {
     name: "sommelier",
     chainId: "sommelier-3",
-    icon: TOKENS.cantoMainnet.SOMM.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
+    icon: TOKENS.altheaMainnet.SOMM.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
     nativeDenom: "usomm",
-    cantoChannel: "channel-10",
+    altheaChannel: "channel-10",
     networkChannel: "channel-2",
     restEndpoint: "https://sommelier-api.polkachu.com",
     rpcEndpoint: "https://sommelier-rpc.lavenderfive.com",
@@ -148,13 +148,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.AKASH]: {
+  [AltheaMainBridgeOutNetworks.AKASH]: {
     name: "akash",
     chainId: "akashnet-2",
-    icon: TOKENS.cantoMainnet.AKASH.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
+    icon: TOKENS.altheaMainnet.AKASH.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
     nativeDenom: "uakt",
-    cantoChannel: "channel-11",
+    altheaChannel: "channel-11",
     networkChannel: "channel-59",
     restEndpoint: "https://api-akash-ia.cosmosia.notional.ventures",
     rpcEndpoint: "https://akash-rpc.polkachu.com",
@@ -163,13 +163,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.KAVA]: {
+  [AltheaMainBridgeOutNetworks.KAVA]: {
     name: "kava",
     chainId: "kava_2222-10",
-    icon: TOKENS.cantoMainnet.KAVA.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
+    icon: TOKENS.altheaMainnet.KAVA.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
     nativeDenom: "ukava",
-    cantoChannel: "channel-13",
+    altheaChannel: "channel-13",
     networkChannel: "channel-87",
     restEndpoint: "https://api.data.kava.io",
     rpcEndpoint: "https://rpc.data.kava.io",
@@ -178,13 +178,13 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.SENTINEL]: {
+  [AltheaMainBridgeOutNetworks.SENTINEL]: {
     name: "sentinel",
     chainId: "sentinelhub-2",
-    icon: TOKENS.cantoMainnet.SENTINAL.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
+    icon: TOKENS.altheaMainnet.SENTINAL.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
     nativeDenom: "udvpn",
-    cantoChannel: "channel-16",
+    altheaChannel: "channel-16",
     networkChannel: "channel-71",
     restEndpoint: "https://api-sentinel-ia.cosmosia.notional.ventures/",
     rpcEndpoint: "https://rpc-sentinel-ia.cosmosia.notional.ventures/",
@@ -193,77 +193,77 @@ export const CANTO_MAIN_BRIDGE_OUT_NETWORKS: BridgeOutNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.EVMOS]: {
+  [AltheaMainBridgeOutNetworks.EVMOS]: {
     name: "evmos",
     chainId: "evmos_9001-2",
-    icon: TOKENS.cantoMainnet.EVMOS.icon,
-    tokens: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
+    icon: TOKENS.altheaMainnet.EVMOS.icon,
+    tokens: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
     nativeDenom: "aevmos",
     restEndpoint: "https://evmos.kingnodes.com",
     rpcEndpoint: "https://evmos.kingnodes.com",
-    cantoChannel: "channel-15",
+    altheaChannel: "channel-15",
     networkChannel: "channel-62",
     addressBeginning: "evmos",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.PERSISTENCE]: {
+  [AltheaMainBridgeOutNetworks.PERSISTENCE]: {
     name: "persistence",
     chainId: "core-1",
-    icon: TOKENS.cantoMainnet.PERSISTENCE.icon,
+    icon: TOKENS.altheaMainnet.PERSISTENCE.icon,
     tokens: [
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
     ],
     nativeDenom: "uxprt",
     restEndpoint: "https://rest.core.persistence.one",
     rpcEndpoint: "https://rpc.core.persistence.one",
-    cantoChannel: "channel-17",
+    altheaChannel: "channel-17",
     networkChannel: "channel-80",
     addressBeginning: "persistence",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.STRIDE]: {
+  [AltheaMainBridgeOutNetworks.STRIDE]: {
     name: "stride",
     chainId: "stride-1",
-    icon: TOKENS.cantoMainnet.STRIDE.icon,
+    icon: TOKENS.altheaMainnet.STRIDE.icon,
     tokens: [
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
     ],
     nativeDenom: "ustrd",
     restEndpoint: "https://stride-api.polkachu.com/",
     rpcEndpoint: "https://stride-rpc.polkachu.com/",
     latestBlockEndpoint: blockEndpoint,
-    cantoChannel: "channel-18",
+    altheaChannel: "channel-18",
     networkChannel: "channel-74",
     addressBeginning: "stride",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
   },
-  [CantoMainBridgeOutNetworks.QUICKSILVER]: {
+  [AltheaMainBridgeOutNetworks.QUICKSILVER]: {
     name: "quicksilver",
     chainId: "quicksilver-2",
-    icon: TOKENS.cantoMainnet.QUICKSILVER.icon,
+    icon: TOKENS.altheaMainnet.QUICKSILVER.icon,
     tokens: [
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
-      CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
+      ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
     ],
     nativeDenom: "uqck",
     restEndpoint: "https://quicksilver-api.lavenderfive.com:443",
     rpcEndpoint: "https://rpc.quicksilver.zone:443",
     latestBlockEndpoint: blockEndpoint,
-    cantoChannel: "channel-19",
+    altheaChannel: "channel-19",
     networkChannel: "channel-24",
     addressBeginning: "quick",
     checkAddress: function (address) {

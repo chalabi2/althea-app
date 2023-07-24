@@ -14,10 +14,10 @@ import { cERC20Abi, comptrollerAbi, ERC20Abi } from "global/config/abi";
 import { parseUnits } from "ethers/lib/utils";
 import { getSupplyBalanceFromCTokens } from "pages/lending/utils/supplyWithdrawLimits";
 import { valueInNote } from "pages/dexLP/utils/utils";
-import { checkMultiCallForUndefined } from "global/utils/cantoTransactions/transactionChecks";
+import { checkMultiCallForUndefined } from "global/utils/altheaTransactions/transactionChecks";
 import {
-  getAddressesForCantoNetwork,
-  onCantoNetwork,
+  getAddressesForAltheaNetwork,
+  onAltheaNetwork,
 } from "global/utils/getAddressUtils";
 export function useUserLMTokenData(
   LMTokens: LMTokenDetails[],
@@ -28,14 +28,14 @@ export function useUserLMTokenData(
   position: UserLMPosition;
   rewards: UserLMRewards;
 } {
-  const coreContracts = getAddressesForCantoNetwork(chainId);
+  const coreContracts = getAddressesForAltheaNetwork(chainId);
 
   const bal = useEtherBalance(account) ?? BigNumber.from(0);
   //comptroller contract
   const comptroller = new Contract(coreContracts.Comptroller, comptrollerAbi);
-  const WCanto = new Contract(coreContracts.WCANTO, ERC20Abi);
+  const WAlthea = new Contract(coreContracts.WALTHEA, ERC20Abi);
 
-  //canto contract
+  //althea contract
   const calls =
     LMTokens?.map((token) => {
       const ERC20Contract = new Contract(
@@ -43,7 +43,7 @@ export function useUserLMTokenData(
         ERC20Abi
       );
 
-      //canto contract
+      //althea contract
       const cERC20Contract = new Contract(token.data.address, cERC20Abi);
       return [
         //0
@@ -94,7 +94,7 @@ export function useUserLMTokenData(
   const globalCalls = [
     ...calls.flat(),
     {
-      contract: WCanto,
+      contract: WAlthea,
       method: "balanceOf",
       args: [comptroller.address],
     },
@@ -106,7 +106,7 @@ export function useUserLMTokenData(
   ];
 
   const results =
-    useCalls(LMTokens && onCantoNetwork(chainId) ? globalCalls : []) ?? {};
+    useCalls(LMTokens && onAltheaNetwork(chainId) ? globalCalls : []) ?? {};
   const chuckSize = !LMTokens ? 0 : (results.length - 2) / LMTokens.length;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let processedTokens: Array<any>;
@@ -127,14 +127,14 @@ export function useUserLMTokenData(
     processedTokens = array_chunks(results, chuckSize);
     const userLMTokens = processedTokens.map((tokenData, idx) => {
       const balanceOf: BigNumber =
-        LMTokens[idx].data.symbol === "cCANTO" ? bal : tokenData[1][0];
+        LMTokens[idx].data.symbol === "cALTHEA" ? bal : tokenData[1][0];
       const balanceOfC: BigNumber = tokenData[0][0];
       const borrowBalance: BigNumber = tokenData[2][0];
 
       const inSupplyMarket = !balanceOfC.isZero();
       const inBorrowMarket = !borrowBalance.isZero();
       const allowance: BigNumber =
-        LMTokens[idx].data.symbol === "cCANTO"
+        LMTokens[idx].data.symbol === "cALTHEA"
           ? BigNumber.from(ethers.constants.MaxUint256)
           : tokenData[3][0];
 
@@ -195,16 +195,16 @@ export function useUserLMTokenData(
       totalRewards = totalRewards.add(token.rewards);
     });
     //results.length-1 will get comp accrued method
-    //canto accrued must be added to total rewards for each token, so that distributed rewards are included
-    const cantoAccrued = results[results.length - 1]?.value[0];
+    //althea accrued must be added to total rewards for each token, so that distributed rewards are included
+    const altheaAccrued = results[results.length - 1]?.value[0];
     const comptrollerBalance = results[results.length - 2]?.value[0];
 
-    const canto = userLMTokens.find((item) => item.data.symbol == "cCANTO");
+    const althea = userLMTokens.find((item) => item.data.symbol == "cALTHEA");
 
     const rewards: UserLMRewards = {
-      walletBalance: canto?.balanceOf ?? parseUnits("0"),
-      price: canto?.price ?? parseUnits("0"),
-      accrued: totalRewards.add(cantoAccrued),
+      walletBalance: althea?.balanceOf ?? parseUnits("0"),
+      price: althea?.price ?? parseUnits("0"),
+      accrued: totalRewards.add(altheaAccrued),
       cantroller: coreContracts.Comptroller,
       wallet: account,
       comptrollerBalance,

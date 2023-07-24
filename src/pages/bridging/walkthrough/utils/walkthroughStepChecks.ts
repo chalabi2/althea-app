@@ -1,7 +1,7 @@
 import { TransactionState } from "@usedapp/core";
 import { BigNumber } from "ethers";
 import {
-  CantoMainBridgeOutNetworks,
+  AltheaMainBridgeOutNetworks,
   UserERC20BridgeToken,
   UserNativeToken,
 } from "pages/bridging/walkthrough/config/interfaces";
@@ -20,7 +20,7 @@ export function didPassBridgeOutWalkthroughCheck(
   convertOutAmount: BigNumber,
   maxConvertOutAmount: BigNumber,
   convertTxState: TransactionState,
-  bridgeOutNetwork: CantoMainBridgeOutNetworks,
+  bridgeOutNetwork: AltheaMainBridgeOutNetworks,
   bridgeOutToken: UserNativeToken,
   bridgeOutStatus: TransactionState,
   bridgeOutSendAddress: string
@@ -28,7 +28,7 @@ export function didPassBridgeOutWalkthroughCheck(
   const currentCheckFunction =
     BridgeOutWalkthroughSteps[currentStep].checkFunction;
   switch (currentStep) {
-    case BridgeOutStep.SWITCH_TO_CANTO: {
+    case BridgeOutStep.SWITCH_TO_ALTHEA: {
       return currentCheckFunction(chainId);
     }
     case BridgeOutStep.SELECT_CONVERT_TOKEN: {
@@ -85,7 +85,7 @@ export function didPassBridgeInWalkthroughCheck(
     case BridgeInStep.WAIT_FOR_GRBIDGE: {
       return currentCheckFunction(completedBridgeInTxs, bridgeInTxHash);
     }
-    case BridgeInStep.SWITCH_TO_CANTO: {
+    case BridgeInStep.SWITCH_TO_ALTHEA: {
       return currentCheckFunction(chainId);
     }
     case BridgeInStep.SELECT_CONVERT_TOKEN: {

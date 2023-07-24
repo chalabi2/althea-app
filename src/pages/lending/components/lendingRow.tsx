@@ -3,7 +3,7 @@ import LendingSwitch from "./lendingSwitch";
 import { noteSymbol } from "global/config/tokenInfo";
 import React from "react";
 import { formatLiquidity } from "global/utils/formattingNumbers";
-import cantoIcon from "assets/logo.svg";
+import altheaIcon from "assets/logo.svg";
 import Popup from "reactjs-popup";
 import { ToolTipL } from "./Styled";
 import { Text } from "global/packages/src";
@@ -148,8 +148,8 @@ const SupplyRow = (props: SupplyProps) => {
           <td>
             {Number(props.rewards).toFixed(2)}{" "}
             <img
-              src={cantoIcon}
-              alt="canto"
+              src={altheaIcon}
+              alt="althea"
               style={{ height: "14px", paddingTop: "3px" }}
             />
           </td>

@@ -14,14 +14,14 @@ import {
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-  ethToCanto,
-} from "../../../global/utils/cantoTransactions/helpers";
+  ethToAlthea,
+} from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
 
 const ACCEPT_APPLICATION_JSON = "application/json";
 /**
  * Transaction that stakes given amount to the designataed validator
- * @param {string} validator validator address string beginning with 'cantovaloper'
+ * @param {string} validator validator address string beginning with 'altheavaloper'
  * @param {string} amount amount to stake in string format e.g. '30000000000000000'
  * @param {string} nodeAddressIP node ip with port 1317
  * @param {object} fee fee object
@@ -59,7 +59,7 @@ export async function txStake(
 
 /**
  * Transaction that unstakes given amount to the designated validator
- * @param {string} validator validator address string beginning with 'cantovaloper'
+ * @param {string} validator validator address string beginning with 'altheavaloper'
  * @param {string} amount amount to stake in string format e.g. '30000000000000000'
  * @param {string} nodeAddressIP node ip with port 1317
  * @param {object} fee fee object
@@ -97,7 +97,7 @@ export async function txUnstake(
 
 /**
  * Transaction that stakes given amount to the designataed validator
- * @param {string} validator validator address string beginning with 'cantovaloper'
+ * @param {string} validator validator address string beginning with 'altheavaloper'
  * @param {string} amount amount to stake in string format e.g. '30000000000000000'
  * @param {string} nodeAddressIP node ip with port 1317
  * @param {object} fee fee object
@@ -221,8 +221,8 @@ export async function txClaimValidatorCommisions(
  * @param {string} nodeAddressIP node ip with port 1317
  */
 export async function getDelegationsForAddress(nodeAddressIP, address) {
-  const cantoAddress = await ethToCanto(address, nodeAddressIP);
-  const url = nodeAddressIP + generateEndpointGetDelegations(cantoAddress);
+  const altheaAddress = await ethToAlthea(address, nodeAddressIP);
+  const url = nodeAddressIP + generateEndpointGetDelegations(altheaAddress);
 
   const options = {
     method: "GET",
@@ -247,8 +247,8 @@ export async function getDelegationsForAddress(nodeAddressIP, address) {
  * @param {string} nodeAddressIP node ip with port 1317
  */
 export async function getUndelegationsForAddress(nodeAddressIP, address) {
-  const cantoAddress = await ethToCanto(address, nodeAddressIP);
-  const url = nodeAddressIP + generateEndpointGetUndelegations(cantoAddress);
+  const altheaAddress = await ethToAlthea(address, nodeAddressIP);
+  const url = nodeAddressIP + generateEndpointGetUndelegations(altheaAddress);
 
   const options = {
     method: "GET",
@@ -327,9 +327,9 @@ export async function getValidators(nodeAddressIP) {
 /**
  * https://github.com/evmos/evmosjs/blob/193244306f544eea6b2070e3f9563cb48ca21094/packages/provider/src/rest/balances.ts#L9-L15
  */
-export async function getCantoBalance(nodeAddressIP, address) {
-  const cantoAddress = await ethToCanto(address, nodeAddressIP);
-  const url = nodeAddressIP + generateEndpointBalances(cantoAddress);
+export async function getAltheaBalance(nodeAddressIP, address) {
+  const altheaAddress = await ethToAlthea(address, nodeAddressIP);
+  const url = nodeAddressIP + generateEndpointBalances(altheaAddress);
 
   const options = {
     method: "GET",
@@ -342,13 +342,13 @@ export async function getCantoBalance(nodeAddressIP, address) {
     .then((response) => response.json())
     .then((result) => {
       const balances = result.balances;
-      let cantoBalance = BigNumber.from("0");
+      let altheaBalance = BigNumber.from("0");
       balances.forEach((coin) => {
         if (coin.denom === "aalthea") {
-          cantoBalance = BigNumber.from(coin.amount);
+          altheaBalance = BigNumber.from(coin.amount);
         }
       });
-      return cantoBalance;
+      return altheaBalance;
     })
     .catch((err) => {
       console.log(err);
@@ -361,9 +361,9 @@ export async function getCantoBalance(nodeAddressIP, address) {
  * @param {string} nodeAddressIP node ip with port 1317
  */
 export async function getDistributionRewards(nodeAddressIP, address) {
-  const cantoAddress = await ethToCanto(address, nodeAddressIP);
+  const altheaAddress = await ethToAlthea(address, nodeAddressIP);
   const url =
-    nodeAddressIP + generateEndpointDistributionRewardsByAddress(cantoAddress);
+    nodeAddressIP + generateEndpointDistributionRewardsByAddress(altheaAddress);
 
   const options = {
     method: "GET",
@@ -375,13 +375,13 @@ export async function getDistributionRewards(nodeAddressIP, address) {
   return await fetch(url, options)
     .then((response) => response.json())
     .then((result) => {
-      let cantoRewards = BigNumber.from("0");
+      let altheaRewards = BigNumber.from("0");
       result.total.forEach((reward) => {
         if (reward.denom.includes("aalthea")) {
-          cantoRewards = BigNumber.from(reward.amount.split(".")[0]);
+          altheaRewards = BigNumber.from(reward.amount.split(".")[0]);
         }
       });
-      return cantoRewards;
+      return altheaRewards;
     })
     .catch((err) => {
       console.log(err);

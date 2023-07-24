@@ -2,16 +2,16 @@ import { formatEther } from "@ethersproject/units";
 import { CallResult, useCalls } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 import { ethers } from "ethers";
-import { CantoMainnet } from "global/config/networks";
+import { AltheaMainnet } from "global/config/networks";
 import { getCTokensForChainId } from "../config/lendingMarketTokens";
 import { LMTokenDetails } from "../config/interfaces";
 import { cERC20Abi, comptrollerAbi, routerAbi } from "global/config/abi";
 import { CTOKENS } from "global/config/tokenInfo";
-import { checkMultiCallForUndefined } from "global/utils/cantoTransactions/transactionChecks";
+import { checkMultiCallForUndefined } from "global/utils/altheaTransactions/transactionChecks";
 import { CTOKEN } from "global/config/interfaces/tokens";
 import {
-  getAddressesForCantoNetwork,
-  onCantoNetwork,
+  getAddressesForAltheaNetwork,
+  onAltheaNetwork,
 } from "global/utils/getAddressUtils";
 
 const formatUnits = ethers.utils.formatUnits;
@@ -19,7 +19,7 @@ const parseUnits = ethers.utils.parseUnits;
 
 export function useLMTokenData(chainId?: number): LMTokenDetails[] {
   const tokens: CTOKEN[] = getCTokensForChainId(chainId);
-  const coreContracts = getAddressesForCantoNetwork(chainId);
+  const coreContracts = getAddressesForAltheaNetwork(chainId);
 
   const secondsPerBlock = 5.8;
   const blocksPerDay = 86400 / secondsPerBlock;
@@ -35,26 +35,26 @@ export function useLMTokenData(chainId?: number): LMTokenDetails[] {
     compSpeed: number,
     tokensupply: number,
     tokenPrice: number,
-    priceOfCanto: number
+    priceOfAlthea: number
   ) {
-    // ((compspeed*blocksperyear)/LPTOKEN SUPPLY)*PRICEOF CANTO/PRICEOFLPTOKEN
+    // ((compspeed*blocksperyear)/LPTOKEN SUPPLY)*PRICEOF ALTHEA/PRICEOFLPTOKEN
     if (tokensupply == 0 || tokenPrice == 0) {
       return 0;
     }
     return (
       100 *
       ((compSpeed * (blocksPerDay * daysPerYear)) / tokensupply) *
-      (priceOfCanto / tokenPrice)
+      (priceOfAlthea / tokenPrice)
     );
   }
 
   //comptroller contract
   const comptroller = new Contract(coreContracts?.Comptroller, comptrollerAbi);
-  //canto contract
+  //althea contract
   const priceFeedContract = new Contract(coreContracts?.Router, routerAbi);
   const calls =
     tokens?.map((token) => {
-      //canto contract
+      //althea contract
       const cERC20Contract = new Contract(token.address, cERC20Abi);
       return [
         //0
@@ -113,13 +113,13 @@ export function useLMTokenData(chainId?: number): LMTokenDetails[] {
     {
       contract: priceFeedContract,
       method: "getUnderlyingPrice",
-      args: [tokens?.find((token) => token.symbol == "cCANTO")?.address],
+      args: [tokens?.find((token) => token.symbol == "cALTHEA")?.address],
     },
   ];
 
   const results =
     useCalls(typeof tokens == typeof CTOKENS ? globalCalls : [], {
-      chainId: onCantoNetwork(chainId) ? chainId : CantoMainnet.chainId,
+      chainId: onAltheaNetwork(chainId) ? chainId : AltheaMainnet.chainId,
     }) ?? {};
 
   const chuckSize = !tokens ? 0 : (results.length - 1) / tokens.length;

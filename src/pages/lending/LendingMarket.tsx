@@ -56,8 +56,8 @@ const LendingMarket = () => {
   return (
     <>
       <HelmetSEO
-        title="Canto - Lending"
-        description="Canto Homepage serves De-fi applications"
+        title="Althea - Lending"
+        description="Althea Homepage serves De-fi applications"
         link="lending"
       />
       <Styled as={FadeIn}>

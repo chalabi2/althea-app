@@ -8,7 +8,7 @@ import {
   getTokenBFromA,
 } from "pages/dexLP/utils/utils";
 
-// test("check for canto in pair", () => {
+// test("check for althea in pair", () => {
 //   const testCases = [
 //     {
 //       pair: MAINPAIRS[0],
@@ -37,7 +37,7 @@ import {
 //     },
 //   ];
 //   for (const { pair, chainId, expected } of testCases) {
-//     expect(checkForCantoInPair(pair, chainId)).toEqual(expected);
+//     expect(checkForAltheaInPair(pair, chainId)).toEqual(expected);
 //   }
 // });
 

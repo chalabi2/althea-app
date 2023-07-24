@@ -4,7 +4,7 @@ import { getStep1ButtonText } from "pages/bridging/utils/utils";
 import { convertStringToBigNumber } from "global/utils/formattingNumbers";
 
 import { parseUnits } from "ethers/lib/utils";
-import { CANTO_MAIN_CONVERT_COIN_TOKENS } from "pages/bridging/config/tokens.ts/bridgingTokens";
+import { ALTHEA_MAIN_CONVERT_COIN_TOKENS } from "pages/bridging/config/tokens.ts/bridgingTokens";
 import {
   MAINNET_IBC_NETWORKS,
   MainnetIBCNetworks,
@@ -166,7 +166,7 @@ test("converting string to big number for token decimals", () => {
     },
   ];
   for (const testCase of testCases) {
-    for (const token of CANTO_MAIN_CONVERT_COIN_TOKENS) {
+    for (const token of ALTHEA_MAIN_CONVERT_COIN_TOKENS) {
       const expectedResult = !testCase.valid
         ? BigNumber.from(0)
         : parseUnits(
