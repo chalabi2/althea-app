@@ -33,8 +33,8 @@ import { Token } from "global/config/interfaces/tokens";
 import { getAllowance, getTokenBalance } from "global/utils/api/tokenBalances";
 import { ALTHEA_IBC_NETWORK } from "../config/networks.ts/cosmos";
 import { checkPubKey } from "global/utils/altheaTransactions/publicKey";
-import { AltheaMainnet, onTestnet } from "global/config/networks";
-import { AltheaTestnet } from "@usedapp/core";
+import { AltheaMainnet, onTestnet, AltheaTestnet } from "global/config/networks";
+
 
 const doesMethodSupportToken = (
   network: BridgingNetwork,

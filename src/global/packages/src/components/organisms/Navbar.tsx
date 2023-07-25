@@ -93,7 +93,7 @@ export const NavBar = (props: Props) => {
             transform: "translateY(-3px)",
           }}
         >
-          {parseText(currentPage)}
+          {parseText(currentPage ?? "home")}
         </Text>
 
         <ConnectWallet {...props} />
