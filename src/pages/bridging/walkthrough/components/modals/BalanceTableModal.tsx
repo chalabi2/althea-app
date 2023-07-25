@@ -14,7 +14,7 @@ import {
 
 interface Props {
   ethTokens: UserERC20BridgeToken[];
-  cantoTokens: UserERC20BridgeToken[];
+  altheaTokens: UserERC20BridgeToken[];
   nativeTokens: UserNativeToken[];
   allConvertCoinTokens: NativeToken[];
 }
@@ -50,7 +50,7 @@ const BalanceTableModal = (props: Props) => {
           <TokenTable
             tokens={formatTokensAmountsbyChain(
               props.ethTokens,
-              props.cantoTokens,
+              props.altheaTokens,
               props.nativeTokens,
               props.allConvertCoinTokens
             )}

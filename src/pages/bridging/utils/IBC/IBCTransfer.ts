@@ -3,10 +3,10 @@ import { generateEndpointIBCChannels } from "@tharsis/provider";
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-} from "global/utils/cantoTransactions/helpers";
+} from "global/utils/altheaTransactions/helpers";
 import { createTxIBCMsgTransfer } from "./IBCMsgTransfer";
 
-//this is for IBC out of canto to another chain
+//this is for IBC out of althea to another chain
 export async function txIBCTransfer(
   receiver: any,
   channel_id: any,
@@ -52,7 +52,7 @@ export async function txIBCTransfer(
     sourcePort: "transfer", // ibc transfers will always be sent to the transfer port of the counterparty client
     sourceChannel: channel_id, // channel id for transfer, there will be multiple per counterparty but we designate one (the one determining the denom-trace for the transfer)
     amount: amount,
-    denom: denom, // designates the denom of the asset to transfer, either acanto or ibc/<HASH>
+    denom: denom, // designates the denom of the asset to transfer, either aalthea or ibc/<HASH>
     receiver: receiver,
     sender: senderObj.accountAddress,
     revisionNumber: ibcData["height"]["revision_number"],

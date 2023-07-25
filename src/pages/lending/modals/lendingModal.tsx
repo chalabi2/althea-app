@@ -13,7 +13,7 @@ import {
   convertStringToBigNumber,
   truncateNumber,
 } from "global/utils/formattingNumbers";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import { Details } from "../components/BorrowLimits";
 import { lendingMarketTx } from "../utils/transactions";
 import { TransactionStore } from "global/stores/transactionStore";
@@ -35,7 +35,7 @@ const LendingModal = ({
   txStore,
 }: IProps) => {
   interface LendingTabProps {
-    txType: CantoTransactionType;
+    txType: AltheaTransactionType;
     balance: BigNumber;
     max: BigNumber;
     canDoMax: boolean;
@@ -73,7 +73,7 @@ const LendingModal = ({
           userBalanceType={
             modalType === "repay_borrow"
               ? "currently borrowing"
-              : txType === CantoTransactionType.SUPPLY
+              : txType === AltheaTransactionType.SUPPLY
               ? "balance"
               : "supply balance"
           }
@@ -128,7 +128,7 @@ const LendingModal = ({
                 txType,
                 activeToken,
                 maxClicked &&
-                  txType === CantoTransactionType.REPAY &&
+                  txType === AltheaTransactionType.REPAY &&
                   activeToken.balanceOf.gt(activeToken.borrowBalance.add(1000))
                   ? BigNumber.from(
                       "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -198,7 +198,7 @@ const LendingModal = ({
           {
             name: "Supply",
             child: LendingTab({
-              txType: CantoTransactionType.SUPPLY,
+              txType: AltheaTransactionType.SUPPLY,
               balance: activeToken.balanceOf,
               max: activeToken.balanceOf,
               canDoMax: true,
@@ -207,7 +207,7 @@ const LendingModal = ({
           {
             name: "Withdraw",
             child: LendingTab({
-              txType: CantoTransactionType.WITHDRAW,
+              txType: AltheaTransactionType.WITHDRAW,
               balance: activeToken.supplyBalance,
               max: totalLimit,
               canDoMax: isMax,
@@ -221,7 +221,7 @@ const LendingModal = ({
           {
             name: "Borrow",
             child: LendingTab({
-              txType: CantoTransactionType.BORROW,
+              txType: AltheaTransactionType.BORROW,
               balance: activeToken.borrowBalance,
               max: borrowLimit100(),
               canDoMax: false,
@@ -231,7 +231,7 @@ const LendingModal = ({
           {
             name: "Repay",
             child: LendingTab({
-              txType: CantoTransactionType.REPAY,
+              txType: AltheaTransactionType.REPAY,
               balance: activeToken.borrowBalance,
               max: repayLimit(),
               canDoMax: true,

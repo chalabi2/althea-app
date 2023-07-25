@@ -14,7 +14,7 @@ export const WaitForGbridge = (props: WaitProps) => {
     <Styled>
       <header>
         <Text type="title" size="title2">
-          wait for funds to arrive on canto
+          wait for funds to arrive on althea
         </Text>
       </header>
       <section>

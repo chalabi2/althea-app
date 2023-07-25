@@ -9,11 +9,11 @@ interface TokenTableProps {
   name: string;
   main: string;
   gBridge: string;
-  canto: string;
+  althea: string;
 }
 export function formatTokensAmountsbyChain(
   ethTokens: UserERC20BridgeToken[],
-  cantoTokens: UserERC20BridgeToken[],
+  altheaTokens: UserERC20BridgeToken[],
   nativeTokens: UserNativeToken[],
   allConvertCoinTokens: NativeToken[]
 ): TokenTableProps[] {
@@ -29,15 +29,15 @@ export function formatTokensAmountsbyChain(
     const bridgeBalance = nativeToken
       ? formatUnits(nativeToken.nativeBalance, nativeToken.decimals)
       : "0.0";
-    const cantoToken = cantoTokens.find((cTok) => cTok.name == token.name);
-    const evmBalance = cantoToken
-      ? formatUnits(cantoToken.erc20Balance, cantoToken.decimals)
+    const altheaToken = altheaTokens.find((cTok) => cTok.name == token.name);
+    const evmBalance = altheaToken
+      ? formatUnits(altheaToken.erc20Balance, altheaToken.decimals)
       : "0.0";
     return {
       name: token.symbol,
       main: ethBalance,
       gBridge: bridgeBalance,
-      canto: evmBalance,
+      althea: evmBalance,
     };
   });
 }

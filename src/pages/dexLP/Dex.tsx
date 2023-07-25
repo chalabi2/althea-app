@@ -64,8 +64,8 @@ const LP_Interface = () => {
   return (
     <>
       <HelmetSEO
-        title="Canto - LP interface"
-        description="Canto Homepage serves De-fi applications"
+        title="Althea - LP interface"
+        description="Althea Homepage serves De-fi applications"
         link="lp"
       />
       <Styled as={FadeIn}>

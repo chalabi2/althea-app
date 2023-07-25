@@ -1,7 +1,7 @@
 import { BigNumber, ethers } from "ethers";
 import { formatUnits } from "ethers/lib/utils";
-import { CantoMainnet, ETHMainnet } from "global/config/networks";
-import { switchNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { AltheaMainnet, ETHMainnet } from "global/config/networks";
+import { switchNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 import {
   UserERC20BridgeToken,
   UserNativeToken,
@@ -22,11 +22,11 @@ import { WalkthroughSelectedTokens } from "../store/customUseWalkthrough";
 interface BridgeInManagerProps {
   networkInfo: {
     chainId: number;
-    cantoAddress: string;
+    altheaAddress: string;
     needPubKey: boolean;
     canPubKey: boolean;
     gravityAddress: string;
-    notEnoughCantoBalance: boolean;
+    notEnoughAltheaBalance: boolean;
   };
   transactions: {
     approve: BridgeTransaction;
@@ -91,7 +91,7 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
       {props.currentStep == BridgeInStep.NEED_ALLOWANCE && !hasAllowance && (
         <ConfirmTransactionPage
           amount=""
-          notEnoughCantoBalance={false}
+          notEnoughAltheaBalance={false}
           token={props.currentBridgeInToken}
           onTxConfirm={() =>
             props.transactions.approve.send(
@@ -126,13 +126,13 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
       {props.currentStep === BridgeInStep.SEND_FUNDS_TO_GBRIDGE && (
         <ConfirmTransactionPage
           amount={props.amount}
-          notEnoughCantoBalance={false}
+          notEnoughAltheaBalance={false}
           token={props.currentBridgeInToken}
           onTxConfirm={() => {
             if (
               !(
-                props.networkInfo.cantoAddress == undefined ||
-                props.networkInfo.cantoAddress.slice(0, 5) != "canto"
+                props.networkInfo.altheaAddress == undefined ||
+                props.networkInfo.altheaAddress.slice(0, 5) != "althea"
               )
             ) {
               props.transactions.sendCosmos.send(
@@ -145,7 +145,7 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
           }}
           txStatus={props.transactions.sendCosmos.state}
           txShortDesc={`send ${props.amount} ${props.currentBridgeInToken.name}`}
-          txType={"Ethereum -> Canto Bridge"}
+          txType={"Ethereum -> Althea Bridge"}
           onNext={props.onNext}
           onPrev={props.onPrev}
           canContinue={props.canContinue}
@@ -161,11 +161,11 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
           canGoBack={props.canGoBack}
         />
       )}
-      {props.currentStep === BridgeInStep.SWITCH_TO_CANTO && (
+      {props.currentStep === BridgeInStep.SWITCH_TO_ALTHEA && (
         <SwitchNetworkPage
-          toChainId={CantoMainnet.chainId}
+          toChainId={AltheaMainnet.chainId}
           fromChainId={props.networkInfo.chainId}
-          onClick={() => switchNetwork(CantoMainnet.chainId)}
+          onClick={() => switchNetwork(AltheaMainnet.chainId)}
           canContinue={props.canContinue}
           onNext={props.onNext}
           onPrev={props.onPrev}
@@ -190,7 +190,7 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
       {props.currentStep === BridgeInStep.CONVERT && (
         <ConfirmTransactionPage
           amount={props.amount}
-          notEnoughCantoBalance={props.networkInfo.notEnoughCantoBalance}
+          notEnoughAltheaBalance={props.networkInfo.notEnoughAltheaBalance}
           token={props.currentConvertToken}
           onTxConfirm={() => {
             props.transactions.convertIn.send(
@@ -200,7 +200,7 @@ export const BridgeInManager = (props: BridgeInManagerProps) => {
               ).toString()
             );
           }}
-          txType={"Canto Bridge -> Canto EVM"}
+          txType={"Althea Bridge -> Althea EVM"}
           txShortDesc={`send ${props.amount} ${props.currentConvertToken.name}`}
           txStatus={props.transactions.convertIn.state}
           onNext={props.onNext}

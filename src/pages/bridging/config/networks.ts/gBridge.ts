@@ -16,13 +16,13 @@ const GBRIDGE_MAIN_NETWORKS: GBridgeNetworkData = {
     gravityBridgeAddress: ADDRESSES.ETHMainnet.GravityBridge,
     wethAddress: ADDRESSES.ETHMainnet.WETH,
     tokens: {
-      toCanto: [
+      toAlthea: [
         TOKENS.ETHMainnet.USDC,
         TOKENS.ETHMainnet.USDT,
         TOKENS.ETHMainnet.WETH,
         TOKENS.ETHMainnet.WSTETH,
       ],
-      fromCanto: [],
+      fromAlthea: [],
     },
   },
 };

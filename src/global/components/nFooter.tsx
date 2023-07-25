@@ -15,7 +15,7 @@ const Footer = () => {
         <a href="https://docs.althea.net/" target="_blank" rel="noreferrer">
           <Text type="text">docs</Text>
         </a>
-        <a href="https://canto.canny.io/" target="_blank" rel="noreferrer">
+        <a href="https://althea.canny.io/" target="_blank" rel="noreferrer">
           <Text type="text">report bug</Text>
         </a>
 

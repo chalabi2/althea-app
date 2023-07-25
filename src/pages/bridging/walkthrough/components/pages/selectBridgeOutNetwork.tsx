@@ -5,13 +5,13 @@ import TextSwitch from "../TextSwitch";
 import BaseStyled from "../layout";
 import {
   BridgeOutNetworkInfo,
-  CantoMainBridgeOutNetworks,
+  AltheaMainBridgeOutNetworks,
 } from "pages/bridging/walkthrough/config/interfaces";
-import { CANTO_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
+import { ALTHEA_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
 
 interface SelectBridgeProps {
   activeNetwork: BridgeOutNetworkInfo;
-  onSelect: (network: CantoMainBridgeOutNetworks) => void;
+  onSelect: (network: AltheaMainBridgeOutNetworks) => void;
   canContinue: boolean;
   canGoBack: boolean;
   onPrev: () => void;
@@ -39,23 +39,23 @@ const SelectBridgeOutNetwork = (props: SelectBridgeProps) => {
       </header>
       <section>
         <div className="network-list">
-          {Object.keys(CANTO_MAIN_BRIDGE_OUT_NETWORKS).map((key, network) => (
+          {Object.keys(ALTHEA_MAIN_BRIDGE_OUT_NETWORKS).map((key, network) => (
             <TextSwitch
               key={key}
               text=""
-              onClick={() => props.onSelect(key as CantoMainBridgeOutNetworks)}
+              onClick={() => props.onSelect(key as AltheaMainBridgeOutNetworks)}
               active={
                 props.activeNetwork.name ==
-                CANTO_MAIN_BRIDGE_OUT_NETWORKS[
-                  network as keyof typeof CANTO_MAIN_BRIDGE_OUT_NETWORKS
+                ALTHEA_MAIN_BRIDGE_OUT_NETWORKS[
+                  network as keyof typeof ALTHEA_MAIN_BRIDGE_OUT_NETWORKS
                 ].name
               }
             >
               <span>
                 <img
                   src={
-                    CANTO_MAIN_BRIDGE_OUT_NETWORKS[
-                      network as keyof typeof CANTO_MAIN_BRIDGE_OUT_NETWORKS
+                    ALTHEA_MAIN_BRIDGE_OUT_NETWORKS[
+                      network as keyof typeof ALTHEA_MAIN_BRIDGE_OUT_NETWORKS
                     ].icon
                   }
                   alt=""
@@ -63,8 +63,8 @@ const SelectBridgeOutNetwork = (props: SelectBridgeProps) => {
                 />
                 <Text type="text">
                   {
-                    CANTO_MAIN_BRIDGE_OUT_NETWORKS[
-                      network as keyof typeof CANTO_MAIN_BRIDGE_OUT_NETWORKS
+                    ALTHEA_MAIN_BRIDGE_OUT_NETWORKS[
+                      network as keyof typeof ALTHEA_MAIN_BRIDGE_OUT_NETWORKS
                     ].name
                   }
                 </Text>

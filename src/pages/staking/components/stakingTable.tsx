@@ -1,8 +1,8 @@
 import { BigNumber } from "ethers";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
-import cantoIcon from "assets/favicon.ico";
-import cantoJailedIcon from "assets/favicon.ico";
+import altheaIcon from "assets/favicon.ico";
+import altheaJailedIcon from "assets/favicon.ico";
 import { MasterValidatorProps } from "../config/interfaces";
 import useValidatorModalStore, {
   ValidatorModalType,
@@ -138,16 +138,16 @@ const Row = (props: RowProps) => {
       <td>
         {formatLiquidity(Number(truncateNumber(formatEther(props.totalStake))))}{" "}
         <img
-          src={props.jailed ? cantoJailedIcon : cantoIcon}
-          alt="canto"
+          src={props.jailed ? altheaJailedIcon : altheaIcon}
+          alt="althea"
           height={14}
         />
       </td>
       <td>
         {commify(truncateNumber(formatEther(props.userStake)))}
         <img
-          src={props.jailed ? cantoJailedIcon : cantoIcon}
-          alt="canto"
+          src={props.jailed ? altheaJailedIcon : altheaIcon}
+          alt="althea"
           height={14}
         />
       </td>

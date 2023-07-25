@@ -151,7 +151,7 @@ export const StakingModal = ({
                 <button
                   className="max"
                   onClick={() => {
-                    //need to subtract the total fee + 1 Canto to make sure the user has enough for gas and left over canto for other transactions
+                    //need to subtract the total fee + 1 Althea to make sure the user has enough for gas and left over althea for other transactions
                     const totalFee = BigNumber.from(delegateFee.amount)
                       .add(delegateFee.gas)
                       .add(parseEther("1"));
@@ -174,7 +174,7 @@ export const StakingModal = ({
                 </div>
                 <Text size="text3" type="text" align="left">
                   staking will lock up your funds for at least 21 days once you
-                  undelegate your staked canto, you will need to wait 21 days
+                  undelegate your staked althea, you will need to wait 21 days
                   for your tokens to be liquid
                 </Text>
               </div>

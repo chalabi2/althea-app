@@ -1,7 +1,7 @@
 import { BigNumber, Contract, ethers } from "ethers";
 import { gravityBridgeAbi } from "global/config/abi";
 import { ADDRESSES } from "global/config/addresses";
-import { CantoMainnet, ETHMainnet } from "global/config/networks";
+import { AltheaMainnet, ETHMainnet } from "global/config/networks";
 import { Token } from "global/config/interfaces/tokens";
 import {
   findBridgeInToken,
@@ -33,7 +33,7 @@ export interface TransactionHistoryEvent {
 
 export async function getBridgeInEventsWithStatus(
   ethAccount?: string,
-  cantoAccount?: string
+  altheaAccount?: string
 ): Promise<[TransactionHistoryEvent[], TransactionHistoryEvent[]]> {
   const completedEvents: TransactionHistoryEvent[] = [];
   const pendingEvents: TransactionHistoryEvent[] = [];
@@ -73,7 +73,7 @@ export async function getBridgeInEventsWithStatus(
     }
   });
   //add all of the ibc transfers to completed events as well
-  completedEvents.push(...(await getIBCInTransactions(cantoAccount)));
+  completedEvents.push(...(await getIBCInTransactions(altheaAccount)));
   return [completedEvents, pendingEvents];
 }
 
@@ -103,7 +103,7 @@ async function getEthGBridgeInEvents(
         blockNumber: event.blockNumber,
         txHash: event.transactionHash,
         from: "eth",
-        to: "canto",
+        to: "althea",
         //don't know yet, but can place default values
         complete: true,
         secondsToComplete: "0",
@@ -147,15 +147,15 @@ interface Attribute {
 interface IBCEvent {
   attributes: Attribute[];
 }
-async function getIBCTxs(ibcIn: boolean, cantoAccount?: string) {
+async function getIBCTxs(ibcIn: boolean, altheaAccount?: string) {
   const ibcAttribute = ibcIn ? "receiver" : "sender";
   return await (
     await fetch(
-      CantoMainnet.cosmosAPIEndpoint +
+      AltheaMainnet.cosmosAPIEndpoint +
         "/cosmos/tx/v1beta1/txs?events=fungible_token_packet." +
         ibcAttribute +
         "%3D'" +
-        cantoAccount +
+        altheaAccount +
         "'",
       globalFetchOptions
     )
@@ -196,10 +196,10 @@ function parseFungibleTokenPacket(
 }
 
 async function getIBCInTransactions(
-  cantoAccount?: string
+  altheaAccount?: string
 ): Promise<TransactionHistoryEvent[]> {
   const ibcInHistory: TransactionHistoryEvent[] = [];
-  const ibcIn = await getIBCTxs(true, cantoAccount);
+  const ibcIn = await getIBCTxs(true, altheaAccount);
   for (const tx of ibcIn.tx_responses) {
     //@ts-ignore
     const allEvents = tx.logs.map((log) => log.events).flat();
@@ -211,7 +211,7 @@ async function getIBCInTransactions(
         const token = findNativeToken(denom);
         const doNotShow =
           !token || ["USDC", "USDT", "WETH"].includes(token.symbol);
-        if (receiver == cantoAccount && success && !doNotShow) {
+        if (receiver == altheaAccount && success && !doNotShow) {
           ibcInHistory.push({
             bridgeType: "in",
             token: token,
@@ -222,8 +222,8 @@ async function getIBCInTransactions(
             complete: true,
             secondsToComplete: "0",
             from: getNetworkFromAddress(sender),
-            to: "canto",
-            blockExplorerUrl: "https://www.mintscan.io/canto/txs/",
+            to: "althea",
+            blockExplorerUrl: "https://www.mintscan.io/althea/txs/",
           });
         }
       }
@@ -232,16 +232,16 @@ async function getIBCInTransactions(
   return ibcInHistory;
 }
 export async function getIBCOutTransactions(
-  cantoAccount?: string
+  altheaAccount?: string
 ): Promise<TransactionHistoryEvent[]> {
   const bridgeOutNetworks = Object.keys(MAINNET_IBC_NETWORKS).map(
     (key, network) => {
       return MAINNET_IBC_NETWORKS[key as keyof typeof MAINNET_IBC_NETWORKS]
-        .channelFromCanto;
+        .channelFromAlthea;
     }
   );
   const bridgeOutData: TransactionHistoryEvent[] = [];
-  const ibcOut = await getIBCTxs(false, cantoAccount);
+  const ibcOut = await getIBCTxs(false, altheaAccount);
   for (const tx of ibcOut.tx_responses) {
     //grab token and amount from each bridge out into gravity bridge
     //@ts-ignore
@@ -255,7 +255,7 @@ export async function getIBCOutTransactions(
         if (
           type == "transfer" &&
           bridgeOutNetworks.includes(channel) &&
-          sender == cantoAccount &&
+          sender == altheaAccount &&
           success
         ) {
           const token = findNativeToken(tokenDenom);
@@ -268,9 +268,9 @@ export async function getIBCOutTransactions(
             txHash: tx.txhash,
             complete: true,
             secondsToComplete: "0",
-            from: "canto",
+            from: "althea",
             to: getNetworkFromAddress(receiver),
-            blockExplorerUrl: "https://www.mintscan.io/canto/txs/",
+            blockExplorerUrl: "https://www.mintscan.io/althea/txs/",
           });
         }
       }
@@ -280,22 +280,22 @@ export async function getIBCOutTransactions(
 }
 
 async function getConvertTransactionsForUser(
-  cantoAccount?: string
+  altheaAccount?: string
 ): Promise<[unknown[], unknown[]]> {
   const convertToERC20 = await (
     await fetch(
-      CantoMainnet.cosmosAPIEndpoint +
+      AltheaMainnet.cosmosAPIEndpoint +
         "/cosmos/tx/v1beta1/txs?events=convert_coin.sender%3D'" +
-        cantoAccount +
+        altheaAccount +
         "'",
       globalFetchOptions
     )
   ).json();
   const convertToNative = await (
     await fetch(
-      CantoMainnet.cosmosAPIEndpoint +
+      AltheaMainnet.cosmosAPIEndpoint +
         "/cosmos/tx/v1beta1/txs?events=convert_erc20.receiver%3D'" +
-        cantoAccount +
+        altheaAccount +
         "'",
       globalFetchOptions
     )

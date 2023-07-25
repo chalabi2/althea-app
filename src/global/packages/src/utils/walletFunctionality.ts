@@ -1,4 +1,4 @@
-export async function addCantoToKeplr() {
+export async function addAltheaToKeplr() {
   // Keplr extension injects the offline signer that is compatible with cosmJS.
   // You can get this offline signer from `window.getOfflineSigner(chainId:string)` after load event.
   // And it also injects the helper function to `window.keplr`.
@@ -11,14 +11,14 @@ export async function addCantoToKeplr() {
     if (window.keplr.experimentalSuggestChain) {
       try {
         // Keplr v0.6.4 introduces an experimental feature that supports the feature to suggests the chain from a webpage.
-        // ccantoshub-3 is integrated to Keplr so the code should return without errors.
-        // The code below is not needed for ccantoshub-3, but may be helpful if you’re adding a custom chain.
+        // caltheashub-3 is integrated to Keplr so the code should return without errors.
+        // The code below is not needed for caltheashub-3, but may be helpful if you’re adding a custom chain.
         // If the user approves, the chain will be added to the user's Keplr extension.
         // If the user rejects it or the suggested chain information doesn't include the required fields, it will throw an error.
         // If the same chain id is already registered, it will resolve and not require the user interactions.
         //@ts-ignore
         await window.keplr.experimentalSuggestChain({
-          // Chain-id of the cantosis chain.
+          // Chain-id of the altheasis chain.
           chainId: "althea_417834-3",
           // The name of the chain to be displayed to the user.
           chainName: "Althea",
@@ -84,7 +84,7 @@ export async function addCantoToKeplr() {
             {
               // Coin denomination to be displayed to the user.
               coinDenom: "althea",
-              // Actual denom (i.e. ucanto, uscrt) used by the blockchain.
+              // Actual denom (i.e. ualthea, uscrt) used by the blockchain.
               coinMinimalDenom: "aalthea",
               // # of decimal points to convert minimal denomination to user-facing denomination.
               coinDecimals: 18,
@@ -101,7 +101,7 @@ export async function addCantoToKeplr() {
           // (Optional) The number of the coin type.
           // This field is only used to fetch the address from ENS.
           // Ideally, it is recommended to be the same with BIP44 path's coin type.
-          // However, some early chains may choose to use the Ccantos Hub BIP44 path of '118'.
+          // However, some early chains may choose to use the Caltheas Hub BIP44 path of '118'.
           // So, this is separated to support such chains.
           coinType: 60,
           // (Optional) This is used to set the fee of the transaction.

@@ -1,10 +1,10 @@
 import noteIcon from "assets/note.svg";
-import cantoIcon from "assets/logo.svg";
+import altheaIcon from "assets/logo.svg";
 interface Props {
   height?: number;
   width?: number;
   padding?: number;
-  token: "canto" | "note";
+  token: "althea" | "note";
 }
 const TokenSymbol = ({ width, height, padding, token }: Props) => {
   if (!height || !width) {
@@ -15,7 +15,7 @@ const TokenSymbol = ({ width, height, padding, token }: Props) => {
   }
   return (
     <img
-      src={token == "canto" ? cantoIcon : noteIcon}
+      src={token == "althea" ? altheaIcon : noteIcon}
       width={width}
       style={{
         padding: `0 ${padding + "px"}`,

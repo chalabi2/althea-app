@@ -2,11 +2,11 @@ import { useEtherBalance } from "@usedapp/core";
 import { formatUnits, parseEther, parseUnits } from "ethers/lib/utils";
 import { ADDRESSES } from "global/config/addresses";
 import { useNetworkInfo } from "global/stores/networkInfo";
-import { generatePubKey } from "global/utils/cantoTransactions/publicKey";
-import { CANTO_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
+import { generatePubKey } from "global/utils/altheaTransactions/publicKey";
+import { ALTHEA_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
 import {
   BridgeOutNetworkInfo,
-  CantoMainBridgeOutNetworks,
+  AltheaMainBridgeOutNetworks,
   EMPTY_ERC20_BRIDGE_TOKEN,
   EMPTY_NATIVE_TOKEN,
   UserERC20BridgeToken,
@@ -39,11 +39,11 @@ export enum WalkthroughSelectedTokens {
 interface Props {
   networkInfo: {
     chainId: number;
-    cantoAddress: string;
+    altheaAddress: string;
     needPubKey: boolean;
     canPubKey: boolean;
     gravityAddress: string;
-    notEnoughCantoBalance: boolean;
+    notEnoughAltheaBalance: boolean;
   };
   tokens: {
     allUserTokens: {
@@ -83,7 +83,7 @@ interface Props {
     address: string;
     setAddress: (s: string) => void;
     selectedNetwork: BridgeOutNetworkInfo;
-    setNetwork: (network: CantoMainBridgeOutNetworks) => void;
+    setNetwork: (network: AltheaMainBridgeOutNetworks) => void;
   };
 }
 export function useCustomWalkthrough(): Props {
@@ -97,8 +97,8 @@ export function useCustomWalkthrough(): Props {
   const [amount, setAmount] = useState("");
   const [userCosmosSendAddress, setUserCosmosSendAddress] = useState("");
   const [selectedCosmoNetwork, setSelectedCosmosNetwork] =
-    useState<CantoMainBridgeOutNetworks>(
-      CantoMainBridgeOutNetworks.GRAVITY_BRIDGE
+    useState<AltheaMainBridgeOutNetworks>(
+      AltheaMainBridgeOutNetworks.GRAVITY_BRIDGE
     );
 
   //token selector
@@ -183,16 +183,16 @@ export function useCustomWalkthrough(): Props {
     sendCosmos: transactionHooks.bridgeIn.sendToCosmos(
       ADDRESSES.ETHMainnet.GravityBridge,
       allSelectedTokens.bridgeInToken.address,
-      networkInfo.cantoAddress
+      networkInfo.altheaAddress
     ),
     convertIn: transactionHooks.convertCoin.convertTx(
       allSelectedTokens.convertInToken.ibcDenom,
-      networkInfo.cantoAddress,
+      networkInfo.altheaAddress,
       true
     ),
     convertOut: transactionHooks.convertCoin.convertTx(
       allSelectedTokens.convertOutToken.address,
-      networkInfo.cantoAddress,
+      networkInfo.altheaAddress,
       false
     ),
     bridgeOut: transactionHooks.bridgeOut.ibcOut(
@@ -291,8 +291,8 @@ export function useCustomWalkthrough(): Props {
   return {
     networkInfo: {
       chainId: Number(networkInfo.chainId),
-      cantoAddress: networkInfo.cantoAddress,
-      notEnoughCantoBalance: networkInfo.balance.lt(parseEther("3")),
+      altheaAddress: networkInfo.altheaAddress,
+      notEnoughAltheaBalance: networkInfo.balance.lt(parseEther("3")),
       needPubKey: !networkInfo.hasPubKey,
       canPubKey,
       gravityAddress: ADDRESSES.ETHMainnet.GravityBridge,
@@ -319,7 +319,7 @@ export function useCustomWalkthrough(): Props {
       setAmount,
       address: userCosmosSendAddress,
       setAddress: setUserCosmosSendAddress,
-      selectedNetwork: CANTO_MAIN_BRIDGE_OUT_NETWORKS[selectedCosmoNetwork],
+      selectedNetwork: ALTHEA_MAIN_BRIDGE_OUT_NETWORKS[selectedCosmoNetwork],
       setNetwork: setSelectedCosmosNetwork,
     },
   };

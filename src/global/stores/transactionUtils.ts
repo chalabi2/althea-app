@@ -1,5 +1,5 @@
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   EVMTx,
   ExtraProps,
   TransactionDetails,
@@ -12,7 +12,7 @@ import { truncateNumber } from "global/utils/formattingNumbers";
 
 export function createTransactionDetails(
   randId: string,
-  txType: CantoTransactionType,
+  txType: AltheaTransactionType,
   extra?: ExtraProps
 ): TransactionDetails {
   const transactionMessages = createTransactionMessges(
@@ -41,7 +41,7 @@ export function _enableTx(
   return {
     mustPerform: currentAllowance.lt(amount),
     chainId: chainId,
-    txType: CantoTransactionType.ENABLE,
+    txType: AltheaTransactionType.ENABLE,
     address: tokenAddress,
     abi: ERC20Abi,
     method: "approve",

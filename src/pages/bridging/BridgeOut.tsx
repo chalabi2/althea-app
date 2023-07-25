@@ -18,7 +18,7 @@ interface BridgeOutProps {
   selectNetwork: (network: BridgingNetwork, isFrom: boolean) => void;
   //addresses
   ethAddress?: string;
-  cantoAddress?: string;
+  altheaAddress?: string;
   //tx
   tx: (amount: BigNumber, toChainAddress?: string) => Promise<boolean>;
   txStore: TransactionStore;
@@ -47,7 +47,7 @@ const BridgeOut = (props: BridgeOutProps) => {
                     tabIndex={0}
                     onClick={() =>
                       window.open(
-                        " https://docs.canto.io/user-guides/bridging-assets/from-canto",
+                        " https://docs.althea.io/user-guides/bridging-assets/from-althea",
                         "_blank"
                       )
                     }
@@ -84,7 +84,7 @@ const BridgeOut = (props: BridgeOutProps) => {
           selectNetwork={(network) => props.selectNetwork(network, false)}
           fromAddress={props.ethAddress}
           toAddress={
-            props.toNetwork.isEVM ? props.ethAddress : props.cantoAddress
+            props.toNetwork.isEVM ? props.ethAddress : props.altheaAddress
           }
           allTokens={props.bridgeTokens}
           selectedToken={props.selectedToken}

@@ -8,8 +8,8 @@ import { NativeToken as NToken } from "pages/bridging/config/bridgingInterfaces"
  */
 
 /**
- * cantoChannel is the channel that you must use to ibc FROM canto
- * networkChannel is the channel that you must use from the respective chain TO canto
+ * altheaChannel is the channel that you must use to ibc FROM althea
+ * networkChannel is the channel that you must use from the respective chain TO althea
  */
 export interface BridgeOutNetworkInfo {
   name: string;
@@ -17,7 +17,7 @@ export interface BridgeOutNetworkInfo {
   icon: string;
   tokens: NativeToken[] | NToken[];
   nativeDenom: string;
-  cantoChannel: string;
+  altheaChannel: string;
   networkChannel: string;
   restEndpoint: string;
   rpcEndpoint: string;
@@ -26,7 +26,7 @@ export interface BridgeOutNetworkInfo {
   addressBeginning: string;
   checkAddress: (address?: string) => boolean;
 }
-export enum CantoMainBridgeOutNetworks {
+export enum AltheaMainBridgeOutNetworks {
   GRAVITY_BRIDGE = "Gravity Bridge",
   COSMOS_HUB = "Cosmos Hub",
   COMDEX = "Comdex",
@@ -57,7 +57,7 @@ export interface UserERC20BridgeToken extends BaseToken {
 interface NativeToken extends BaseToken {
   ibcDenom: string;
   nativeName: string;
-  supportedOutChannels?: CantoMainBridgeOutNetworks[];
+  supportedOutChannels?: AltheaMainBridgeOutNetworks[];
 }
 export interface UserNativeToken extends NativeToken {
   nativeBalance: BigNumber;

@@ -6,10 +6,10 @@ import warningRedIcon from "assets/warning_red.svg";
 import NotConnected from "global/packages/src/components/molecules/NotConnected";
 import { useEtherBalance } from "@usedapp/core";
 import { useNetworkInfo } from "global/stores/networkInfo";
-import { onCantoNetwork } from "global/utils/getAddressUtils";
-import { addNetwork } from "global/utils/walletConnect/addCantoToWallet";
-import { generatePubKey } from "global/utils/cantoTransactions/publicKey";
-import { CantoMainnet, CantoTestnet, onTestnet } from "global/config/networks";
+import { onAltheaNetwork } from "global/utils/getAddressUtils";
+import { addNetwork } from "global/utils/walletConnect/addAltheaToWallet";
+import { generatePubKey } from "global/utils/altheaTransactions/publicKey";
+import { AltheaMainnet, AltheaTestnet, onTestnet } from "global/config/networks";
 import { parseUnits } from "ethers/lib/utils";
 import { useNavigate } from "react-router-dom";
 
@@ -23,18 +23,18 @@ export const GenPubKeyWalkthrough = ({
 }: GenPubKeyProps) => {
   const navigate = useNavigate();
   const networkInfo = useNetworkInfo();
-  const cantoBalance = useEtherBalance(networkInfo.account, {
-    chainId: CantoMainnet.chainId,
+  const altheaBalance = useEtherBalance(networkInfo.account, {
+    chainId: AltheaMainnet.chainId,
   });
-  const cantoTestBalance = useEtherBalance(networkInfo.account, {
-    chainId: CantoTestnet.chainId,
+  const altheaTestBalance = useEtherBalance(networkInfo.account, {
+    chainId: AltheaTestnet.chainId,
   });
   const ethBalance = useEtherBalance(networkInfo.account, { chainId: 1 });
   const canPubKey =
     (ethBalance?.gte(parseUnits("0.01")) ||
       (onTestnet(Number(networkInfo.chainId)) &&
-        cantoTestBalance?.gte(parseUnits("0.5"))) ||
-      cantoBalance?.gte(parseUnits("0.5"))) ??
+        altheaTestBalance?.gte(parseUnits("0.5"))) ||
+      altheaBalance?.gte(parseUnits("0.5"))) ??
     false;
 
   return (
@@ -42,8 +42,8 @@ export const GenPubKeyWalkthrough = ({
       {!canPubKey && (
         <ErrorStyle>
           <NotConnected
-            title="you don’t have enough Canto or ETH to generate a public key"
-            subtext="In order to generate a public key, you must have at least 0.5 CANTO or 0.01 ETH on mainnet"
+            title="you don’t have enough Althea or ETH to generate a public key"
+            subtext="In order to generate a public key, you must have at least 0.5 ALTHEA or 0.01 ETH on mainnet"
             buttonText="Home"
             onClick={() => {
               navigate("/");
@@ -61,7 +61,7 @@ export const GenPubKeyWalkthrough = ({
             <div>
               <Text type="text" size="text2">
                 By clicking &quot;generate&quot; you are creating a public key
-                for your account to allow you to make transactions on the Canto
+                for your account to allow you to make transactions on the Althea
                 network
               </Text>
             </div>
@@ -83,11 +83,11 @@ export const GenPubKeyWalkthrough = ({
             </div>
             <PrimaryButton
               onClick={() => {
-                if (!onCantoNetwork(Number(networkInfo.chainId))) {
+                if (!onAltheaNetwork(Number(networkInfo.chainId))) {
                   addNetwork(
                     onTestnet(Number(networkInfo.chainId))
-                      ? CantoTestnet.chainId
-                      : CantoMainnet.chainId
+                      ? AltheaTestnet.chainId
+                      : AltheaMainnet.chainId
                   );
                 } else {
                   generatePubKey(

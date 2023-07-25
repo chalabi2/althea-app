@@ -28,7 +28,7 @@ const SwitchNetworkPage = (props: SwtichNetworkProps) => {
           </Text>
           <Text type="text" size="text3">
             You need to be on &quot;
-            {props.toChainId == ETHMainnet.chainId ? "Ethereum" : "Canto"}{" "}
+            {props.toChainId == ETHMainnet.chainId ? "Ethereum" : "Althea"}{" "}
             Network&quot; for this transaction to be possible.
           </Text>
         </div>
@@ -41,7 +41,7 @@ const SwitchNetworkPage = (props: SwtichNetworkProps) => {
         >
           {!rightNetwork
             ? "Switch to " +
-              (props.toChainId == ETHMainnet.chainId ? "Ethereum" : "Canto")
+              (props.toChainId == ETHMainnet.chainId ? "Ethereum" : "Althea")
             : "You are on right network"}
         </PrimaryButton>
       </section>

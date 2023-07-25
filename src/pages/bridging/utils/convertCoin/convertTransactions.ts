@@ -1,13 +1,13 @@
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-} from "global/utils/cantoTransactions/helpers";
+} from "global/utils/altheaTransactions/helpers";
 import { Chain, Fee } from "global/config/cosmosConstants";
 import { createTxMsgConvertCoin } from "./createMessages/msgConvertCoin";
 import { createTxMsgConvertERC20 } from "./createMessages/msgConvertERC20";
 
 export async function txConvertERC20(
-  receiverCantoAddress: string,
+  receiverAltheaAddress: string,
   erc20ContractAddress: string,
   amount: string,
   nodeAddressIP: string,
@@ -32,7 +32,7 @@ export async function txConvertERC20(
   const params = {
     contract_address: erc20ContractAddress,
     amount: amount,
-    receiverEvmosFormatted: receiverCantoAddress,
+    receiverEvmosFormatted: receiverAltheaAddress,
     senderHexFormatted: account,
   };
 
@@ -47,7 +47,7 @@ export async function txConvertERC20(
 }
 
 export async function txConvertCoin(
-  cantoAddress: string,
+  altheaAddress: string,
   denom: string,
   amount: string,
   nodeAddressIP: string,
@@ -69,10 +69,10 @@ export async function txConvertCoin(
   // get sender object using eth address
   const senderObj = await getSenderObj(account, nodeAddressIP);
   const params = {
-    denom: denom, //native canto asset ibcXXXXXXXXXXX
+    denom: denom, //native althea asset ibcXXXXXXXXXXX
     amount: amount,
     receiverHexFormatted: account, // same metamask evm address
-    senderEvmosFormatted: cantoAddress,
+    senderEvmosFormatted: altheaAddress,
   };
   const msg = createTxMsgConvertCoin(chain, senderObj, fee, memo, params);
   return await signAndBroadcastTxMsg(

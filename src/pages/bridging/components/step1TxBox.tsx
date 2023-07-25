@@ -166,7 +166,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
         <IBCGuideModal
           network={props.fromNetwork.IBC as IBCNetwork}
           token={selectedIBCToken}
-          cantoAddress={props.toAddress ?? ""}
+          altheaAddress={props.toAddress ?? ""}
           onClose={() => setisIBCModalOpen(false)}
         />
       </Modal>
@@ -263,7 +263,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
               title="select network"
               label="Network"
               items={props.allNetworks
-                .filter((network) => !(network.isCanto && props.bridgeIn))
+                .filter((network) => !(network.isAlthea && props.bridgeIn))
                 .map((network) => ({
                   primaryText: network.name,
                   icon: network.icon,
@@ -316,7 +316,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
             title="select network"
             label="Network"
             items={props.allNetworks
-              .filter((network) => !(network.isCanto && !props.bridgeIn))
+              .filter((network) => !(network.isAlthea && !props.bridgeIn))
               .map((network) => {
                 let networkName = network.name;
                 if (network.name === "Ethereum")

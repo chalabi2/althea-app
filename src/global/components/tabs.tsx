@@ -8,7 +8,7 @@ interface Props {
   onClicks: (() => void)[];
   panels: ReactNode[];
 }
-const CantoTabs = (props: Props) => {
+const AltheaTabs = (props: Props) => {
   return (
     <Styled>
       <Tabs className="tabs">
@@ -112,4 +112,4 @@ const Styled = styled.div`
   }
 `;
 
-export default CantoTabs;
+export default AltheaTabs;

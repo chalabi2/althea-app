@@ -2,18 +2,18 @@ import { TransactionState, useContractFunction } from "@usedapp/core";
 import { BigNumber, Contract, ethers, utils } from "ethers";
 import { ERC20Abi, gravityBridgeAbi, wethAbi } from "global/config/abi";
 import { convertFee, ibcFee } from "global/config/cosmosConstants";
-import { CantoMainnet, ETHMainnet } from "global/config/networks";
+import { AltheaMainnet, ETHMainnet } from "global/config/networks";
 import { useEffect, useState } from "react";
 import {
   txConvertCoin,
   txConvertERC20,
 } from "../../utils/convertCoin/convertTransactions";
-import { checkCosmosTxConfirmation } from "global/utils/cantoTransactions/transactionChecks";
+import { checkCosmosTxConfirmation } from "global/utils/altheaTransactions/transactionChecks";
 import { txIBCTransfer } from "../../utils/IBC/IBCTransfer";
 import { ADDRESSES } from "global/config/addresses";
 import { BridgeOutNetworkInfo } from "../config/interfaces";
-import { CANTO_IBC_NETWORK } from "../config/bridgeOutNetworks";
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { ALTHEA_IBC_NETWORK } from "../config/bridgeOutNetworks";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 
 const chain = {
   chainId: 417834,
@@ -24,7 +24,7 @@ export interface BridgeTransaction {
   send: (...args: any[]) => Promise<unknown>;
   resetState: () => void;
   txName: string;
-  txType: CantoTransactionType;
+  txType: AltheaTransactionType;
 }
 export interface BridgingTransactionsSelector {
   bridgeIn: {
@@ -32,19 +32,19 @@ export interface BridgingTransactionsSelector {
     sendToCosmos: (
       gravityAddress: string,
       tokenAddress: string,
-      cantoAddress: string
+      altheaAddress: string
     ) => BridgeTransaction;
     sendToCosmosWithWrap: (
       account: string | undefined,
       gravityAddress: string,
       wethAddress: string,
-      cantoAddress: string
+      altheaAddress: string
     ) => BridgeTransaction;
   };
   convertCoin: {
     convertTx: (
       tokenName: string,
-      cantoAddress: string,
+      altheaAddress: string,
       convertIn: boolean
     ) => BridgeTransaction;
   };
@@ -71,13 +71,13 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
       },
       resetState,
       txName: "approve token",
-      txType: CantoTransactionType.ENABLE,
+      txType: AltheaTransactionType.ENABLE,
     };
   }
   function useSendToCosmos(
     gravityAddress: string,
     tokenAddress: string,
-    cantoAddress: string
+    altheaAddress: string
   ) {
     const gBridgeInterface = new utils.Interface(gravityBridgeAbi);
     const contract = new Contract(gravityAddress, gBridgeInterface);
@@ -91,20 +91,20 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
     return {
       state: state.status,
       send: async (amount: string) => {
-        if (CANTO_IBC_NETWORK.checkAddress(cantoAddress)) {
-          send(tokenAddress, cantoAddress, amount);
+        if (ALTHEA_IBC_NETWORK.checkAddress(altheaAddress)) {
+          send(tokenAddress, altheaAddress, amount);
         }
       },
       resetState,
-      txName: "bridge to canto",
-      txType: CantoTransactionType.CONVERT_TO_EVM,
+      txName: "bridge to althea",
+      txType: AltheaTransactionType.CONVERT_TO_EVM,
     };
   }
   function useSendToCosmosWithWrap(
     account: string | undefined,
     gravityAddress: string,
     wethAddress: string,
-    cantoAddress: string
+    altheaAddress: string
   ) {
     const gBridgeInterface = new utils.Interface(gravityBridgeAbi);
     const gBridgeContract = new Contract(gravityAddress, gBridgeInterface);
@@ -132,9 +132,9 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
     useEffect(() => {
       if (
         wrapState.status === "Success" &&
-        CANTO_IBC_NETWORK.checkAddress(cantoAddress)
+        ALTHEA_IBC_NETWORK.checkAddress(altheaAddress)
       ) {
-        cosmosSend(wethAddress, cantoAddress, amount);
+        cosmosSend(wethAddress, altheaAddress, amount);
       }
     }, [wrapState.status]);
     return {
@@ -146,8 +146,8 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
         if (wethBalance.lt(amount)) {
           wrapSend({ value: BigNumber.from(amount).sub(wethBalance) });
         } else {
-          if (CANTO_IBC_NETWORK.checkAddress(cantoAddress)) {
-            cosmosSend(wethAddress, cantoAddress, amount);
+          if (ALTHEA_IBC_NETWORK.checkAddress(altheaAddress)) {
+            cosmosSend(wethAddress, altheaAddress, amount);
           }
         }
       },
@@ -155,11 +155,11 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
         comsosResetState();
         wrapResetState();
       },
-      txName: "bridge weth to canto",
+      txName: "bridge weth to althea",
       txType:
         cosmosState.status === "None"
-          ? CantoTransactionType.WRAP
-          : CantoTransactionType.BORROW,
+          ? AltheaTransactionType.WRAP
+          : AltheaTransactionType.BORROW,
     };
   }
   /**
@@ -168,7 +168,7 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
    */
   function useConvertCoin(
     tokenName: string,
-    cantoAddress: string,
+    altheaAddress: string,
     convertIn: boolean
   ) {
     const [convertState, setConvertState] = useState<TransactionState>("None");
@@ -177,10 +177,10 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
       try {
         const tx = convertIn
           ? await txConvertCoin(
-              cantoAddress,
+              altheaAddress,
               tokenName,
               amount,
-              CantoMainnet.cosmosAPIEndpoint,
+              AltheaMainnet.cosmosAPIEndpoint,
               convertFee,
               chain,
               ""
@@ -188,8 +188,8 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
           : await txConvertERC20(
               tokenName,
               amount,
-              cantoAddress,
-              CantoMainnet.cosmosAPIEndpoint,
+              altheaAddress,
+              AltheaMainnet.cosmosAPIEndpoint,
               convertFee,
               chain,
               ""
@@ -211,8 +211,8 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
       resetState,
       txName: convertIn ? "complete bridge in" : "bridge out",
       txType: convertIn
-        ? CantoTransactionType.CONVERT_TO_EVM
-        : CantoTransactionType.CONVERT_TO_NATIVE,
+        ? AltheaTransactionType.CONVERT_TO_EVM
+        : AltheaTransactionType.CONVERT_TO_NATIVE,
     };
   }
   function useIBCTransfer(tokenDenom: string) {
@@ -231,10 +231,10 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
       try {
         const tx = await txIBCTransfer(
           cosmosAddress,
-          bridgeOutNetwork.cantoChannel,
+          bridgeOutNetwork.altheaChannel,
           amount,
           tokenDenom,
-          CantoMainnet.cosmosAPIEndpoint,
+          AltheaMainnet.cosmosAPIEndpoint,
           bridgeOutNetwork.restEndpoint,
           bridgeOutNetwork.latestBlockEndpoint,
           ibcFee,
@@ -256,7 +256,7 @@ export function useBridgingTransactions(): BridgingTransactionsSelector {
       send,
       resetState,
       txName: "complete bridge out",
-      txType: CantoTransactionType.IBC_OUT,
+      txType: AltheaTransactionType.IBC_OUT,
     };
   }
 

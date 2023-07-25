@@ -128,7 +128,7 @@ const WalletModal = ({ onClose }: IProps) => {
   } else {
     return (
       <Container>
-        <img src={logo} alt="Canto" height={40} />
+        <img src={logo} alt="Althea" height={40} />
         <p>connect wallet to start using althea</p>
 
         <div className="wallet-list">
@@ -139,23 +139,23 @@ const WalletModal = ({ onClose }: IProps) => {
               //TODO: fix on cancel go back
             }}
           >
-            <img src={metamask} alt="Canto" height={54} />
+            <img src={metamask} alt="Althea" height={54} />
             <p>metamask</p>
           </div>
           <div className="wallet-item">
-            <img src={ledger} alt="Canto" height={54} />
+            <img src={ledger} alt="Althea" height={54} />
             <p>ledger</p>
           </div>
           <div className="wallet-item">
-            <img src={walletConnect} alt="Canto" height={54} />
+            <img src={walletConnect} alt="Althea" height={54} />
             <p>wallet connect</p>
           </div>
           <div className="wallet-item">
-            <img src={coinBase} alt="Canto" height={54} />
+            <img src={coinBase} alt="Althea" height={54} />
             <p>coinbase wallet</p>
           </div>
           <div className="wallet-item">
-            <img src={tally} alt="Canto" height={54} />
+            <img src={tally} alt="Althea" height={54} />
             <p>tally</p>
           </div>
         </div>

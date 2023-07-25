@@ -1,9 +1,9 @@
 import { TransactionState } from "@usedapp/core";
 import { BigNumber } from "ethers";
-import { CantoMainnet, ETHMainnet } from "global/config/networks";
-import { CANTO_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
+import { AltheaMainnet, ETHMainnet } from "global/config/networks";
+import { ALTHEA_MAIN_BRIDGE_OUT_NETWORKS } from "pages/bridging/walkthrough/config/bridgeOutNetworks";
 import {
-  CantoMainBridgeOutNetworks,
+  AltheaMainBridgeOutNetworks,
   UserERC20BridgeToken,
   UserNativeToken,
 } from "pages/bridging/walkthrough/config/interfaces";
@@ -26,18 +26,18 @@ export enum BridgeInStep {
   SELECT_ERC20_AMOUNT,
   SEND_FUNDS_TO_GBRIDGE,
   WAIT_FOR_GRBIDGE,
-  SWITCH_TO_CANTO,
+  SWITCH_TO_ALTHEA,
   SELECT_CONVERT_TOKEN,
   //   SELECT_CONVERT_TOKEN_AMOUNT,
   CONVERT,
   COMPLETE,
 }
 export enum BridgeOutStep {
-  SWITCH_TO_CANTO,
+  SWITCH_TO_ALTHEA,
   SELECT_CONVERT_TOKEN,
   SELECT_CONVERT_TOKEN_AMOUNT,
   CONVERT_COIN,
-  SWITCH_TO_CANTO_2,
+  SWITCH_TO_ALTHEA_2,
   SELECT_BRIDGE_OUT_NETWORK,
   SELECT_NATIVE_TOKEN,
   //   SELECT_NATIVE_TOKEN_AMOUNT,
@@ -80,7 +80,7 @@ export const BridgeInWalkthroughSteps: WalkthroughTracker = {
   [BridgeInStep.WAIT_FOR_GRBIDGE]: {
     isCheckpoint: false,
     prev: BridgeInStep.SEND_FUNDS_TO_GBRIDGE,
-    next: BridgeInStep.SWITCH_TO_CANTO,
+    next: BridgeInStep.SWITCH_TO_ALTHEA,
     checkFunction: (
       completedTxs: TransactionHistoryEvent[],
       currentTxHash: string
@@ -93,15 +93,15 @@ export const BridgeInWalkthroughSteps: WalkthroughTracker = {
       return false;
     },
   },
-  [BridgeInStep.SWITCH_TO_CANTO]: {
+  [BridgeInStep.SWITCH_TO_ALTHEA]: {
     isCheckpoint: true,
     prev: BridgeInStep.WAIT_FOR_GRBIDGE,
     next: BridgeInStep.SELECT_CONVERT_TOKEN,
-    checkFunction: (chainId: number) => chainId == CantoMainnet.chainId,
+    checkFunction: (chainId: number) => chainId == AltheaMainnet.chainId,
   },
   [BridgeInStep.SELECT_CONVERT_TOKEN]: {
     isCheckpoint: false,
-    prev: BridgeInStep.SWITCH_TO_CANTO,
+    prev: BridgeInStep.SWITCH_TO_ALTHEA,
     next: BridgeInStep.CONVERT,
     checkFunction: (token: UserNativeToken) => !token.nativeBalance.lte(0),
   },
@@ -127,16 +127,16 @@ export const BridgeInWalkthroughSteps: WalkthroughTracker = {
 };
 
 export const BridgeOutWalkthroughSteps: WalkthroughTracker = {
-  [BridgeOutStep.SWITCH_TO_CANTO]: {
+  [BridgeOutStep.SWITCH_TO_ALTHEA]: {
     isCheckpoint: false,
     prev: undefined,
     next: BridgeOutStep.SELECT_CONVERT_TOKEN,
     checkFunction: (chainId: number | undefined) =>
-      chainId == CantoMainnet.chainId,
+      chainId == AltheaMainnet.chainId,
   },
   [BridgeOutStep.SELECT_CONVERT_TOKEN]: {
     isCheckpoint: false,
-    prev: BridgeOutStep.SWITCH_TO_CANTO,
+    prev: BridgeOutStep.SWITCH_TO_ALTHEA,
     next: BridgeOutStep.SELECT_CONVERT_TOKEN_AMOUNT,
     checkFunction: (token: UserERC20BridgeToken) => !token.erc20Balance.lte(0),
   },
@@ -150,25 +150,25 @@ export const BridgeOutWalkthroughSteps: WalkthroughTracker = {
   [BridgeOutStep.CONVERT_COIN]: {
     isCheckpoint: false,
     prev: BridgeOutStep.SELECT_CONVERT_TOKEN_AMOUNT,
-    next: BridgeOutStep.SWITCH_TO_CANTO_2,
+    next: BridgeOutStep.SWITCH_TO_ALTHEA_2,
     checkFunction: (txStatus: TransactionState) => txStatus === "Success",
   },
-  [BridgeOutStep.SWITCH_TO_CANTO_2]: {
+  [BridgeOutStep.SWITCH_TO_ALTHEA_2]: {
     isCheckpoint: true,
     prev: BridgeOutStep.CONVERT_COIN,
     next: BridgeOutStep.SELECT_BRIDGE_OUT_NETWORK,
     checkFunction: (chainId: number | undefined) =>
-      chainId == CantoMainnet.chainId,
+      chainId == AltheaMainnet.chainId,
   },
   [BridgeOutStep.SELECT_BRIDGE_OUT_NETWORK]: {
     isCheckpoint: false,
-    prev: BridgeOutStep.SWITCH_TO_CANTO_2,
+    prev: BridgeOutStep.SWITCH_TO_ALTHEA_2,
     next: BridgeOutStep.SELECT_NATIVE_TOKEN,
     checkFunction: (
-      network: CantoMainBridgeOutNetworks,
+      network: AltheaMainBridgeOutNetworks,
       cosmosAddress: string
     ) => {
-      return CANTO_MAIN_BRIDGE_OUT_NETWORKS[network].checkAddress(
+      return ALTHEA_MAIN_BRIDGE_OUT_NETWORKS[network].checkAddress(
         cosmosAddress
       );
     },

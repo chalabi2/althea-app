@@ -3,7 +3,7 @@ import { TOKENS } from "global/config/tokenInfo";
 import { Token } from "global/config/interfaces/tokens";
 import { MAINNET_IBC_NETWORKS } from "../config/networks.ts/cosmos";
 import {
-  CANTO_MAIN_CONVERT_COIN_TOKENS,
+  ALTHEA_MAIN_CONVERT_COIN_TOKENS,
   ETH_GRAVITY_BRIDGE_IN_TOKENS,
 } from "../config/tokens.ts/bridgingTokens";
 
@@ -11,7 +11,7 @@ export function findNativeToken(
   nativeName: string,
   chainId?: number
 ): NativeToken | undefined {
-  return CANTO_MAIN_CONVERT_COIN_TOKENS.find(
+  return ALTHEA_MAIN_CONVERT_COIN_TOKENS.find(
     (token) => token.nativeName.toLowerCase() == nativeName.toLowerCase()
   );
 }
@@ -25,14 +25,14 @@ export function getNetworkFromAddress(
     )
       return value.name;
   }
-  return "canto";
+  return "althea";
 }
 export function findBridgeInToken(
   tokenAddress: string,
   chainId?: number
 ): Token | undefined {
   if (tokenAddress === "uatom") {
-    return TOKENS.cantoMainnet.ATOM;
+    return TOKENS.altheaMainnet.ATOM;
   }
   return ETH_GRAVITY_BRIDGE_IN_TOKENS.find(
     (token) => token.address.toLowerCase() === tokenAddress.toLowerCase()
@@ -45,7 +45,7 @@ export function getNetworkFromTokenName(
   chainId?: number
 ): string {
   for (const [key, value] of Object.entries(MAINNET_IBC_NETWORKS)) {
-    for (const token of value.tokens.toCanto) {
+    for (const token of value.tokens.toAlthea) {
       if (token.ibcDenom == ibcDenom) {
         return key === "Gravity_Bridge" && bridgeIn ? "ETH" : value.name;
       }
@@ -53,9 +53,9 @@ export function getNetworkFromTokenName(
   }
   return "cosmos";
 }
-export function getNetworkFromCantoChannel(channel: string) {
+export function getNetworkFromAltheaChannel(channel: string) {
   for (const [, value] of Object.entries(MAINNET_IBC_NETWORKS)) {
-    if (value.channelFromCanto === channel) return value;
+    if (value.channelFromAlthea === channel) return value;
   }
   return undefined;
 }

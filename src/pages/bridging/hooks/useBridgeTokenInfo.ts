@@ -6,7 +6,7 @@ import {
   UserNativeToken,
 } from "../config/bridgingInterfaces";
 import {
-  getNativeCantoBalances,
+  getNativeAltheaBalances,
   getUnknownIBCTokens,
 } from "../utils/nativeBalances";
 import { useTokenBalances } from "./tokenBalances/useTokenBalances";
@@ -14,12 +14,12 @@ import { useEtherBalance } from "@usedapp/core";
 import { getCosmosAPIEndpoint } from "global/utils/getAddressUtils";
 import { BigNumber } from "ethers";
 import {
-  CANTO_MAIN_CONVERT_COIN_TOKENS,
+  ALTHEA_MAIN_CONVERT_COIN_TOKENS,
   ETH_GRAVITY_BRIDGE_IN_TOKENS,
 } from "../config/tokens.ts/bridgingTokens";
 import {
-  CantoMainnet,
-  CantoTestnet,
+  AltheaMainnet,
+  AltheaTestnet,
   ETHMainnet,
   onTestnet,
 } from "global/config/networks";
@@ -33,14 +33,14 @@ interface BridgeTokenInfo {
 }
 
 export function useBridgeTokenInfo(): BridgeTokenInfo {
-  const [account, chainId, cantoAddress] = useNetworkInfo((state) => [
+  const [account, chainId, altheaAddress] = useNetworkInfo((state) => [
     state.account,
     Number(state.chainId),
-    state.cantoAddress,
+    state.altheaAddress,
   ]);
-  //will use cantoNetwork to get ntive tokens
+  //will use altheaNetwork to get ntive tokens
   const isOnTestnet = onTestnet(chainId);
-  const cantoNetwork = isOnTestnet ? CantoTestnet : CantoMainnet;
+  const altheaNetwork = isOnTestnet ? AltheaTestnet : AltheaMainnet;
 
   const ethBalance = useEtherBalance(account, {
     chainId: ETHMainnet.chainId,
@@ -61,11 +61,11 @@ export function useBridgeTokenInfo(): BridgeTokenInfo {
           : token.erc20Balance,
     };
   });
-  //bridge out erc20 tokens on Canto Mainnet
-  const { tokens: userCantoBridgeOutTokens } = useTokenBalances(
+  //bridge out erc20 tokens on Althea Mainnet
+  const { tokens: userAltheaBridgeOutTokens } = useTokenBalances(
     account,
-    CANTO_MAIN_CONVERT_COIN_TOKENS,
-    CantoMainnet.chainId
+    ALTHEA_MAIN_CONVERT_COIN_TOKENS,
+    AltheaMainnet.chainId
   );
   const [userNativeTokens, setUserNativeTokens] = useState<UserNativeToken[]>(
     []
@@ -74,16 +74,16 @@ export function useBridgeTokenInfo(): BridgeTokenInfo {
   //these are used for "recover tokens" if unidentified tokens are found
   const [allUnknownIBC, setAllUnknownIBC] = useState<IBCTokenTrace[]>([]);
   async function getAllNativeTokens() {
-    const { foundTokens, notFoundTokens } = await getNativeCantoBalances(
-      getCosmosAPIEndpoint(cantoNetwork.chainId),
-      cantoAddress,
-      isOnTestnet ? [] : CANTO_MAIN_CONVERT_COIN_TOKENS
+    const { foundTokens, notFoundTokens } = await getNativeAltheaBalances(
+      getCosmosAPIEndpoint(altheaNetwork.chainId),
+      altheaAddress,
+      isOnTestnet ? [] : ALTHEA_MAIN_CONVERT_COIN_TOKENS
     );
     setUserNativeTokens(foundTokens);
     setAllUnknownIBC(
       await getUnknownIBCTokens(
         notFoundTokens,
-        getCosmosAPIEndpoint(cantoNetwork.chainId)
+        getCosmosAPIEndpoint(altheaNetwork.chainId)
       )
     );
   }
@@ -91,7 +91,7 @@ export function useBridgeTokenInfo(): BridgeTokenInfo {
   //initialize data on sign in
   useEffect(() => {
     getAllNativeTokens();
-  }, [account, cantoAddress, chainId]);
+  }, [account, altheaAddress, chainId]);
 
   //call data per block
   useEffect(() => {
@@ -99,11 +99,11 @@ export function useBridgeTokenInfo(): BridgeTokenInfo {
       await getAllNativeTokens();
     }, 6000);
     return () => clearInterval(interval);
-  }, [cantoAddress, chainId]);
+  }, [altheaAddress, chainId]);
 
   return {
     userBridgeInTokens: userEthBridgeInTokens,
-    userBridgeOutTokens: userCantoBridgeOutTokens,
+    userBridgeOutTokens: userAltheaBridgeOutTokens,
     userNativeTokens: userNativeTokens,
     unkownIBCTokens: allUnknownIBC,
     ethMainBalance: ethBalance ?? BigNumber.from(0),

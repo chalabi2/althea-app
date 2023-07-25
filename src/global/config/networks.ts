@@ -9,12 +9,12 @@ import {
 } from "@usedapp/core";
 import { CORE_ADDRESSES } from "./addresses";
 import ethIcon from "assets/icons/ETH.svg";
-import bridgeIcon from "assets/icons/canto-bridge.svg";
-import cantoIcon from "assets/favicon.ico";
+import bridgeIcon from "assets/icons/althea-bridge.svg";
+import altheaIcon from "assets/favicon.ico";
 
 //CONSTANTS
-const cantoBlockExplorerUrl = "https://tuber.build";
-const cantoTestBlockExplorerUrl = "https://testnet.tuber.build";
+const altheaBlockExplorerUrl = "https://tuber.build";
+const altheaTestBlockExplorerUrl = "https://testnet.tuber.build";
 const emptyBlockExplorerLink = "https://www.nothing.com";
 
 const getAddressLink = (explorerUrl: string) => (address: string) =>
@@ -28,12 +28,12 @@ export interface Network extends Chain {
   icon: string;
 }
 
-export interface CantoNetwork extends Network {
+export interface AltheaNetwork extends Network {
   coreContracts: {
     Router: string;
     Comptroller: string;
     Reservoir: string;
-    WCANTO: string;
+    WALTHEA: string;
   };
   cosmosBlockExplorerUrl: string;
   cosmosAPIEndpoint: string;
@@ -52,7 +52,7 @@ export interface ETHBridgeNetwork extends Network {
  */
 
 //MAIN CHAINS
-export const CantoMainnet: CantoNetwork = {
+export const AltheaMainnet: AltheaNetwork = {
   name: "Althea",
   chainName: "Althea Mainnet",
   nativeCurrency: {
@@ -60,19 +60,19 @@ export const CantoMainnet: CantoNetwork = {
     symbol: "althea",
     decimals: 18,
   },
-  icon: cantoIcon,
+  icon: altheaIcon,
   chainId: 417834,
   rpcUrl: "https://althea.evm.chandrastation.com",
   isTestChain: false,
   isLocalChain: false,
   multicallAddress: "0x5785e0027a8c937627C01C9EB5F543bA42f8BB6b",
   multicall2Address: "0xe9cBc7b381aA17C7574671e445830E3b90648368",
-  blockExplorerUrl: cantoBlockExplorerUrl,
-  getExplorerAddressLink: getAddressLink(cantoBlockExplorerUrl),
-  getExplorerTransactionLink: getTransactionLink(cantoBlockExplorerUrl),
-  //canto specific
-  coreContracts: CORE_ADDRESSES.CantoMainnet,
-  cosmosBlockExplorerUrl: "https://www.mintscan.io/canto",
+  blockExplorerUrl: altheaBlockExplorerUrl,
+  getExplorerAddressLink: getAddressLink(altheaBlockExplorerUrl),
+  getExplorerTransactionLink: getTransactionLink(altheaBlockExplorerUrl),
+  //althea specific
+  coreContracts: CORE_ADDRESSES.AltheaMainnet,
+  cosmosBlockExplorerUrl: "https://www.mintscan.io/althea",
   cosmosAPIEndpoint: "https://althea.api.chandrastation.com",
   cosmosChainId: "althea_417834-3",
 };
@@ -85,29 +85,29 @@ export const ETHMainnet: ETHBridgeNetwork = {
 };
 
 //TEST CHAINS
-export const CantoTestnet: CantoNetwork = {
-  name: "Canto Testnet",
-  chainName: "Canto Testnet",
+export const AltheaTestnet: AltheaNetwork = {
+  name: "Althea Testnet",
+  chainName: "Althea Testnet",
   nativeCurrency: {
-    name: "Canto",
-    symbol: "CANTO",
+    name: "Althea",
+    symbol: "ALTHEA",
     decimals: 18,
   },
-  icon: cantoIcon,
+  icon: altheaIcon,
   chainId: 7701,
-  rpcUrl: "https://canto-testnet.plexnode.wtf",
+  rpcUrl: "https://althea-testnet.plexnode.wtf",
   isTestChain: true,
   isLocalChain: false,
   multicallAddress: "0xe536cF7B00069894da25faC787d7aD9D211a2C1A",
   multicall2Address: "0x0e356B86FA2aE1bEB93174C18AD373207a40F2A3",
-  blockExplorerUrl: cantoTestBlockExplorerUrl,
-  getExplorerAddressLink: getAddressLink(cantoTestBlockExplorerUrl),
-  getExplorerTransactionLink: getTransactionLink(cantoTestBlockExplorerUrl),
-  //canto specific
-  coreContracts: CORE_ADDRESSES.CantoTestnet,
+  blockExplorerUrl: altheaTestBlockExplorerUrl,
+  getExplorerAddressLink: getAddressLink(altheaTestBlockExplorerUrl),
+  getExplorerTransactionLink: getTransactionLink(altheaTestBlockExplorerUrl),
+  //althea specific
+  coreContracts: CORE_ADDRESSES.AltheaTestnet,
   cosmosBlockExplorerUrl: emptyBlockExplorerLink,
   cosmosAPIEndpoint: "https://api-testnet.plexnode.wtf",
-  cosmosChainId: "canto_7701-1",
+  cosmosChainId: "althea_7701-1",
 };
 export const GravityTestnet: ETHBridgeNetwork = {
   ...Mainnet,
@@ -153,14 +153,14 @@ export const OptimismTestnet: Network = {
  * EXPORT LISTS
  */
 
-//Will include all canto + testnets
-export const ALL_SUPPORTED_CANTO_NETWORKS = [CantoMainnet, CantoTestnet];
+//Will include all althea + testnets
+export const ALL_SUPPORTED_ALTHEA_NETWORKS = [AltheaMainnet, AltheaTestnet];
 //For bridging eth networks + testnests
 export const ALL_SUPPORTED_ETH_NETWORKS = [ETHMainnet, GravityTestnet];
 //For all network queries (chainId, rpc, blockexplorer, etc.)
 export const ALL_SUPPORTED_NETWORKS = [
-  CantoMainnet,
-  CantoTestnet,
+  AltheaMainnet,
+  AltheaTestnet,
   ETHMainnet,
   MumbaiTestnet,
   FantomTestnet,

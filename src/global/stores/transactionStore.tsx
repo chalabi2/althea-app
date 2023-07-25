@@ -8,12 +8,12 @@ import {
 import create from "zustand";
 import { useNetworkInfo } from "./networkInfo";
 import { createTransactionDetails } from "./transactionUtils";
-import { checkCosmosTxConfirmation } from "global/utils/cantoTransactions/transactionChecks";
+import { checkCosmosTxConfirmation } from "global/utils/altheaTransactions/transactionChecks";
 import {
-  getCantoNetwork,
+  getAltheaNetwork,
   getSupportedNetwork,
 } from "global/utils/getAddressUtils";
-import { switchNetwork } from "global/utils/walletConnect/addCantoToWallet";
+import { switchNetwork } from "global/utils/walletConnect/addAltheaToWallet";
 
 export enum TxMethod {
   NONE,
@@ -163,7 +163,7 @@ export const useTransactionStore = create<TransactionStore>((set, get) => ({
           currentMessage: details.messages.pending,
           hash: txReceipt.tx_response.txhash,
           blockExplorerLink:
-            getCantoNetwork(tx.chainId).cosmosBlockExplorerUrl +
+            getAltheaNetwork(tx.chainId).cosmosBlockExplorerUrl +
             "/txs/" +
             txReceipt.tx_response.txhash,
         });

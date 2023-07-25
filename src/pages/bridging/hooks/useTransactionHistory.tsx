@@ -24,12 +24,12 @@ export function useTransactionHistory(): AllBridgeTxHistory {
     useState<TransactionHistoryEvent[]>([]);
 
   async function setAllTransactions() {
-    if (networkInfo.account && networkInfo.cantoAddress) {
+    if (networkInfo.account && networkInfo.altheaAddress) {
       const [completed, pending] = await getBridgeInEventsWithStatus(
         networkInfo.account,
-        networkInfo.cantoAddress
+        networkInfo.altheaAddress
       );
-      const ibcOut = await getIBCOutTransactions(networkInfo.cantoAddress);
+      const ibcOut = await getIBCOutTransactions(networkInfo.altheaAddress);
       let actualTxs = 0;
       //must check that the api does not return nothing. Only take the max
       if (completed.length >= completeBridgeInTransactions.length) {
@@ -49,7 +49,7 @@ export function useTransactionHistory(): AllBridgeTxHistory {
   }
   useEffect(() => {
     setAllTransactions();
-  }, [networkInfo.cantoAddress]);
+  }, [networkInfo.altheaAddress]);
   //call data per 10 seconds
   useEffect(() => {
     const interval = setInterval(async () => {

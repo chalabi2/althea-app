@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { GlobalStyle } from "./global/packages/src";
-import { CantoNav } from "global/components/cantoNav";
+import { AltheaNav } from "global/components/altheaNav";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "global/components/nFooter";
@@ -40,7 +40,7 @@ function App() {
       basename="/althea-app"
       >
         <Container className="App">
-          <CantoNav />
+          <AltheaNav />
           <div className="main-body">
             <Suspense fallback={<Loading />}>
               <Routes>

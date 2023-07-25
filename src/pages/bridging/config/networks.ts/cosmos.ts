@@ -1,5 +1,5 @@
 import { IBCNetwork } from "../bridgingInterfaces";
-import { CANTO_MAIN_IBC_TOKENS_WITH_DENOMS } from "../tokens.ts/bridgingTokens";
+import { ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS } from "../tokens.ts/bridgingTokens";
 import GravitonGrey from "assets/icons/Graviton-Grey.svg";
 import cosmosIcon from "assets/icons/ATOM.svg";
 import { TOKENS } from "global/config/tokenInfo";
@@ -35,13 +35,13 @@ function addressCheck(address: string | undefined, addressBeginning: string) {
 }
 const blockEndpoint = "/cosmos/base/tendermint/v1beta1";
 
-export const CANTO_IBC_NETWORK: IBCNetwork = {
+export const ALTHEA_IBC_NETWORK: IBCNetwork = {
   name: "althea",
   chainId: "althea_417834-3",
-  icon: TOKENS.cantoMainnet.CANTO.icon,
+  icon: TOKENS.altheaMainnet.ALTHEA.icon,
   nativeCurrency: { denom: "althea", decimals: 18 },
-  channelFromCanto: "",
-  channelToCanto: "",
+  channelFromAlthea: "",
+  channelToAlthea: "",
   restEndpoint: "",
   rpcEndpoint: "",
   addressBeginning: "althea",
@@ -49,8 +49,8 @@ export const CANTO_IBC_NETWORK: IBCNetwork = {
     return addressCheck(address, this.addressBeginning);
   },
   tokens: {
-    toCanto: [],
-    fromCanto: [],
+    toAlthea: [],
+    fromAlthea: [],
   },
 };
 
@@ -63,8 +63,8 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       denom: "ugraviton",
       decimals: 6,
     },
-    channelFromCanto: "channel-0",
-    channelToCanto: "channel-88",
+    channelFromAlthea: "channel-0",
+    channelToAlthea: "channel-88",
     restEndpoint: "https://gravitychain.io:1317",
     rpcEndpoint: "https://gravitychain.io:26657",
     extraEndpoints: ["https://gravity-api.polkachu.com"],
@@ -73,19 +73,19 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
+      toAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
       ],
-      fromCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
+      fromAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.GRAV,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ETH,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDC,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.USDT,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.WSTETH,
       ],
     },
   },
@@ -97,8 +97,8 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       denom: "uatom",
       decimals: 6,
     },
-    channelFromCanto: "channel-2",
-    channelToCanto: "channel-358",
+    channelFromAlthea: "channel-2",
+    channelToAlthea: "channel-358",
     restEndpoint: "https://api-cosmoshub-ia.cosmosia.notional.ventures",
     rpcEndpoint: "https://rpc-cosmoshub.blockapsis.com",
     addressBeginning: "cosmos",
@@ -106,20 +106,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.ATOM],
     },
   },
   [MainnetIBCNetworks.OSMOSIS]: {
     name: "osmosis",
-    icon: TOKENS.cantoMainnet.OSMOSIS.icon,
+    icon: TOKENS.altheaMainnet.OSMOSIS.icon,
     chainId: "osmosis-1",
     nativeCurrency: {
       denom: "uosmo",
       decimals: 6,
     },
-    channelFromCanto: "channel-5",
-    channelToCanto: "channel-550",
+    channelFromAlthea: "channel-5",
+    channelToAlthea: "channel-550",
     restEndpoint: "https://lcd.osmosis.zone",
     rpcEndpoint: "https://rpc.osmosis.zone",
     addressBeginning: "osmo",
@@ -127,20 +127,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.OSMOSIS],
     },
   },
   [MainnetIBCNetworks.COMDEX]: {
     name: "comdex",
-    icon: TOKENS.cantoMainnet.COMDEX.icon,
+    icon: TOKENS.altheaMainnet.COMDEX.icon,
     chainId: "comdex-1",
     nativeCurrency: {
       denom: "ucmdx",
       decimals: 6,
     },
-    channelFromCanto: "channel-7",
-    channelToCanto: "channel-58",
+    channelFromAlthea: "channel-7",
+    channelToAlthea: "channel-58",
     restEndpoint: "https://rest.comdex.one",
     rpcEndpoint: "https://rpc.comdex.one",
     addressBeginning: "comdex",
@@ -148,20 +148,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.COMDEX],
     },
   },
   [MainnetIBCNetworks.INJECTIVE]: {
     name: "injective",
-    icon: TOKENS.cantoMainnet.INJECTIVE.icon,
+    icon: TOKENS.altheaMainnet.INJECTIVE.icon,
     chainId: "injective-1",
     nativeCurrency: {
       denom: "inj",
       decimals: 18,
     },
-    channelFromCanto: "channel-8",
-    channelToCanto: "channel-99",
+    channelFromAlthea: "channel-8",
+    channelToAlthea: "channel-99",
     restEndpoint: "https://lcd.injective.network",
     rpcEndpoint: "https://injective-rpc.polkachu.com",
     latestBlockEndpoint: blockEndpoint,
@@ -170,20 +170,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.INJECTIVE],
     },
   },
   [MainnetIBCNetworks.CRESCENT]: {
     name: "crescent",
-    icon: TOKENS.cantoMainnet.CRESCENT.icon,
+    icon: TOKENS.altheaMainnet.CRESCENT.icon,
     chainId: "crescent-1",
     nativeCurrency: {
       denom: "ucre",
       decimals: 6,
     },
-    channelFromCanto: "channel-9",
-    channelToCanto: "channel-34",
+    channelFromAlthea: "channel-9",
+    channelToAlthea: "channel-34",
     restEndpoint: "https://mainnet.crescent.network:1317",
     rpcEndpoint: "https://mainnet.crescent.network:26657",
     addressBeginning: "cre",
@@ -191,20 +191,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.CRESCENT],
     },
   },
   [MainnetIBCNetworks.SOMMELIER]: {
     name: "sommelier",
-    icon: TOKENS.cantoMainnet.SOMM.icon,
+    icon: TOKENS.altheaMainnet.SOMM.icon,
     chainId: "sommelier-3",
     nativeCurrency: {
       denom: "usomm",
       decimals: 6,
     },
-    channelFromCanto: "channel-10",
-    channelToCanto: "channel-2",
+    channelFromAlthea: "channel-10",
+    channelToAlthea: "channel-2",
     restEndpoint: "https://sommelier-api.polkachu.com",
     rpcEndpoint: "https://sommelier-rpc.lavenderfive.com",
     addressBeginning: "somm",
@@ -212,20 +212,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SOMM],
     },
   },
   [MainnetIBCNetworks.AKASH]: {
     name: "akash",
-    icon: TOKENS.cantoMainnet.AKASH.icon,
+    icon: TOKENS.altheaMainnet.AKASH.icon,
     chainId: "akashnet-2",
     nativeCurrency: {
       denom: "uakt",
       decimals: 6,
     },
-    channelFromCanto: "channel-11",
-    channelToCanto: "channel-59",
+    channelFromAlthea: "channel-11",
+    channelToAlthea: "channel-59",
     restEndpoint: "https://api-akash-ia.cosmosia.notional.ventures",
     rpcEndpoint: "https://akash-rpc.polkachu.com",
     addressBeginning: "akash",
@@ -233,20 +233,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.AKASH],
     },
   },
   [MainnetIBCNetworks.KAVA]: {
     name: "kava",
-    icon: TOKENS.cantoMainnet.KAVA.icon,
+    icon: TOKENS.altheaMainnet.KAVA.icon,
     chainId: "kava_2222-10",
     nativeCurrency: {
       denom: "ukava",
       decimals: 6,
     },
-    channelFromCanto: "channel-13",
-    channelToCanto: "channel-87",
+    channelFromAlthea: "channel-13",
+    channelToAlthea: "channel-87",
     restEndpoint: "https://api.data.kava.io",
     rpcEndpoint: "https://rpc.data.kava.io",
     addressBeginning: "kava",
@@ -254,20 +254,20 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.KAVA],
     },
   },
   [MainnetIBCNetworks.SENTINEL]: {
     name: "sentinel",
-    icon: TOKENS.cantoMainnet.SENTINAL.icon,
+    icon: TOKENS.altheaMainnet.SENTINAL.icon,
     chainId: "sentinelhub-2",
     nativeCurrency: {
       denom: "udvpn",
       decimals: 6,
     },
-    channelFromCanto: "channel-16",
-    channelToCanto: "channel-71",
+    channelFromAlthea: "channel-16",
+    channelToAlthea: "channel-71",
     restEndpoint: "https://api-sentinel-ia.cosmosia.notional.ventures/",
     rpcEndpoint: "https://rpc-sentinel-ia.cosmosia.notional.ventures/",
     addressBeginning: "sent",
@@ -275,61 +275,61 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.SENTINAL],
     },
   },
   [MainnetIBCNetworks.EVMOS]: {
     name: "evmos",
-    icon: TOKENS.cantoMainnet.EVMOS.icon,
+    icon: TOKENS.altheaMainnet.EVMOS.icon,
     chainId: "evmos_9001-2",
     nativeCurrency: {
       denom: "aevmos",
       decimals: 18,
     },
     restEndpoint: "https://evmos.kingnodes.com",
-    channelFromCanto: "channel-15",
-    channelToCanto: "channel-62",
+    channelFromAlthea: "channel-15",
+    channelToAlthea: "channel-62",
     rpcEndpoint: "https://evmos.kingnodes.com",
     addressBeginning: "evmos",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
-      fromCanto: [CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
+      toAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
+      fromAlthea: [ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.EVMOS],
     },
   },
   [MainnetIBCNetworks.PERSISTENCE]: {
     name: "persistence",
-    icon: TOKENS.cantoMainnet.PERSISTENCE.icon,
+    icon: TOKENS.altheaMainnet.PERSISTENCE.icon,
     chainId: "core-1",
     nativeCurrency: {
       denom: "uxprt",
       decimals: 6,
     },
     restEndpoint: "https://rest.core.persistence.one",
-    channelFromCanto: "channel-17",
-    channelToCanto: "channel-80",
+    channelFromAlthea: "channel-17",
+    channelToAlthea: "channel-80",
     rpcEndpoint: "https://rpc.core.persistence.one",
     addressBeginning: "persistence",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
+      toAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
       ],
-      fromCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
+      fromAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PERSISTENCE,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.PSTAKEDATOM,
       ],
     },
   },
   [MainnetIBCNetworks.STRIDE]: {
     name: "stride",
-    icon: TOKENS.cantoMainnet.STRIDE.icon,
+    icon: TOKENS.altheaMainnet.STRIDE.icon,
     chainId: "stride-1",
     nativeCurrency: {
       denom: "ustrd",
@@ -337,35 +337,35 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
     },
     restEndpoint: "https://stride-api.polkachu.com/",
     rpcEndpoint: "https://stride-rpc.polkachu.com/",
-    channelFromCanto: "channel-18",
-    channelToCanto: "channel-74",
+    channelFromAlthea: "channel-18",
+    channelToAlthea: "channel-74",
     latestBlockEndpoint: blockEndpoint,
     addressBeginning: "stride",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
+      toAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
       ],
-      fromCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
+      fromAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STRIDE,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STEVMOS,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STATOM,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STJUNO,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STOSMO,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.STSTARS,
       ],
     },
   },
   [MainnetIBCNetworks.QUICKSILVER]: {
     name: "quicksilver",
-    icon: TOKENS.cantoMainnet.QUICKSILVER.icon,
+    icon: TOKENS.altheaMainnet.QUICKSILVER.icon,
     chainId: "quicksilver-2",
     nativeCurrency: {
       denom: "uqck",
@@ -373,25 +373,25 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
     },
     restEndpoint: "https://quicksilver-api.lavenderfive.com:443",
     rpcEndpoint: "https://rpc.quicksilver.zone:443",
-    channelFromCanto: "channel-19",
-    channelToCanto: "channel-24",
+    channelFromAlthea: "channel-19",
+    channelToAlthea: "channel-24",
     latestBlockEndpoint: blockEndpoint,
     addressBeginning: "quick",
     checkAddress: function (address) {
       return addressCheck(address, this.addressBeginning);
     },
     tokens: {
-      toCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
+      toAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
       ],
-      fromCanto: [
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
-        CANTO_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
+      fromAlthea: [
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QUICKSILVER,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QATOM,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QREGEN,
+        ALTHEA_MAIN_IBC_TOKENS_WITH_DENOMS.QSTARS,
       ],
     },
   },

@@ -1977,7 +1977,7 @@ export const routerAbi = [
       },
       {
         internalType: "address",
-        name: "_wcanto",
+        name: "_walthea",
         type: "address",
       },
       {
@@ -2151,7 +2151,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTOMin",
+        name: "amountALTHEAMin",
         type: "uint256",
       },
       {
@@ -2165,7 +2165,7 @@ export const routerAbi = [
         type: "uint256",
       },
     ],
-    name: "addLiquidityCANTO",
+    name: "addLiquidityALTHEA",
     outputs: [
       {
         internalType: "uint256",
@@ -2174,7 +2174,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTO",
+        name: "amountALTHEA",
         type: "uint256",
       },
       {
@@ -2585,7 +2585,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTOMin",
+        name: "amountALTHEAMin",
         type: "uint256",
       },
       {
@@ -2599,7 +2599,7 @@ export const routerAbi = [
         type: "uint256",
       },
     ],
-    name: "removeLiquidityCANTO",
+    name: "removeLiquidityALTHEA",
     outputs: [
       {
         internalType: "uint256",
@@ -2608,7 +2608,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTO",
+        name: "amountALTHEA",
         type: "uint256",
       },
     ],
@@ -2639,7 +2639,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTOMin",
+        name: "amountALTHEAMin",
         type: "uint256",
       },
       {
@@ -2673,7 +2673,7 @@ export const routerAbi = [
         type: "bytes32",
       },
     ],
-    name: "removeLiquidityCANTOWithPermit",
+    name: "removeLiquidityALTHEAWithPermit",
     outputs: [
       {
         internalType: "uint256",
@@ -2682,7 +2682,7 @@ export const routerAbi = [
       },
       {
         internalType: "uint256",
-        name: "amountCANTO",
+        name: "amountALTHEA",
         type: "uint256",
       },
     ],
@@ -2837,7 +2837,7 @@ export const routerAbi = [
         type: "uint256",
       },
     ],
-    name: "swapExactCANTOForTokens",
+    name: "swapExactALTHEAForTokens",
     outputs: [
       {
         internalType: "uint256[]",
@@ -2893,7 +2893,7 @@ export const routerAbi = [
         type: "uint256",
       },
     ],
-    name: "swapExactTokensForCANTO",
+    name: "swapExactTokensForALTHEA",
     outputs: [
       {
         internalType: "uint256[]",
@@ -3011,10 +3011,10 @@ export const routerAbi = [
   },
   {
     inputs: [],
-    name: "wcanto",
+    name: "walthea",
     outputs: [
       {
-        internalType: "contract IWCANTO",
+        internalType: "contract IWALTHEA",
         name: "",
         type: "address",
       },
@@ -5697,7 +5697,7 @@ export const reservoirAbi = [
       },
       {
         internalType: "contract WETH",
-        name: "wcanto_",
+        name: "walthea_",
         type: "address",
       },
       {
@@ -5776,7 +5776,7 @@ export const reservoirAbi = [
   },
   {
     inputs: [],
-    name: "wcanto",
+    name: "walthea",
     outputs: [
       {
         internalType: "contract WETH",

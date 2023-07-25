@@ -1,7 +1,7 @@
 import {
   AvalancheTestnet,
-  CantoMainnet,
-  CantoTestnet,
+  AltheaMainnet,
+  AltheaTestnet,
   ETHMainnet,
   FantomTestnet,
   GoerliTestnet,
@@ -20,27 +20,27 @@ import { MAINNET_IBC_NETWORKS } from "./cosmos";
 function getBridgingNetworksFromChainId(chainId?: number) {
   return onTestnet(chainId) ? TESTNET_BRIDGE_NETWORKS : MAINNET_BRIDGE_NETWORKS;
 }
-const CANTO_MAIN_BRIDGE_NETWORK: BridgingNetwork = {
-  id: "canto-main",
-  name: CantoMainnet.name,
-  icon: CantoMainnet.icon,
-  isCanto: true,
+const ALTHEA_MAIN_BRIDGE_NETWORK: BridgingNetwork = {
+  id: "althea-main",
+  name: AltheaMainnet.name,
+  icon: AltheaMainnet.icon,
+  isAlthea: true,
   isEVM: true,
-  evmChainId: CantoMainnet.chainId,
+  evmChainId: AltheaMainnet.chainId,
   supportedBridgeInMethods: [],
   supportedBridgeOutMethods: [],
-  [BridgingMethods.LAYER_ZERO]: LAYER_ZERO_MAIN_NETWORKS.CANTO_MAIN,
+  [BridgingMethods.LAYER_ZERO]: LAYER_ZERO_MAIN_NETWORKS.ALTHEA_MAIN,
 };
-const CANTO_TEST_BRIDGE_NETWORK: BridgingNetwork = {
-  id: "canto-test",
-  name: CantoTestnet.name,
-  icon: CantoTestnet.icon,
-  isCanto: true,
+const ALTHEA_TEST_BRIDGE_NETWORK: BridgingNetwork = {
+  id: "althea-test",
+  name: AltheaTestnet.name,
+  icon: AltheaTestnet.icon,
+  isAlthea: true,
   isEVM: true,
-  evmChainId: CantoTestnet.chainId,
+  evmChainId: AltheaTestnet.chainId,
   supportedBridgeInMethods: [],
   supportedBridgeOutMethods: [],
-  [BridgingMethods.LAYER_ZERO]: LAYER_ZERO_TEST_NETWORKS.CANTO_TEST,
+  [BridgingMethods.LAYER_ZERO]: LAYER_ZERO_TEST_NETWORKS.ALTHEA_TEST,
 };
 
 const ibcMainNetworks = () =>
@@ -48,7 +48,7 @@ const ibcMainNetworks = () =>
     id: val.name,
     name: val.name,
     icon: val.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: false,
     supportedBridgeInMethods: [BridgingMethods.IBC],
     supportedBridgeOutMethods: [BridgingMethods.IBC],
@@ -56,14 +56,14 @@ const ibcMainNetworks = () =>
   }));
 
 const MAINNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
-  //CANTO
-  CANTO_MAIN_BRIDGE_NETWORK,
+  //ALTHEA
+  ALTHEA_MAIN_BRIDGE_NETWORK,
   //gbridge
   {
     id: ETHMainnet.name,
     name: ETHMainnet.name,
     icon: ETHMainnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: ETHMainnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -79,14 +79,14 @@ const MAINNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
   ...ibcMainNetworks(),
 ];
 const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
-  //CANTO
-  CANTO_TEST_BRIDGE_NETWORK,
+  //ALTHEA
+  ALTHEA_TEST_BRIDGE_NETWORK,
   //LZ
   {
     id: MumbaiTestnet.name,
     name: MumbaiTestnet.name,
     icon: MumbaiTestnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: MumbaiTestnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -97,7 +97,7 @@ const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
     id: FantomTestnet.name,
     name: FantomTestnet.name,
     icon: FantomTestnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: FantomTestnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -108,7 +108,7 @@ const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
     id: GoerliTestnet.name,
     name: GoerliTestnet.name,
     icon: GoerliTestnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: GoerliTestnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -119,7 +119,7 @@ const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
     id: AvalancheTestnet.name,
     name: AvalancheTestnet.name,
     icon: AvalancheTestnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: AvalancheTestnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -130,7 +130,7 @@ const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
     id: OptimismTestnet.name,
     name: OptimismTestnet.name,
     icon: OptimismTestnet.icon,
-    isCanto: false,
+    isAlthea: false,
     isEVM: true,
     evmChainId: OptimismTestnet.chainId,
     supportedBridgeInMethods: [BridgingMethods.LAYER_ZERO],
@@ -141,6 +141,6 @@ const TESTNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
 
 export {
   getBridgingNetworksFromChainId,
-  CANTO_MAIN_BRIDGE_NETWORK,
-  CANTO_TEST_BRIDGE_NETWORK,
+  ALTHEA_MAIN_BRIDGE_NETWORK,
+  ALTHEA_TEST_BRIDGE_NETWORK,
 };

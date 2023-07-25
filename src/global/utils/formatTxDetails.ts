@@ -1,11 +1,11 @@
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   TransactionMessages,
   TransactionState,
 } from "global/config/interfaces/transactionTypes";
 
 export const createTransactionMessges = (
-  txType: CantoTransactionType,
+  txType: AltheaTransactionType,
   tokenName?: string,
   tokenAmount?: string
 ): TransactionMessages => {
@@ -13,7 +13,7 @@ export const createTransactionMessges = (
   const amount = tokenAmount ?? "";
   switch (txType) {
     //GENERAL
-    case CantoTransactionType.ENABLE:
+    case AltheaTransactionType.ENABLE:
       return {
         short: "enable",
         long: `enable ${token}`,
@@ -21,8 +21,8 @@ export const createTransactionMessges = (
         success: `successfully enabled ${token}`,
         error: `unable to enable ${token}`,
       };
-    case CantoTransactionType.CLAIM_REWARDS_LENDING:
-    case CantoTransactionType.CLAIM_REWARDS_STAKING:
+    case AltheaTransactionType.CLAIM_REWARDS_LENDING:
+    case AltheaTransactionType.CLAIM_REWARDS_STAKING:
       return {
         short: "claim rewards",
         long: "claim rewards",
@@ -30,7 +30,7 @@ export const createTransactionMessges = (
         success: "successfully claimed rewards",
         error: "unable to claim rewards",
       };
-    case CantoTransactionType.WRAP:
+    case AltheaTransactionType.WRAP:
       return {
         short: "wrap",
         long: `wrap ${amount + " " + token}`,
@@ -38,7 +38,7 @@ export const createTransactionMessges = (
         success: `successfully wrapped ${amount + " " + token}`,
         error: `unable to wrap ${token}`,
       };
-    case CantoTransactionType.UNWRAP:
+    case AltheaTransactionType.UNWRAP:
       return {
         short: "unwrap",
         long: `unwrap ${amount + " " + token}`,
@@ -47,7 +47,7 @@ export const createTransactionMessges = (
         error: `unable to unwrap ${token}`,
       };
     //LENDING
-    case CantoTransactionType.SUPPLY:
+    case AltheaTransactionType.SUPPLY:
       return {
         short: "supply",
         long: `supply ${amount + " " + token}`,
@@ -55,7 +55,7 @@ export const createTransactionMessges = (
         success: `successfully supplied ${amount + " " + token}`,
         error: `unable to supply ${token}`,
       };
-    case CantoTransactionType.BORROW:
+    case AltheaTransactionType.BORROW:
       return {
         short: "borrow",
         long: `borrow ${amount + " " + token}`,
@@ -63,7 +63,7 @@ export const createTransactionMessges = (
         success: `successfully borrowed ${amount + " " + token}`,
         error: `unable to borrow ${token}`,
       };
-    case CantoTransactionType.REPAY:
+    case AltheaTransactionType.REPAY:
       return {
         short: "repay",
         long: `repay ${amount + " " + token}`,
@@ -71,7 +71,7 @@ export const createTransactionMessges = (
         success: `successfully repaid ${amount + " " + token}`,
         error: `unable to repay ${token}`,
       };
-    case CantoTransactionType.WITHDRAW:
+    case AltheaTransactionType.WITHDRAW:
       return {
         short: "withdraw",
         long: `withdraw ${amount + " " + token}`,
@@ -79,7 +79,7 @@ export const createTransactionMessges = (
         success: `successfully withdrew ${amount + " " + token}`,
         error: `unable to withdraw ${token}`,
       };
-    case CantoTransactionType.COLLATERALIZE:
+    case AltheaTransactionType.COLLATERALIZE:
       return {
         short: "collateralize",
         long: `collateralize ${token}`,
@@ -87,7 +87,7 @@ export const createTransactionMessges = (
         success: `successfully collateralized ${token}`,
         error: `unable to collateralize ${token}`,
       };
-    case CantoTransactionType.DECOLLATERLIZE:
+    case AltheaTransactionType.DECOLLATERLIZE:
       return {
         short: "decollateralize",
         long: `decollateralize ${token}`,
@@ -95,7 +95,7 @@ export const createTransactionMessges = (
         success: `successfully decollateralized ${token}`,
         error: `unable to decollateralize ${token}`,
       };
-    case CantoTransactionType.DRIP:
+    case AltheaTransactionType.DRIP:
       return {
         short: "drip",
         long: "drip WETH",
@@ -104,7 +104,7 @@ export const createTransactionMessges = (
         error: "unable to drip WETH",
       };
     //LP
-    case CantoTransactionType.ADD_LIQUIDITY:
+    case AltheaTransactionType.ADD_LIQUIDITY:
       return {
         short: "add liquidity",
         long: `add liquidity for ${token}`,
@@ -112,7 +112,7 @@ export const createTransactionMessges = (
         success: `successfully added liquidity for ${token}`,
         error: `unable to add liquidity for ${token}`,
       };
-    case CantoTransactionType.REMOVE_LIQUIDITY:
+    case AltheaTransactionType.REMOVE_LIQUIDITY:
       return {
         short: "remove liquidity",
         long: `remove liquidity for ${token}`,
@@ -121,7 +121,7 @@ export const createTransactionMessges = (
         error: `unable to remove liquidity for ${token}`,
       };
     //GOVERNANCE
-    case CantoTransactionType.VOTING:
+    case AltheaTransactionType.VOTING:
       return {
         short: "vote",
         long: `vote ${token}`,
@@ -130,32 +130,32 @@ export const createTransactionMessges = (
         error: `unable to vote ${token}`,
       };
     //STAKING
-    case CantoTransactionType.DELEGATE:
+    case AltheaTransactionType.DELEGATE:
       return {
         short: "delegate",
-        long: `delegate ${amount + " CANTO"} to ${token}`,
-        pending: `delegating ${amount + " CANTO"} to ${token}...`,
-        success: `successfully delegated ${amount + " CANTO"} to ${token}`,
+        long: `delegate ${amount + " ALTHEA"} to ${token}`,
+        pending: `delegating ${amount + " ALTHEA"} to ${token}...`,
+        success: `successfully delegated ${amount + " ALTHEA"} to ${token}`,
         error: `unable to delegate to ${token}`,
       };
-    case CantoTransactionType.UNDELEGATE:
+    case AltheaTransactionType.UNDELEGATE:
       return {
         short: "undelegate",
-        long: `undelegate ${amount + " CANTO"} from ${token}`,
-        pending: `undelegating ${amount + " CANTO"} from ${token}...`,
-        success: `successfully ${amount + " CANTO"} undelegated from ${token}`,
+        long: `undelegate ${amount + " ALTHEA"} from ${token}`,
+        pending: `undelegating ${amount + " ALTHEA"} from ${token}...`,
+        success: `successfully ${amount + " ALTHEA"} undelegated from ${token}`,
         error: `unable to undelegate from ${token}`,
       };
-    case CantoTransactionType.REDELEGATE:
+    case AltheaTransactionType.REDELEGATE:
       return {
         short: "redelegate",
-        long: `redelegate ${amount + " CANTO"} ${token}`,
-        pending: `redelegating ${amount + " CANTO"} ${token}...`,
-        success: `successfully ${amount + " CANTO"} redelegated ${token}`,
+        long: `redelegate ${amount + " ALTHEA"} ${token}`,
+        pending: `redelegating ${amount + " ALTHEA"} ${token}...`,
+        success: `successfully ${amount + " ALTHEA"} redelegated ${token}`,
         error: `unable to redelegate ${token}`,
       };
     //BRIDGING
-    case CantoTransactionType.SEND_TO_COSMOS:
+    case AltheaTransactionType.SEND_TO_COSMOS:
       return {
         short: "bridge in",
         long: `bridge in ${amount + " " + token}...`,
@@ -163,7 +163,7 @@ export const createTransactionMessges = (
         success: `successfully bridged ${amount + " " + token}`,
         error: `unable to bridge ${token}`,
       };
-    case CantoTransactionType.CONVERT_TO_EVM:
+    case AltheaTransactionType.CONVERT_TO_EVM:
       return {
         short: "convert to ERC20",
         long: `convert ${amount + " " + token} to ERC20`,
@@ -171,7 +171,7 @@ export const createTransactionMessges = (
         success: `successfully converted ${amount + " " + token}`,
         error: `unable to convert ${token}`,
       };
-    case CantoTransactionType.CONVERT_TO_NATIVE:
+    case AltheaTransactionType.CONVERT_TO_NATIVE:
       return {
         short: "convert to native",
         long: `convert ${amount + " " + token} to native`,
@@ -179,8 +179,8 @@ export const createTransactionMessges = (
         success: `successfully converted ${amount + " " + token}`,
         error: `unable to convert ${token}`,
       };
-    case CantoTransactionType.IBC_OUT:
-    case CantoTransactionType.OFT_OUT:
+    case AltheaTransactionType.IBC_OUT:
+    case AltheaTransactionType.OFT_OUT:
       return {
         short: "bridge out",
         long: `bridge out ${amount + " " + token}`,
@@ -188,8 +188,8 @@ export const createTransactionMessges = (
         success: `successfully bridged out ${amount + " " + token}`,
         error: `unable to bridge out ${token}`,
       };
-    case CantoTransactionType.IBC_IN:
-    case CantoTransactionType.OFT_IN:
+    case AltheaTransactionType.IBC_IN:
+    case AltheaTransactionType.OFT_IN:
       return {
         short: "bridge in",
         long: `bridge in ${amount + " " + token}`,
@@ -197,7 +197,7 @@ export const createTransactionMessges = (
         success: `successfully bridged in ${amount + " " + token}`,
         error: `unable to bridge in ${token}`,
       };
-    case CantoTransactionType.OFT_DEPOSIT:
+    case AltheaTransactionType.OFT_DEPOSIT:
       return {
         short: "deposit",
         long: `deposit ${amount + " " + token} into OFT`,
@@ -205,7 +205,7 @@ export const createTransactionMessges = (
         success: `successfully deposited ${amount + " " + token}`,
         error: `unable to deposit ${token}`,
       };
-    case CantoTransactionType.OFT_WITHDRAW:
+    case AltheaTransactionType.OFT_WITHDRAW:
       return {
         short: "withdraw",
         long: `withdraw ${amount + " " + token} from OFT`,

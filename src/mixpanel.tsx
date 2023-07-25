@@ -1,4 +1,4 @@
-import { CantoTransactionType } from "global/config/interfaces/transactionTypes";
+import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import mixpanel, { Dict } from "mixpanel-browser";
 
 mixpanel.init("f58419bff863911fa30164121332f571");
@@ -29,7 +29,7 @@ const actions = {
     },
     transactions: {
       transactionStarted: (
-        txType: CantoTransactionType,
+        txType: AltheaTransactionType,
         info: object | undefined
       ) => {
         mixpanel.track("Transaction Started", {
@@ -38,7 +38,7 @@ const actions = {
         });
       },
       transactionSuccess: (
-        txType: CantoTransactionType,
+        txType: AltheaTransactionType,
         txHash: string | undefined,
         info: object | undefined
       ) => {
@@ -49,7 +49,7 @@ const actions = {
         });
       },
       transactionFailed: (
-        txType: CantoTransactionType,
+        txType: AltheaTransactionType,
         txHash: string | undefined,
         errorReason: string,
         info: object | undefined

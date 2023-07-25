@@ -2,16 +2,16 @@ import { LPTransaction, UserLPPairInfo } from "../config/interfaces";
 import { BigNumber, Contract } from "ethers";
 import { _enableTx } from "global/stores/transactionUtils";
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   EVMTx,
   ExtraProps,
 } from "global/config/interfaces/transactionTypes";
 import { getPairName } from "./utils";
 import { ERC20Abi, routerAbi } from "global/config/abi";
-import { isTokenCanto } from "./pairCheck";
+import { isTokenAlthea } from "./pairCheck";
 import { _lendingTx } from "pages/lending/utils/transactions";
 import {
-  getAddressesForCantoNetwork,
+  getAddressesForAltheaNetwork,
   getCurrentProvider,
 } from "global/utils/getAddressUtils";
 import { MaxUint256 } from "@ethersproject/constants";
@@ -91,7 +91,7 @@ async function addLiquidityTx(
     _enableTx(
       chainId,
       pair.basePairInfo.token1.address,
-      getAddressesForCantoNetwork(chainId).Router,
+      getAddressesForAltheaNetwork(chainId).Router,
       amount1,
       pair.allowance.token1,
       {
@@ -102,7 +102,7 @@ async function addLiquidityTx(
     _enableTx(
       chainId,
       pair.basePairInfo.token2.address,
-      getAddressesForCantoNetwork(chainId).Router,
+      getAddressesForAltheaNetwork(chainId).Router,
       amount2,
       pair.allowance.token2,
       {
@@ -135,7 +135,7 @@ async function addLiquidityTx(
     ),
     _lendingTx(
       chainId,
-      CantoTransactionType.SUPPLY,
+      AltheaTransactionType.SUPPLY,
       pair.basePairInfo.cLPaddress,
       false,
       async () => {
@@ -183,7 +183,7 @@ async function removeLiquidityTx(
     _enableTx(
       chainId,
       pair.basePairInfo.address,
-      getAddressesForCantoNetwork(chainId).Router,
+      getAddressesForAltheaNetwork(chainId).Router,
       LPOut,
       pair.allowance.LPtoken,
       extraProps
@@ -204,7 +204,7 @@ async function removeLiquidityTx(
   //withdraw from CLM first if unstaking
   const unstakeTransaction = _lendingTx(
     chainId,
-    CantoTransactionType.WITHDRAW,
+    AltheaTransactionType.WITHDRAW,
     pair.basePairInfo.cLPaddress,
     false,
     LPOut,
@@ -237,25 +237,25 @@ const _addLiquidityTx = (
   deadline: number,
   extraDetails?: ExtraProps
 ): EVMTx => {
-  //check for canto in pair
-  const [isToken1Canto, isToken2Canto] = [
-    isTokenCanto(token1Address, chainId),
-    isTokenCanto(token2Address, chainId),
+  //check for althea in pair
+  const [isToken1Althea, isToken2Althea] = [
+    isTokenAlthea(token1Address, chainId),
+    isTokenAlthea(token2Address, chainId),
   ];
-  const cantoInPair = isToken1Canto || isToken2Canto;
+  const altheaInPair = isToken1Althea || isToken2Althea;
   return {
     chainId,
-    txType: CantoTransactionType.ADD_LIQUIDITY,
-    address: getAddressesForCantoNetwork(chainId).Router,
+    txType: AltheaTransactionType.ADD_LIQUIDITY,
+    address: getAddressesForAltheaNetwork(chainId).Router,
     abi: routerAbi,
-    method: cantoInPair ? "addLiquidityCANTO" : "addLiquidity",
-    params: cantoInPair
+    method: altheaInPair ? "addLiquidityALTHEA" : "addLiquidity",
+    params: altheaInPair
       ? [
-          isToken1Canto ? token2Address : token1Address,
+          isToken1Althea ? token2Address : token1Address,
           stable,
-          isToken1Canto ? amount2 : amount1,
-          isToken1Canto ? amountMin2 : amountMin1,
-          isToken1Canto ? amountMin1 : amountMin2,
+          isToken1Althea ? amount2 : amount1,
+          isToken1Althea ? amountMin2 : amountMin1,
+          isToken1Althea ? amountMin1 : amountMin2,
           account,
           deadline,
         ]
@@ -270,7 +270,7 @@ const _addLiquidityTx = (
           account,
           deadline,
         ],
-    value: isToken1Canto ? amount1 : isToken2Canto ? amount2 : "0",
+    value: isToken1Althea ? amount1 : isToken2Althea ? amount2 : "0",
     extraDetails,
   };
 };
@@ -286,25 +286,25 @@ const _removeLiquidityTx = (
   deadline: number,
   extraDetails?: ExtraProps
 ): EVMTx => {
-  //check for canto in pair
-  const [isToken1Canto, isToken2Canto] = [
-    isTokenCanto(token1Address, chainId),
-    isTokenCanto(token2Address, chainId),
+  //check for althea in pair
+  const [isToken1Althea, isToken2Althea] = [
+    isTokenAlthea(token1Address, chainId),
+    isTokenAlthea(token2Address, chainId),
   ];
-  const cantoInPair = isToken1Canto || isToken2Canto;
+  const altheaInPair = isToken1Althea || isToken2Althea;
   return {
     chainId,
-    txType: CantoTransactionType.REMOVE_LIQUIDITY,
-    address: getAddressesForCantoNetwork(chainId).Router,
+    txType: AltheaTransactionType.REMOVE_LIQUIDITY,
+    address: getAddressesForAltheaNetwork(chainId).Router,
     abi: routerAbi,
-    method: cantoInPair ? "removeLiquidityCANTO" : "removeLiquidity",
-    params: cantoInPair
+    method: altheaInPair ? "removeLiquidityALTHEA" : "removeLiquidity",
+    params: altheaInPair
       ? [
-          isToken1Canto ? token2Address : token1Address,
+          isToken1Althea ? token2Address : token1Address,
           stable,
           LPOut,
-          isToken1Canto ? amountMin2 : amountMin1,
-          isToken1Canto ? amountMin1 : amountMin2,
+          isToken1Althea ? amountMin2 : amountMin1,
+          isToken1Althea ? amountMin1 : amountMin2,
           account,
           deadline,
         ]

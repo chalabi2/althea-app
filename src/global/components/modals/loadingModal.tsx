@@ -4,7 +4,7 @@ import loadingGif from "assets/loading.gif";
 import completeIcon from "assets/complete.svg";
 import warningIcon from "assets/warning.svg";
 import {
-  CantoTransactionType,
+  AltheaTransactionType,
   TransactionState,
 } from "global/config/interfaces/transactionTypes";
 import { ReactNode, useEffect, useState } from "react";
@@ -13,7 +13,7 @@ import { Mixpanel } from "mixpanel";
 import { createTransactionDetails } from "global/stores/transactionUtils";
 
 interface GlobalLoadingProps {
-  transactionType: CantoTransactionType;
+  transactionType: AltheaTransactionType;
   status: TransactionState;
   tokenName?: string;
   customMessage?: string | ReactNode;

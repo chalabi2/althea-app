@@ -7,7 +7,7 @@ const ChangeLog = () => {
       <LogSection
         date="June 21st 2023"
         title="Althea Fork"
-        content={`- Forked from Canto.io. `}
+        content={`- Forked from Althea.io. `}
       />
     </Styled>
   );

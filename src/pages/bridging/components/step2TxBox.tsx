@@ -12,7 +12,7 @@ import { useState } from "react";
 interface Step2TxBoxProps {
   bridgeIn: boolean;
   transactions: NativeTransaction[];
-  cantoAddress: string;
+  altheaAddress: string;
   ethAddress: string;
   txStore: TransactionStore;
   chainId: number;
@@ -50,14 +50,14 @@ const Step2TxBox = (props: Step2TxBoxProps) => {
                   <MiniConvert
                     key={tx.token.address}
                     transaction={tx}
-                    cantoAddress={props.cantoAddress}
+                    altheaAddress={props.altheaAddress}
                     ethAddress={props.ethAddress}
                     tx={() =>
                       convertTx(
                         props.chainId,
                         props.txStore,
                         props.bridgeIn,
-                        props.cantoAddress,
+                        props.altheaAddress,
                         tx.token.ibcDenom,
                         tx.amount.toString(),
                         {
@@ -82,7 +82,7 @@ const Step2TxBox = (props: Step2TxBoxProps) => {
             completeAllConvertIn(
               props.chainId,
               props.txStore,
-              props.cantoAddress,
+              props.altheaAddress,
               props.transactions
             );
             setIsModalOpen(true);

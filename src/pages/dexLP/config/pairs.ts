@@ -1,109 +1,109 @@
 import { ADDRESSES } from "global/config/addresses";
 import { CTOKENS, TOKENS } from "global/config/tokenInfo";
 import { PAIR } from "./interfaces";
-import { CantoMainnet, CantoTestnet } from "global/config/networks";
+import { AltheaMainnet, AltheaTestnet } from "global/config/networks";
 
 export function getPairsForChainId(chainId?: number) {
   switch (chainId) {
-    case CantoTestnet.chainId:
-      return CANTO_TEST_PAIRS;
-    case CantoMainnet.chainId:
+    case AltheaTestnet.chainId:
+      return ALTHEA_TEST_PAIRS;
+    case AltheaMainnet.chainId:
     default:
-      return CANTO_MAIN_PAIRS;
+      return ALTHEA_MAIN_PAIRS;
   }
 }
 
-const CANTO_TEST_PAIRS: PAIR[] = [
+const ALTHEA_TEST_PAIRS: PAIR[] = [
   {
-    address: ADDRESSES.testnet.CantoNoteLP,
-    cLPaddress: ADDRESSES.testnet.cCantoNoteLP,
-    token1: { ...TOKENS.cantoTestnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoTestnet.NOTE, // NOTE,
-    decimals: TOKENS.cantoTestnet.CantoNote.decimals,
-    cDecimals: CTOKENS.cantoTestnet.CCantoNote.decimals,
+    address: ADDRESSES.testnet.AltheaNoteLP,
+    cLPaddress: ADDRESSES.testnet.cAltheaNoteLP,
+    token1: { ...TOKENS.altheaTestnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaTestnet.NOTE, // NOTE,
+    decimals: TOKENS.altheaTestnet.AltheaNote.decimals,
+    cDecimals: CTOKENS.altheaTestnet.CAltheaNote.decimals,
     stable: false,
   },
   {
-    address: ADDRESSES.testnet.CantoETHLP,
-    cLPaddress: ADDRESSES.testnet.cCantoETHLP,
-    token1: { ...TOKENS.cantoTestnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoTestnet.ETH, // ETH,
-    decimals: TOKENS.cantoTestnet.CantoETH.decimals,
-    cDecimals: CTOKENS.cantoTestnet.CCantoETH.decimals,
+    address: ADDRESSES.testnet.AltheaETHLP,
+    cLPaddress: ADDRESSES.testnet.cAltheaETHLP,
+    token1: { ...TOKENS.altheaTestnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaTestnet.ETH, // ETH,
+    decimals: TOKENS.altheaTestnet.AltheaETH.decimals,
+    cDecimals: CTOKENS.altheaTestnet.CAltheaETH.decimals,
     stable: false,
   },
   {
-    address: ADDRESSES.testnet.CantoAtomLP,
-    cLPaddress: ADDRESSES.testnet.cCantoAtomLP,
-    token1: { ...TOKENS.cantoTestnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoTestnet.ATOM, // ATOM,
-    decimals: TOKENS.cantoTestnet.CantoAtom.decimals,
-    cDecimals: CTOKENS.cantoTestnet.CCantoAtom.decimals,
+    address: ADDRESSES.testnet.AltheaAtomLP,
+    cLPaddress: ADDRESSES.testnet.cAltheaAtomLP,
+    token1: { ...TOKENS.altheaTestnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaTestnet.ATOM, // ATOM,
+    decimals: TOKENS.altheaTestnet.AltheaAtom.decimals,
+    cDecimals: CTOKENS.altheaTestnet.CAltheaAtom.decimals,
     stable: false,
   },
   {
     address: ADDRESSES.testnet.NoteUSDCLP,
     cLPaddress: ADDRESSES.testnet.cNoteUSDCLP,
-    token1: TOKENS.cantoTestnet.NOTE, // NOTE,
-    token2: TOKENS.cantoTestnet.USDC, // USDC,
-    decimals: TOKENS.cantoTestnet.NoteUSDC.decimals,
-    cDecimals: CTOKENS.cantoTestnet.CNoteUSDC.decimals,
+    token1: TOKENS.altheaTestnet.NOTE, // NOTE,
+    token2: TOKENS.altheaTestnet.USDC, // USDC,
+    decimals: TOKENS.altheaTestnet.NoteUSDC.decimals,
+    cDecimals: CTOKENS.altheaTestnet.CNoteUSDC.decimals,
     stable: true,
   },
   {
     address: ADDRESSES.testnet.NoteUSDTLP,
     cLPaddress: ADDRESSES.testnet.cNoteUSDTLP,
-    token1: TOKENS.cantoTestnet.NOTE, // NOTE,
-    token2: TOKENS.cantoTestnet.USDT, // USDT,
-    decimals: TOKENS.cantoTestnet.NoteUSDT.decimals,
-    cDecimals: CTOKENS.cantoTestnet.CNoteUSDT.decimals,
+    token1: TOKENS.altheaTestnet.NOTE, // NOTE,
+    token2: TOKENS.altheaTestnet.USDT, // USDT,
+    decimals: TOKENS.altheaTestnet.NoteUSDT.decimals,
+    cDecimals: CTOKENS.altheaTestnet.CNoteUSDT.decimals,
     stable: true,
   },
 ];
-const CANTO_MAIN_PAIRS: PAIR[] = [
+const ALTHEA_MAIN_PAIRS: PAIR[] = [
   {
-    address: ADDRESSES.cantoMainnet.CantoNoteLP,
-    cLPaddress: ADDRESSES.cantoMainnet.cCantoNoteLP,
-    token1: { ...TOKENS.cantoMainnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoMainnet.NOTE, // NOTE,
-    decimals: TOKENS.cantoMainnet.CantoNote.decimals,
-    cDecimals: CTOKENS.cantoMainnet.CCantoNote.decimals,
+    address: ADDRESSES.altheaMainnet.AltheaNoteLP,
+    cLPaddress: ADDRESSES.altheaMainnet.cAltheaNoteLP,
+    token1: { ...TOKENS.altheaMainnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaMainnet.NOTE, // NOTE,
+    decimals: TOKENS.altheaMainnet.AltheaNote.decimals,
+    cDecimals: CTOKENS.altheaMainnet.CAltheaNote.decimals,
     stable: false,
   },
   {
-    address: ADDRESSES.cantoMainnet.CantoETHLP,
-    cLPaddress: ADDRESSES.cantoMainnet.cCantoETHLP,
-    token1: { ...TOKENS.cantoMainnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoMainnet.ETH, // ETH,
-    decimals: TOKENS.cantoMainnet.CantoETH.decimals,
-    cDecimals: CTOKENS.cantoMainnet.CCantoETH.decimals,
+    address: ADDRESSES.altheaMainnet.AltheaETHLP,
+    cLPaddress: ADDRESSES.altheaMainnet.cAltheaETHLP,
+    token1: { ...TOKENS.altheaMainnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaMainnet.ETH, // ETH,
+    decimals: TOKENS.altheaMainnet.AltheaETH.decimals,
+    cDecimals: CTOKENS.altheaMainnet.CAltheaETH.decimals,
     stable: false,
   },
   {
-    address: ADDRESSES.cantoMainnet.CantoAtomLP,
-    cLPaddress: ADDRESSES.cantoMainnet.cCantoAtomLP,
-    token1: { ...TOKENS.cantoMainnet.WCANTO, symbol: "CANTO" }, // CANTO,
-    token2: TOKENS.cantoMainnet.ATOM, // ATOM,
-    decimals: TOKENS.cantoMainnet.CantoAtom.decimals,
-    cDecimals: CTOKENS.cantoMainnet.CCantoAtom.decimals,
+    address: ADDRESSES.altheaMainnet.AltheaAtomLP,
+    cLPaddress: ADDRESSES.altheaMainnet.cAltheaAtomLP,
+    token1: { ...TOKENS.altheaMainnet.WALTHEA, symbol: "ALTHEA" }, // ALTHEA,
+    token2: TOKENS.altheaMainnet.ATOM, // ATOM,
+    decimals: TOKENS.altheaMainnet.AltheaAtom.decimals,
+    cDecimals: CTOKENS.altheaMainnet.CAltheaAtom.decimals,
     stable: false,
   },
   {
-    address: ADDRESSES.cantoMainnet.NoteUSDCLP,
-    cLPaddress: ADDRESSES.cantoMainnet.cNoteUSDCLP,
-    token1: TOKENS.cantoMainnet.NOTE, // NOTE,
-    token2: TOKENS.cantoMainnet.USDC, // USDC,
-    decimals: TOKENS.cantoMainnet.NoteUSDC.decimals,
-    cDecimals: CTOKENS.cantoMainnet.CNoteUSDC.decimals,
+    address: ADDRESSES.altheaMainnet.NoteUSDCLP,
+    cLPaddress: ADDRESSES.altheaMainnet.cNoteUSDCLP,
+    token1: TOKENS.altheaMainnet.NOTE, // NOTE,
+    token2: TOKENS.altheaMainnet.USDC, // USDC,
+    decimals: TOKENS.altheaMainnet.NoteUSDC.decimals,
+    cDecimals: CTOKENS.altheaMainnet.CNoteUSDC.decimals,
     stable: true,
   },
   {
-    address: ADDRESSES.cantoMainnet.NoteUSDTLP,
-    cLPaddress: ADDRESSES.cantoMainnet.cNoteUSDTLP,
-    token1: TOKENS.cantoMainnet.NOTE, // NOTE,
-    token2: TOKENS.cantoMainnet.USDT, // USDT,
-    decimals: TOKENS.cantoMainnet.NoteUSDT.decimals,
-    cDecimals: CTOKENS.cantoMainnet.CNoteUSDT.decimals,
+    address: ADDRESSES.altheaMainnet.NoteUSDTLP,
+    cLPaddress: ADDRESSES.altheaMainnet.cNoteUSDTLP,
+    token1: TOKENS.altheaMainnet.NOTE, // NOTE,
+    token2: TOKENS.altheaMainnet.USDT, // USDT,
+    decimals: TOKENS.altheaMainnet.NoteUSDT.decimals,
+    cDecimals: CTOKENS.altheaMainnet.CNoteUSDT.decimals,
     stable: true,
   },
 ];

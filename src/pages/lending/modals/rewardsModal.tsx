@@ -23,7 +23,7 @@ const RewardsModal = ({ chainId, rewardsObj, txStore }: Props) => {
           <img src={logo} height={30} />
         </div>
         <Text type="title" size="text1">
-          wcanto rewards
+          walthea rewards
         </Text>
         <Text type="title" size="title1">
           {truncateNumber(formatUnits(rewardsObj.accrued, 18))}
@@ -49,14 +49,14 @@ const RewardsModal = ({ chainId, rewardsObj, txStore }: Props) => {
           <Text className="type">current wallet balance</Text>
           <Text className="value">
             {truncateNumber(formatUnits(rewardsObj.walletBalance, 18))}
-            <TokenSymbol token="canto" />
+            <TokenSymbol token="althea" />
           </Text>
         </div>
         <div className="bal line">
-          <Text className="type">unclaimed wcanto balance</Text>
+          <Text className="type">unclaimed walthea balance</Text>
           <Text className="value">
             {Number(truncateNumber(formatUnits(rewardsObj.accrued, 18)))}
-            <TokenSymbol token="canto" />
+            <TokenSymbol token="althea" />
           </Text>
         </div>
       </div>

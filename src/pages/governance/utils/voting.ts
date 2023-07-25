@@ -1,9 +1,9 @@
 import { generateEndpointProposals } from "@tharsis/provider";
 import {
-  ethToCanto,
+  ethToAlthea,
   getSenderObj,
   signAndBroadcastTxMsg,
-} from "global/utils/cantoTransactions/helpers";
+} from "global/utils/altheaTransactions/helpers";
 import { VotingOption } from "../config/interfaces";
 import { Chain, Fee } from "global/config/cosmosConstants";
 import { createTxMsgVote } from "@tharsis/transactions";
@@ -53,7 +53,7 @@ export async function getAccountVote(
     headers: { "Content-Type": "application/json" },
   };
 
-  const cantoAddress = await ethToCanto(account, nodeAddressIP);
+  const altheaAddress = await ethToAlthea(account, nodeAddressIP);
 
   const vote = await fetch(
     nodeAddressIP +
@@ -61,7 +61,7 @@ export async function getAccountVote(
       "/" +
       proposalID +
       "/votes/" +
-      cantoAddress,
+      altheaAddress,
     getOptions
   );
   const voteResponse = await vote.json();
