@@ -121,7 +121,7 @@ const Container = styled.div`
     }
     100% {
       border-bottom: 1px solid var(--primary-color);
-      background-color: #09221454;
+      background-color: rgba(0, 119, 255, 0.25);
       backdrop-filter: blur(5px);
     }
   }
