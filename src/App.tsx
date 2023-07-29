@@ -12,6 +12,7 @@ import Loading from "global/components/Loading";
 import PageNotFound from "global/components/pageNotFound";
 import ChangeLog from "pages/changelog/changeLog";
 import Walkthrough from "pages/bridging/walkthrough/Walkthrough";
+import { ThemeProvider } from "./ThemeProvider";
 
 //Styling
 const Container = styled.div`
@@ -34,8 +35,8 @@ function App() {
   return (
     <React.Fragment>
       <ToastContainer />
-
       <GlobalStyle />
+      <ThemeProvider>
       <Router
       basename="/althea-app"
       >
@@ -100,6 +101,7 @@ function App() {
           <Footer />
         </Container>
       </Router>
+      </ThemeProvider>
     </React.Fragment>
   );
 }

@@ -7,8 +7,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
 
 :root {
-  --primary-color: #0000ec;
-  --primary-dark-color: #1122d8;
   --primary-darker-color: #3700ff;
 
   --error-color: #ff4141;
@@ -32,6 +30,24 @@
   --warning-yellow10: #e8d2111a;
   --almost-white: #efefef;
   --input-black: #222222;
+}
+
+[data-theme="dark"] {
+  /* Dark mode colors */
+  --primary-color: #000279;
+  --primary-color-dark: #0001b0;
+  --background-color-start: #0D2642;
+  --background-color-end: #101112;
+  /* ... other color variables for dark mode ... */
+}
+
+[data-theme="light"] {
+  /* Dark mode colors */
+  --primary-color: #7ea9f8;
+  --primary-color-dark: #6a8af2;
+  --background-color-start: #2a8dfe;
+  --background-color-end: #415e7b;
+  /* ... other color variables for dark mode ... */
 }
 
 :root {
@@ -62,8 +78,8 @@ input[type="number"] {
 .App {
   background: linear-gradient(
     90deg,
-    #0D2642 0%,
-    #101112 100%
+    var(--background-color-start) 0%,
+    var(--background-color-end) 100%
   );
   display: flex;
   height: 100%;

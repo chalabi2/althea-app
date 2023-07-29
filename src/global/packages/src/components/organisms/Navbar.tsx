@@ -7,6 +7,7 @@ import ConnectWallet from "./ConnectWallet";
 import MenuBar from "./MenuBar";
 import ModalManager from "../molecules/ModalManager";
 import { PageObject } from "global/config/pageList";
+import ThemeSwitcher from "global/components/ThemeSwitcher";
 
 interface Props {
   onClick: () => void;
@@ -95,8 +96,12 @@ export const NavBar = (props: Props) => {
         >
           {parseText(currentPage ?? "home")}
         </Text>
-
-        <ConnectWallet {...props} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ marginRight: '10px' }}>
+              <ConnectWallet {...props} />
+            </div>
+            <ThemeSwitcher />
+          </div>
         <ModalManager chainId={chainId} />
       </nav>
     </Container>
@@ -133,7 +138,7 @@ const Container = styled.div`
   }
   & > nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     justify-content: center;
     transition: all 0.1s ease-in-out;
