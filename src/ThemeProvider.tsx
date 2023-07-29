@@ -1,21 +1,34 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 interface ThemeContextProps {
   theme: Theme;
   changeTheme: (arg0: Theme) => void;
 }
+
 export const ThemeContext = createContext<ThemeContextProps>({
-    theme: 'light',
-    changeTheme: theme => console.warn('changeTheme function not yet defined'),
-  });
+  theme: 'light',
+  changeTheme: theme => console.warn('changeTheme function not yet defined'),
+});
 
 interface ThemeProviderProps {
   children: ReactNode; // <-- Ensure you have this
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  // Default theme is light, but we'll immediately check to see if the user prefers dark mode
   const [theme, setTheme] = useState<Theme>('light');
+
+  // On component mount, we check the user's preference
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDarkMode) {
+      changeTheme('dark');
+    } else {
+      changeTheme('light');
+    }
+  }, []);
+  
 
   const changeTheme = (theme: Theme) => {
     setTheme(theme);

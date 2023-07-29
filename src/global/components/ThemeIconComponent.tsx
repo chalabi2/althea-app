@@ -7,17 +7,17 @@ const ThemeIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;  
-  height: 32px;
-  border-radius: 10px;  
+  width: 31px;  
+  height: 31px;
+  border-radius: 5px;  
   background-color: transparent;
 `;
 
 const Square = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 31px;
+  height: 31px;
   border: 1px solid #0077FF;
-  border-radius: 3px;  
+  border-radius: 5px;  
   background-color: transparent;
   display: flex;
   align-items: center;
