@@ -57,3 +57,6 @@ Bridge Backend
 Token lists
 Remove Lending
 claim rewards modal
+
+Wallet hover color
+Color switch hover color

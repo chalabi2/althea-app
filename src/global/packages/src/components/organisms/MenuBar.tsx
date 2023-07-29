@@ -122,7 +122,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
                   onClick={() => {
                     setIsOpen(false);
                     Mixpanel.events.landingPageActions.navigatedTo(page.name);
-                  } } theme={undefined}>
+                  } } theme={theme === 'dark' ? 'light' : 'dark'}>
     <Text
         size="title2"
         type="title"
