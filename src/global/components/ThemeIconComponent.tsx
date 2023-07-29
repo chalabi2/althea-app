@@ -7,27 +7,27 @@ const ThemeIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;  
-  height: 20px;
-  border-radius: 45px;  
+  width: 32px;  
+  height: 32px;
+  border-radius: 10px;  
   background-color: transparent;
 `;
 
 const Square = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border: 1px solid #0077FF;
-  border-radius: 2px;  
+  border-radius: 3px;  
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2px; // Add padding here
 `;
 
 const SquareComponent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <Square>{children}</Square>;
 };
-
 
 const ThemeIconComponent: React.FC = () => {
   const { theme } = useContext(ThemeContext);
@@ -37,7 +37,7 @@ const ThemeIconComponent: React.FC = () => {
     return (
       <ThemeIcon>
         <SquareComponent>
-          <FaMoon color='#0077FF' size={20} />
+          <FaSun color='#0077FF' size={18} />  
         </SquareComponent>
       </ThemeIcon>
     );
@@ -47,7 +47,7 @@ const ThemeIconComponent: React.FC = () => {
   return (
     <ThemeIcon>
       <SquareComponent>
-        <FaSun color='#0077FF' size={20} />
+        <FaMoon color='#0077FF' size={18} />  
       </SquareComponent>
     </ThemeIcon>
   );
