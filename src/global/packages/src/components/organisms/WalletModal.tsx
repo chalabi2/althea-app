@@ -7,6 +7,8 @@ import { Text } from "../atoms/Text";
 import { Mixpanel } from "mixpanel";
 import { toastHandler } from "global/utils/toastHandler";
 import { truncateNumber } from "global/utils/formattingNumbers";
+import { useContext } from "react";
+import { ThemeContext } from "ThemeProvider";
 
 interface WalletModalProps {
   account: string;
@@ -21,9 +23,9 @@ const WalletModal = ({
   icon,
 }: WalletModalProps) => {
   const { deactivate } = useEthers();
-
+  const { theme } = useContext(ThemeContext);
   return (
-    <Styled>
+    <Styled theme={theme} >
       <div className="address">
         <CopyToClipboard
           text={account}
@@ -87,10 +89,12 @@ const WalletModal = ({
     </Styled>
   );
 };
-
-const Styled = styled.div`
+interface StyledProps {
+  theme: string;
+}
+const Styled = styled.div<StyledProps>`
   width: 250px;
-  background-color: #0F1924;
+  background-color: ${({ theme }) => theme === 'light' ? '#CCE4FF' : '#0D2642'};
   border-radius: 4px;
   backdrop-filter: blur(35px);
   display: flex;

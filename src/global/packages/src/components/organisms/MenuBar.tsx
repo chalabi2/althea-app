@@ -110,22 +110,19 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
           >
             {pageList?.map((page) => {
               return page.showInMenu ? (
-<Navlink
-    id={page.name}
-    to={page.link}
-    key={page.name}
-    className={`menu-item ${
-        currentPage == page.name && !isHovering
-        ? "active-bar active"
-        : currentPage == page.name && isHovering
-        ? "active-bar "
-        : ""
-    }`}
-    onClick={() => {
-        setIsOpen(false);
-        Mixpanel.events.landingPageActions.navigatedTo(page.name);
-    }}
->
+<StyledNavLink
+                  id={page.name}
+                  to={page.link}
+                  key={page.name}
+                  className={`menu-item ${currentPage == page.name && !isHovering
+                      ? "active-bar active"
+                      : currentPage == page.name && isHovering
+                        ? "active-bar "
+                        : ""}`}
+                  onClick={() => {
+                    setIsOpen(false);
+                    Mixpanel.events.landingPageActions.navigatedTo(page.name);
+                  } } theme={undefined}>
     <Text
         size="title2"
         type="title"
@@ -135,7 +132,7 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
     >
         {parseText(page.name)}
     </Text>
-</Navlink>
+</StyledNavLink>
               ) : null;
             })}
           </div>
@@ -299,7 +296,11 @@ const Styled = styled.div<StyledProps>`
   }
 `;
 
-const Navlink = styled(Link)`
+interface StyledPropsTwo {
+  theme: string;
+  to: string;
+}
+const StyledNavLink = styled(Link)<StyledPropsTwo>`
   display: flex;
   text-align: left;
   width: 100%;
@@ -323,7 +324,10 @@ const Navlink = styled(Link)`
     content: " ";
     position: absolute;
     transition: all 130ms ease-in;
-    background-color: #101112;
+    background-color: ${props => {
+      if (props.theme === 'light') return '#101112';
+      if (props.theme === 'dark') return 'white';
+    }};
     transform: scaleY(0);
     left: 0;
     top: 0;

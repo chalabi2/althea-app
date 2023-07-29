@@ -5,8 +5,10 @@ import { Text } from "global/packages/src";
 import { Mixpanel } from "mixpanel";
 import { NavLink } from "react-router-dom";
 import bg from "assets/bg.jpg";
-import React from "react";
+import React, { useContext} from "react";
 import { Banner } from "./components/Banner";
+import { ThemeContext } from "ThemeProvider";
+
 
 const FontOne = styled.span`
 font-family: 'Macan';
@@ -41,6 +43,7 @@ export function parseText(text: string): JSX.Element {
 }
 
 const Homepage = () => {
+  const { theme } = useContext(ThemeContext);
 
   return (
     <>
@@ -49,7 +52,7 @@ const Homepage = () => {
         description="Althea Web App enables IFi accesibility"
         link=""
       />
-      <Styled>
+    <Styled theme={theme}>
         <ul className="options" id="routes">
           {pageList.map((page, idx) => {
             return page.showInMenu ? (
@@ -81,7 +84,10 @@ const Homepage = () => {
     </>
   );
 };
-const Styled = styled.div`
+interface StyledProps {
+  theme: string;
+}
+const Styled = styled.div<StyledProps>`
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
@@ -148,32 +154,29 @@ const Styled = styled.div`
     width: 60%;
   }
 
-  .navLink {
-    height: 68px;
-    transition: all 0.3s ease;
-    width: 100%;
-    /* padding-left: 1rem; */
-    border-radius: 4px;
-    transition: background-color 0.6s ease-in;
-    transition: transform 0.3s ease-in-out;
-    background-color: transparent;
-    background-size: 0% 100%;
-    &:hover {
-      padding-left: 1rem;
+.navLink {
+  height: 68px;
+  transition: all 0.3s ease;
+  width: 100%;
+  /* padding-left: 1rem; */
+  border-radius: 4px;
+  transition: background-color 0.6s ease-in;
+  transition: transform 0.3s ease-in-out;
+  background-color: transparent;
+  background-size: 0% 100%;
+  &:hover {
+    padding-left: 1rem;
 
-      color: white;
-      background-image: linear-gradient(
-        to right,
-        #0E2137 0%,
-        #0E2137 40%,
-        #0E2137 100%
-      );
-      background-repeat: no-repeat;
-      background-size: 200% 100%;
-      transition: background-size 0.7s, background-color 0.7s;
-      transform: scale(1.1);
-    }
+    color: ${props => props.theme === 'light' ? 'black' : 'white'};
+    background-image: ${props => props.theme === 'dark' 
+      ? "linear-gradient(to right, #0E2137 0%, #0E2137 40%, #0E2137 100%)" 
+      : "linear-gradient(to right, #f3f3f3 0%, #f3f3f3 40%, #f3f3f3 100%)"};
+    background-repeat: no-repeat;
+    background-size: 200% 100%;
+    transition: background-size 0.7s, background-color 0.7s;
+    transform: scale(1.1);
   }
+}
   @media (max-width: 1000px) {
     flex-direction: column;
     gap: 2rem;

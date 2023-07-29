@@ -97,7 +97,7 @@ export const NavBar = (props: Props) => {
           {parseText(currentPage ?? "home")}
         </Text>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <div style={{ marginRight: '10px' }}>
+            <div style={{ marginRight: '15px' }}>
               <ConnectWallet {...props} />
             </div>
             <ThemeSwitcher />

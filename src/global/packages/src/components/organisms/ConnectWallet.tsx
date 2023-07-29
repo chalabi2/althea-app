@@ -1,9 +1,11 @@
-import { OutlinedButton, Text } from "global/packages/src";
+import { HybirdButton, OutlinedButton, Text } from "global/packages/src";
 import { formatBigNumber } from "../../utils/formatNumbers";
 import Popup from "reactjs-popup";
 import WalletModal from "./WalletModal";
 import { useEthers } from "@usedapp/core";
 import { Mixpanel } from "mixpanel";
+import { useContext } from "react";
+import { ThemeContext } from "ThemeProvider";
 
 interface Props {
   isConnected: boolean;
@@ -16,6 +18,7 @@ interface Props {
 }
 const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
   const { account } = useEthers();
+  const { theme } = useContext(ThemeContext);
   return (
     <div className="wallet">
       {account != null ? (
@@ -26,7 +29,8 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
           position="bottom right"
           trigger={
             <div>
-              <OutlinedButton
+              <HybirdButton
+              type="outlined"
                 style={{
                   fontSize: "18px",
                   fontWeight: "500",
@@ -35,6 +39,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                   height: "32px",
                   fontFamily: "Macan"
                 }}
+                theme={theme}
               >
                 <span className="center ">
                   <img src={currencyIcon} height={14} />
@@ -65,7 +70,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                   &nbsp;
                   {account?.substring(0, 5) + "..." + account.slice(-4)}
                 </span>
-              </OutlinedButton>
+              </HybirdButton>
             </div>
           }
         >

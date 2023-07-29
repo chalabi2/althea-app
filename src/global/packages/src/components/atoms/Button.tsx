@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+
 const Sizes = {
   "xx-sm": 12,
   "x-sm": 16,
@@ -27,6 +28,7 @@ interface Props {
   weight?: "light" | "normal" | "bold" | "x-bold";
   height?: "small" | "normal" | "big";
   filled?: boolean;
+  theme?: string;
 }
 const PrimaryButton = styled.button<Props>`
   font-size: ${({ size }) => Sizes[size ?? "x-sm"] + "px"};
@@ -61,7 +63,7 @@ const OutlinedButton = styled(PrimaryButton)<Props>`
   border: 1px solid var(--primary-color);
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: ${({ theme }) => theme === 'light' ? '#CCE4FF' : '#0D2642'};
     /* background: rgba(6, 252, 153, 0.1); */
     cursor: pointer;
   }
@@ -110,32 +112,36 @@ interface HybridProps {
   padding?: "x-sm" | "sm" | "md" | "lg" | "x-lg";
   type: "primary" | "filled" | "highlight" | "outlined";
   children: React.ReactNode;
+  theme?: string; 
+  style?: React.CSSProperties; 
 }
 const HybirdButton = (props: HybridProps) => {
-  switch (props.type) {
+  const { type, size, padding, children, theme, style } = props; 
+
+  switch (type) {
     case "outlined":
       return (
-        <OutlinedButton size={props.size} padding={props.padding}>
-          {props.children}
+        <OutlinedButton style={style} size={size} padding={padding} theme={theme}> 
+          {children}
         </OutlinedButton>
       );
     case "filled":
       return (
-        <FilledButton size={props.size} padding={props.padding}>
-          {props.children}
+        <FilledButton size={size} padding={padding} theme={theme}>
+          {children}
         </FilledButton>
       );
     case "highlight":
       return (
-        <HighlightButton size={props.size} padding={props.padding}>
-          {props.children}
+        <HighlightButton size={size} padding={padding} theme={theme}>
+          {children}
         </HighlightButton>
       );
     case "primary":
     default:
       return (
-        <PrimaryButton size={props.size} padding={props.padding}>
-          {props.children}
+        <PrimaryButton size={size} padding={padding} theme={theme}>
+          {children}
         </PrimaryButton>
       );
   }
