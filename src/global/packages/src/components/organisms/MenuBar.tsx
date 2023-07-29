@@ -2,9 +2,11 @@
 import menuImg from "assets/icons/menu.svg";
 import closeImg from "assets/icons/close.svg";
 import ImageButton from "global/components/ImageButton";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "@emotion/styled";
-import altheaFullImg from "assets/altheaMenu.svg";
+import logoLight from "assets/logo.svg";
+import logoDark from "assets/altheadark.svg";
+import { ThemeContext } from "ThemeProvider";
 import { Link } from "react-router-dom";
 import { OutlinedButton } from "../atoms/Button";
 import { addAltheaToKeplr } from "../../utils/walletFunctionality";
@@ -52,8 +54,11 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const setModalType = useGlobalModals((state) => state.setModalType);
   const [isHovering, setIsHovering] = useState(false);
+  const { theme } = useContext(ThemeContext);
+  const altheaFullImg = theme === 'light' ? logoDark : logoLight;
+
   return (
-    <Styled isOpen={isOpen}>
+    <Styled isOpen={isOpen} theme={theme}>
       {/* <Styled className={isOpen ? "active" : ""}> */}
       <div
         className="menu-btn burger"
@@ -177,10 +182,11 @@ const MenuBar = ({ currentPage, pageList }: BurgerMenuProps) => {
   );
 };
 
-interface MenuState {
+interface StyledProps {
   isOpen: boolean;
+  theme: string;
 }
-const Styled = styled.div<MenuState>`
+const Styled = styled.div<StyledProps>`
   .menu-btn {
     transition: all 0.3s;
     z-index: 200;
@@ -227,7 +233,7 @@ const Styled = styled.div<MenuState>`
     position: absolute;
     top: 0%;
     left: ${({ isOpen }) => (isOpen ? "0px" : "-260px")};
-    background-color: #101112;
+    background-color: ${({ theme }) => theme === 'light' ? '#ffffff' : '#101112'};
     width: 260px;
     height: 100vh;
     z-index: 100;

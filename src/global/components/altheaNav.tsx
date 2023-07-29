@@ -1,7 +1,9 @@
 import { useEtherBalance, useEthers, useSigner } from "@usedapp/core";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { ThemeContext } from "ThemeProvider";
 import { useNetworkInfo } from "global/stores/networkInfo";
-import logo from "assets/logo.svg";
+import logoLight from "assets/logo.svg";
+import logoDark from "assets/altheadark.svg";
 import { useLocation } from "react-router-dom";
 import { useAlert, NavBar } from "../packages/src";
 import { BigNumber } from "ethers";
@@ -28,6 +30,9 @@ export const AltheaNav = () => {
     (ethBalance?.gte(parseUnits("0.01")) ||
       networkInfo.balance?.gte(parseUnits("0.5"))) ??
     false;
+
+  const { theme } = useContext(ThemeContext);
+  const logo = theme === 'light' ? logoDark : logoLight;
 
   const location = useLocation();
   const currentNetwork = getSupportedNetwork(Number(networkInfo.chainId));
