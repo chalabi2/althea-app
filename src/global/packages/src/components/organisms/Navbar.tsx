@@ -92,6 +92,7 @@ export const NavBar = (props: Props) => {
           size="title2"
           style={{
             transform: "translateY(-3px)",
+            marginRight: "-170px",
           }}
         >
           {parseText(currentPage ?? "home")}
