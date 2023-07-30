@@ -1,4 +1,4 @@
-import{a as d,e as E,b as I,d as z,f as W,V as P,q as Z,P as D,c as k}from"./Styled-df73c7e9.js";import{n as C,D as h,a as r,j as t,b7 as J,V as Q,T as f,P as U,b8 as S,H as u,u as p,i as O,B as j,b9 as K,ba as X,bb as ee,bc as te,bd as oe,f as re,be as ae,m as ne,Z as se,bf as ie,U as le,F as V,aJ as ce,a3 as de}from"./index-24e7360c.js";import{j as ue,d as he}from"./transactionHelpers-653f6902.js";import{T as pe,u as me,O as ge}from"./ongoingTxModal-db5fc0fa.js";import"./moment-9d68d5ae.js";const w={quorum:"33.4%",threshold:"50%",veto:"33.4%"},ve=C.div`
+import{a as d,e as E,b as I,d as z,f as W,V as P,q as Z,P as D,c as k}from"./Styled-43fea437.js";import{n as C,D as h,a as r,j as t,b7 as Q,V as J,T as f,P as U,b8 as S,H as u,u as p,i as O,B as j,b9 as K,ba as X,bb as ee,bc as te,bd as oe,f as re,be as ae,m as ne,Z as se,bf as ie,U as le,F as V,aW as ce,a3 as de}from"./index-53daf1f8.js";import{j as ue,d as he}from"./transactionHelpers-49e83154.js";import{T as pe,u as me,O as ge}from"./ongoingTxModal-cfcb8b66.js";import"./moment-9d68d5ae.js";const w={quorum:"33.4%",threshold:"50%",veto:"33.4%"},ve=C.div`
   background-color: #040404;
   height: min-content;
   width: 26rem;
@@ -42,7 +42,7 @@ import{a as d,e as E,b as I,d as z,f as W,V as P,q as Z,P as D,c as k}from"./Sty
     height: 100vh;
     width: 100%;
   }
-`,fe=({proposal:e,currentVote:i,onVote:c,onClose:a})=>{const[o,n]=h.useState(i??d.NONE),s=l=>{n(l)};return r(ve,{children:[t("div",{className:"close",children:t(J,{src:Q,alt:"close",height:30,onClick:a})}),r(f,{type:"title",size:"title3",children:["your vote for #",e.proposal_id]}),t(f,{color:"white",children:e.content.title}),r("div",{className:"grp",children:[t(x,{selected:o===d.YES,voteOption:d.YES,name:"yes",onChange:s}),t(x,{selected:o===d.NO,voteOption:d.NO,name:"no",onChange:s}),t(x,{selected:o===d.VETO,voteOption:d.VETO,name:"veto",onChange:s}),t(x,{selected:o===d.ABSTAIN,voteOption:d.ABSTAIN,name:"abstain",onChange:s})]}),t(U,{style:{marginTop:"1rem"},onClick:()=>c(o),filled:!0,children:"vote"})]})},be=C.div`
+`,fe=({proposal:e,currentVote:i,onVote:c,onClose:a})=>{const[o,n]=h.useState(i??d.NONE),s=l=>{n(l)};return r(ve,{children:[t("div",{className:"close",children:t(Q,{src:J,alt:"close",height:30,onClick:a})}),r(f,{type:"title",size:"title3",children:["your vote for #",e.proposal_id]}),t(f,{color:"white",children:e.content.title}),r("div",{className:"grp",children:[t(x,{selected:o===d.YES,voteOption:d.YES,name:"yes",onChange:s}),t(x,{selected:o===d.NO,voteOption:d.NO,name:"no",onChange:s}),t(x,{selected:o===d.VETO,voteOption:d.VETO,name:"veto",onChange:s}),t(x,{selected:o===d.ABSTAIN,voteOption:d.ABSTAIN,name:"abstain",onChange:s})]}),t(U,{style:{marginTop:"1rem"},onClick:()=>c(o),filled:!0,children:"vote"})]})},be=C.div`
   padding: 2rem;
   border: 1px solid transparent;
   width: 100%;

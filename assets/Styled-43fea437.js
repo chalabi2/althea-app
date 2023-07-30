@@ -1,4 +1,4 @@
-import{al as g,at as h,i as c,bd as p,n as d}from"./index-24e7360c.js";import{h as l}from"./moment-9d68d5ae.js";var e=(t=>(t[t.YES=0]="YES",t[t.NO=1]="NO",t[t.ABSTAIN=2]="ABSTAIN",t[t.VETO=3]="VETO",t[t.NONE=4]="NONE",t))(e||{});const T={passed:"PROPOSAL_STATUS_PASSED",votingOngoing:"PROPOSAL_STATUS_VOTING_PERIOD"},w={tally:{yes:"1",abstain:"0",no:"0",no_with_veto:"0"}},x={content:{"@type":"none",description:"none",erc20address:"none",title:"none"},deposit_end_time:"000000",final_tally_result:{abstain:"0",no:"0",no_with_veto:"0",yes:"0"},proposal_id:"0000",status:"none",submit_time:"000000",total_deposit:[{amount:"0",denom:"aalthea"}],voting_end_time:"000000",voting_start_time:"0000000"},P=g()(h((t,r)=>({proposals:[],initProposals:async o=>{const i=(await fetch(c(Number(o))+p.generateEndpointProposals(),m).then(function(a){return a.json()})).proposals;t({proposals:i}),await i.map(async a=>{if(a.status=="PROPOSAL_STATUS_VOTING_PERIOD"){const u=await y(a.proposal_id,o),s=r().proposals.filter(f=>f.proposal_id!=a.proposal_id);a.final_tally_result={...u.tally},s.push(a),t({proposals:s})}})},currentProposal:x,setCurrentProposal:o=>t({currentProposal:o})})));async function y(t,r){const n=await(await fetch(c(Number(r))+p.generateEndpointProposalTally(t),m)).json();return n.tally?n:w}const m={method:"GET",headers:{"Content-Type":"application/json"}};function S(t,r){const o=new Date(t);return r?l(o).format("MMM Do YY - h:mm:ss a"):l(o).fromNow()}function v(t){switch(t){case e.YES:return 1;case e.ABSTAIN:return 2;case e.NO:return 3;case e.VETO:return 4;default:return 0}}function N(t){switch(t){case e.YES:return"yes";case e.ABSTAIN:return"abstain";case e.NO:return"no";case e.VETO:return"veto";default:return"none"}}const E=d.div`
+import{al as g,at as h,i as c,bd as d,n as p}from"./index-53daf1f8.js";import{h as l}from"./moment-9d68d5ae.js";var e=(t=>(t[t.YES=0]="YES",t[t.NO=1]="NO",t[t.ABSTAIN=2]="ABSTAIN",t[t.VETO=3]="VETO",t[t.NONE=4]="NONE",t))(e||{});const T={passed:"PROPOSAL_STATUS_PASSED",votingOngoing:"PROPOSAL_STATUS_VOTING_PERIOD"},w={tally:{yes:"1",abstain:"0",no:"0",no_with_veto:"0"}},x={content:{"@type":"none",description:"none",erc20address:"none",title:"none"},deposit_end_time:"000000",final_tally_result:{abstain:"0",no:"0",no_with_veto:"0",yes:"0"},proposal_id:"0000",status:"none",submit_time:"000000",total_deposit:[{amount:"0",denom:"aalthea"}],voting_end_time:"000000",voting_start_time:"0000000"},v=g()(h((t,r)=>({proposals:[],initProposals:async o=>{const s=(await fetch(c(Number(o))+d.generateEndpointProposals(),m).then(function(a){return a.json()})).proposals;t({proposals:s}),await s.map(async a=>{if(a.status=="PROPOSAL_STATUS_VOTING_PERIOD"){const u=await y(a.proposal_id,o),i=r().proposals.filter(f=>f.proposal_id!=a.proposal_id);a.final_tally_result={...u.tally},i.push(a),t({proposals:i})}})},currentProposal:x,setCurrentProposal:o=>t({currentProposal:o})})));async function y(t,r){const n=await(await fetch(c(Number(r))+d.generateEndpointProposalTally(t),m)).json();return n.tally?n:w}const m={method:"GET",headers:{"Content-Type":"application/json"}};function P(t,r){const o=new Date(t);return r?l(o).format("MMM Do YY - h:mm:ss a"):l(o).fromNow()}function S(t){switch(t){case e.YES:return 1;case e.ABSTAIN:return 2;case e.NO:return 3;case e.VETO:return 4;default:return 0}}function N(t){switch(t){case e.YES:return"yes";case e.ABSTAIN:return"abstain";case e.NO:return"no";case e.VETO:return"veto";default:return"none"}}const E=p.div`
   display: flex;
   flex-direction: column;
   color: #fff;
@@ -42,7 +42,7 @@ import{al as g,at as h,i as c,bd as p,n as d}from"./index-24e7360c.js";import{h 
       column-gap: 0.8rem;
     }
   }
-`,A=d.div`
+`,A=p.div`
   overflow-wrap: break-word;
   padding: 4rem;
   display: flex;
@@ -51,9 +51,10 @@ import{al as g,at as h,i as c,bd as p,n as d}from"./index-24e7360c.js";import{h 
   width: 100%;
   align-items: stretch;
   gap: 4rem;
-  background-color: black;
-  height: 100%;
+  background-color: var(--background-threads);
+  height: 75%;
   margin: 0 auto; /* width */
+  border-radius: 3px;
 
   .details {
     display: flex;
@@ -154,4 +155,4 @@ import{al as g,at as h,i as c,bd as p,n as d}from"./index-24e7360c.js";import{h 
       flex-direction: column;
     }
   }
-`;export{E as G,A as P,T as V,e as a,N as b,S as c,v as d,x as e,w as f,y as q,P as u};
+`;export{E as G,A as P,T as V,e as a,N as b,P as c,S as d,x as e,w as f,y as q,v as u};
