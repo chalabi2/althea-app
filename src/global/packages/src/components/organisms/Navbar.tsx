@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Glitch from "../../components/molecules/Glitch";
 import { Text } from "../atoms/Text";
 import Alert from "../atoms/Alert";
 import styled from "@emotion/styled";
@@ -74,7 +73,7 @@ export const NavBar = (props: Props) => {
       <nav className={onScroll ? "scroll" : ""}>
         <div className="menu">
           <MenuBar currentPage={currentPage} pageList={pageList} />
-          <a id="logo" href="/">
+          <a id="logo" href="/althea-app">
             <img src={logo} />
             <div
               style={{

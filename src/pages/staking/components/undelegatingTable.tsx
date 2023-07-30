@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
-import altheaIcon from "assets/logo.svg";
+import altheaIcon from "assets/favicon.ico";
 import { MasterValidatorProps } from "../config/interfaces";
 import Table from "./table";
 import FadeIn from "react-fade-in";

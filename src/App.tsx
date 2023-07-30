@@ -45,7 +45,7 @@ function App() {
           <div className="main-body">
             <Suspense fallback={<Loading />}>
               <Routes>
-                <Route path="/althea-app" key={"home"} element={<HomePage />} />
+                <Route path="/" key={"home"} element={<HomePage />} />
                 <Route
                   path="/bridge/walkthrough"
                   key={"guide"}

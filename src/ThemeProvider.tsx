@@ -12,14 +12,14 @@ export const ThemeContext = createContext<ThemeContextProps>({
 });
 
 interface ThemeProviderProps {
-  children: ReactNode; // <-- Ensure you have this
+  children: ReactNode; //
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Default theme is light, but we'll immediately check to see if the user prefers dark mode
   const [theme, setTheme] = useState<Theme>('light');
 
-  // On component mount, we check the user's preference
+
   useEffect(() => {
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (prefersDarkMode) {

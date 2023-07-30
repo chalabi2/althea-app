@@ -23,7 +23,7 @@ export const CInput = styled.input`
 `;
 
 export const CSearch = styled.input`
-  background: #222222;
+  background: var(--background-threads);
   border-radius: 4px;
   height: 52px;
   color: var(--primary-color);
@@ -39,14 +39,14 @@ export const CSearch = styled.input`
   max-width: 250px;
   width: 100%;
   &:hover {
-    background-color: #333333;
+    background-color: var(--highlights);
   }
 
   &:disabled {
     background-color: #0e0e0e;
   }
   &::placeholder {
-    color: #0077FF;
+    color: var(--primary-color);
   }
   &:focus {
     outline: 1px solid var(--primary-color);

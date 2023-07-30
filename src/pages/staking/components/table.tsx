@@ -28,11 +28,11 @@ const Container = styled.table`
     text-transform: lowercase;
     font-size: 14px;
     border-radius: 4px;
-    background-color: black;
+    background-color: var(--background-threads);
     display: inline-table;
     width: 100%;
     /* tr {
-      border-bottom: var(--primary-color) solid 1px !important;
+      border-bottom: var(--background-threads) solid 1px !important;
     } */
     tr {
       font-size: 12px;
@@ -75,7 +75,7 @@ const Container = styled.table`
     line-height: 90px;
 
     animation-fill-mode: forwards;
-    background-color: black;
+    background-color: var(--background-threads) ;
 
     margin-top: 0.5rem;
     @keyframes fader {

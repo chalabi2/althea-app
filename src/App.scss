@@ -36,6 +36,9 @@
   /* Dark mode colors */
   --primary-color: #000279;
   --primary-color-dark: #0001b0;
+  --background: black;
+  --background-threads: black;
+  --highlights: rgba(255,255,255, 0.1);
   --background-color-start: #0D2642;
   --background-color-end: #101112;
   /* ... other color variables for dark mode ... */
@@ -45,6 +48,9 @@
   /* Dark mode colors */
   --primary-color: #7ea9f8;
   --primary-color-dark: #6a8af2;
+  --background: white;
+  --highlights: rgba(0,0,0, 0.1);
+  --background-threads: rgb(250, 250, 250);
   --background-color-start: #CCE4FF;
   --background-color-end: #ffffff;
   /* ... other color variables for dark mode ... */

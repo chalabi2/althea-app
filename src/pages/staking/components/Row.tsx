@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
 import { UndelegatingValidator } from "../config/interfaces";
-
+ 
 interface RowProps {
   rank: number;
   name: string;

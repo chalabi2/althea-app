@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
+import { ThemeContext } from "ThemeProvider";
+import { useContext } from "react";
 
 export const StakingModalContainer = styled.div`
-  background-color: #040404;
+  background-color: var(--background);
   height: fit-content;
   max-height: 90vh;
   padding-bottom: 40px;
