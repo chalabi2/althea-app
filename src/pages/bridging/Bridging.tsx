@@ -180,6 +180,7 @@ const Styled = styled.div`
     top: 4.5rem;
   }
 
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-self: center;

@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import loadingIcon from "assets/loading.gif";
+import LoadingComponent from "./loadingComponent";
 
 const Loading = () => {
   return (
     <Styled>
-      <img src={loadingIcon} alt="loading" height={80} />
+     <LoadingComponent/>
     </Styled>
   );
 };

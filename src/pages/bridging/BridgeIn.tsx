@@ -122,19 +122,23 @@ const BridgeIn = (props: BridgeInProps) => {
 
 export const BridgeStyled = styled.div`
   display: flex;
+  background: transparent;
   flex-direction: row;
   flex-grow: 1;
   width: 100%;
   position: relative;
   & > * {
+    background-color: transparent;
     width: 100%;
   }
   .left {
     height: calc(100% - 1rem);
     overflow-y: auto;
     margin-top: 3rem;
+    background-color: transparent;
   }
   .center {
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,6 +163,7 @@ export const BridgeStyled = styled.div`
     }
 
     .left {
+      background-color: transparent;
       margin-top: 0;
       margin-bottom: 4rem;
     }
