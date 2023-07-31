@@ -12,7 +12,7 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ## To-do
 
 ### Staking
-- Buttons in staking modal to tx go dark on hover
+- Buttons in staking modal to tx go dark on hover or go to page background
 - drop down list font color for redelegate
 - input boxes in staking modal
 - Staking apr

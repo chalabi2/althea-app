@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import searchImg from "assets/search.svg";
 
 export const CInput = styled.input`
-  background: #222222;
+  background: var(--highlights);
   border-radius: 4px;
   height: 56px;
   color: var(--primary-color);
@@ -12,9 +12,8 @@ export const CInput = styled.input`
   padding-left: 16px;
   letter-spacing: -0.03em;
   ::placeholder {
-    /* color: var(--primary-color); */
+     color: var(--primary-color); 
     opacity: 0.4;
-    color: #999;
   }
   &:focus {
     outline: 1px solid var(--primary-color);

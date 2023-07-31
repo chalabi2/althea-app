@@ -359,9 +359,10 @@ const Selected = styled.div`
     filter: grayscale(1);
     padding-left: 4px;
     opacity: 0.5;
+    color: var(--primary-color);
   }
   .react-select__control {
-    background-color: #222222 !important;
+    background-color: var(--highlights) !important;
     color: var(--primary-color) !important;
     border: none;
     border-radius: 4px;
@@ -377,7 +378,7 @@ const Selected = styled.div`
 
   .react-select__menu {
     backdrop-filter: blur(35px);
-    background: rgba(0, 119, 255, 0.25);
+    background: var(--base);
     border-radius: 4px;
     /* overflow: visible; */
     color: var(--primary-color) !important;

@@ -44,8 +44,8 @@ export const StakingModalContainer = styled.div`
       line-height: 140%;
       letter-spacing: -0.03em;
       text-transform: lowercase;
-      color: #efefef;
-      border: 1px solid #efefef;
+      color: var(--primary-color-dark);
+      border: 1px solid var(--primary-color-dark);
       opacity: 0.5;
       position: absolute;
       right: 12px;

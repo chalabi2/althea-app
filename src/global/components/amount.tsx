@@ -55,11 +55,11 @@ const Styled = styled.div`
     height: 100%;
     width: 7rem;
     margin-left: 3px;
-    background-color: #252525;
+    background-color: purple;
 
     border: none;
     &:hover {
-      background-color: #333;
+      background-color: var(--primay-color-dark);
       cursor: pointer;
       p {
         color: white;
