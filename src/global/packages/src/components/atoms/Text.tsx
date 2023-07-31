@@ -12,7 +12,7 @@ const Mapper = {
   white: "white",
   primary: "var(--primary-color)",
   primaryDark: "#08ac6b",
-  dark: "#111",
+  dark: "var(--base-reverse)",
   darkFont: "#101113",
   size: {
     title1: 44,

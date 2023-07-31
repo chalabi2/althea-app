@@ -13,7 +13,7 @@ import GovModal from "./components/govModal";
 import GBar from "./components/gBar";
 import { useSingleProposalData } from "./hooks/useSingleProposalData";
 import { useState } from "react";
-import altheaIcon from "assets/logo.svg";
+import altheaIcon from "assets/favicon.ico";
 import OngoingTxModal from "global/components/modals/ongoingTxModal";
 const Proposal = () => {
   const {
@@ -68,19 +68,12 @@ const Proposal = () => {
             proposal.content["@type"].lastIndexOf(".") + 1
           )}
         />
-        <div
-          className="rowCell"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            color: "green",
-          }}
-        >
-          <p>Description</p>
-          <p
-          >{proposal.content.description}</p>
-        </div>
+
+          <RowCell
+  type="Description:"
+  value={proposal.content.description}
+/>
+
         <div
           role={"button"}
           tabIndex={0}
@@ -102,7 +95,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.yes)
                     )}{" "}
-                   <div>ALTG</div>
+                   <div>althea</div>
                   </>
                 )
               }
@@ -118,7 +111,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.no)
                     )}{" "}
-                    <div>ALTG</div>
+                    <div>althea</div>
                   </>
                 )
               }
@@ -135,13 +128,13 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.no_with_veto)
                     )}{" "}
-                    <div>ALTG</div>
+                    <div>althea</div>
                   </>
                 )
               }
             />
             <RowCell
-              color="#fbea51"
+              color="#D4A017"
               type="Abstain:"
               value={
                 customizeData.showPercentVote ? (
@@ -152,7 +145,7 @@ const Proposal = () => {
                     {truncateNumber(
                       formatUnits(voteData.currentTally.tally.abstain)
                     )}{" "}
-                    <div>ALTG</div>
+                    <div>althea</div>
                   </>
                 )
               }
@@ -288,14 +281,14 @@ const RowCell = (props: Props) => {
     >
       <p
         style={{
-          color: props.color ?? "#888",
+          color: props.color ?? "var(--primary-color)",
         }}
       >
         {props.type}
       </p>
       <p
         style={{
-          color: props.color ?? "white",
+          color: props.color ?? "var(--primary-color)",
         }}
       >
         {props.value}

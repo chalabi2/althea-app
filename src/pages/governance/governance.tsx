@@ -74,7 +74,7 @@ const Governance = () => {
       <Text
         size="title2"
         type="title"
-        color="white"
+        color="dark"
         style={{
           margin: "3rem 1rem",
           fontFamily: "Macan",

@@ -49,6 +49,7 @@ export const ProposalContainer = styled.div`
   overflow-wrap: break-word;
   padding: 4rem;
   display: flex;
+  box-shadow: 4px 4px 20px 10px rgba(0, 0, 0, 0.1);
   flex-direction: column;
   max-width: 1200px;
   width: 100%;
@@ -102,7 +103,7 @@ export const ProposalContainer = styled.div`
     border: 1px solid #555;
     padding: 1rem;
     border-radius: 4px;
-    background-color: #121212;
+    background-color: var(--base);
     img {
       position: relative;
       top: 2px;
@@ -137,7 +138,7 @@ export const ProposalContainer = styled.div`
 
     /* almost white */
 
-    color: #efefef;
+    color: var(--primary-color);
   }
 
   @media (max-width: 1000px) {

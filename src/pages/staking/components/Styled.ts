@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { ThemeContext } from "ThemeProvider";
-import { useContext } from "react";
 
 export const StakingModalContainer = styled.div`
   background-color: var(--background);
