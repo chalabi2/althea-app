@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import { OutlinedButton, Text } from "global/packages/src";
+import { HybirdButton, OutlinedButton, Text } from "global/packages/src";
+import { ThemeContext } from "ThemeProvider";
+import { useContext } from "react";
 
 interface Props {
   balance: string;
@@ -11,6 +13,7 @@ interface Props {
   canClaim: boolean;
 }
 const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
+  const { theme } = useContext(ThemeContext)
   return (
     <Styled>
       <div
@@ -51,17 +54,21 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
           <Text type="text">{rewards}</Text>
         </div>
       </div>
-      <OutlinedButton
-        height="big"
-        disabled={Number(rewards) == 0 || !canClaim}
-        onClick={() => {
-          onRewards();
-        }}
-      >
-        <Text size="text2" type="text" bold>
-          claim rewards
-        </Text>
-      </OutlinedButton>
+      <HybirdButton
+  type="outlined"
+  style={{
+    height: "big",
+  }}
+  theme={theme}
+  disabled={Number(rewards) == 0 || !canClaim}
+  onClick={() => {
+    onRewards();
+  }}
+>
+  <Text size="text2" type="text" bold>
+    claim rewards
+  </Text>
+</HybirdButton>
     </Styled>
   );
 };

@@ -114,38 +114,41 @@ interface HybridProps {
   children: React.ReactNode;
   theme?: string; 
   style?: React.CSSProperties; 
+  onClick?: () => void;
+  disabled?: boolean;
 }
 const HybirdButton = (props: HybridProps) => {
-  const { type, size, padding, children, theme, style } = props; 
+  const { type, size, padding, children, theme, style, disabled, onClick } = props; 
 
   switch (type) {
     case "outlined":
       return (
-        <OutlinedButton style={style} size={size} padding={padding} theme={theme}> 
+        <OutlinedButton style={style} size={size} padding={padding} theme={theme} disabled={disabled} onClick={onClick}> 
           {children}
         </OutlinedButton>
       );
     case "filled":
       return (
-        <FilledButton size={size} padding={padding} theme={theme}>
+        <FilledButton size={size} padding={padding} theme={theme} disabled={disabled} onClick={onClick}>
           {children}
         </FilledButton>
       );
     case "highlight":
       return (
-        <HighlightButton size={size} padding={padding} theme={theme}>
+        <HighlightButton size={size} padding={padding} theme={theme} disabled={disabled} onClick={onClick}>
           {children}
         </HighlightButton>
       );
     case "primary":
     default:
       return (
-        <PrimaryButton size={size} padding={padding} theme={theme}>
+        <PrimaryButton size={size} padding={padding} theme={theme} disabled={disabled} onClick={onClick}>
           {children}
         </PrimaryButton>
       );
   }
 };
+
 export {
   PrimaryButton,
   OutlinedButton,

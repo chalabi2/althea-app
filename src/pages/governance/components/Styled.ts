@@ -56,7 +56,7 @@ export const ProposalContainer = styled.div`
   align-items: stretch;
   gap: 4rem;
   background-color: var(--background-threads);
-  height: 75%;
+  height: 95%;
   margin: 0 auto; /* width */
   border-radius: 3px;
 

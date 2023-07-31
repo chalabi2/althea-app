@@ -58,7 +58,7 @@ const GovBar = (props: barProps) => {
 };
 
 const Styled = styled.div`
-  background-color: black;
+  background-color: var(--base);
   padding: 1rem;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -88,6 +88,7 @@ const Styled = styled.div`
     display: flex;
     align-items: center;
     transition: all 0.2s ease-in-out;
+    color: var(--base-reverse);
   }
   .votes-grp {
     display: grid;
@@ -102,7 +103,7 @@ const Styled = styled.div`
     border-radius: 4px;
     justify-content: space-between;
     /* transition: all 0.2s ease-in 0.2s; */
-    background-color: black;
+    background-color: var(--base);
     padding: 2rem;
     padding-left: 4rem;
     opacity: 0;
@@ -176,11 +177,12 @@ const BlobText = styled.p<blobProp>`
   /* flex-direction: column; */
   align-items: center;
   font-family: "Macan";
+  color: ${(props) => props.color};
 
   span {
     font-family: "Macan";
     margin-right: 8px;
-    /* color: ${(props) => props.color}; */
+    color: ${(props) => props.color};
   }
 
   &::before {

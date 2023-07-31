@@ -202,7 +202,7 @@ const Styled = styled.div`
   top: 0;
   left: 0;
   display: flex;
-  background-color: black;
+  background-color: var(--base);
   height: 100%;
   width: 100%;
   z-index: 10;
@@ -246,7 +246,7 @@ const Styled = styled.div`
     justify-content: center;
     align-items: center;
     border: 1px solid #333;
-    background-color: #111;
+    background-color: var(--base);
     border-radius: 4px;
     padding: 1rem;
     gap: 1rem;
@@ -254,7 +254,7 @@ const Styled = styled.div`
 
   .tx-item-complete {
     opacity: 0.7;
-    background-color: black;
+    background-color: var(--base);
   }
 
   .network-change {

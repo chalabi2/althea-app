@@ -5,11 +5,39 @@
 ---
 
 This is a fork of [canto.io](https://www.canto.io/)
-Reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
+reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
+
+---
+
+## To-do
+
+### Staking
+- Buttons in staking modal to tx go dark on hover
+- drop down list font color for redelegate
+- input boxes in staking modal
+- Staking apr
+- Move from jailed validators tx type
+- One button delegation
+- claim rewards modal
+
+### General
+- Governance Font
+- Title fonts
+- Page title margins
+
+### Bridge
+- errthang
+
+### Governance
+
+
+### lending
+- Remove lending
+
+---
 
 ## Installation
 
----
 
 To install all dependencies make sure you have yarn installed.
 
@@ -49,14 +77,3 @@ All tests are written using the Jest testing library.
 # run all tests
 yarn test 
 ```
-Governance Font
-Title fonts
-Staking apr
-IBC
-Bridge Backend
-Token lists
-Remove Lending
-claim rewards modal
-
-Wallet hover color
-Color switch hover color

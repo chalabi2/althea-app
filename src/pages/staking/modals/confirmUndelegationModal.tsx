@@ -4,7 +4,7 @@ import warningImg from "assets/warning.svg";
 
 const ConfirmUndelegation = styled.div`
   /* background: rgba(217, 217, 217, 0.2); */
-  background-color: black;
+  background-color: var(--base);
   /* backdrop-filter: blur(35px); */
   position: absolute;
   width: 100%;
