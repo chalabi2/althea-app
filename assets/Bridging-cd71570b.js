@@ -1,4 +1,4 @@
-import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as warningImg,X as loadingIcon,Y as OutlinedButton,Z as useNetworkInfo,_ as GenPubKeyWalkthrough,$ as lib,a0 as CopyIcon,a1 as getBlockTimestamp,a2 as MAINNET_IBC_NETWORKS,a3 as Popup,a4 as convertStringToBigNumber,a5 as useEtherBalance,a6 as TokenGroups,a7 as getSupportedNetwork,a8 as useNavigate,a9 as NotConnected,aa as altheaIcon,ab as findNativeToken,ac as getNetworkFromAltheaChannel,ad as ETHMainnet,ae as ADDRESSES,af as TOKENS,ag as MumbaiTestnet,ah as FantomTestnet,ai as GoerliTestnet,aj as AvalancheTestnet,ak as OptimismTestnet,al as create$1$1,am as useTransactionHistory,an as useBridgeTokenInfo,ao as useEthers,ap as BalanceTableModal,aq as ALTHEA_MAIN_CONVERT_COIN_TOKENS,ar as addNetwork}from"./index-5f9c7c75.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-a8b813d5.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-58656f53.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,a as completeIcon,u as useTransactionStore}from"./ongoingTxModal-118154c1.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
+import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as warningImg,X as loadingIcon,Y as OutlinedButton,Z as useNetworkInfo,_ as GenPubKeyWalkthrough,$ as lib,a0 as CopyIcon,a1 as getBlockTimestamp,a2 as MAINNET_IBC_NETWORKS,a3 as Popup,a4 as convertStringToBigNumber,a5 as useEtherBalance,a6 as TokenGroups,a7 as getSupportedNetwork,a8 as useNavigate,a9 as NotConnected,aa as altheaIcon,ab as findNativeToken,ac as getNetworkFromAltheaChannel,ad as ETHMainnet,ae as ADDRESSES,af as TOKENS,ag as MumbaiTestnet,ah as FantomTestnet,ai as GoerliTestnet,aj as AvalancheTestnet,ak as OptimismTestnet,al as create$1$1,am as useTransactionHistory,an as useBridgeTokenInfo,ao as useEthers,ap as BalanceTableModal,aq as ALTHEA_MAIN_CONVERT_COIN_TOKENS,ar as addNetwork}from"./index-24ab1531.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-a83440c9.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-6d45a65b.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,a as completeIcon,u as useTransactionStore}from"./ongoingTxModal-7399caad.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -759,7 +759,8 @@ font-size: '12px;
   }
 `,QBox=({question:e,answer:t})=>{const[c,l]=reactExports.useState(!1),[d,p]=reactExports.useState(0),A=reactExports.useRef(null);return reactExports.useLayoutEffect(()=>{p(A.current.clientHeight)},[]),jsxs(Styled$5,{height:d,expanded:c,onClick:()=>{l(!c)},children:[jsx("div",{className:"header noselect",ref:A,children:e}),jsx("div",{className:"content noselect",children:t})]})},Styled$5=newStyled.div`
   width: 100%;
-  background: #090909;
+  background-color: var(--base);
+  background: var(--base);
   border: 1px solid #505050;
   border-radius: 4px;
   padding: 1rem;
@@ -769,14 +770,14 @@ font-size: '12px;
   overflow-y: hidden;
   padding: ${({expanded:e})=>e?"1rem":"16px"};
   &:hover {
-    background-color: #222;
+    background-color: var(--background-color-start);
     cursor: pointer;
   }
   .header {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.03em;
-    color: #cccccc;
+    color: var(--base-reverse);
   }
 
   .content {
@@ -809,19 +810,23 @@ font-size: '12px;
   }
 `,BridgeIn=e=>{var t;return jsxs(BridgeStyled,{children:[jsxs("div",{className:"left",children:[jsx(QBoxList,{title:"instructions",QA:[{question:"Step 1: Send Funds to Althea",answer:jsxs(Fragment,{children:["To start bridging, select the network and token you want to bridge in on the top half of the page. If you are bridging in from Ethereum, this first step usually takes 20 minutes",jsx("br",{}),jsx("br",{}),"For more details,"," ",jsx("a",{role:"button",tabIndex:0,onClick:()=>window.open("https://docs.althea.io/user-guides/bridging-assets/to-althea","_blank"),style:{color:"var(--primary-color)",cursor:"pointer",textDecoration:"underline"},children:"click here"})]})},{question:"Step 2: Complete Queued Transactions",answer:"The 'Complete' button will appear in the bridge queue on the bottom half of this page once the tokens arrive at the Althea native chain. Click the 'Complete' button to move the tokens from the Althea native chain to Althea's EVM"}]}),jsx(QBoxList,{title:"F.A.Q.",QA:[{question:"How long does it take?",answer:"Sending tokens from Ethereum to the Althea native chain (Step 1) takes 20-30 minutes. IBC transactions usually complete in a few seconds. Completing a queued transaction (Step 2) usually takes a few seconds."},{question:"Where are my tokens?",answer:"If you can’t find your tokens, first check to see if the queued transaction is complete at the bottom half of the page. If the transaction is complete, you can click the “Balances” button to see a table of your token balances that are either queued or on Ethereum or Althea."}]})]}),jsxs("div",{className:"center",children:[jsx(Step1TxBox,{bridgeIn:!0,allNetworks:e.allNetworks,fromNetwork:e.fromNetwork,toNetwork:e.toNetwork,selectNetwork:c=>e.selectNetwork(c,!0),fromAddress:e.ethAddress,toAddress:(t=e.selectedToken)!=null&&t.isOFT?e.ethAddress:e.altheaAddress,allTokens:e.bridgeTokens,selectedToken:e.selectedToken,selectToken:e.selectToken,tx:async c=>await e.tx(c)}),jsx(Step2TxBox,{bridgeIn:!0,transactions:e.step2Transactions,altheaAddress:e.altheaAddress??"",ethAddress:e.ethAddress??"",txStore:e.txStore,chainId:e.chainId})]}),jsx("div",{className:"right"})]})},BridgeStyled=newStyled.div`
   display: flex;
+  background: transparent;
   flex-direction: row;
   flex-grow: 1;
   width: 100%;
   position: relative;
   & > * {
+    background-color: transparent;
     width: 100%;
   }
   .left {
     height: calc(100% - 1rem);
     overflow-y: auto;
     margin-top: 3rem;
+    background-color: transparent;
   }
   .center {
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -846,6 +851,7 @@ font-size: '12px;
     }
 
     .left {
+      background-color: transparent;
       margin-top: 0;
       margin-bottom: 4rem;
     }
@@ -958,6 +964,7 @@ font-size: '12px;
     top: 4.5rem;
   }
 
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-self: center;

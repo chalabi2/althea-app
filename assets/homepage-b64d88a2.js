@@ -1,8 +1,8 @@
-import{n as r,j as t,F as i,a as o,b0 as g,D as p,aH as h,bk as u,bl as m,U as b,T as f}from"./index-5f9c7c75.js";import{H as k}from"./seo-c4d18201.js";const x="/althea-app/assets/bg-5f337ca0.jpg",w=r.span`
+import{n as r,j as t,F as i,a as o,aW as g,D as p,aH as h,be as u,bf as m,U as f,T as b}from"./index-24ab1531.js";import{H as k}from"./seo-ac6f7db2.js";const x="/althea-app/assets/bg-5f337ca0.jpg",w=r.span`
 font-family: 'Macan';
 `,v=r.span`
 font-family: 'MacanFont';
-`;function y(n){const e=n.split(" ");return t(i,{children:e.map((s,d)=>{const l=new Set;return o(g.Fragment,{children:[s.split("").map((a,c)=>!l.has(a.toUpperCase())&&"GANTO".includes(a.toUpperCase())?(l.add(a.toUpperCase()),t(v,{children:a},c)):t(w,{children:a},c)),d<e.length-1&&t(i,{children:" "})]},d)})})}const T=()=>{const{theme:n}=p.useContext(h);return o(i,{children:[t(k,{title:"Althea Web App",description:"Althea Web App enables IFi accesibility",link:""}),o(F,{theme:n,children:[t("ul",{className:"options",id:"routes",children:u.map((e,s)=>e.showInMenu?t(m,{to:e.link,id:e.name,onClick:()=>b.events.landingPageActions.navigatedTo(e.name),children:t(f,{type:"title",size:"title1",align:"left",className:"navLink",children:y(e.name)})},e.name):null)}),t("div",{className:"right"})]})]})},F=r.div`
+`;function y(n){const e=n.split(" ");return t(i,{children:e.map((s,d)=>{const l=new Set;return o(g.Fragment,{children:[s.split("").map((a,c)=>!l.has(a.toUpperCase())&&"GANTO".includes(a.toUpperCase())?(l.add(a.toUpperCase()),t(v,{children:a},c)):t(w,{children:a},c)),d<e.length-1&&t(i,{children:" "})]},d)})})}const T=()=>{const{theme:n}=p.useContext(h);return o(i,{children:[t(k,{title:"Althea Web App",description:"Althea Web App enables IFi accesibility",link:""}),o(F,{theme:n,children:[t("ul",{className:"options",id:"routes",children:u.map((e,s)=>e.showInMenu?t(m,{to:e.link,id:e.name,onClick:()=>f.events.landingPageActions.navigatedTo(e.name),children:t(b,{type:"title",size:"title1",align:"left",className:"navLink",children:y(e.name)})},e.name):null)}),t("div",{className:"right"})]})]})},F=r.div`
   display: flex;
   justify-content: space-between;
   max-width: 1200px;
