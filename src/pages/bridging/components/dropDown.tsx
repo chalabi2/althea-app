@@ -81,7 +81,8 @@ const DropDown = ({
                       setSelectModalOpen(false);
                     }}
                     style={{
-                      background: activeItem?.id === item.id ? "#1d1d1d" : "",
+                      background: activeItem?.id === item.id ? "var(--background-color-start)" : "",
+                      
                     }}
                   >
                     <span>
@@ -103,7 +104,7 @@ const DropDown = ({
 const Styled = styled.button`
   display: flex;
   align-items: center;
-  background: #111111;
+  background: var(--highlights);
   border: 1px solid #242424;
   border-radius: 4px;
   padding: 8px 16px;
@@ -135,12 +136,12 @@ const Styled = styled.button`
   }
   transition: background-color 0.2s, border-color 0.3s;
   &:not(:disabled):hover {
-    background: #333;
+    background: var(--hightlights);
     border-color: #525252;
 
     cursor: pointer;
     .label {
-      color: white !important;
+      color: grey !important;
     }
   }
 `;

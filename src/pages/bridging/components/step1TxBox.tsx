@@ -496,8 +496,9 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
 };
 
 const Styled = styled.div`
-  background: #181818;
+  background: var(--base);
   border: 1px solid #3a3a3a;
+  box-shadow: 4px 4px 20px 10px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   width: 600px;
   padding: 1rem 2rem;
@@ -507,14 +508,14 @@ const Styled = styled.div`
     height: 100%;
     width: 7rem;
     margin-left: 3px;
-    background-color: #252525;
+    background-color: var(--highlights);
 
     border: none;
     &:hover {
-      background-color: #333;
+      background-color: var(--base);
       cursor: pointer;
       p {
-        color: white;
+        color: grey;
       }
     }
 
@@ -561,6 +562,7 @@ const Styled = styled.div`
   .token-box {
     height: 58px;
     width: 100%;
+    background-color: var(--highlights);
     border: 1px solid #252525;
     border-radius: 4px;
     display: flex;
@@ -577,7 +579,7 @@ const Styled = styled.div`
   }
   .amount {
     height: 58px;
-    background: #060606;
+    background-color: var(--highlights);
     border: 1px solid #2e2d2d;
     border-radius: 4px;
     display: flex;

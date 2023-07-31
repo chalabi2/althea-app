@@ -3,7 +3,7 @@ import NotConnected from "global/packages/src/components/molecules/NotConnected"
 import walletIcon from "assets/favicon.ico";
 import warningRedIcon from "assets/warning_red.svg";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useBridgeWalkthroughStore } from "./store/bridgeWalkthroughStore";
 import { useCustomWalkthrough } from "./store/customUseWalkthrough";
 import { useEthers } from "@usedapp/core";
@@ -33,6 +33,18 @@ const Walkthrough = () => {
     walkthrough.resetState(false);
   }
 
+  const [isLoading, setIsLoading] = useState(true);
+ 
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setIsLoading(false); 
+    }, 2500);
+
+    // cleanup function
+    return () => clearTimeout(timer);
+  }, []); 
+  
   if (networkInfo.needPubKey) {
     if (!networkInfo.canPubKey) {
       return (
@@ -80,9 +92,9 @@ const Walkthrough = () => {
         altheaTokens={tokens.allUserTokens.userBridgeOutTokens}
         allConvertCoinTokens={ALTHEA_MAIN_CONVERT_COIN_TOKENS}
       />
-      <LoadingWalkthrough delay={2500} />
-      {!hasFunds && <NoFunds />}
-      {!finishedBridgeSelection && hasFunds && (
+      {isLoading && <LoadingWalkthrough delay={2500} />}
+      {!isLoading && !hasFunds && <NoFunds />}
+      {!isLoading && !finishedBridgeSelection && hasFunds && (
         <IntroPage
           setBridgeType={walkthrough.setBridgeType}
           currentBridgeType={walkthrough.currentBridgeType}
@@ -103,7 +115,7 @@ const Walkthrough = () => {
           canBridgeOut={walkthroughInfo.canBridgeOut}
         />
       )}
-      {finishedBridgeSelection &&
+       {!isLoading && finishedBridgeSelection &&
         hasFunds &&
         walkthrough.currentBridgeType == "IN" && (
           <BridgeInManager
@@ -135,7 +147,7 @@ const Walkthrough = () => {
           />
         )}
 
-      {finishedBridgeSelection &&
+{!isLoading && finishedBridgeSelection &&
         hasFunds &&
         walkthrough.currentBridgeType == "OUT" && (
           <BridgeOutManager
@@ -169,7 +181,7 @@ const Walkthrough = () => {
 };
 
 export const PubKeyStyled = styled.div`
-  background-color: black;
+  background-color: transparent;
   height: 100%;
   max-width: 1200px;
   width: 100%;
@@ -197,7 +209,7 @@ export const PubKeyStyled = styled.div`
   }
 `;
 const Styled = styled.div`
-  background-color: black;
+  background-color: transparent;
   height: 100%;
   max-width: 1200px;
   width: 100%;

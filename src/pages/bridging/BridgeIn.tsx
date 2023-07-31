@@ -85,7 +85,7 @@ const BridgeIn = (props: BridgeInProps) => {
             {
               question: "Where are my tokens?",
               answer:
-                "If you can’t find your tokens, first check to see if the queued transaction is complete at the bottom half of the page. If the transaction is complete, you can click the “Balances” button to see a table of your token balances that are either queued or on Ethereum or Althea.",
+                "If you can't find your tokens, first check to see if the queued transaction is complete at the bottom half of the page. If the transaction is complete, you can click the “Balances” button to see a table of your token balances that are either queued or on Ethereum or Althea.",
             },
           ]}
         />
@@ -122,13 +122,11 @@ const BridgeIn = (props: BridgeInProps) => {
 
 export const BridgeStyled = styled.div`
   display: flex;
-  background: transparent;
+  background: transparent !important;
   flex-direction: row;
   flex-grow: 1;
-  width: 100%;
   position: relative;
   & > * {
-    background-color: transparent;
     width: 100%;
   }
   .left {

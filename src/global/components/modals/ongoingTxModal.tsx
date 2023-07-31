@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import loadingGif from "assets/loading.gif";
+import LoadingComponent from "../loadingComponent";
 import completeIcon from "assets/complete.svg";
 import warningIcon from "assets/warning.svg";
 import close from "assets/icons/close.svg";
@@ -137,23 +138,18 @@ const OngoingTxModal = (props: LoadingProps) => {
                       }
                     >
                       <div className="tx-icon">
-                        {tx.details.status == "None" ? (
-                          <Text size="text1" type="title">
-                            {idx + 1}
-                          </Text>
-                        ) : (
-                          <img
-                            src={
-                              tx.details.status == "Success"
-                                ? completeIcon
-                                : tx.details.status == "Fail" ||
-                                  tx.details.status == "Exception"
-                                ? warningIcon
-                                : loadingGif
-                            }
-                          />
-                        )}
-                      </div>
+  {tx.details.status == "None" ? (
+    <Text size="text1" type="title">
+      {idx + 1}
+    </Text>
+  ) : tx.details.status == "Success" ? (
+    <img src={completeIcon} />
+  ) : tx.details.status == "Fail" || tx.details.status == "Exception" ? (
+    <img src={warningIcon} />
+  ) : (
+    <LoadingComponent/>
+  )}
+</div>
                       <Text
                         size="text3"
                         bold

@@ -59,10 +59,10 @@ const Styled = styled.div`
 
     border: none;
     &:hover {
-      background-color: var(--primay-color-dark);
+      background-color: var(--background-color-start);
       cursor: pointer;
       p {
-        color: white;
+        color: grey;
       }
     }
 

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 const BaseStyled = styled.div`
-  background-color: black;
+  background-color: transparent;
   height: 100%;
   max-width: 1200px;
   width: 100%;

@@ -51,7 +51,7 @@ const Transactions = (props: TransactionHistoryProps) => {
       {noTransactions && (
         <NotConnected
           title="No Transactions"
-          subtext="You haven't made any transactions using bridging yet."
+          subtext="Previous bridge transactions will be shown here."
           buttonText="Get Started"
           bgFilled
           onClick={() => {
@@ -131,6 +131,7 @@ const Styled = styled.div`
   padding: 60px 0;
   max-width: 600px;
   flex-grow: 1;
+  background-color: transparent;
 
   @media (max-width: 1000px) {
     max-width: 100%;

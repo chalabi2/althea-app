@@ -232,7 +232,7 @@ const Styled = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  background-color: #010101;
+  background-color: var(--base);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 4px;
   gap: 1rem;
@@ -244,7 +244,7 @@ const Styled = styled.div`
     padding: 8px 16px;
     gap: 10px;
     height: 42px;
-    background: #111111;
+    background: var(--base)
     border: 1px solid #242424;
     border-radius: 4px;
     width: fit-content;
@@ -253,7 +253,7 @@ const Styled = styled.div`
   .network-select {
     display: flex;
     align-items: center;
-    background: #111111;
+    background: var(--base);
     border: 1px solid #242424;
     border-radius: 4px;
     padding: 8px 16px;
@@ -313,7 +313,7 @@ export const ChooseNetwork = styled.div`
         width: 30px;
       }
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--background-color-start);
       }
     }
   }

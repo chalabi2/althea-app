@@ -32,12 +32,12 @@ const rotateThree = keyframes`
 
 // Define styled components
 const Loader = styled.div`
-  position: absolute;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 128px;
   height: 128px;
-  border-radius: 75%;
+  border-radius: 50%;
   perspective: 800px;
 `;
 

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import loadingIcon from "assets/loading.gif";
+import LoadingComponent from "global/components/loadingComponent";
 import { Text } from "global/packages/src";
 import { useEffect, useState } from "react";
 
@@ -22,7 +22,7 @@ const LoadingWalkthrough = ({ delay }: Props) => {
         Bridge Walkthrough
       </Text>
 
-      <img src={loadingIcon} height={100} />
+     <LoadingComponent/>
       <div
         style={{
           maxWidth: "500px",
@@ -30,7 +30,7 @@ const LoadingWalkthrough = ({ delay }: Props) => {
       >
         <Text type="text">Setting up the walkthrough for you</Text>
         <Text type="text" size="text3">
-          This walkthrough steps you through bridging for a simpler experience
+          This walkthrough steps you through bridging for a simpler experience.
         </Text>
       </div>
     </Styled>
@@ -43,9 +43,11 @@ const Styled = styled.div`
   width: 100%;
   display: grid;
   place-items: center;
-  background-color: #010101;
+  background-color: transparent;
   z-index: 2;
   padding: 2rem;
+  top: 0;
+  left: 0;
 `;
 
 export default LoadingWalkthrough;

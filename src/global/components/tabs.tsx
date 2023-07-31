@@ -84,7 +84,7 @@ const Styled = styled.div`
   .react-tabs__tab-panel {
     max-width: 1200px;
     width: 100vw;
-
+    
     flex-grow: 1;
   }
 
@@ -92,7 +92,7 @@ const Styled = styled.div`
     border-top: 1px solid var(--primary-color);
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: transparent;
     min-height: 47rem;
   }
 

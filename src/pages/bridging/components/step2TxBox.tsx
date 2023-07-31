@@ -96,7 +96,8 @@ const Step2TxBox = (props: Step2TxBoxProps) => {
 };
 
 const Styled = styled.div`
-  background: #090909;
+  background: var(--base);
+  box-shadow: 4px 4px 20px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #3a3a3a;
   border-radius: 4px;
   width: 600px;
@@ -114,7 +115,7 @@ const Styled = styled.div`
 
   .empty-records {
     border: 1px solid #333;
-    background-color: #111;
+    background-color: var(--highlights);
     border-radius: 4px;
     padding: 1rem;
     p {

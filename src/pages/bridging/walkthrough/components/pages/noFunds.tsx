@@ -23,6 +23,7 @@ const Styled = styled(BaseStyled)`
   padding: 2rem;
   justify-content: center;
   max-width: 700px;
+  background-color: transparent;
 `;
 
 export default NoFunds;

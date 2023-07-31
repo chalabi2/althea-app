@@ -23,7 +23,7 @@ const NotConnected = ({
   return (
     <Styled
       style={{
-        backgroundColor: bgFilled ? "black" : "none",
+        backgroundColor: bgFilled ? "transparent" : "none",
         ...style,
       }}
     >

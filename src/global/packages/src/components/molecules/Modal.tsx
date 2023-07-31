@@ -68,7 +68,7 @@ const StyledPopup = styled(Popup)`
   // use your custom style for ".popup-content"
   &-content {
     position: relative;
-    background-color: black;
+    background-color: var(--base);
     scroll-behavior: smooth;
     border-radius: 4px;
     animation: fadein 0.5s 1;
