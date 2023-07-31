@@ -1,4 +1,4 @@
-import{T as Y,a as q,b as R,c as j}from"./TabPanel-d7477b84.js";import{l as P,S as J,a as $}from"./selected-aef3ce09.js";import{n as y,D as g,aH as he,a as i,j as t,T as h,aI as ge,al as X,B as _,aE as Z,u,a3 as ee,aJ as pe,H as k,aa as A,aK as fe,ao as be,a9 as xe,ar as ye,F as W,U as O,aL as te,W as ae,P as G,Y as re,m as z,i as w,f as Q,a4 as ve,z as F,ay as we,Z as H,V as ke,aB as Ne}from"./index-5ca35297.js";import{s as oe,T as Ee}from"./LMTables-7e5d6fee.js";import{h as Ce}from"./moment-9d68d5ae.js";import{t as Se,a as Ae,b as _e,c as Ie,g as ne,d as Te,e as De,f as Re,h as je,i as Le,j as ze}from"./transactionHelpers-4eca7629.js";import{T as ie,u as le,O as Ve}from"./ongoingTxModal-9dcd8086.js";import{H as Me}from"./seo-7f8737e0.js";import"./down-f11b2b90.js";const Be=({totalStaked:e,rewards:a,apr:o,onRewards:s,canClaim:c})=>{const{theme:r}=g.useContext(he);return i(Fe,{children:[i("div",{className:"dual-item",style:{margin:"0"},children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"total staked"})}),t("div",{className:"bottom",children:t(h,{type:"text",children:e})})]}),t("div",{className:"separator"}),i("div",{className:"dual-item",children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"apr"})}),t("div",{className:"bottom",children:i(h,{type:"text",children:[o,"%"]})})]}),t("div",{className:"separator"}),i("div",{className:"dual-item",children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"rewards"})}),t("div",{className:"bottom",children:t(h,{type:"text",children:a})})]}),t(ge,{type:"outlined",style:{height:"big"},theme:r,disabled:Number(a)==0||!c,onClick:()=>{s()},children:t(h,{size:"text2",type:"text",bold:!0,children:"claim rewards"})})]})},Fe=y.div`
+import{T as Y,a as q,b as R,c as j}from"./TabPanel-a8b813d5.js";import{l as P,S as J,a as $}from"./selected-58656f53.js";import{n as y,D as g,aH as he,a as i,j as t,T as h,aI as ge,al as X,B as _,aE as Z,u,a3 as ee,aJ as pe,H as k,aa as A,aK as fe,ao as be,a9 as xe,ar as ye,F as W,U as O,aL as te,W as ae,P as G,Y as re,m as z,i as w,f as Q,a4 as ve,z as F,ay as we,Z as H,V as ke,aB as Ne}from"./index-5f9c7c75.js";import{s as oe,T as Ee}from"./LMTables-edc4e5fc.js";import{h as Ce}from"./moment-9d68d5ae.js";import{t as Se,a as Ae,b as _e,c as Ie,g as ne,d as Te,e as De,f as Re,h as je,i as Le,j as ze}from"./transactionHelpers-49668b81.js";import{T as ie,u as le,O as Ve}from"./ongoingTxModal-118154c1.js";import{H as Me}from"./seo-c4d18201.js";import"./down-f11b2b90.js";const Be=({totalStaked:e,rewards:a,apr:o,onRewards:s,canClaim:c})=>{const{theme:r}=g.useContext(he);return i(Fe,{children:[i("div",{className:"dual-item",style:{margin:"0"},children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"total staked"})}),t("div",{className:"bottom",children:t(h,{type:"text",children:e})})]}),t("div",{className:"separator"}),i("div",{className:"dual-item",children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"apr"})}),t("div",{className:"bottom",children:i(h,{type:"text",children:[o,"%"]})})]}),t("div",{className:"separator"}),i("div",{className:"dual-item",children:[t("div",{className:"top",children:t(h,{type:"text",size:"text1",children:"rewards"})}),t("div",{className:"bottom",children:t(h,{type:"text",children:a})})]}),t(ge,{type:"outlined",style:{height:"big"},theme:r,disabled:Number(a)==0||!c,onClick:()=>{s()},children:t(h,{size:"text2",type:"text",bold:!0,children:"claim rewards"})})]})},Fe=y.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -334,8 +334,8 @@ import{T as Y,a as q,b as R,c as j}from"./TabPanel-d7477b84.js";import{l as P,S 
       line-height: 140%;
       letter-spacing: -0.03em;
       text-transform: lowercase;
-      color: #efefef;
-      border: 1px solid #efefef;
+      color: var(--primary-color-dark);
+      border: 1px solid var(--primary-color-dark);
       opacity: 0.5;
       position: absolute;
       right: 12px;
@@ -560,9 +560,10 @@ import{T as Y,a as q,b as R,c as j}from"./TabPanel-d7477b84.js";import{l as P,S 
     filter: grayscale(1);
     padding-left: 4px;
     opacity: 0.5;
+    color: var(--primary-color);
   }
   .react-select__control {
-    background-color: #222222 !important;
+    background-color: var(--highlights) !important;
     color: var(--primary-color) !important;
     border: none;
     border-radius: 4px;
@@ -578,7 +579,7 @@ import{T as Y,a as q,b as R,c as j}from"./TabPanel-d7477b84.js";import{l as P,S 
 
   .react-select__menu {
     backdrop-filter: blur(35px);
-    background: rgba(0, 119, 255, 0.25);
+    background: var(--base);
     border-radius: 4px;
     /* overflow: visible; */
     color: var(--primary-color) !important;
