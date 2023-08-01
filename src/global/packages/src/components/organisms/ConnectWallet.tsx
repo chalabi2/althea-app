@@ -20,6 +20,8 @@ interface Props {
 const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
   const { account } = useEthers();
   const { theme } = useContext(ThemeContext);
+
+  const CoinSymbol = <FaCoins/>;
   return (
     <div className="wallet">
       {account != null ? (
@@ -79,7 +81,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
             account={account}
             balance={balance}
             currency={currency}
-            icon={currencyIcon}
+            icon={CoinSymbol}
           />
         </Popup>
       ) : (

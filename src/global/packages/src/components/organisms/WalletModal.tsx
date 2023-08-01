@@ -15,7 +15,7 @@ interface WalletModalProps {
   account: string;
   balance: string;
   currency: string;
-  icon: React.FC;
+  icon: JSX.Element;
 }
 const WalletModal = ({
   account,
