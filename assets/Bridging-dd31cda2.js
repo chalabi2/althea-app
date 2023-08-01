@@ -1,4 +1,4 @@
-import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as FaCheck,X as FaExclamationTriangle,Y as LoadingComponent,Z as OutlinedButton,_ as useNetworkInfo,$ as GenPubKeyWalkthrough,a0 as lib,a1 as CopyIcon,a2 as getBlockTimestamp,a3 as MAINNET_IBC_NETWORKS,a4 as Popup,a5 as convertStringToBigNumber,a6 as useEtherBalance,a7 as TokenGroups,a8 as getSupportedNetwork,a9 as useNavigate,aa as NotConnected,ab as walletIcon,ac as findNativeToken,ad as getNetworkFromAltheaChannel,ae as ETHMainnet,af as ADDRESSES,ag as TOKENS,ah as MumbaiTestnet,ai as FantomTestnet,aj as GoerliTestnet,ak as AvalancheTestnet,al as OptimismTestnet,am as create$1$1,an as useTransactionHistory,ao as useBridgeTokenInfo,ap as useEthers,aq as BalanceTableModal,ar as ALTHEA_MAIN_CONVERT_COIN_TOKENS,as as addNetwork}from"./index-e732cbae.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-d6ff8a67.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-34fc7507.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,u as useTransactionStore}from"./ongoingTxModal-0d0bc595.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
+import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as FaCheck,X as FaExclamationTriangle,Y as LoadingComponent,Z as OutlinedButton,_ as useNetworkInfo,$ as GenPubKeyWalkthrough,a0 as lib,a1 as CopyIcon,a2 as getBlockTimestamp,a3 as MAINNET_IBC_NETWORKS,a4 as Popup,a5 as convertStringToBigNumber,a6 as useEtherBalance,a7 as TokenGroups,a8 as getSupportedNetwork,a9 as useNavigate,aa as NotConnected,ab as walletIcon,ac as findNativeToken,ad as getNetworkFromAltheaChannel,ae as ETHMainnet,af as ADDRESSES,ag as TOKENS,ah as MumbaiTestnet,ai as FantomTestnet,aj as GoerliTestnet,ak as AvalancheTestnet,al as OptimismTestnet,am as create$1$1,an as useTransactionHistory,ao as useBridgeTokenInfo,ap as useEthers,aq as BalanceTableModal,ar as ALTHEA_MAIN_CONVERT_COIN_TOKENS,as as addNetwork}from"./index-18c85320.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-1b384c5b.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-250c309c.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,u as useTransactionStore}from"./ongoingTxModal-3cf01730.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -290,13 +290,14 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
   padding-bottom: 2rem;
   gap: 1rem;
   text-align: center;
+  background-color: var(--base);
 
   .expand {
     flex-grow: 2;
   }
   .amount {
     height: 58px;
-    background: #060606;
+    background-color: var(--highlights);
     border: 1px solid #2e2d2d;
     border-radius: 4px;
     display: flex;
@@ -309,14 +310,14 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
     height: 100%;
     width: 7rem;
     margin-left: 3px;
-    background-color: #252525;
+    background-color: var(--highlights);
 
     border: none;
     &:hover {
-      background-color: #333;
+      background-color: var(--base);
       cursor: pointer;
       p {
-        color: white;
+        color: grey;
       }
     }
 
@@ -325,7 +326,7 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
     }
   }
   .values {
-    background: #0b0b0b;
+    background-color: var(--highlights);
     border: 1px solid #2f2f2f;
     border-radius: 4px;
     width: 100%;
