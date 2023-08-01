@@ -157,7 +157,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
               {props.token.name}
             </Text>
           </div>
-          <Text size="text3" align="center" color="primaryDark">
+          <Text size="text3" align="center" color="primary">
             To bridge {props.token.name} from the {props.network.name} network
             into Althea, you will need to do an IBC transfer to Althea Mainnet.
           </Text>
@@ -263,7 +263,7 @@ const IBCGuideModal = (props: IBCGuideModalProps) => {
               }
             />
           </div>
-          <Text size="text3" align="center" color="primaryDark">
+          <Text size="text3" align="center" color="primary">
             To learn more about the ibc process, please read{" "}
             <a
               role="button"
