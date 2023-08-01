@@ -19,6 +19,7 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 
 ### General
 - Proper fonts (except titles)
+- address copied
 
 ### Bridge
 - IBC transfer modal

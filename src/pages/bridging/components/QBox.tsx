@@ -36,8 +36,7 @@ const QBox = ({ question, answer }: Props) => {
 
 const Styled = styled.div<{ height: number; expanded: boolean }>`
   width: 100%;
-  background-color: var(--base);
-  background: var(--base);
+  background-color: var(--highlights);
   border: 1px solid #505050;
   border-radius: 4px;
   padding: 1rem;
@@ -48,7 +47,7 @@ const Styled = styled.div<{ height: number; expanded: boolean }>`
   overflow-y: hidden;
   padding: ${({ expanded }) => (expanded ? "1rem" : "16px")};
   &:hover {
-    background-color: var(--background-color-start);
+    background-color: var(--base);
     cursor: pointer;
   }
   .header {
