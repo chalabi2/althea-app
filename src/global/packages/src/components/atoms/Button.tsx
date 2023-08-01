@@ -70,7 +70,7 @@ const OutlinedButton = styled(PrimaryButton)<Props>`
 
   &:disabled {
     color: rgba(0, 119, 255, 0.25);
-    background-color: var(--pitch-black-color);
+    background-color: var(--background-color-start);
     border: 1px solid rgba(0, 119, 255, 0.25);
   }
 `;

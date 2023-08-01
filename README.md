@@ -22,11 +22,10 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 - address copied
 
 ### Bridge
-- IBC transfer modal
 - remove options other then grav for eth bridging 
 
 ### Governance
-- check out vote modal when prop
+- done
 
 ### lending
 - Remove lending

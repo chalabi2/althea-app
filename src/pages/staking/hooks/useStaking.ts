@@ -61,7 +61,7 @@ const useStaking = (): {
   const [rewards, setRewards] = useState<BigNumber>(BigNumber.from("0"));
 
   async function handleClaimRewards() {
-    modalStore.open(ValidatorModalType.CLAIM_REWARDS);
+    modalStore.open(ValidatorModalType.STAKE);
     claimStakingRewards(
       txStore,
       Number(networkInfo.chainId),
