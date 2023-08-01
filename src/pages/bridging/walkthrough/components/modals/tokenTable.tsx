@@ -27,7 +27,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
           size="title3"
           bold
           style={{
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "var(--highlights)",
             borderTopLeftRadius: "4px",
             borderColor: "#333",
           }}
@@ -39,7 +39,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
           size="title3"
           bold
           style={{
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "var(--highlights)",
             borderColor: "#333",
           }}
         >
@@ -50,7 +50,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
           size="title3"
           bold
           style={{
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "var(--highlights)",
             borderColor: "#333",
           }}
         >
@@ -61,7 +61,7 @@ const TokenTable = ({ tokens, onClose }: Props) => {
           size="title3"
           bold
           style={{
-            backgroundColor: "#1a1a1a",
+            backgroundColor: "var(--highlights)",
             borderTopRightRadius: "4px",
             borderColor: "#333",
           }}
@@ -71,16 +71,16 @@ const TokenTable = ({ tokens, onClose }: Props) => {
         {tokens.map((token) =>
           token.main == "-1" ? null : (
             <>
-              <Text type="text" color="white" size="title3">
+              <Text type="text" color="primary" size="title3">
                 {token.name}
               </Text>
-              <Text type="text" color="white" size="title3">
+              <Text type="text" color="primary" size="title3">
                 {token.main}
               </Text>
-              <Text type="text" color="white" size="title3">
+              <Text type="text" color="primary" size="title3">
                 {token.gBridge}
               </Text>
-              <Text type="text" color="white" size="title3">
+              <Text type="text" color="primary" size="title3">
                 {token.althea}
               </Text>
             </>
@@ -148,13 +148,13 @@ const TokenTable = ({ tokens, onClose }: Props) => {
                 token.main == "-1" &&
                 isValidToken("0", token.gBridge, token.althea) && (
                   <>
-                    <Text type="text" color="white" size="title3">
+                    <Text type="text" color="dark" size="title3">
                       {token.name}
                     </Text>
-                    <Text type="text" color="white" size="title3">
+                    <Text type="text" color="dark" size="title3">
                       {token.gBridge}
                     </Text>
-                    <Text type="text" color="white" size="title3">
+                    <Text type="text" color="dark" size="title3">
                       {token.althea}
                     </Text>
                   </>
@@ -174,7 +174,7 @@ const Styled = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
     border: 1px solid #222;
-    background-color: #111;
+    background-color: var(--base);
     border-radius: 4px;
     grid-gap: 0;
     margin-top: 6px;

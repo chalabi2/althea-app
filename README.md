@@ -12,24 +12,20 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ## To-do
 
 ### Staking
-- Buttons in staking modal to tx go dark on hover or go to page background
-- drop down list font color for redelegate
-- input boxes in staking modal
 - Staking apr
 - Move from jailed validators tx type
 - One button delegation
 - claim rewards modal
 
 ### General
-- Governance Font
-- Title fonts
-- Page title margins
+- Proper fonts (except titles)
 
 ### Bridge
-- errthang
+- IBC transfer modal
+- remove options other then grav for eth bridging 
 
 ### Governance
-
+- check out vote modal when prop
 
 ### lending
 - Remove lending

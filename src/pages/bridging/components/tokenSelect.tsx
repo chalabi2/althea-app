@@ -84,7 +84,7 @@ const StyledPopup = styled(Popup)`
   // use your custom style for ".popup-content"
   &-content {
     position: relative;
-    background-color: black;
+    background-color: var(--base);
     border-radius: 4px;
     animation: fadein 0.5s 1;
     min-height: 42rem;
@@ -141,6 +141,6 @@ const Styled = styled.div`
   /* border: 1px solid black; */
   &:hover {
     /* border: 1px solid var(--primary-color); */
-    background-color: #111;
+    background-color: var(--base);
   }
 `;

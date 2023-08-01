@@ -34,7 +34,7 @@ const PrimaryButton = styled.button<Props>`
   font-size: ${({ size }) => Sizes[size ?? "x-sm"] + "px"};
   font-weight: ${({ weight }) => Weight[weight ?? "normal"]};
   background-color: var(--primary-color);
-  color: var(--pitch-black-color);
+  color: var(--base);
   padding: ${({ padding }) => Sizes[padding ?? "xx-sm"] + "px"};
   border: 1px solid transparent;
   display: flex;
@@ -46,13 +46,13 @@ const PrimaryButton = styled.button<Props>`
   width: ${({ filled }) => (filled ? "100%" : "fit-content")};
 
   &:hover {
-    background-color: var(--primary-dark-color);
+    background-color: var(--button-highlight);
     cursor: pointer;
   }
 
   &:disabled {
-    background-color: blue;
-    color: black;
+    background-color: var(--background-color-start);
+    color: grey;
   }
 `;
 

@@ -66,7 +66,7 @@ const TokenModal = (props: Props) => {
             >
               <span>
                 <img src={token.icon} alt={token.name} />
-                <Text color="white">
+                <Text color="primary">
                   {token.isNative && !token.isOFT
                     ? token.nativeSymbol + " / "
                     : ""}
@@ -104,7 +104,7 @@ const Styled = styled.div`
   flex-direction: column;
   width: 30rem;
   max-height: 42rem;
-
+  background-color: var(--base);
   .search {
     margin: 6px;
     padding: 0 14px;
@@ -164,7 +164,7 @@ const Styled = styled.div`
       }
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--background-color-start);
         border-radius: 4px;
       }
     }
