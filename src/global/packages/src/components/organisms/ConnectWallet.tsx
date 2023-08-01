@@ -6,6 +6,7 @@ import { useEthers } from "@usedapp/core";
 import { Mixpanel } from "mixpanel";
 import { useContext } from "react";
 import { ThemeContext } from "ThemeProvider";
+import { FaCoins } from "react-icons/fa";
 
 interface Props {
   isConnected: boolean;
@@ -42,7 +43,7 @@ const ConnectWallet = ({ balance, currency, onClick, currencyIcon }: Props) => {
                 theme={theme}
               >
                 <span className="center ">
-                  <img src={currencyIcon} height={14} />
+                  <FaCoins/>
                   {formatBigNumber(balance)}&nbsp;
                 </span>
                 <span

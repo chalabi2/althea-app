@@ -14,6 +14,7 @@ import GBar from "./components/gBar";
 import { useSingleProposalData } from "./hooks/useSingleProposalData";
 import { useState } from "react";
 import altheaIcon from "assets/favicon.ico";
+import { FaCoins } from "react-icons/fa";
 import OngoingTxModal from "global/components/modals/ongoingTxModal";
 const Proposal = () => {
   const {
@@ -172,7 +173,7 @@ const Proposal = () => {
             value={
               <>
                 {truncateNumber(formatUnits(proposal.total_deposit[0].amount))}{" "}
-                <img src={altheaIcon} height={16} alt="althea" />
+                <FaCoins/>
               </>
             }
           />

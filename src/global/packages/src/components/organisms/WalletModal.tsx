@@ -9,12 +9,13 @@ import { toastHandler } from "global/utils/toastHandler";
 import { truncateNumber } from "global/utils/formattingNumbers";
 import { useContext } from "react";
 import { ThemeContext } from "ThemeProvider";
+import { FaCoins } from "react-icons/fa";
 
 interface WalletModalProps {
   account: string;
   balance: string;
   currency: string;
-  icon: string;
+  icon: React.FC;
 }
 const WalletModal = ({
   account,
@@ -65,7 +66,7 @@ const WalletModal = ({
         <div className="balance">
           <Text type="text">
             <span className="center">
-              <img src={icon} height={14} />
+              <FaCoins/>
               {truncateNumber(balance)}
             </span>
           </Text>

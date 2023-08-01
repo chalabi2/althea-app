@@ -120,9 +120,34 @@ input[type="number"] {
   }
 }
 
-.toast-error {
-  --toastify-color-progress-light: var(--error-color);
+[data-theme="dark"] .toast-container-success,
+[data-theme="light"] .toast-container-success {
+  border: 1px solid var(--primary-color);
+  border-radius: 0px;
+  background-color: var(--base);
+  padding-bottom: 3px;
+  color: var(--primary-color);
+  height: 100px;
+  font-size: 20px;
 }
-.toast-success {
-  --toastify-color-progress-light: var(--primary-color);
+
+[data-theme="dark"] .toast-container-error,
+[data-theme="light"] .toast-container-error {
+  border: 1px solid var(--error-color);
+  border-radius: 0px;
+  background-color: var(--base);
+  padding-bottom: 3px;
+  color: var(--error-color);
+  height: 100px;
+  font-size: 20px;
+}
+
+[data-theme="dark"] .toast-success,
+[data-theme="light"] .toast-success {
+  background-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .toast-error,
+[data-theme="light"] .toast-error {
+  background-color: var(--error-color) !important;
 }

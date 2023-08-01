@@ -2,6 +2,7 @@ import { BigNumber } from "ethers";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
 import altheaIcon from "assets/favicon.ico";
+import { FaCoins } from "react-icons/fa";
 import altheaJailedIcon from "assets/favicon.ico";
 import { MasterValidatorProps } from "../config/interfaces";
 import useValidatorModalStore, {
@@ -137,19 +138,11 @@ const Row = (props: RowProps) => {
       </td>
       <td>
         {formatLiquidity(Number(truncateNumber(formatEther(props.totalStake))))}{" "}
-        <img
-          src={props.jailed ? altheaJailedIcon : altheaIcon}
-          alt="althea"
-          height={14}
-        />
+        <FaCoins/>
       </td>
       <td>
         {commify(truncateNumber(formatEther(props.userStake)))}
-        <img
-          src={props.jailed ? altheaJailedIcon : altheaIcon}
-          alt="althea"
-          height={14}
-        />
+        <FaCoins/>
       </td>
 
       <td>{formatPercent(props.commission)}</td>

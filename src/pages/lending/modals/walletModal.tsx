@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import logo from "assets/favicon.ico";
+import { FaCoins } from "react-icons/fa";
 import metamask from "assets/wallets/metamask.svg";
 import walletConnect from "assets/wallets/walletconnect.svg";
 import tally from "assets/wallets/tally.svg";
@@ -128,7 +129,7 @@ const WalletModal = ({ onClose }: IProps) => {
   } else {
     return (
       <Container>
-        <img src={logo} alt="Althea" height={40} />
+        <FaCoins/>
         <p>connect wallet to start using althea</p>
 
         <div className="wallet-list">

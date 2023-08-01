@@ -1,6 +1,7 @@
 import { BigNumber } from "ethers";
 import { commify, formatEther } from "ethers/lib/utils";
 import { truncateNumber } from "global/utils/formattingNumbers";
+import { FaCoins } from "react-icons/fa";
 import altheaIcon from "assets/favicon.ico";
 import { MasterValidatorProps } from "../config/interfaces";
 import Table from "./table";
@@ -85,7 +86,7 @@ const Row = (props: RowProps) => {
       <td>{props.name}</td>
       <td>
         {commify(truncateNumber(formatEther(props.amount)))}{" "}
-        <img src={altheaIcon} alt="althea" height={14} />
+        <FaCoins/>
       </td>
       <td
         style={{
