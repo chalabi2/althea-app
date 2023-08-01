@@ -36,7 +36,7 @@ const QBox = ({ question, answer }: Props) => {
 
 const Styled = styled.div<{ height: number; expanded: boolean }>`
   width: 100%;
-  background-color: var(--highlights);
+  background-color: var(--faq-colors);
   border: 1px solid #505050;
   border-radius: 4px;
   padding: 1rem;
