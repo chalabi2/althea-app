@@ -48,7 +48,7 @@ const Styled = styled.div`
   flex-grow: 2;
   width: 1200px;
   margin: 0 auto;
-  background-color: black;
+  background-color: transparent;
 `;
 
 export default PageNotFound;

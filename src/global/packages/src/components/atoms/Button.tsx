@@ -75,6 +75,23 @@ const OutlinedButton = styled(PrimaryButton)<Props>`
   }
 `;
 
+const UndelegateButton = styled(PrimaryButton)<Props>`
+  /* background-color: var(--pitch-black-color); */
+  background-color: var(--primary-color);
+  color: var(--base);
+
+  &:hover {
+    background-color: var(--button-highlight);
+    /* background: rgba(6, 252, 153, 0.1); */
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: var(--background-color-start);
+    color: grey;
+  }
+`;
+
 const FilledButton = styled(PrimaryButton)<Props>`
   background-color: var(--too-dark-color);
   color: var(--off-white-color);
@@ -110,7 +127,7 @@ const HighlightButton = styled(FilledButton)<Props>`
 interface HybridProps {
   size?: "x-sm" | "sm" | "md" | "lg" | "x-lg";
   padding?: "x-sm" | "sm" | "md" | "lg" | "x-lg";
-  type: "primary" | "filled" | "highlight" | "outlined";
+  type: "primary" | "filled" | "highlight" | "outlined" | "undelegate";
   children: React.ReactNode;
   theme?: string; 
   style?: React.CSSProperties; 
@@ -139,6 +156,12 @@ const HybirdButton = (props: HybridProps) => {
           {children}
         </HighlightButton>
       );
+      case "undelegate":
+        return (
+          <UndelegateButton size={size} padding={padding} theme={theme} disabled={disabled} onClick={onClick}>
+            {children}
+          </UndelegateButton>
+        );
     case "primary":
     default:
       return (
@@ -154,5 +177,6 @@ export {
   OutlinedButton,
   FilledButton,
   HighlightButton,
+  UndelegateButton,
   HybirdButton,
 };

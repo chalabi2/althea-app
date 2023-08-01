@@ -12,7 +12,7 @@ import {
 import { formatEther, parseEther } from "ethers/lib/utils";
 import { BigNumber } from "ethers";
 import { useState } from "react";
-import { OutlinedButton, PrimaryButton, Text } from "global/packages/src";
+import { OutlinedButton, PrimaryButton, Text, UndelegateButton } from "global/packages/src";
 import Select from "react-select";
 import { delegateFee } from "../config/fees";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -227,7 +227,7 @@ export const StakingModal = ({
                 </button>
               </div>
 
-              <OutlinedButton
+              <UndelegateButton
                 weight="bold"
                 height="big"
                 className="btn"
@@ -245,7 +245,7 @@ export const StakingModal = ({
                 onClick={() => setShowUndelegateConfirmation(true)}
               >
                 undelegate
-              </OutlinedButton>
+              </UndelegateButton>
               {!txFeeCheck.undelegate && (
                 <Text type="text" size="text3" style={{ color: "red" }}>
                   not enough funds for undelegation fee
