@@ -1,4 +1,4 @@
-import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as warningImg,X as OutlinedButton,Y as useNetworkInfo,Z as GenPubKeyWalkthrough,_ as lib,$ as CopyIcon,a0 as getBlockTimestamp,a1 as MAINNET_IBC_NETWORKS,a2 as Popup,a3 as convertStringToBigNumber,a4 as useEtherBalance,a5 as TokenGroups,a6 as getSupportedNetwork,a7 as useNavigate,a8 as NotConnected,a9 as altheaIcon,aa as findNativeToken,ab as getNetworkFromAltheaChannel,ac as ETHMainnet,ad as ADDRESSES,ae as TOKENS,af as MumbaiTestnet,ag as FantomTestnet,ah as GoerliTestnet,ai as AvalancheTestnet,aj as OptimismTestnet,ak as create$1$1,al as useTransactionHistory,am as useBridgeTokenInfo,an as useEthers,ao as BalanceTableModal,ap as ALTHEA_MAIN_CONVERT_COIN_TOKENS,aq as addNetwork}from"./index-9b76dcee.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-51cbabc0.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-1c0267de.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,a as completeIcon,u as useTransactionStore}from"./ongoingTxModal-3afe6046.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
+import{n as newStyled,j as jsx,a as jsxs,F as Fragment,B as BigNumber,M as MaxUint256,e as emptyToken,g as getCurrentProvider,C as Contract,E as ERC20Abi,u as utils$d,A as ALTHEA_IBC_NETWORK,c as checkPubKey,o as onTestnet,b as AltheaTestnet,d as AltheaMainnet,f as getCosmosChainObj,h as convertFee,i as getCosmosAPIEndpoint,k as ibcFee,l as defaultAbiCoder,m as AltheaTransactionType,p as gravityBridgeAbi,t as txConvertCoin,q as txConvertERC20,r as txIBCTransfer,w as wethAbi,O as OFTAbi,s as AddressZero,v as pack,x as getNetworkFromTokenName,y as toastHandler,T as Text,z as CInput,P as PrimaryButton,D as reactExports,G as Modal,H as truncateNumber,I as commonjsGlobal,J as bnExports,K as Buffer,L as base64Js,N as bech32$2,Q as require$$0$1,R as browser$1$1,S as elliptic,U as Mixpanel,V as closeIcon,W as warningImg,X as OutlinedButton,Y as useNetworkInfo,Z as GenPubKeyWalkthrough,_ as lib,$ as CopyIcon,a0 as getBlockTimestamp,a1 as MAINNET_IBC_NETWORKS,a2 as Popup,a3 as convertStringToBigNumber,a4 as useEtherBalance,a5 as TokenGroups,a6 as getSupportedNetwork,a7 as useNavigate,a8 as NotConnected,a9 as altheaIcon,aa as findNativeToken,ab as getNetworkFromAltheaChannel,ac as ETHMainnet,ad as ADDRESSES,ae as TOKENS,af as MumbaiTestnet,ag as FantomTestnet,ah as GoerliTestnet,ai as AvalancheTestnet,aj as OptimismTestnet,ak as create$1$1,al as useTransactionHistory,am as useBridgeTokenInfo,an as useEthers,ao as BalanceTableModal,ap as ALTHEA_MAIN_CONVERT_COIN_TOKENS,aq as addNetwork}from"./index-48314bd5.js";import{T as Tabs,a as TabList,b as Tab,c as TabPanel}from"./TabPanel-167d4252.js";import{l as levenshteinDistance,S as Selected,a as Select}from"./selected-27d115ac.js";import{_ as _enableTx,T as TxMethod,O as OngoingTxModal,c as createTransactionDetails,a as completeIcon,u as useTransactionStore}from"./ongoingTxModal-bdc1c27b.js";import{d as downImg}from"./down-f11b2b90.js";import{i as infoImg}from"./info-d3908fe8.js";const AltheaTabs=e=>jsx(Styled$g,{children:jsxs(Tabs,{className:"tabs",children:[jsx(TabList,{className:"tablist",children:e.names.map((t,c)=>jsx(Tab,{className:"tab",onClick:e.onClicks[c],children:t},c))}),jsx(Fragment,{children:e.panels.map((t,c)=>jsx(TabPanel,{children:t},c))})]})}),Styled$g=newStyled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -483,12 +483,12 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
       color: grey !important;
     }
   }
-`,TokenModal=e=>{const[t,c]=reactExports.useState("");function l(d,p,A){return levenshteinDistance(d.toLowerCase(),p.toLowerCase())<=2||levenshteinDistance(d.toLowerCase(),A.toLowerCase())<=2||d===""}return jsxs(Styled$8,{children:[jsx("div",{className:"modal-title",children:jsx(Text,{type:"text",align:"left",size:"title3",children:"select token"})}),jsx("div",{className:"search",children:jsx(CInput,{value:t,placeholder:"Token Name",onChange:d=>c(d.target.value)})}),!e.tokens.length&&jsx("div",{className:"expanded",children:jsx(Text,{size:"text2",children:"no tokens found"})}),jsx("div",{className:"token-list",children:e.tokens.filter(d=>l(t,d.name,d.symbol)).sort((d,p)=>{var A;return(A=d.balance)!=null&&A.gt((p==null?void 0:p.balance)??0)?-1:1}).map(d=>{var p;return jsxs("div",{role:"button",tabIndex:0,className:"token-item",onClick:()=>{e.onClose(d)},children:[jsxs("span",{children:[jsx("img",{src:d.icon,alt:d.name}),jsxs(Text,{color:"white",children:[d.isNative&&!d.isOFT?d.nativeSymbol+" / ":"",d.symbol]})]}),d.balance&&jsx("p",{className:"balance",children:d.isNative&&!d.isOFT?truncateNumber(utils$d.formatUnits(d.nativeBalance??"0",d.decimals))+" / "+truncateNumber(utils$d.formatUnits(((p=d.balance)==null?void 0:p.sub((d==null?void 0:d.nativeBalance)??"0"))??"0",d.decimals)):truncateNumber(utils$d.formatUnits(d.balance,d.decimals))})]},d.address)})})]})},Styled$8=newStyled.div`
+`,TokenModal=e=>{const[t,c]=reactExports.useState("");function l(d,p,A){return levenshteinDistance(d.toLowerCase(),p.toLowerCase())<=2||levenshteinDistance(d.toLowerCase(),A.toLowerCase())<=2||d===""}return jsxs(Styled$8,{children:[jsx("div",{className:"modal-title",children:jsx(Text,{type:"text",align:"left",size:"title3",children:"select token"})}),jsx("div",{className:"search",children:jsx(CInput,{value:t,placeholder:"Token Name",onChange:d=>c(d.target.value)})}),!e.tokens.length&&jsx("div",{className:"expanded",children:jsx(Text,{size:"text2",children:"no tokens found"})}),jsx("div",{className:"token-list",children:e.tokens.filter(d=>l(t,d.name,d.symbol)).sort((d,p)=>{var A;return(A=d.balance)!=null&&A.gt((p==null?void 0:p.balance)??0)?-1:1}).map(d=>{var p;return jsxs("div",{role:"button",tabIndex:0,className:"token-item",onClick:()=>{e.onClose(d)},children:[jsxs("span",{children:[jsx("img",{src:d.icon,alt:d.name}),jsxs(Text,{color:"primary",children:[d.isNative&&!d.isOFT?d.nativeSymbol+" / ":"",d.symbol]})]}),d.balance&&jsx("p",{className:"balance",children:d.isNative&&!d.isOFT?truncateNumber(utils$d.formatUnits(d.nativeBalance??"0",d.decimals))+" / "+truncateNumber(utils$d.formatUnits(((p=d.balance)==null?void 0:p.sub((d==null?void 0:d.nativeBalance)??"0"))??"0",d.decimals)):truncateNumber(utils$d.formatUnits(d.balance,d.decimals))})]},d.address)})})]})},Styled$8=newStyled.div`
   display: flex;
   flex-direction: column;
   width: 30rem;
   max-height: 42rem;
-
+  background-color: var(--base);
   .search {
     margin: 6px;
     padding: 0 14px;
@@ -548,7 +548,7 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
       }
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--background-color-start);
         border-radius: 4px;
       }
     }
@@ -574,7 +574,7 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
   // use your custom style for ".popup-content"
   &-content {
     position: relative;
-    background-color: black;
+    background-color: var(--base);
     border-radius: 4px;
     animation: fadein 0.5s 1;
     min-height: 42rem;
@@ -629,7 +629,7 @@ Proven: ${(0,encoding_1$c.toHex)(e.key)}`);return ics23_1.ics23.CommitmentProof.
   /* border: 1px solid black; */
   &:hover {
     /* border: 1px solid var(--primary-color); */
-    background-color: #111;
+    background-color: var(--base);
   }
 `,FontOne=newStyled.span`
 font-family: 'Macan';
