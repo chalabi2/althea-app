@@ -31,12 +31,12 @@ const rotateThree = keyframes`
 `;
 
 // Define styled components
-const Loader = styled.div`
+const Loader = styled.div<{ size: 'sm' | 'md' | 'lg' }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 128px;
-  height: 128px;
+  width: ${props => (props.size === 'sm' ? '32px' : props.size === 'md' ? '96px' : '128px')};
+  height: ${props => (props.size === 'sm' ? '32px' : props.size === 'md' ? '96px' : '128px')};
   border-radius: 50%;
   perspective: 800px;
 `;
@@ -70,9 +70,13 @@ const InnerThree = styled(Inner)`
   border-top: 3px solid var(--primary-color);
 `;
 
-const LoadingComponent: React.FC = () => {
+interface LoadingComponentProps {
+  size: 'sm' | 'md' | 'lg';
+}
+
+const LoadingComponent: React.FC<LoadingComponentProps> = ({ size }) => {
   return (
-    <Loader>
+    <Loader size={size}>
       <InnerOne />
       <InnerTwo />
       <InnerThree />

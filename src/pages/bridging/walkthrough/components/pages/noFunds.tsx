@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import { Text } from "global/packages/src";
 import BaseStyled from "../layout";
-import WarningIcon from "assets/warning.svg";
+
+import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 
 const NoFunds = () => {
   return (
     <Styled>
-      <img src={WarningIcon} height={80} />
+      <FaExclamationTriangle color="var(--primary-color)" size={"80px"} />
       <Text type="text" size="title2">
         Oops, looks like you have no funds to transfer
       </Text>

@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
-import loadingGif from "assets/loading.gif";
 import LoadingComponent from "../loadingComponent";
-import completeIcon from "assets/complete.svg";
-import warningIcon from "assets/warning.svg";
+import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 import close from "assets/icons/close.svg";
 import { OutlinedButton, PrimaryButton, Text } from "global/packages/src";
 import { Mixpanel } from "mixpanel";
@@ -143,11 +141,11 @@ const OngoingTxModal = (props: LoadingProps) => {
       {idx + 1}
     </Text>
   ) : tx.details.status == "Success" ? (
-    <img src={completeIcon} />
+    <FaCheck color="var(--primary-color)" size={"30px"} />
   ) : tx.details.status == "Fail" || tx.details.status == "Exception" ? (
-    <img src={warningIcon} />
+    <FaExclamationTriangle color="var(--primary-color)" size={"30px"} />
   ) : (
-    <LoadingComponent/>
+    <LoadingComponent size="sm"/>
   )}
 </div>
                       <Text

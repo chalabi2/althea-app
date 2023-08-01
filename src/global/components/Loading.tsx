@@ -4,7 +4,7 @@ import LoadingComponent from "./loadingComponent";
 const Loading = () => {
   return (
     <Styled>
-     <LoadingComponent/>
+     <LoadingComponent size="lg"/>
     </Styled>
   );
 };

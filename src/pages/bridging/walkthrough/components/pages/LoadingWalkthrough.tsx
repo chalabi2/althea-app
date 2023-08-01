@@ -22,7 +22,7 @@ const LoadingWalkthrough = ({ delay }: Props) => {
         Bridge Walkthrough
       </Text>
 
-     <LoadingComponent/>
+     <LoadingComponent size="lg"/>
       <div
         style={{
           maxWidth: "500px",

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { OutlinedButton, PrimaryButton, Text } from "global/packages/src";
-import warningImg from "assets/warning.svg";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 const ConfirmUndelegation = styled.div`
   /* background: rgba(217, 217, 217, 0.2); */
@@ -31,7 +31,7 @@ interface ConfirmUndelegationProps {
 export const ConfirmUndelegationModal = (props: ConfirmUndelegationProps) => {
   return (
     <ConfirmUndelegation>
-      <img src={warningImg} height="60" alt={"warning-icon"} />
+      <FaExclamationTriangle color="var(--primary-color)" size={"30px"} />
       <Text type={"title"} size={"title2"} className="warning-message">
         funds will not be available for another 21 days
       </Text>

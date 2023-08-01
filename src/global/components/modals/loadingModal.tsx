@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { OutlinedButton, Text } from "global/packages/src";
-import loadingGif from "assets/loading.gif";
-import completeIcon from "assets/complete.svg";
-import warningIcon from "assets/warning.svg";
+import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
+import LoadingComponent from "../loadingComponent";
 import {
   AltheaTransactionType,
   TransactionState,
@@ -100,20 +99,18 @@ const GlobalLoadingModal = (props: GlobalLoadingProps) => {
           }}
         />
       </div>
-      <img
-        src={
-          props.status == "Success"
-            ? completeIcon
-            : props.status == "Fail" || props.status == "Exception"
-            ? warningIcon
-            : loadingGif
-        }
-        style={{
-          marginBottom: "1rem",
-        }}
-        height={80}
-        width={80}
-      />
+      <div className="tx-icon">
+  {props.status == "None" ? (
+    <Text size="text1" type="title">
+    </Text>
+  ) : props.status == "Success" ? (
+    <FaCheck color="var(--primary-color)" size={"30px"} />
+  ) : props.status == "Fail" || props.status == "Exception" ? (
+    <FaExclamationTriangle color="var(--primary-color)" size={"30px"} />
+  ) : (
+    <LoadingComponent size="sm"/>
+  )}
+</div>
       <Text size="title2" type="text" style={{ marginBottom: "2rem" }}>
         {props.tokenName}
       </Text>

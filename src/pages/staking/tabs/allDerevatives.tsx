@@ -7,7 +7,7 @@ import { ValidatorTable } from "../components/stakingTable";
 import { MasterValidatorProps } from "../config/interfaces";
 import { Selected } from "pages/staking/components/selected";
 import { levenshteinDistance } from "global/utils/search";
-import warningImg from "assets/warning.svg";
+import { FaExclamationTriangle } from "react-icons/fa";
 import styled from "@emotion/styled";
 import useStakingStore from "../stores/stakingStore";
 import { Mixpanel } from "mixpanel";
@@ -132,7 +132,7 @@ const AllDerevatives = (props: AllDerevativesProps) => {
             alignItems: "center",
           }}
         >
-          <img src={warningImg} alt="" />
+          <FaExclamationTriangle color="var(--primary-color)" size={"30px"} />
           <Text size="title2" type="title">
             no validators match this search
           </Text>
