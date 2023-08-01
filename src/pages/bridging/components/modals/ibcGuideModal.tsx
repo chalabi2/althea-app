@@ -395,13 +395,14 @@ const Styled = styled.div`
   padding-bottom: 2rem;
   gap: 1rem;
   text-align: center;
+  background-color: var(--base);
 
   .expand {
     flex-grow: 2;
   }
   .amount {
     height: 58px;
-    background: #060606;
+    background-color: var(--highlights);
     border: 1px solid #2e2d2d;
     border-radius: 4px;
     display: flex;
@@ -414,14 +415,14 @@ const Styled = styled.div`
     height: 100%;
     width: 7rem;
     margin-left: 3px;
-    background-color: #252525;
+    background-color: var(--highlights);
 
     border: none;
     &:hover {
-      background-color: #333;
+      background-color: var(--base);
       cursor: pointer;
       p {
-        color: white;
+        color: grey;
       }
     }
 
@@ -430,7 +431,7 @@ const Styled = styled.div`
     }
   }
   .values {
-    background: #0b0b0b;
+    background-color: var(--highlights);
     border: 1px solid #2f2f2f;
     border-radius: 4px;
     width: 100%;
