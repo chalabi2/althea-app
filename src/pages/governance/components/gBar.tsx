@@ -90,11 +90,11 @@ const GBar = (props: Props) => {
 const Styled = styled.div<Props>`
   width: 100%;
   height: 50px;
-  background-color: #222;
+  background-color: var(--base-reverse);
   display: flex;
   align-items: center;
   position: relative;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 4px;
   .bar {
     height: 100%;
@@ -102,12 +102,11 @@ const Styled = styled.div<Props>`
     place-items: center;
   }
   .dashed {
-    border-right: 3px dotted #176155;
+    border-right: 3px dotted var(--base);
     position: absolute;
     left: 0;
     top: 0;
-    transform: translateY(-5px);
-    height: 60px;
+    height: 50px;
     width: 20px;
   }
   .threshold {
@@ -147,7 +146,7 @@ const Styled = styled.div<Props>`
     display: flex;
   }
   .empty {
-    background-color: #111;
+    background-color: var(--grey);
     width: ${(props) => 100 - props.totalVotes + "%"};
     color: black;
   }

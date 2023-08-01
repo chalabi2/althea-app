@@ -6,7 +6,7 @@ import ImageButton from "global/components/ImageButton";
 import closeIcon from "assets/icons/close.svg";
 
 const Container = styled.div`
-  background-color: #040404;
+  background-color: var(--base);
   height: min-content;
   width: 26rem;
   display: flex;
@@ -131,25 +131,26 @@ const GovRadioStyle = styled.div`
   cursor: pointer;
   display: flex;
   transition: all 0.4s;
-  color: white;
-  border: 1px solid #222;
+  color: var(--primary-color);
+  background-color: var(--base);
+  border: 1px solid var(--highlights);
   /* margin-top: -1px; */
 
   &:hover,
   &.active {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    background-color: rgba(0, 119, 255, 0.25);
+    background-color: var(--background-color-start);
     .unchecked {
       border: 1px solid var(--primary-color);
     }
   }
 
   &:hover {
-    border: 1px solid rgba(0, 119, 255, 0.25);
-    color: rgba(0, 119, 255, 1);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     .unchecked {
-      border: 1px solid rgba(0, 119, 255, 1);
+      border: 1px solid var(--primary-color);
     }
   }
 

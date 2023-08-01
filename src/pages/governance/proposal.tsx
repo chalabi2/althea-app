@@ -227,7 +227,7 @@ const Proposal = () => {
             }
           </Popup>
           {userVoteData.currentVote != VotingOption.NONE ? (
-            <p style={{ color: "white" }}>
+            <p style={{ color: "var(--primary-color)" }}>
               YOUR VOTE:{" "}
               <a
                 style={
@@ -248,16 +248,19 @@ const Proposal = () => {
           ) : (
             ""
           )}
-          {voteEnded
-            ? ""
-            : `voting power: ${
-                customizeData.showPercentVote
-                  ? truncateNumber(
-                      (100 * userVoteData.votingPowerPercent).toString()
-                    ) + "%"
-                  : truncateNumber(formatEther(userVoteData.votingPower)) +
-                    " althea"
-              }`}
+{voteEnded
+  ? ""
+  : <p style={{ color: 'var(--primary-color)' }}> 
+    {`voting power: ${
+      customizeData.showPercentVote
+        ? truncateNumber(
+            (100 * userVoteData.votingPowerPercent).toString()
+          ) + "%"
+        : truncateNumber(formatEther(userVoteData.votingPower)) +
+          " althea"
+    }`}
+  </p>
+}
         </div>
       </div>
     </ProposalContainer>
