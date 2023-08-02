@@ -125,7 +125,7 @@ const Styled = styled.div`
     align-items: center;
   }
   .confirm-details {
-    background: #0b0b0b;
+    background: var(--base);
     border: 1px solid #2f2f2f;
     border-radius: 4px;
     width: 100%;
@@ -137,7 +137,7 @@ const Styled = styled.div`
       height: 2rem;
 
       .header {
-        color: #9b9b9b;
+        color: var(--primary-color);
       }
     }
   }

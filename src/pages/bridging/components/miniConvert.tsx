@@ -132,7 +132,7 @@ const Styled = styled.div`
   padding: 0 16px;
   justify-content: space-between;
   align-items: center;
-  background-color: #010101;
+  background-color: var(--base);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 4px;
 
