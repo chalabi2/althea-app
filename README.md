@@ -15,14 +15,13 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 - Staking apr
 - Move from jailed validators tx type
 - One button delegation
-- claim rewards modal
 
 ### General
 - Proper fonts (except titles)
-- address copied
 
 ### Bridge
 - remove options other then grav for eth bridging 
+- test all tx types
 
 ### Governance
 - done

@@ -64,7 +64,7 @@ const MAINNET_IBC_NETWORKS: CosmosIBCNetworkData = {
       decimals: 6,
     },
     channelFromAlthea: "channel-0",
-    channelToAlthea: "channel-88",
+    channelToAlthea: "channel-141",
     restEndpoint: "https://gravitychain.io:1317",
     rpcEndpoint: "https://gravitychain.io:26657",
     extraEndpoints: ["https://gravity-api.polkachu.com"],
