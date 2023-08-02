@@ -8,7 +8,18 @@ import Table from "./table";
 import FadeIn from "react-fade-in";
 import moment from "moment";
 import { useState } from "react";
-import { sortColumnsByType } from "pages/lending/components/LMTables";
+
+export function sortColumnsByType(value1: unknown, value2: unknown) {
+  if (typeof value1 === "string") {
+    return value1.localeCompare(value2 as string);
+  } else if (typeof value1 === "number") {
+    return (value2 as number) - (value1 as number);
+  } else if (typeof value1 === "boolean") {
+    return value1 === value2 ? 0 : value1 ? -1 : 1;
+  }
+  return 0;
+}
+
 
 interface TableProps {
   validators: MasterValidatorProps[];
