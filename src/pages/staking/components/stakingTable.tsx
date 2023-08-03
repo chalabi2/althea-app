@@ -12,7 +12,7 @@ import Table from "./table";
 import FadeIn from "react-fade-in";
 import { levenshteinDistance } from "global/utils/search";
 import jailedSymbol from "assets/lock.svg";
-import { ToolTipL } from "pages/lending/components/Styled";
+import { ToolTipL } from "pages/staking/config/Styled";
 import Popup from "reactjs-popup";
 import { formatLiquidity } from "global/utils/formattingNumbers";
 import { formatPercent } from "global/packages/src/utils/formatNumbers";

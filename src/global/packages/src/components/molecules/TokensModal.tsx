@@ -5,7 +5,7 @@ import { PrimaryButton } from "../atoms/Button";
 import { Text } from "../atoms/Text";
 import { CInput } from "../atoms/Input";
 import { onAltheaNetwork } from "global/utils/getAddressUtils";
-import { getCTokensForChainId } from "pages/lending/config/lendingMarketTokens";
+import { getCTokensForChainId } from "pages/staking/components/stakingMarketTokens";
 import { AltheaTestnet } from "global/config/networks";
 import { TOKENS } from "global/config/tokenInfo";
 
