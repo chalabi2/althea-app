@@ -34,6 +34,9 @@ import useValidatorModalStore, {
   ValidatorModalType,
 } from "../stores/validatorModalStore";
 import { getCosmosAPIEndpoint } from "global/utils/getAddressUtils";
+import { delegateTransaction } from "../modals/stakingModal";
+import amount from "global/components/amount";
+import { convertStringToBigNumber } from "global/utils/formattingNumbers";
 
 const useStaking = (): {
   validators: Validator[];
@@ -72,10 +75,25 @@ const useStaking = (): {
     );
   }
 
-  async function autoDelegate() {
-    modalStore.open(ValidatorModalType.AUTO_DELEGATE);
-    stakingTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
-  }
+   async function autoDelegate() {
+  //   modalStore.open(ValidatorModalType.AUTO_DELEGATE);
+  //   const delegationDetails = {
+  //     account: account ?? "",
+  //     chainId,
+  //     amount: convertStringToBigNumber(amount, 18).toString(),
+  //     newOperator: {
+  //       address: validators,
+  //       name: validators,
+  //     },
+  //     operator: {
+  //       address: validators,
+  //       name: validators
+  //     },
+  //   };
+  
+  //   // Trigger the delegate transaction
+  //   delegateTransaction(txStore, delegationDetails);
+   }
 
   async function getAllData() {
     if (networkInfo.account) {
