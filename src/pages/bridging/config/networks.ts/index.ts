@@ -72,7 +72,6 @@ const MAINNET_BRIDGE_NETWORKS: BridgingNetwork[] = [
       BridgingMethods.GBRIDGE,
     ],
     [BridgingMethods.GBRIDGE]: GBRIDGE_MAIN_NETWORKS.ETH,
-    [BridgingMethods.LAYER_ZERO]: LAYER_ZERO_MAIN_NETWORKS.ETH_MAIN,
   },
 
   //IBC
