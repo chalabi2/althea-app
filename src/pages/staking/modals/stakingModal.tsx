@@ -33,6 +33,26 @@ interface StakingModalProps {
   txStore: TransactionStore;
   chainId: number;
 }
+
+export const delegateTransaction = (
+  txStore: TransactionStore,
+  delegationDetails: {
+    account: string;
+    chainId: number;
+    amount: string;
+    newOperator: {
+      address: string;
+      name: string;
+    };
+    operator: {
+      address: string;
+      name: string;
+    };
+  }
+) => {
+  stakingTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
+};
+
 export const StakingModal = ({
   validator,
   allValidators,

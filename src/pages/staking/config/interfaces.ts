@@ -68,6 +68,7 @@ export interface MyStakingProps {
   userValidationInfo: MasterValidatorProps[];
   undelegationValidators: MasterValidatorProps[];
   onRewards: () => Promise<void>;
+  onDelegate: () => Promise<void>;
   canClaim: boolean;
 }
 export interface AllStakingProps {

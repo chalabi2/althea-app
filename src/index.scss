@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap");
 
 @font-face {
   font-family: "MacanFont";
@@ -11,7 +12,7 @@
   font-weight: bold;
 }
 :root {
-  font-family: "sans-serif", monospace;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -23,7 +24,7 @@
   -webkit-text-size-adjust: 100%;
 }
 * {
-  font-family: "sans-serif", monospace;
+  font-family: "IBM Plex Sans", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

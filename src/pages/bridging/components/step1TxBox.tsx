@@ -320,7 +320,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
               .map((network) => {
                 let networkName = network.name;
                 if (network.name === "Ethereum")
-                  networkName = "Ethereum / layer zero";
+                networkName = "Ethereum / gravity bridge";
                 if (network.name === "gravity bridge")
                   networkName = "Ethereum / gravity bridge";
                 return {

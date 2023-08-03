@@ -6,6 +6,7 @@ import {
 
 export enum ValidatorModalType {
   STAKE,
+  AUTO_DELEGATE,
   CLAIM_REWARDS,
   NONE,
 }

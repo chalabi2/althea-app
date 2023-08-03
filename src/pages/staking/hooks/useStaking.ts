@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   DelegationResponse,
   MasterValidatorProps,
+  StakingTransactionType,
   TxFeeBalanceCheck,
   UndelegationMap,
   Validator,
@@ -27,7 +28,7 @@ import {
   unbondingFee,
 } from "../config/fees";
 import { parseEther } from "ethers/lib/utils";
-import { claimStakingRewards } from "../utils/transactions";
+import { claimStakingRewards, stakingTx } from "../utils/transactions";
 import { useTransactionStore } from "global/stores/transactionStore";
 import useValidatorModalStore, {
   ValidatorModalType,
@@ -41,6 +42,7 @@ const useStaking = (): {
   userValidators: MasterValidatorProps[];
   undelagatingValidators: MasterValidatorProps[];
   handleClaimRewards: () => Promise<void>;
+  autoDelegate: () => Promise<void>;
   rewards: BigNumber;
   stakingApr: string;
   txFeeCheck: TxFeeBalanceCheck;
@@ -69,6 +71,12 @@ const useStaking = (): {
       userValidators
     );
   }
+
+  async function autoDelegate() {
+    modalStore.open(ValidatorModalType.AUTO_DELEGATE);
+    stakingTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
+  }
+
   async function getAllData() {
     if (networkInfo.account) {
       setDelegations(
@@ -150,6 +158,7 @@ const useStaking = (): {
     userValidators,
     undelagatingValidators,
     handleClaimRewards,
+    autoDelegate,
     rewards,
     stakingApr,
     txFeeCheck: enoughBalanceForTxFees(),

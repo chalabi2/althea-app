@@ -10,9 +10,10 @@ interface Props {
   rewards: string;
   apr: string;
   onRewards: () => Promise<void>;
+  onDelegate: () => Promise<void>;
   canClaim: boolean;
 }
-const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
+const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim, onDelegate }: Props) => {
   const { theme } = useContext(ThemeContext)
   return (
     <Styled>
@@ -54,24 +55,37 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
           <Text type="text">{rewards}</Text>
         </div>
       </div>
-      <HybirdButton
-  type="outlined"
-  style={{
-    height: "big",
-  }}
-  theme={theme}
-  disabled={Number(rewards) == 0 || !canClaim}
-  onClick={() => {
-    onRewards();
-  }}
->
-  <Text size="text2" type="text" bold>
-    claim rewards
-  </Text>
-</HybirdButton>
+      <div className="buttons-container">
+        <HybirdButton
+          type="outlined"
+          style={{
+            height: "big",
+          }}
+          theme={theme}
+          disabled={Number(rewards) == 0 || !canClaim}
+          onClick={onRewards}
+        >
+          <Text size="text2" type="text" bold>
+            claim rewards
+          </Text>
+        </HybirdButton>
+        <HybirdButton
+          type="outlined"
+          style={{
+            height: "big",
+          }}
+          theme={theme}
+          onClick={onDelegate} // Change this to the relevant quick stake function
+        >
+          <Text size="text2" type="text" bold>
+            auto stake
+          </Text>
+        </HybirdButton>
+      </div>
     </Styled>
   );
 };
+
 
 const Styled = styled.div`
   display: flex;
@@ -102,6 +116,18 @@ const Styled = styled.div`
       font-size: 40px !important;
     }
   }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* space between buttons */
+    
+    /* Add equal width to the buttons */
+    & > * {
+      width: 100%;
+    }
+  }
+
   @media (max-width: 1000px) {
     width: 100%;
     gap: 1rem;
