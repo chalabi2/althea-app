@@ -45,7 +45,7 @@ const Styled = styled.div`
   }
 
   .completed {
-    background-color: #06fc9ab4;
+    background-color: var(--background-color-start);
   }
 
   .circle {
