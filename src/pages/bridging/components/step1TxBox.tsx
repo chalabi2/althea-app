@@ -312,34 +312,34 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
           <div style={{ height: 26 }}></div>
         </div>
         <div className="center-element">
-          <DropDown
-            title="select network"
-            label="Network"
-            items={props.allNetworks
-              .filter((network) => !(network.isAlthea && !props.bridgeIn))
-              .map((network) => {
-                let networkName = network.name;
-                if (network.name === "Ethereum")
-                networkName = "Ethereum / gravity bridge";
-                if (network.name === "gravity bridge")
-                  networkName = "Ethereum / gravity bridge";
-                return {
-                  primaryText: networkName,
-                  icon: network.icon,
-                  id: network.id,
-                };
-              })}
-            disabled={props.bridgeIn}
-            onSelect={(id) => {
-              const network = props.allNetworks.find(
-                (network) => network.id === id
-              );
-              if (network) {
-                props.selectNetwork(network);
-              }
-            }}
-            selectedId={props.toNetwork.id}
-          />
+        <DropDown
+    title="select network"
+    label="Network"
+    items={props.allNetworks
+      .filter((network) => !(network.isAlthea && !props.bridgeIn) && network.name !== "Ethereum")
+      .map((network) => {
+        let networkName = network.name;
+        if (network.name === "Ethereum")
+          networkName = "Ethereum / layer zero";
+        if (network.name === "gravity bridge")
+          networkName = "Ethereum / gravity bridge";
+        return {
+          primaryText: networkName,
+          icon: network.icon,
+          id: network.id,
+        };
+      })}
+    disabled={props.bridgeIn}
+    onSelect={(id) => {
+      const network = props.allNetworks.find(
+        (network) => network.id === id
+      );
+      if (network) {
+        props.selectNetwork(network);
+      }
+    }}
+    selectedId={props.toNetwork.id} 
+  />
           <CopyToClipboard text={props.toAddress ?? ""} onCopy={copyAddress}>
             <Text
               type="text"
@@ -377,7 +377,7 @@ const Step1TxBox = (props: Step1TxBoxProps) => {
                 token?.tokenGroups.includes(TokenGroups.IBC_TOKENS) &&
                 props.bridgeIn
               ) {
-                setisIBCModalOpen(true);
+                 ;
                 setSelectedIBCToken(token as NativeToken);
                 return;
               }

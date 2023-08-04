@@ -27,7 +27,7 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 - done
 
 ### lending
-- Remove lending
+- done
 
 ---
 
