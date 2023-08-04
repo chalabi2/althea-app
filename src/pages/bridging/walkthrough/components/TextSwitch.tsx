@@ -14,7 +14,7 @@ const TextSwitch = (props: Props) => {
       disabled={props.disabled ? props.disabled : false}
       style={{
         backgroundColor: props.active
-          ? "rgba(6, 252, 153, 0.2)"
+          ? "var(--background-color-start)"
           : props.disabled
           ? "var(--pitch-black-color)"
           : "",
@@ -56,7 +56,7 @@ const Styled = styled.div<DisableProps>`
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(6, 252, 153, 0.15);
+    background-color: var(--background-color-start);
     transition: all 0.2s ease;
   }
   cursor: pointer;
