@@ -2,18 +2,21 @@ import styled from "@emotion/styled";
 import LoadingComponent from "../loadingComponent";
 import { FaCheck, FaExclamationTriangle } from "react-icons/fa";
 import close from "assets/icons/close.svg";
-import { OutlinedButton, PrimaryButton, Text } from "global/packages/src";
+import { HybirdButton, OutlinedButton, PrimaryButton, Text } from "global/packages/src";
 import { Mixpanel } from "mixpanel";
 import { useTransactionStore } from "global/stores/transactionStore";
 import { useNetworkInfo } from "global/stores/networkInfo";
 import { useEthers } from "@usedapp/core";
 import OutsideAlerter from "./modalUtils";
 import { GenPubKeyWalkthrough } from "pages/bridging/walkthrough/components/pages/genPubKey";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ThemeContext } from "ThemeProvider";
 interface LoadingProps {
   onClose: () => void;
 }
 const OngoingTxModal = (props: LoadingProps) => {
+
+  const {theme} = useContext(ThemeContext)
   const transactionStore = useTransactionStore();
   const { switchNetwork } = useEthers();
   const chainId = useNetworkInfo((state) => state.chainId);
@@ -158,8 +161,10 @@ const OngoingTxModal = (props: LoadingProps) => {
                         {tx.details.currentMessage}
                       </Text>
                       {tx.details.blockExplorerLink ? (
-                        <OutlinedButton
-                          height="small"
+                        <HybirdButton
+                        theme={theme}
+                          type="outlined"
+                          size="sm"
                           onClick={() => {
                             Mixpanel.events.loadingModal.blockExplorerOpened(
                               tx.details.hash
@@ -168,7 +173,7 @@ const OngoingTxModal = (props: LoadingProps) => {
                           }}
                         >
                           <Text size="text3">view</Text>
-                        </OutlinedButton>
+                        </HybirdButton>
                       ) : null}
                       {tx.details.status === "Fail" && (
                         <PrimaryButton
