@@ -81,7 +81,7 @@ export const ETHMainnet: ETHBridgeNetwork = {
   name: "Ethereum",
   icon: ethIcon,
   coreContracts: CORE_ADDRESSES.ETHMainnet,
-  rpcUrl: import.meta.env.VITE_MAINNET_RPC,
+  rpcUrl: "https://eth.chandrastation.com"
 };
 
 //TEST CHAINS
