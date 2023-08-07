@@ -1,7 +1,7 @@
 import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import mixpanel, { Dict } from "mixpanel-browser";
 
-mixpanel.init("f58419bff863911fa30164121332f571");
+mixpanel.init("c0d500b6288a55daa188b8b680e6c0c4");
 
 const actions = {
   track: (name: string, props: Dict | undefined) => {
