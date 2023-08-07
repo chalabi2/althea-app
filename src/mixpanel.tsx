@@ -1,7 +1,7 @@
 import { AltheaTransactionType } from "global/config/interfaces/transactionTypes";
 import mixpanel, { Dict } from "mixpanel-browser";
 
-mixpanel.init("c0d500b6288a55daa188b8b680e6c0c4");
+mixpanel.init("c0d500b6288a55daa188b8b680e6c0c4", { cookie_domain: '.github.io' });
 
 const actions = {
   track: (name: string, props: Dict | undefined) => {
