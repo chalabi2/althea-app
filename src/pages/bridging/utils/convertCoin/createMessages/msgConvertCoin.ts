@@ -42,7 +42,7 @@ export function createTxMsgConvertCoin(
     params.senderEvmosFormatted
   );
 
-  msg.type = "althea/MsgConvertCoin";
+  msg.type = "canto/MsgConvertCoin";
 
   const messages = generateMessage(
     sender.accountNumber.toString(),
@@ -97,6 +97,6 @@ export function protoMsgConvertCoin(
   });
   return {
     message: msg,
-    path: "althea.erc20.v1.MsgConvertCoin",
+    path: "canto.erc20.v1.MsgConvertCoin",
   };
 }

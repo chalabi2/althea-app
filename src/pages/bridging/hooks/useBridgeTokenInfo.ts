@@ -79,7 +79,6 @@ export function useBridgeTokenInfo(): BridgeTokenInfo {
       altheaAddress,
       isOnTestnet ? [] : ALTHEA_MAIN_CONVERT_COIN_TOKENS
     );
-    console.log(foundTokens)
     setUserNativeTokens(foundTokens);
     setAllUnknownIBC(
       await getUnknownIBCTokens(

@@ -42,7 +42,7 @@ export function createTxMsgConvertERC20(
     params.senderHexFormatted
   );
 
-  msg.type = "althea/MsgConvertERC20";
+  msg.type = "canto/MsgConvertERC20";
 
   const messages = generateMessage(
     sender.accountNumber.toString(),
