@@ -19,8 +19,11 @@ import { BigNumber } from "ethers";
 import {
   getAllValidatorData,
   getSafeVals,
+  getSigningInfo,
+  getSlashingInfo,
   getStakingApr,
   getValconsAddresses,
+  getValidatorsInfo,
 } from "../utils/allUserValidatorInfo";
 import { Fee } from "global/config/cosmosConstants";
 import {
@@ -39,6 +42,7 @@ import { getCosmosAPIEndpoint } from "global/utils/getAddressUtils";
 import { delegateTransaction } from "../modals/stakingModal";
 import amount from "global/components/amount";
 import { convertStringToBigNumber } from "global/utils/formattingNumbers";
+import { getTop10Validators } from "../utils/groupDelegationParams";
 
 const useStaking = (): {
   validators: Validator[];
@@ -70,15 +74,19 @@ const useStaking = (): {
     try {
       const safeVals = await getSafeVals(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
       const consensusAddress = await getValconsAddresses(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-  
-      console.log("Consensus", consensusAddress);
-      console.log(safeVals);
+      const slashCounter = await getSlashingInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const signingInfo = await getSigningInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const getValData = await getValidatorsInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const getTop10 = await getTop10Validators(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      console.log(getTop10);
     } catch (error) {
       console.error("Error:", error);
     }
   }
   
-  logAddresses();
+  useEffect(() => {
+    logAddresses();
+  }, [networkInfo.chainId]); 
 
   async function handleClaimRewards() {
     modalStore.open(ValidatorModalType.STAKE);

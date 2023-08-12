@@ -4,8 +4,8 @@
   "version": "0.3.3",
   "private": true,
   "author": {
-    "name": "Plex Engineer",
-    "url": "https://github.com/Plex-Engineer"
+    "name": "Joseph Chalabi",
+    "url": "https://github.com/chalabi2"
   },
   "scripts": {
     "dev": "vite",
