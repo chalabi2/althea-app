@@ -18,7 +18,9 @@ import { useNetworkInfo } from "global/stores/networkInfo";
 import { BigNumber } from "ethers";
 import {
   getAllValidatorData,
+  getSafeVals,
   getStakingApr,
+  getValconsAddresses,
 } from "../utils/allUserValidatorInfo";
 import { Fee } from "global/config/cosmosConstants";
 import {
@@ -64,6 +66,19 @@ const useStaking = (): {
   });
   // get all of the rewards for the user
   const [rewards, setRewards] = useState<BigNumber>(BigNumber.from("0"));
+  async function logAddresses() {
+    try {
+      const safeVals = await getSafeVals(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const consensusAddress = await getValconsAddresses(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+  
+      console.log("Consensus", consensusAddress);
+      console.log(safeVals);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  
+  logAddresses();
 
   async function handleClaimRewards() {
     modalStore.open(ValidatorModalType.STAKE);
