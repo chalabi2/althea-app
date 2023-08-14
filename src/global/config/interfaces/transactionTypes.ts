@@ -30,6 +30,7 @@ export enum AltheaTransactionType {
   UNDELEGATE = "Undelegate",
   REDELEGATE = "Redelegate",
   CLAIM_REWARDS_STAKING = "Claim Staking Rewards",
+  DELEGATE_MULTIPLE = "Delegate to the 10 safest validators",
 
   //BRIDGING
   SEND_TO_COSMOS = "Send to Cosmos",

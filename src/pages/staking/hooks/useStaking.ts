@@ -40,6 +40,7 @@ import useValidatorModalStore, {
 } from "../stores/validatorModalStore";
 import { getCosmosAPIEndpoint } from "global/utils/getAddressUtils";
 import { delegateTransaction } from "../modals/stakingModal";
+
 import amount from "global/components/amount";
 import { convertStringToBigNumber } from "global/utils/formattingNumbers";
 import { getTop10Validators } from "../utils/groupDelegationParams";
@@ -51,7 +52,7 @@ const useStaking = (): {
   userValidators: MasterValidatorProps[];
   undelagatingValidators: MasterValidatorProps[];
   handleClaimRewards: () => Promise<void>;
-  autoDelegate: () => Promise<void>;
+  handleAutoStake: () => Promise<void>;
   rewards: BigNumber;
   stakingApr: string;
   txFeeCheck: TxFeeBalanceCheck;
@@ -70,24 +71,6 @@ const useStaking = (): {
   });
   // get all of the rewards for the user
   const [rewards, setRewards] = useState<BigNumber>(BigNumber.from("0"));
-  async function logAddresses() {
-    try {
-      const safeVals = await getSafeVals(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const consensusAddress = await getValconsAddresses(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const slashCounter = await getSlashingInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const signingInfo = await getSigningInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const getValData = await getValidatorsInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const getTop10 = await getTop10Validators(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      console.log(getTop10);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-  
-  useEffect(() => {
-    logAddresses();
-  }, [networkInfo.chainId]); 
-
   async function handleClaimRewards() {
     modalStore.open(ValidatorModalType.STAKE);
     claimStakingRewards(
@@ -97,6 +80,55 @@ const useStaking = (): {
       userValidators
     );
   }
+
+  async function handleAutoStake() {
+    modalStore.open(ValidatorModalType.AUTO_DELEGATE);
+
+    const operators = validators.map((validator: { address: any; name: any; }) => ({
+        address: validator.address,
+        name: validator.name
+    }));
+
+    // Iterate through the operators and delegate to each one.
+    for (let operator of operators) {
+        const delegationDetails = {
+            account: networkInfo.account ?? "",
+            chainId: Number(networkInfo.chainId),
+            amount: convertStringToBigNumber(amount, 18).toString(), // Amount can be dynamically decided too based on your logic.
+            newOperator: {
+                address: operator.address,
+                name: operator.name
+            },
+            operator: {
+                address: operator.address,
+                name: operator.name
+            },
+        };
+        
+        // Trigger the delegate transaction for each operator.
+        await delegateTransaction(txStore, delegationDetails); 
+    }
+}
+
+
+  async function logAddresses() {
+    try {
+      const safeVals = await getSafeVals(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const consensusAddress = await getValconsAddresses(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const slashCounter = await getSlashingInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const signingInfo = await getSigningInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const getValData = await getValidatorsInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      const getTop10 = await getTop10Validators(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
+      console.log(signingInfo);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  
+  useEffect(() => {
+    logAddresses();
+  }, [networkInfo.chainId]); 
+
 
    async function autoDelegate() {
   //   modalStore.open(ValidatorModalType.AUTO_DELEGATE);
@@ -199,7 +231,7 @@ const useStaking = (): {
     userValidators,
     undelagatingValidators,
     handleClaimRewards,
-    autoDelegate,
+    handleAutoStake,
     rewards,
     stakingApr,
     txFeeCheck: enoughBalanceForTxFees(),

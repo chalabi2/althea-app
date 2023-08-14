@@ -4,6 +4,7 @@ import useValidatorModalStore, {
   ValidatorModalType,
 } from "../stores/validatorModalStore";
 import { StakingModal } from "./stakingModal";
+import { MultiStakingModal } from "./multiStake";
 import close from "assets/icons/close.svg";
 import { useEffect } from "react";
 import { Mixpanel } from "mixpanel";
@@ -63,6 +64,15 @@ export const ModalManager = (props: ModalManagerProps) => {
       {validatorModals.currentModal === ValidatorModalType.STAKE && (
         <StakingModal
           validator={validatorModals.activeValidator}
+          allValidators={props.allValidators}
+          balance={networkInfo.balance}
+          account={networkInfo.account}
+          txFeeCheck={props.txBalanceChecks}
+          txStore={txStore}
+          chainId={Number(networkInfo.chainId)}
+        />
+      )}{validatorModals.currentModal === ValidatorModalType.AUTO_DELEGATE && (
+        <MultiStakingModal
           allValidators={props.allValidators}
           balance={networkInfo.balance}
           account={networkInfo.account}

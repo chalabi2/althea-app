@@ -8,6 +8,7 @@ import {
   txRedelegate,
   txStake,
   txUnstake,
+  txStakeMultiple
 } from "./transactionHelpers";
 import { Chain, Fee } from "global/config/cosmosConstants";
 import {
@@ -22,10 +23,16 @@ import { claimRewardFee, delegateFee, unbondingFee } from "../config/fees";
 import { formatUnits } from "ethers/lib/utils";
 import { TxMethod, TransactionStore } from "global/stores/transactionStore";
 
+interface Operator {
+  address: string;
+  name: string;
+}
+
 interface GeneralStakingParams {
   account: string;
   chainId?: number;
   amount: string;
+  multipOperator: Operator[];
   newOperator?: {
     address: string;
     name: string;
@@ -35,6 +42,47 @@ interface GeneralStakingParams {
     name: string;
   };
 }
+export async function stakingMultipleTx(
+  txStore: TransactionStore,
+  txType: StakingTransactionType,
+  params: GeneralStakingParams
+): Promise<boolean> {
+  if (!params.account) {
+    txStore.setStatus({ error: "No account found" });
+    return false;
+  }
+  if (!params.chainId) {
+    txStore.setStatus({ error: "No chainId found" });
+    return false;
+  }
+  const totalOperators = params.multipOperator.length;
+  const individualAmount = formatUnits(parseFloat(params.amount) / totalOperators, 18);
+  
+  return await txStore.addTransactionList(
+    [
+      _delegateMultipleTx(
+            params.chainId,
+            params.account,
+            params.multipOperator.map(op => op.address),
+            individualAmount,
+            getCosmosAPIEndpoint(params.chainId),
+            delegateFee,  // You might need to adjust the fee based on the number of transactions
+            getCosmosChainObj(params.chainId),
+            "",
+            {
+              amount: individualAmount,
+              symbol: params.multipOperator.map(op => op.name).join(', '),
+            }
+          )
+    ],
+    {
+      title: txType,
+      txListMethod: TxMethod.COSMOS,
+      chainId: params.chainId,
+    }
+  );
+}
+
 export async function stakingTx(
   txStore: TransactionStore,
   txType: StakingTransactionType,
@@ -152,6 +200,23 @@ const _delegateTx = (
     : AltheaTransactionType.UNDELEGATE,
   tx: isStaking ? txStake : txUnstake,
   params: [account, operatorAddress, amount, endpoint, fee, chain, memo],
+  extraDetails,
+});
+const _delegateMultipleTx = (
+  chainId: number | undefined,
+  account: string,
+  operatorAddresses: string[],
+  amount: string,
+  endpoint: string,
+  fee: Fee,
+  chain: Chain,
+  memo: string,
+  extraDetails?: ExtraProps
+): CosmosTx => ({
+  chainId,
+  txType: AltheaTransactionType.DELEGATE_MULTIPLE,  // Ensure you have this enum value
+  tx: txStakeMultiple,
+  params: [account, operatorAddresses, amount, endpoint, fee, chain, memo],
   extraDetails,
 });
 const _redelegateTx = (

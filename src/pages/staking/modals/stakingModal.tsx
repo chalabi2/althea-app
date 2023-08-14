@@ -22,7 +22,7 @@ import styled from "@emotion/styled";
 import CheckBox from "global/components/checkBox";
 import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
 import { TransactionStore } from "global/stores/transactionStore";
-import { stakingTx } from "../utils/transactions";
+import { stakingTx, stakingMultipleTx } from "../utils/transactions";
 
 interface StakingModalProps {
   validator: MasterValidatorProps;
@@ -83,6 +83,7 @@ export const StakingModal = ({
   };
   const handleDelegate = () =>
     stakingTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
+
   const handleUndelegate = () =>
     stakingTx(txStore, StakingTransactionType.UNDELEGATE, delegationDetails);
   const handleRedelegate = () =>
@@ -164,7 +165,7 @@ export const StakingModal = ({
                 <CInput
                   placeholder="enter amount..."
                   value={amount}
-                  onChange={(x) => {
+                  onChange={(x: { target: { value: any; }; }) => {
                     setAmount(x.target.value);
                   }}
                 />
@@ -229,7 +230,7 @@ export const StakingModal = ({
                 <CInput
                   placeholder="enter amount..."
                   value={amount}
-                  onChange={(x) => {
+                  onChange={(x: { target: { value: any; }; }) => {
                     setAmount(x.target.value);
                   }}
                 />
@@ -304,7 +305,7 @@ export const StakingModal = ({
                         }
                         return {};
                       })}
-                      onChange={(val) => {
+                      onChange={(val: { value: any; }) => {
                         setNewValidator(val?.value);
                       }}
                     />
@@ -316,7 +317,7 @@ export const StakingModal = ({
                 <CInput
                   placeholder="enter amount..."
                   value={amount}
-                  onChange={(x) => {
+                  onChange={(x: { target: { value: any; }; }) => {
                     setAmount(x.target.value);
                   }}
                 />

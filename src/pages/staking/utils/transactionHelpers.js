@@ -17,6 +17,7 @@ import {
   ethToAlthea,
 } from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
+import { getTop10Validators } from "./groupDelegationParams";
 
 const ACCEPT_APPLICATION_JSON = "application/json";
 /**
@@ -55,6 +56,24 @@ export async function txStake(
     nodeAddressIP,
     account
   );
+}
+
+export async function txStakeMultiple(account, amount, nodeAddressIP, fee, chain, memo) {
+  const senderObj = await getSenderObj(account, nodeAddressIP);
+  
+  const top10Validators = await getTop10Validators(nodeAddressIP);
+  const individualAmount = amount / top10Validators.length; 
+
+
+  const messages = top10Validators.map(validator => {
+    return createTxMsgDelegate(chain, senderObj, fee, memo, {
+      validatorAddress: validator.operator_address,
+      amount: individualAmount,
+      denom: "aalthea",
+    });
+  });
+
+  return await signAndBroadcastTxMsg(messages, senderObj, chain, nodeAddressIP, account);
 }
 
 /**

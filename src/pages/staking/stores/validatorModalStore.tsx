@@ -13,18 +13,23 @@ export enum ValidatorModalType {
 interface ModalState {
   currentModal: ValidatorModalType;
   open: (modal: ValidatorModalType) => void;
-  //transaction reset to none since will not automatically update
   close: () => void;
   activeValidator: MasterValidatorProps;
+  activeValidators: MasterValidatorProps[]; // New entry
   setActiveValidator: (validator: MasterValidatorProps) => void;
+  setActiveValidators: (validators: MasterValidatorProps[]) => void; 
 }
 const useValidatorModalStore = create<ModalState>((set) => ({
   currentModal: ValidatorModalType.NONE,
   open: (modal) => set({ currentModal: modal }),
   close: () => set({ currentModal: ValidatorModalType.NONE }),
   activeValidator: EmptyActiveValidator,
+  activeValidators: [], // New entry
   setActiveValidator: (validator: MasterValidatorProps) =>
     set({ activeValidator: validator }),
+  setActiveValidators: (validators: MasterValidatorProps[]) => 
+    set({ activeValidators: validators }), // New entry
 }));
+
 
 export default useValidatorModalStore;

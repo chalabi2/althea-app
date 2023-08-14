@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import { HybirdButton, OutlinedButton, Text } from "global/packages/src";
 import { ThemeContext } from "ThemeProvider";
 import { useContext } from "react";
+import validatorModalStore, { ValidatorModalType } from "../stores/validatorModalStore";
+import { getTop10Validators } from "../utils/groupDelegationParams";
+import { useState } from "react";
+
 
 interface Props {
   balance: string;
@@ -13,8 +17,33 @@ interface Props {
   onDelegate: () => Promise<void>;
   canClaim: boolean;
 }
-const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim, onDelegate }: Props) => {
-  const { theme } = useContext(ThemeContext)
+interface ValidatorInfo {
+  moniker: string;
+  operator_address: string;
+  tokens: string; // or possibly 'number' if it's supposed to be numerical
+  commission: string; // or possibly 'number' if it's supposed to be numerical
+  missedBlocks: number;
+  score: number;
+  slashings: number;
+  tombstoned: boolean;
+  valcons_address: string;
+}
+
+type ValidatorsList = ValidatorInfo[];
+
+const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
+  const { theme } = useContext(ThemeContext);
+  
+  const [topValidators, setTopValidators] = useState<ValidatorsList[]>([]); // Assuming each validator is of type 'Validator'
+  const openModal = validatorModalStore((state: { open: any; }) => state.open);
+  const { setActiveValidators, open } = validatorModalStore();
+  const handleAutoStake = async () => {
+    const fetchedTopValidators = await getTop10Validators("https://althea.api.chandrastation.com");
+    setTopValidators(fetchedTopValidators);
+
+    setActiveValidators(fetchedTopValidators);
+    open(ValidatorModalType.AUTO_DELEGATE);
+}
   return (
     <Styled>
       <div
@@ -75,7 +104,7 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim, onDelegate }:
             height: "big",
           }}
           theme={theme}
-          onClick={onDelegate} // Change this to the relevant quick stake function
+          onClick={handleAutoStake} 
         >
           <Text size="text2" type="text" bold>
             auto stake

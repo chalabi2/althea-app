@@ -5,7 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 const production = process.env.NODE_ENV === "production";
 export default {
-  base: production ? '/althea-app/' : './', 
+  base: production ? '/althea-app/' : '/althea-app/', 
   server: {
     host: "0.0.0.0",
     port: "8000",
