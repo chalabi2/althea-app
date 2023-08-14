@@ -21,6 +21,7 @@ import {
 } from "global/utils/getAddressUtils";
 import { claimRewardFee, delegateFee, unbondingFee } from "../config/fees";
 import { formatUnits } from "ethers/lib/utils";
+import { ethers } from "ethers";
 import { TxMethod, TransactionStore } from "global/stores/transactionStore";
 
 interface Operator {
@@ -56,7 +57,9 @@ export async function stakingMultipleTx(
     return false;
   }
   const totalOperators = params.multipOperator.length;
-  const individualAmount = formatUnits(parseFloat(params.amount) / totalOperators, 18);
+  const amountBN = ethers.BigNumber.from(params.amount);
+  const individualAmountBN = amountBN.div(totalOperators);
+  const individualAmount = ethers.utils.formatUnits(individualAmountBN, 18);
   
   return await txStore.addTransactionList(
     [

@@ -41,9 +41,7 @@ import useValidatorModalStore, {
 import { getCosmosAPIEndpoint } from "global/utils/getAddressUtils";
 import { delegateTransaction } from "../modals/stakingModal";
 
-import amount from "global/components/amount";
 import { convertStringToBigNumber } from "global/utils/formattingNumbers";
-import { getTop10Validators } from "../utils/groupDelegationParams";
 
 const useStaking = (): {
   validators: Validator[];
@@ -94,7 +92,7 @@ const useStaking = (): {
         const delegationDetails = {
             account: networkInfo.account ?? "",
             chainId: Number(networkInfo.chainId),
-            amount: convertStringToBigNumber(amount, 18).toString(), // Amount can be dynamically decided too based on your logic.
+            amount: convertStringToBigNumber(amount, 18).toString(), 
             newOperator: {
                 address: operator.address,
                 name: operator.name
@@ -109,25 +107,6 @@ const useStaking = (): {
         await delegateTransaction(txStore, delegationDetails); 
     }
 }
-   async function autoDelegate() {
-  //   modalStore.open(ValidatorModalType.AUTO_DELEGATE);
-  //   const delegationDetails = {
-  //     account: account ?? "",
-  //     chainId,
-  //     amount: convertStringToBigNumber(amount, 18).toString(),
-  //     newOperator: {
-  //       address: validators,
-  //       name: validators,
-  //     },
-  //     operator: {
-  //       address: validators,
-  //       name: validators
-  //     },
-  //   };
-  
-  //   // Trigger the delegate transaction
-  //   delegateTransaction(txStore, delegationDetails);
-   }
 
   async function getAllData() {
     if (networkInfo.account) {

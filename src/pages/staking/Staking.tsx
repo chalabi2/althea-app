@@ -151,7 +151,7 @@ const Staking = () => {
               userValidationInfo={userValidators}
               undelegationValidators={undelagatingValidators}
               canClaim={txFeeCheck.claimRewards}
-              onDelegate={handleAutoStake}
+              handleAutoStake={handleAutoStake}
             />
           </TabPanel>
           <TabPanel>

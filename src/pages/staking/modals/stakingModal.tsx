@@ -33,6 +33,10 @@ interface StakingModalProps {
   txStore: TransactionStore;
   chainId: number;
 }
+interface Operator {
+  address: string;
+  name: string;
+}
 
 export const delegateTransaction = (
   txStore: TransactionStore,
@@ -40,6 +44,7 @@ export const delegateTransaction = (
     account: string;
     chainId: number;
     amount: string;
+    multipOperator: Operator[];
     newOperator: {
       address: string;
       name: string;
@@ -52,6 +57,7 @@ export const delegateTransaction = (
 ) => {
   stakingTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
 };
+
 
 export const StakingModal = ({
   validator,
@@ -72,6 +78,7 @@ export const StakingModal = ({
     account: account ?? "",
     chainId,
     amount: convertStringToBigNumber(amount, 18).toString(),
+    multipOperator: [],
     newOperator: {
       address: newValidator?.operator_address ?? "",
       name: newValidator?.description.moniker ?? "",

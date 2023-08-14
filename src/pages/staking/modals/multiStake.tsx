@@ -57,21 +57,30 @@ import ImageButton from "global/components/ImageButton";
     txStore,
     chainId,
 }: MultiStakingModalProps) => {
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState<string>("");
     const [isLoading, setIsLoading] = useState(true);
     const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
     const handleMultiDelegate = () => {
-        const delegationDetails = topValidators.map((validator) => ({
-            account: account,
-            chainId,
-            amount: convertStringToBigNumber(amount, 18).toString(),
-            operator: {
-                address: validator.operator_address,
-                name: validator.moniker,
-            },
+        if (!account) {
+            // Handle the error - maybe set a state variable or console error
+            console.error("Account is not defined");
+            return;
+        }
+    
+        const operators = topValidators.map((validator) => ({
+            address: validator.operator_address,
+            name: validator.moniker,
         }));
-
+    
+        const delegationDetails = {
+            account: account,  // Now we're sure it's not undefined
+            chainId: chainId,
+            amount: convertStringToBigNumber(amount, 18).toString(),
+            multipOperator: operators,
+            operator: operators[0]
+        };
+    
         stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
     };
 
@@ -132,7 +141,7 @@ import ImageButton from "global/components/ImageButton";
     {isLoading ? (
         <>
             <LoadingContainer>
-  <LoadingComponent />
+  <LoadingComponent size="md" />
   <span
             >Calculating safest validators...</span>
 </LoadingContainer>
