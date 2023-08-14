@@ -66,7 +66,7 @@ export async function stakingMultipleTx(
             params.multipOperator.map(op => op.address),
             individualAmount,
             getCosmosAPIEndpoint(params.chainId),
-            delegateFee,  // You might need to adjust the fee based on the number of transactions
+            delegateFee,  
             getCosmosChainObj(params.chainId),
             "",
             {

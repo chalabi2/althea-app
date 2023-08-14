@@ -20,8 +20,8 @@ interface Props {
 interface ValidatorInfo {
   moniker: string;
   operator_address: string;
-  tokens: string; // or possibly 'number' if it's supposed to be numerical
-  commission: string; // or possibly 'number' if it's supposed to be numerical
+  tokens: string; 
+  commission: string; 
   missedBlocks: number;
   score: number;
   slashings: number;
@@ -29,16 +29,17 @@ interface ValidatorInfo {
   valcons_address: string;
 }
 
-type ValidatorsList = ValidatorInfo[];
+export type ValidatorsList = ValidatorInfo[];
 
 const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
   const { theme } = useContext(ThemeContext);
   
-  const [topValidators, setTopValidators] = useState<ValidatorsList[]>([]); // Assuming each validator is of type 'Validator'
+  const [topValidators, setTopValidators] = useState<ValidatorsList[]>([]); 
   const openModal = validatorModalStore((state: { open: any; }) => state.open);
   const { setActiveValidators, open } = validatorModalStore();
   const handleAutoStake = async () => {
-    const fetchedTopValidators = await getTop10Validators("https://althea.api.chandrastation.com");
+    const fetchedTopValidators: ValidatorsList = await getTop10Validators("https://althea.api.chandrastation.com");
+
     setTopValidators(fetchedTopValidators);
 
     setActiveValidators(fetchedTopValidators);
@@ -107,7 +108,7 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
           onClick={handleAutoStake} 
         >
           <Text size="text2" type="text" bold>
-            auto stake
+            multi stake
           </Text>
         </HybirdButton>
       </div>

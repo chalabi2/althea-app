@@ -84,11 +84,11 @@ const useStaking = (): {
   async function handleAutoStake() {
     modalStore.open(ValidatorModalType.AUTO_DELEGATE);
 
-    const operators = validators.map((validator: { address: any; name: any; }) => ({
-        address: validator.address,
-        name: validator.name
-    }));
-
+    const operators = validators.map((validator: { address: string; name: string; }) => ({
+      address: validator.address,
+      name: validator.name
+  }));
+  
     // Iterate through the operators and delegate to each one.
     for (let operator of operators) {
         const delegationDetails = {
@@ -109,27 +109,6 @@ const useStaking = (): {
         await delegateTransaction(txStore, delegationDetails); 
     }
 }
-
-
-  async function logAddresses() {
-    try {
-      const safeVals = await getSafeVals(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const consensusAddress = await getValconsAddresses(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const slashCounter = await getSlashingInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const signingInfo = await getSigningInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const getValData = await getValidatorsInfo(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      const getTop10 = await getTop10Validators(getCosmosAPIEndpoint(Number(networkInfo.chainId)));
-      console.log(signingInfo);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-  
-  useEffect(() => {
-    logAddresses();
-  }, [networkInfo.chainId]); 
-
-
    async function autoDelegate() {
   //   modalStore.open(ValidatorModalType.AUTO_DELEGATE);
   //   const delegationDetails = {

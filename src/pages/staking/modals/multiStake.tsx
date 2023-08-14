@@ -24,6 +24,9 @@ import {
   import { TransactionStore } from "global/stores/transactionStore";
   import { stakingMultipleTx, stakingTx } from "../utils/transactions";
   import { getTop10Validators } from "../utils/groupDelegationParams";
+  import LoadingComponent from "global/components/loadingComponent";
+  import menuImg from "assets/icons/menu.svg";
+import ImageButton from "global/components/ImageButton";
   
 
   interface MultiStakingModalProps {
@@ -38,8 +41,8 @@ import {
   interface ValidatorInfo {
     moniker: string;
     operator_address: string;
-    tokens: string; // or possibly 'number' if it's supposed to be numerical
-    commission: string; // or possibly 'number' if it's supposed to be numerical
+    tokens: string; 
+    commission: string;
     missedBlocks: number;
     score: number;
     slashings: number;
@@ -55,10 +58,12 @@ import {
     chainId,
 }: MultiStakingModalProps) => {
     const [amount, setAmount] = useState("");
-    
+    const [isLoading, setIsLoading] = useState(true);
+    const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+
     const handleMultiDelegate = () => {
         const delegationDetails = topValidators.map((validator) => ({
-            account: account ?? "",
+            account: account,
             chainId,
             amount: convertStringToBigNumber(amount, 18).toString(),
             operator: {
@@ -66,29 +71,44 @@ import {
                 name: validator.moniker,
             },
         }));
-      
+
         stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
     };
 
     const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]);
     useEffect(() => {
         const fetchTopValidators = async () => {
+            setIsLoading(true);
             const validators = await getTop10Validators("https://althea.api.chandrastation.com");
             setTopValidators(validators);
+            setIsLoading(false);
         };
-    
+        
         fetchTopValidators();
     }, []);
 
     return (
         <StakingModalContainer>
             <Text size="title2" type="title" className="title">
-                Multi-Staking
-            </Text>
+    Multi-Staking
+    <ImageButton
+              src={menuImg}
+              width={27}
+              height={27}
+              rotateImage={true}
+              alt="menu"
+              onClick={() => setIsDescriptionVisible(!isDescriptionVisible)}
+              />
+</Text>
+{isDescriptionVisible && (
+        <Description>
+          Multi Staking is a tool used to send your delegation to a group of random and performant validators below the top ten. The list is based off a ranking system that considers missed blocks, slashings, commission, voting power, and governance participation. 
+        </Description>
+      )}
             <div className="desc">
                 <div className="amount">
                     <CInput
-                        placeholder="Enter amount to delegate to each validator..."
+                        placeholder="Enter amount to split between validators..."
                         value={amount}
                         onChange={(x) => {
                             setAmount(x.target.value);
@@ -109,12 +129,41 @@ import {
                     </button>
                 </div>
                 <div className="validators-list">
-                    {topValidators.map((validator) => (
-                        <div key={validator.operator_address}>
-                            {validator.moniker}
-                        </div>
-                    ))}
-                </div>
+    {isLoading ? (
+        <>
+            <LoadingContainer>
+  <LoadingComponent />
+  <span
+            >Calculating safest validators...</span>
+</LoadingContainer>
+            
+        </>
+    ) : (
+        <ValidatorTable>
+  <table>
+    <thead>
+      <tr>
+        <th>Validator</th>
+        <th>Missed Blocks</th>
+        <th>Commission</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {topValidators.map((validator) => (
+        <tr key={validator.operator_address}>
+          <td>{validator.moniker}</td>
+          <td>{validator.missedBlocks}</td>
+          <td>{Number(validator.commission) * 100}%</td>
+          <td>{Number(validator.score).toFixed(4)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</ValidatorTable>
+
+    )}
+</div>
                 <PrimaryButton
                     weight="bold"
                     height="big"
@@ -133,71 +182,67 @@ import {
         </StakingModalContainer>
     );
 };
+
+const Description = styled.div`
+  font-family: "IBM Plex Sans"; 
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  max-width: 90%; // This limits the width to 90% of its parent (the modal). Adjust as needed.
+  margin-left: auto; // These two lines center the Description box in the modal.
+  margin-right: auto;
+`;
   
-  const Selected = styled.div`
-    width: 100%;
-    .react-select-container {
-    }
-    .react-select__input-container {
+const ValidatorTable = styled.div`
+width: 100%; 
+max-height: 45vh; 
+overflow-y: scroll;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: IBM Plex Sans; 
+  color: var(--primary-color);
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--base);
+  font-family: IBM Plex Sans; 
+  color: var(--primary-color);
+
+  th {
+    padding: 10px;
+    border-bottom: 1px solid var(--highlights);
+    text-align: left;
+    font-family: IBM Plex Sans; 
+    color: var(--primary-color);
+  }
+}
+
+tbody {
+  tr {
+    &:nth-of-type(even) {
+      background-color: var(--base);
+      font-family: IBM Plex Sans; 
       color: var(--primary-color);
     }
-  
-    .react-select__placeholder {
-      filter: grayscale(1);
-      padding-left: 4px;
-      opacity: 0.5;
-      color: var(--primary-color);
-    }
-    .react-select__control {
-      background-color: var(--highlights) !important;
-      color: var(--primary-color) !important;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      letter-spacing: -0.03em;
-      height: 56px;
-  
-      &:focus,
-      &:hover {
-        outline: none;
-      }
-    }
-  
-    .react-select__menu {
-      backdrop-filter: blur(35px);
-      background: var(--base);
-      border-radius: 4px;
-      /* overflow: visible; */
-      color: var(--primary-color) !important;
-    }
-    .react-select__indicator-separator {
-      display: none;
-    }
-    .react-select__value-container {
-      * {
-        color: var(--primary-color) !important;
-      }
-    }
-    .react-select__menu-list {
-      outline: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      padding: 0.6rem 0;
-      align-items: center;
-      color: var(--primary-color) !important;
-    }
-  
-    .react-select__option {
-      width: 94%;
-      background-color: transparent !important;
-      margin: 0.2rem 1rem;
-      padding: 0.8rem 0.6rem;
-  
-      &:hover {
-        border-radius: 4px;
-        background-color: #ffffff1a !important;
-      }
-    }
-  `;
-  
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid var(--highlights);
+    font-family: IBM Plex Sans; 
+    color: var(--primary-color);
+  }
+}
+`;
+
+const LoadingContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 300px;
+font-family: IBM Plex Sans; 
+color: var(--primary-color);
+`;

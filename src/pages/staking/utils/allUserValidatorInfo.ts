@@ -135,31 +135,35 @@ async function getValconsAddressForValidator(
   operatorAddress: string,
   nodeAddressIP: string
 ): Promise<string> {
-  const bech32Prefix = "althea";
-  const valconsPrefix = bech32Prefix + "valcons";
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  };
+  try {
+    const bech32Prefix = "althea";
+    const valconsPrefix = bech32Prefix + "valcons";
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    };
 
-  const url = `${nodeAddressIP}/cosmos/staking/v1beta1/validators/${operatorAddress}`;
-  const response = await fetch(url, options);
-  const { validator } = await response.json();
-  const consensusPubkeyBase64 = validator?.consensus_pubkey?.key;
+    const url = `${nodeAddressIP}/cosmos/staking/v1beta1/validators/${operatorAddress}`;
+    const response = await fetch(url, options);
+    const { validator } = await response.json();
+    const consensusPubkeyBase64 = validator?.consensus_pubkey?.key;
 
-  if (consensusPubkeyBase64) {
-    const addressData = sha256(fromBase64(consensusPubkeyBase64)).slice(0, 20);
-    return toBech32(valconsPrefix, addressData);
+    if (consensusPubkeyBase64) {
+      const addressData = sha256(fromBase64(consensusPubkeyBase64)).slice(0, 20);
+      return toBech32(valconsPrefix, addressData);
+    }
+
+    return "";  
+
+  } catch (error) {
+    console.error("Error in getValconsAddressForValidator:", error);
+    return "";
   }
-
-  return "";
 }
 
-export async function getValconsAddresses(
-  nodeAddressIP: string
-): Promise<string[]> {
+export async function getValconsAddresses(nodeAddressIP: string): Promise<string[]> {
   const valoperAddresses = (await getSafeVals(nodeAddressIP)).notJailed;
   const bech32Prefix = "althea";
   const valconsPrefix = bech32Prefix + "valcons";
@@ -170,27 +174,24 @@ export async function getValconsAddresses(
     },
   };
 
-  const getConsensusPubkey = async (valoperAddress: string) => {
-    const url = `${nodeAddressIP}/cosmos/staking/v1beta1/validators/${valoperAddress}`;
-    const response = await fetch(url, options);
-    const { validator } = await response.json();
-    return validator?.consensus_pubkey?.key;
-  };
-
-  const valconsAddresses = [];
-
-  for (const valoperInfo of valoperAddresses) {
-    const consensusPubkeyBase64 = await getConsensusPubkey(
-      valoperInfo.operator_address
-    );
-    if (consensusPubkeyBase64) {
-      const addressData = sha256(fromBase64(consensusPubkeyBase64)).slice(
-        0,
-        20
-      );
-      valconsAddresses.push(toBech32(valconsPrefix, addressData));
+  const consensusKeysPromises = valoperAddresses.map(async (valoperInfo) => {
+    const url = `${nodeAddressIP}/cosmos/staking/v1beta1/validators/${valoperInfo.operator_address}`;
+    const response = await fetch(url, options).catch(e => console.error("Error fetching consensus key:", e));
+    if (response?.ok) {
+      const { validator } = await response.json();
+      return validator?.consensus_pubkey?.key;
     }
-  }
+    return null;
+  });
+
+  const consensusKeys = await Promise.all(consensusKeysPromises);
+
+  const valconsAddresses = consensusKeys
+    .filter(Boolean)
+    .map(key => {
+      const addressData = sha256(fromBase64(key as string)).slice(0, 20);
+      return toBech32(valconsPrefix, addressData);
+    });
 
   return valconsAddresses;
 }
@@ -245,25 +246,18 @@ export async function getSlashingInfo(nodeAddressIP: string) {
     },
   };
 
-  let allSlashings = [];
-
-  for (const valoperInfo of notJailedValidators) {
+  const slashingInfoPromises = notJailedValidators.map(async (valoperInfo) => {
     const urlSlashingInfo = `${nodeAddressIP}/cosmos/distribution/v1beta1/validators/${valoperInfo.operator_address}/slashes`;
     const response = await fetch(urlSlashingInfo, options);
     const result = await response.json();
 
-    if (result.slashes && result.slashes.length > 0) {
-      allSlashings.push({
-        validator: valoperInfo.operator_address,
-        slashes: result.slashes,
-      });
-    } else {
-      allSlashings.push({
-        validator: valoperInfo.operator_address,
-        slashes: [],
-      });
-    }
-  }
+    return {
+      validator: valoperInfo.operator_address,
+      slashes: result.slashes && result.slashes.length > 0 ? result.slashes : [],
+    };
+  });
+
+  const allSlashings = await Promise.all(slashingInfoPromises);
 
   return {
     slashings: allSlashings,
@@ -271,47 +265,50 @@ export async function getSlashingInfo(nodeAddressIP: string) {
 }
 
 export async function getValidatorsInfo(nodeAddressIP: string) {
-  const notJailedValidators = (await getSafeVals(nodeAddressIP)).notJailed;
+  try {
+    const { notJailed: notJailedValidators } = await getSafeVals(nodeAddressIP);
+    const valconsAddressesMap: { [operator: string]: string } = {};
 
-  const valconsAddressesMap: { [operator: string]: string } = {};
+    // Fetch all valcons addresses in parallel
+    await Promise.all(
+      notJailedValidators.map(async (valoperInfo) => {
+        const valconsAddress = await getValconsAddressForValidator(valoperInfo.operator_address, nodeAddressIP);
+        valconsAddressesMap[valoperInfo.operator_address] = valconsAddress;
+      })
+    );
 
-  const allValconsAddressPromises = notJailedValidators.map(
-    async (valoperInfo) => {
-      const valconsAddress = await getValconsAddressForValidator(
-        valoperInfo.operator_address,
-        nodeAddressIP
-      );
-      valconsAddressesMap[valoperInfo.operator_address] = valconsAddress;
-      return valconsAddress;
-    }
-  );
+    // Fetch signing and slashing info concurrently
+    const [signingInfos, slashingsInfoResponse] = await Promise.all([
+      getSigningInfo(nodeAddressIP),
+      getSlashingInfo(nodeAddressIP)
+    ]);
 
-  await Promise.all(allValconsAddressPromises);
+    // Map slashing info for easy lookup
+    const slashingsInfoMap: { [key: string]: number } = {};
+    slashingsInfoResponse.slashings.forEach((slashInfo) => {
+      slashingsInfoMap[slashInfo.validator] = slashInfo.slashes.length;
+    });
 
-  const signingInfos = await getSigningInfo(nodeAddressIP);
-  const slashingsInfoResponse = await getSlashingInfo(nodeAddressIP);
+    // Map validator data to desired format
+    return notJailedValidators.map((valoperInfo) => {
+      const valconsAddress = valconsAddressesMap[valoperInfo.operator_address];
+      const validatorSignInfo = signingInfos[valconsAddress];
+      return {
+        moniker: valoperInfo.moniker,
+        operator_address: valoperInfo.operator_address,
+        tokens: valoperInfo.tokens,
+        commission: valoperInfo.commission,
+        valcons_address: valconsAddress,
+        missedBlocks: validatorSignInfo?.missedBlocks || 0,
+        tombstoned: validatorSignInfo?.tombstoned || false,
+        slashings: slashingsInfoMap[valoperInfo.operator_address] || 0,
+        score: 0,
+      };
+    });
 
-  const slashingsInfoMap: { [key: string]: number } = {};
-  slashingsInfoResponse.slashings.forEach((slashInfo) => {
-    slashingsInfoMap[slashInfo.validator] = slashInfo.slashes.length;
-  });
-
-  const validatorsInfo = notJailedValidators.map((valoperInfo) => {
-    const valconsAddress = valconsAddressesMap[valoperInfo.operator_address];
-    const validatorSignInfo = signingInfos[valconsAddress];
-
-    return {
-      moniker: valoperInfo.moniker,
-      operator_address: valoperInfo.operator_address,
-      tokens: valoperInfo.tokens,
-      commission: valoperInfo.commission,
-      valcons_address: valconsAddress,
-      missedBlocks: validatorSignInfo ? validatorSignInfo.missedBlocks : 0,
-      tombstoned: validatorSignInfo ? validatorSignInfo.tombstoned : false,
-      slashings: slashingsInfoMap[valoperInfo.operator_address] || 0,
-      score: 0,
-    };
-  });
-
-  return validatorsInfo;
+  } catch (error) {
+    console.error("Error in getValidatorsInfo:", error);
+    return []; 
+  }
 }
+

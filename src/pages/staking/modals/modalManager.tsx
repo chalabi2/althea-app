@@ -71,7 +71,8 @@ export const ModalManager = (props: ModalManagerProps) => {
           txStore={txStore}
           chainId={Number(networkInfo.chainId)}
         />
-      )}{validatorModals.currentModal === ValidatorModalType.AUTO_DELEGATE && (
+      )}
+      {validatorModals.currentModal === ValidatorModalType.AUTO_DELEGATE && (
         <MultiStakingModal
           allValidators={props.allValidators}
           balance={networkInfo.balance}

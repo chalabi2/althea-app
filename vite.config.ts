@@ -7,7 +7,7 @@ const production = process.env.NODE_ENV === "production";
 export default {
   base: production ? '/althea-app/' : '/althea-app/', 
   server: {
-    host: "0.0.0.0",
+    host: "localhost",
     port: "8000",
   },
   plugins: [

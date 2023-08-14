@@ -3,6 +3,7 @@ import {
   EmptyActiveValidator,
   MasterValidatorProps,
 } from "../config/interfaces";
+import { ValidatorsList } from "../components/InfoBar";
 
 export enum ValidatorModalType {
   STAKE,
@@ -15,20 +16,20 @@ interface ModalState {
   open: (modal: ValidatorModalType) => void;
   close: () => void;
   activeValidator: MasterValidatorProps;
-  activeValidators: MasterValidatorProps[]; // New entry
+  activeValidators: ValidatorsList; // New entry
   setActiveValidator: (validator: MasterValidatorProps) => void;
-  setActiveValidators: (validators: MasterValidatorProps[]) => void; 
+  setActiveValidators: (validators: ValidatorsList) => void; 
 }
 const useValidatorModalStore = create<ModalState>((set) => ({
   currentModal: ValidatorModalType.NONE,
   open: (modal) => set({ currentModal: modal }),
   close: () => set({ currentModal: ValidatorModalType.NONE }),
   activeValidator: EmptyActiveValidator,
-  activeValidators: [], // New entry
+  activeValidators: [], 
   setActiveValidator: (validator: MasterValidatorProps) =>
     set({ activeValidator: validator }),
-  setActiveValidators: (validators: MasterValidatorProps[]) => 
-    set({ activeValidators: validators }), // New entry
+  setActiveValidators: (validators: ValidatorsList) => 
+    set({ activeValidators: validators }), 
 }));
 
 
