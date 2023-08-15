@@ -290,7 +290,7 @@ export async function getValidatorsInfo(nodeAddressIP: string) {
     });
 
     // Map validator data to desired format
-    return notJailedValidators.map((valoperInfo) => {
+    const validatorsData = notJailedValidators.map((valoperInfo) => {
       const valconsAddress = valconsAddressesMap[valoperInfo.operator_address];
       const validatorSignInfo = signingInfos[valconsAddress];
       return {
@@ -303,12 +303,22 @@ export async function getValidatorsInfo(nodeAddressIP: string) {
         tombstoned: validatorSignInfo?.tombstoned || false,
         slashings: slashingsInfoMap[valoperInfo.operator_address] || 0,
         score: 0,
+        trueRank: 0,
       };
     });
+
+    // Sort validators by tokens and assign ranks
+    validatorsData.sort((a, b) => parseFloat(b.tokens) - parseFloat(a.tokens))
+      .forEach((validator, index) => {
+        validator.trueRank = index + 1; // Adding the true rank based on tokens
+      });
+
+    return validatorsData; // This now includes the trueRank property
 
   } catch (error) {
     console.error("Error in getValidatorsInfo:", error);
     return []; 
   }
 }
+
 

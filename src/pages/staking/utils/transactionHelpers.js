@@ -72,8 +72,9 @@ export async function txStakeMultiple(account, amount, nodeAddressIP, fee, chain
       denom: "aalthea",
     });
   });
-
+  console.log(messages, senderObj, chain, nodeAddressIP, account )
   return await signAndBroadcastTxMsg(messages, senderObj, chain, nodeAddressIP, account);
+
 }
 
 /**

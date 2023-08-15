@@ -48,6 +48,7 @@ import ImageButton from "global/components/ImageButton";
     slashings: number;
     tombstoned: boolean;
     valcons_address: string;
+    trueRank: number;
   }
   
   export const MultiStakingModal = ({
@@ -78,7 +79,7 @@ import ImageButton from "global/components/ImageButton";
             chainId: chainId,
             amount: convertStringToBigNumber(amount, 18).toString(),
             multipOperator: operators,
-            operator: operators[0]
+            operator: operators[10]
         };
     
         stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
@@ -111,7 +112,8 @@ import ImageButton from "global/components/ImageButton";
 </Text>
 {isDescriptionVisible && (
         <Description>
-          Multi Staking is a tool used to send your delegation to a group of random and performant validators below the top ten. The list is based off a ranking system that considers missed blocks, slashings, commission, voting power, and governance participation. 
+          Multi Staking is a tool used to send your delegation to a group of random and performant validators below the top ten. The list is based off a ranking system 
+          that considers missed blocks, slashings, commission, voting power, and governance participation. 
         </Description>
       )}
             <div className="desc">
@@ -143,7 +145,7 @@ import ImageButton from "global/components/ImageButton";
             <LoadingContainer>
   <LoadingComponent size="md" />
   <span
-            >Calculating safest validators...</span>
+            >Finidng safest validators...</span>
 </LoadingContainer>
             
         </>
@@ -154,7 +156,7 @@ import ImageButton from "global/components/ImageButton";
       <tr>
         <th>Validator</th>
         <th>Missed Blocks</th>
-        <th>Commission</th>
+        <th>Rank</th>
         <th>Score</th>
       </tr>
     </thead>
@@ -163,7 +165,7 @@ import ImageButton from "global/components/ImageButton";
         <tr key={validator.operator_address}>
           <td>{validator.moniker}</td>
           <td>{validator.missedBlocks}</td>
-          <td>{Number(validator.commission) * 100}%</td>
+          <td>{validator.trueRank}th</td>
           <td>{Number(validator.score).toFixed(4)}</td>
         </tr>
       ))}
@@ -202,51 +204,58 @@ const Description = styled.div`
 `;
   
 const ValidatorTable = styled.div`
-width: 100%; 
-max-height: 45vh; 
-overflow-y: scroll;
+  width: 100%; 
+  max-height: 45vh; 
+  overflow-y: scroll;
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: IBM Plex Sans; 
-  color: var(--primary-color);
-}
-
-thead {
-  position: sticky;
-  top: 0;
-  background-color: var(--base);
-  font-family: IBM Plex Sans; 
-  color: var(--primary-color);
-
-  th {
-    padding: 10px;
-    border-bottom: 1px solid var(--highlights);
-    text-align: left;
+  table {
+    width: 100%;
+    border-collapse: collapse;
     font-family: IBM Plex Sans; 
     color: var(--primary-color);
   }
-}
 
-tbody {
-  tr {
-    &:nth-of-type(even) {
-      background-color: var(--base);
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--base);
+    font-family: IBM Plex Sans; 
+    color: var(--primary-color);
+
+    th {
+      padding: 10px;
+      border-bottom: 1px solid var(--highlights);
+      text-align: left;
       font-family: IBM Plex Sans; 
       color: var(--primary-color);
     }
+
+    th:nth-child(2) {
+      text-align: center; 
+    }
   }
 
-  td {
-    padding: 10px;
-    border-bottom: 1px solid var(--highlights);
-    font-family: IBM Plex Sans; 
-    color: var(--primary-color);
+  tbody {
+    tr {
+      &:nth-of-type(even) {
+        background-color: var(--base);
+        font-family: IBM Plex Sans; 
+        color: var(--primary-color);
+      }
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid var(--highlights);
+      font-family: IBM Plex Sans; 
+      color: var(--primary-color);
+    }
+
+    td:nth-child(2) {
+      text-align: center;  
+    }
   }
-}
 `;
-
 const LoadingContainer = styled.div`
 display: flex;
 justify-content: center;

@@ -27,6 +27,7 @@ interface ValidatorInfo {
   slashings: number;
   tombstoned: boolean;
   valcons_address: string;
+  trueRank?: number;
 }
 
 export type ValidatorsList = ValidatorInfo[];

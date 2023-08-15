@@ -88,23 +88,23 @@ export async function getSenderObj(address: string, nodeAddress: string) {
  * @return {string} The converted address
  */
 export async function ethToAlthea(address: string, nodeAddress: string) {
-  console.log("Address:", address);
-  console.log("Node Address:", nodeAddress);
   return fetch(nodeAddress + "/ethermint/evm/v1/cosmos_account/" + address, {
     method: "GET",
     headers: {
       Accept: JSONHeader,
     },
   })
-  
   .then((response) => {
     if (!response.ok) {
-      console.error("Status Code:", response.status);
-      console.error("Status Text:", response.statusText);
+      response.text().then(text => {
+        console.error("Error Body:", text);
+        console.error("Status Code:", response.status);
+        console.error("Status Text:", response.statusText);
+      });
       throw new Error("Network response was not ok");
-  }
+    }
     return response.json();
-  })
+ })
   
   .then((result) => {
     if (!result || !result.cosmos_address) {

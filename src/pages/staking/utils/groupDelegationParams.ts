@@ -54,7 +54,7 @@ export async function getTop10Validators(nodeAddressIP: string) {
   // Sort by score to get top 10 validators
   const top10Validators = filteredValidators
     .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+    .slice(0, 10);
 
   return top10Validators;
 }
