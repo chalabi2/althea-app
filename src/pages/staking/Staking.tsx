@@ -31,7 +31,6 @@ const Staking = () => {
     userValidators,
     undelagatingValidators,
     handleClaimRewards,
-    handleAutoStake,
     rewards,
     stakingApr,
     txFeeCheck,
@@ -151,7 +150,6 @@ const Staking = () => {
               userValidationInfo={userValidators}
               undelegationValidators={undelagatingValidators}
               canClaim={txFeeCheck.claimRewards}
-              handleAutoStake={handleAutoStake}
             />
           </TabPanel>
           <TabPanel>

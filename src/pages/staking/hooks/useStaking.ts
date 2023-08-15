@@ -50,7 +50,6 @@ const useStaking = (): {
   userValidators: MasterValidatorProps[];
   undelagatingValidators: MasterValidatorProps[];
   handleClaimRewards: () => Promise<void>;
-  handleAutoStake: () => Promise<void>;
   rewards: BigNumber;
   stakingApr: string;
   txFeeCheck: TxFeeBalanceCheck;
@@ -79,34 +78,6 @@ const useStaking = (): {
     );
   }
 
-  async function handleAutoStake() {
-    modalStore.open(ValidatorModalType.AUTO_DELEGATE);
-
-    const operators = validators.map((validator: { address: string; name: string; }) => ({
-      address: validator.address,
-      name: validator.name
-  }));
-  
-    // Iterate through the operators and delegate to each one.
-    for (let operator of operators) {
-        const delegationDetails = {
-            account: networkInfo.account ?? "",
-            chainId: Number(networkInfo.chainId),
-            amount: convertStringToBigNumber(amount, 18).toString(), 
-            newOperator: {
-                address: operator.address,
-                name: operator.name
-            },
-            operator: {
-                address: operator.address,
-                name: operator.name
-            },
-        };
-        
-        // Trigger the delegate transaction for each operator.
-        await delegateTransaction(txStore, delegationDetails); 
-    }
-}
 
   async function getAllData() {
     if (networkInfo.account) {
@@ -189,7 +160,6 @@ const useStaking = (): {
     userValidators,
     undelagatingValidators,
     handleClaimRewards,
-    handleAutoStake,
     rewards,
     stakingApr,
     txFeeCheck: enoughBalanceForTxFees(),

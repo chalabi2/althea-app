@@ -24,6 +24,7 @@ export interface Validator {
   jailed: boolean;
   min_self_delegation: string;
   operator_address: string;
+  moniker: string;
   status: string;
   tokens: string;
   unbonding_height: string;
@@ -68,7 +69,6 @@ export interface MyStakingProps {
   userValidationInfo: MasterValidatorProps[];
   undelegationValidators: MasterValidatorProps[];
   onRewards: () => Promise<void>;
-  handleAutoStake: () => Promise<void>;
   canClaim: boolean;
 }
 export interface AllStakingProps {
@@ -124,6 +124,7 @@ export const EmptyActiveValidator: MasterValidatorProps = {
       security_contact: "0",
       website: "0",
     },
+    moniker: "",
     jailed: false,
     min_self_delegation: "0",
     operator_address: "0",

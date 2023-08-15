@@ -75,11 +75,11 @@ import ImageButton from "global/components/ImageButton";
         }));
     
         const delegationDetails = {
-            account: account,  // Now we're sure it's not undefined
+            account: account, 
             chainId: chainId,
             amount: convertStringToBigNumber(amount, 18).toString(),
             multipOperator: operators,
-            operator: operators[10]
+            operator: operators[0]
         };
     
         stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
@@ -230,7 +230,7 @@ const ValidatorTable = styled.div`
       color: var(--primary-color);
     }
 
-    th:nth-child(2) {
+    th:nth-of-type(2) {
       text-align: center; 
     }
   }
@@ -251,7 +251,7 @@ const ValidatorTable = styled.div`
       color: var(--primary-color);
     }
 
-    td:nth-child(2) {
+    td:nth-of-type(2) {
       text-align: center;  
     }
   }

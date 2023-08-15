@@ -36,7 +36,7 @@ function App() {
       <GlobalStyle />
       <ThemeProvider>
       <Router
-      basename="/althea-app"
+     
       >
         <Container className="App">
           <AltheaNav />

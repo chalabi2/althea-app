@@ -299,6 +299,7 @@ export const StakingModal = ({
                       className="react-select-container"
                       classNamePrefix="react-select"
                       placeholder="choose a validator..."
+                      //@ts-ignore
                       options={allValidators.map((val) => {
                         //take out the current validator from the list
                         if (
@@ -312,6 +313,7 @@ export const StakingModal = ({
                         }
                         return {};
                       })}
+                      //@ts-ignore
                       onChange={(val: { value: any; }) => {
                         setNewValidator(val?.value);
                       }}

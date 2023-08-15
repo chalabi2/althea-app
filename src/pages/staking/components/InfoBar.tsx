@@ -14,7 +14,6 @@ interface Props {
   rewards: string;
   apr: string;
   onRewards: () => Promise<void>;
-  onDelegate: () => Promise<void>;
   canClaim: boolean;
 }
 interface ValidatorInfo {
@@ -35,7 +34,7 @@ export type ValidatorsList = ValidatorInfo[];
 const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
   const { theme } = useContext(ThemeContext);
   
-  const [topValidators, setTopValidators] = useState<ValidatorsList[]>([]); 
+  const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]); 
   const openModal = validatorModalStore((state: { open: any; }) => state.open);
   const { setActiveValidators, open } = validatorModalStore();
   const handleAutoStake = async () => {
