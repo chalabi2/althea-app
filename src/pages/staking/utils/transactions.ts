@@ -56,28 +56,60 @@ export async function stakingMultipleTx(
     txStore.setStatus({ error: "No chainId found" });
     return false;
   }
+
   const totalOperators = params.multipOperator.length;
   const amountBN = ethers.BigNumber.from(params.amount);
+
+  // Calculate the exact individual amount.
   const individualAmountBN = amountBN.div(totalOperators);
-  const individualAmount = ethers.utils.formatUnits(individualAmountBN, 18);
-  
+
+  // Calculate the remainder
+  const remainder = amountBN.sub(individualAmountBN.mul(totalOperators));
+
+  // Convert amounts to 2 decimal places and BigNumber again for operations.
+  const roundedIndividualAmount = ethers.BigNumber.from(
+    (parseFloat(ethers.utils.formatEther(individualAmountBN)) * 100).toFixed(0)
+  );
+  const roundedRemainder = ethers.BigNumber.from(
+    (parseFloat(ethers.utils.formatEther(remainder)) * 100).toFixed(0)
+  );
+
+  // Create an array to store amounts for each validator.
+  const amountsForValidators: ethers.BigNumber[] = Array(totalOperators).fill(roundedIndividualAmount);
+
+  // Add remainder to a random validator.
+  const randomIndex = Math.floor(Math.random() * totalOperators);
+  amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(roundedRemainder);
+
+  // Convert the amounts back to ethers format with 2 decimal places
+  const finalAmounts = amountsForValidators.map(amount => 
+    ethers.utils.formatUnits(amount, 18).slice(0, -16)
+  );
+
+  // Prepare delegate messages for each validator
+  const delegateMessages = params.multipOperator.map((op, index) => ({
+    type: "delegate",
+    operator: op.address,
+    amount: finalAmounts[index],
+    symbol: op.name,
+  }));
+
+  const transaction = _delegateMultipleTx(
+    params.chainId,
+    params.account,
+    params.multipOperator.map(op => op.address),
+    finalAmounts, // We pass all the split amounts
+    getCosmosAPIEndpoint(params.chainId),
+    delegateFee,  
+    getCosmosChainObj(params.chainId),
+    "",
+    {
+      delegateMessages // Pass the messages to the transaction
+    }
+  );
+
   return await txStore.addTransactionList(
-    [
-      _delegateMultipleTx(
-            params.chainId,
-            params.account,
-            params.multipOperator.map(op => op.address),
-            individualAmount,
-            getCosmosAPIEndpoint(params.chainId),
-            delegateFee,  
-            getCosmosChainObj(params.chainId),
-            "",
-            {
-              amount: individualAmount,
-              symbol: params.multipOperator.map(op => op.name).join(', '),
-            }
-          )
-    ],
+    [transaction],
     {
       title: txType,
       txListMethod: TxMethod.COSMOS,
@@ -209,17 +241,24 @@ const _delegateMultipleTx = (
   chainId: number | undefined,
   account: string,
   operatorAddresses: string[],
-  amount: string,
+  amounts: string[],
   endpoint: string,
   fee: Fee,
   chain: Chain,
   memo: string,
-  extraDetails?: ExtraProps
+  extraDetails: {
+    delegateMessages: {
+      type: string;
+      operator: string;
+      amount: string;
+      symbol: string;
+    }[];
+  }
 ): CosmosTx => ({
   chainId,
   txType: AltheaTransactionType.DELEGATE_MULTIPLE,
   tx: txStakeMultiple,
-  params: [account, operatorAddresses, amount, endpoint, fee, chain, memo],
+  params: [account, operatorAddresses, amounts, endpoint, fee, chain, memo],
   extraDetails,
 });
 const _redelegateTx = (

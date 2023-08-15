@@ -62,28 +62,36 @@ import ImageButton from "global/components/ImageButton";
     const [isLoading, setIsLoading] = useState(true);
     const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
-    const handleMultiDelegate = () => {
-        if (!account) {
-            // Handle the error - maybe set a state variable or console error
-            console.error("Account is not defined");
-            return;
-        }
-    
-        const operators = topValidators.map((validator) => ({
-            address: validator.operator_address,
-            name: validator.moniker,
-        }));
-    
-        const delegationDetails = {
-            account: account, 
-            chainId: chainId,
-            amount: convertStringToBigNumber(amount, 18).toString(),
-            multipOperator: operators,
-            operator: operators[0]
-        };
-    
-        stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
-    };
+    const handleMultiDelegate = async () => {
+      if (!account) {
+          console.error("Account is not defined");
+          return;
+      }
+  
+      const operators = topValidators.map((validator) => ({
+          address: validator.operator_address,
+          name: validator.moniker,
+      }));
+  
+      const delegationDetails = {
+          account: account, 
+          chainId: chainId,
+          amount: convertStringToBigNumber(amount, 18).toString(),
+          multipOperator: operators,
+          operator: operators[0]
+      };
+  
+      try {
+          const success = await stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
+          if (!success) {
+              console.error("Failed to add the staking transaction.");
+          } else {
+              console.log("Staking transaction added successfully.");
+          }
+      } catch (error) {
+          console.error("Error while processing staking transaction:", error);
+      }
+  };
 
     const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]);
     useEffect(() => {

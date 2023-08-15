@@ -141,10 +141,10 @@ export const createTransactionMessges = (
       case AltheaTransactionType.DELEGATE_MULTIPLE:
       return {
         short: "delegate",
-        long: `delegate ${amount + " ALTHEA"} to ${token}`,
-        pending: `delegating ${amount + " ALTHEA"} to ${token}...`,
-        success: `successfully delegated ${amount + " ALTHEA"} to ${token}`,
-        error: `unable to delegate to ${token}`,
+        long: `delegate ${amount + " ALTHEA"} to validator group`,
+        pending: `delegating ${amount + " ALTHEA"} to validator group...`,
+        success: `successfully delegated ${amount + " ALTHEA"} to validator group`,
+        error: `unable to delegate to validator group`,
       };
     case AltheaTransactionType.UNDELEGATE:
       return {

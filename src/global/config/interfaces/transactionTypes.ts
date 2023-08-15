@@ -81,13 +81,20 @@ export interface ExtraProps {
   icon2?: string; //if LP Token
 }
 
+export interface DelegateMessageProps {
+  type: string;
+  operator: string;
+  amount: string;
+  symbol: string;
+}
+
 ///////////////////////////////
 interface BaseTx {
   //will let the transaction store if this needs to be signed or skipped
   mustPerform?: boolean; //if not set, default is true
   chainId?: number; // if not set, mainnet defaults are used
   txType: AltheaTransactionType;
-  extraDetails?: ExtraProps;
+  extraDetails?: ExtraProps | { delegateMessages: DelegateMessageProps[] };
 }
 export interface EVMTx extends BaseTx {
   address: string;
