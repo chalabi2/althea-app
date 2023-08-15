@@ -59,6 +59,7 @@ export const useTransactionStore = create<TransactionStore>((set, get) => ({
         details: createTransactionDetails(
           get().generateTxId(),
           tx.txType,
+          //@ts-ignore
           tx.extraDetails
         ),
       })),
