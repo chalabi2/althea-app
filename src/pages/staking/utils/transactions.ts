@@ -217,7 +217,7 @@ const _delegateMultipleTx = (
   extraDetails?: ExtraProps
 ): CosmosTx => ({
   chainId,
-  txType: AltheaTransactionType.DELEGATE_MULTIPLE,  // Ensure you have this enum value
+  txType: AltheaTransactionType.DELEGATE_MULTIPLE,
   tx: txStakeMultiple,
   params: [account, operatorAddresses, amount, endpoint, fee, chain, memo],
   extraDetails,

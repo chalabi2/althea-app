@@ -138,6 +138,14 @@ export const createTransactionMessges = (
         success: `successfully delegated ${amount + " ALTHEA"} to ${token}`,
         error: `unable to delegate to ${token}`,
       };
+      case AltheaTransactionType.DELEGATE_MULTIPLE:
+      return {
+        short: "delegate",
+        long: `delegate ${amount + " ALTHEA"} to ${token}`,
+        pending: `delegating ${amount + " ALTHEA"} to ${token}...`,
+        success: `successfully delegated ${amount + " ALTHEA"} to ${token}`,
+        error: `unable to delegate to ${token}`,
+      };
     case AltheaTransactionType.UNDELEGATE:
       return {
         short: "undelegate",

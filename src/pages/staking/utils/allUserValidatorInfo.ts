@@ -164,77 +164,99 @@ async function getValconsAddressForValidator(
   }
 }
 
+const fetchWithRetry = async (url: RequestInfo | URL, options: RequestInit | undefined, retries = 3) => {
+  for (let i = 0; i < retries; i++) {
+      try {
+          const response = await fetch(url, options);
+          if (response.ok) return await response.json();
+          throw new Error('Failed response');
+      } catch (error) {
+          console.error(`Attempt ${i + 1} failed for URL: ${url}. Error: ${error}`);
+          if (i >= retries - 1) throw error;
+      }
+  }
+};
+
 export async function getValconsAddresses(nodeAddressIP: string): Promise<string[]> {
-  const valoperAddresses = (await getSafeVals("https://althea.api.chandrastation.com")).notJailed;
-  const bech32Prefix = "althea";
-  const valconsPrefix = bech32Prefix + "valcons";
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  };
+  try {
+      const valoperAddresses = (await getSafeVals("https://althea.api.chandrastation.com")).notJailed;
+      const valconsPrefix = "althea" + "valcons";
+      const options = {
+          method: "GET",
+          headers: {
+              Accept: "application/json",
+          },
+      };
 
-  const consensusKeysPromises = valoperAddresses.map(async (valoperInfo) => {
-    const url = `https://althea.api.chandrastation.com/cosmos/staking/v1beta1/validators/${valoperInfo.operator_address}`;
-    const response = await fetch(url, options).catch(e => console.error("Error fetching consensus key:", e));
-    if (response?.ok) {
-      const { validator } = await response.json();
-      return validator?.consensus_pubkey?.key;
-    }
-    return null;
-  });
+      const consensusKeysPromises = valoperAddresses.map(async (valoperInfo) => {
+          const url = `https://althea.api.chandrastation.com/cosmos/staking/v1beta1/validators/${valoperInfo.operator_address}`;
+          const responseData = await fetchWithRetry(url, options);
+          return responseData?.validator?.consensus_pubkey?.key;
+      });
 
-  const consensusKeys = await Promise.all(consensusKeysPromises);
+      const consensusKeys = await Promise.all(consensusKeysPromises);
+      const valconsAddresses = consensusKeys
+          .filter(Boolean)
+          .map(key => {
+              const addressData = sha256(fromBase64(key as string)).slice(0, 20);
+              return toBech32(valconsPrefix, addressData);
+          });
 
-  const valconsAddresses = consensusKeys
-    .filter(Boolean)
-    .map(key => {
-      const addressData = sha256(fromBase64(key as string)).slice(0, 20);
-      return toBech32(valconsPrefix, addressData);
+      return valconsAddresses;
+  } catch (error) {
+      console.error("Error in getValconsAddresses:", error);
+      return [];
+  }
+}
+export async function getSigningInfo(nodeAddressIP: string) {
+  try {
+    const valconsAddresses = await getValconsAddresses("https://althea.api.chandrastation.com");
+
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    };
+
+    const allSigningInfoPromises = valconsAddresses.map(async (address) => {
+      try {
+        const urlSigningInfo = `https://althea.api.chandrastation.com/cosmos/slashing/v1beta1/signing_infos/${address}`;
+        const response = await fetch(urlSigningInfo, options);
+        if (response.ok) {
+          return await response.json();
+        } else {
+          console.error(`Error fetching signing info for address: ${address}. Status: ${response.status}`);
+          return null;
+        }
+      } catch (error) {
+        console.error(`Error fetching signing info for address: ${address}. Error: ${error.message}`);
+        return null; // returning null if there's an error
+      }
     });
 
-  return valconsAddresses;
-}
+    const allResults = await Promise.all(allSigningInfoPromises);
 
-export async function getSigningInfo(nodeAddressIP: string) {
-  const valconsAddresses = await getValconsAddresses("https://althea.api.chandrastation.com");
+    let signingInfos: { [key: string]: any } = {};
 
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-  };
+    allResults.forEach((result, index) => {
+      if (result && result.val_signing_info) {
+        const address = valconsAddresses[index];
+        const { tombstoned, missed_blocks_counter } = result.val_signing_info;
+        const missedBlocks = parseInt(missed_blocks_counter, 10);
+        signingInfos[address] = {
+          tombstoned,
+          missedBlocks,
+        };
+      }
+    });
 
-  const allSigningInfoPromises = valconsAddresses.map(async (address) => {
-    const urlSigningInfo = `https://althea.api.chandrastation.com/cosmos/slashing/v1beta1/signing_infos/${address}`;
-    const response = await fetch(urlSigningInfo, options);
-    return response.json();
-  });
+    return signingInfos;
 
-  const allResults = await Promise.all(allSigningInfoPromises);
-
-  let signingInfos: { [key: string]: any } = {};
-
-  allResults.forEach((result, index) => {
-    const address = valconsAddresses[index];
-    if (result.val_signing_info) {
-      const { tombstoned, missed_blocks_counter } = result.val_signing_info;
-      const missedBlocks = parseInt(missed_blocks_counter, 10);
-      signingInfos[address] = {
-        tombstoned,
-        missedBlocks,
-      };
-    } else {
-      signingInfos[address] = {
-        tombstoned: null,
-        missedBlocks: null,
-      };
-    }
-  });
-
-  return signingInfos;
+  } catch (error) {
+    console.error("Error in getSigningInfo:", error.message);
+    return {}; // returning an empty object in case of an overall error
+  }
 }
 
 export async function getSlashingInfo(nodeAddressIP: string) {
@@ -308,13 +330,13 @@ export async function getValidatorsInfo(nodeAddressIP: string) {
       };
     });
 
-    // Sort validators by tokens and assign ranks
+   
     validatorsData.sort((a, b) => parseFloat(b.tokens) - parseFloat(a.tokens))
       .forEach((validator, index) => {
-        validator.trueRank = index + 1; // Adding the true rank based on tokens
+        validator.trueRank = index + 1; 
       });
 
-    return validatorsData; // This now includes the trueRank property
+    return validatorsData;
 
   } catch (error) {
     console.error("Error in getValidatorsInfo:", error);

@@ -12,16 +12,15 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ## To-do
 
 ### Staking
-- Staking apr
-- Move from jailed validators tx type
-- One button delegation
+- multi stake tx failing
+- sanity check, missed blocks, slashings, voting power (true Rank), and scoring system
+- multi stake modal load time
 
 ### General
+- done
 
 ### Bridge
-- remove options other then grav for eth bridging 
-- test all tx types
-- fix erc20 convert, issue realted to getNativeAltheaBalance
+- done
 
 ### Governance
 - done
