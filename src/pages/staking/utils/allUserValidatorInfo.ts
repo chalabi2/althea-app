@@ -230,8 +230,8 @@ export async function getSigningInfo(nodeAddressIP: string) {
           return null;
         }
       } catch (error) {
-        console.error(`Error fetching signing info for address: ${address}. Error: ${error.message}`);
-        return null; // returning null if there's an error
+        console.error(`Error fetching signing info for address: ${address}. Error: ${(error as Error).message}`);
+        return null; 
       }
     });
 
@@ -254,7 +254,7 @@ export async function getSigningInfo(nodeAddressIP: string) {
     return signingInfos;
 
   } catch (error) {
-    console.error("Error in getSigningInfo:", error.message);
+    console.error("Error in getSigningInfo:", (error as Error).message);
     return {}; // returning an empty object in case of an overall error
   }
 }
