@@ -44,6 +44,7 @@ export async function signAndBroadcastTxMsg(
     headers: { "Content-Type": JSONHeader },
     body: generatePostBodyBroadcast(raw),
   };
+
   const broadcastPost = await fetch(
     nodeAddress + generateEndpointBroadcast(),
     postOptions
@@ -68,15 +69,15 @@ function generateRawTx(chain: any, senderObj: any, signature: any, msg: any) {
  * @return {string} The sender object
  */
 export async function getSenderObj(address: string, nodeAddress: string) {
-  const accountAlthea = await ethToAlthea(address, nodeAddress);
+  const accountAlthea = await ethToAlthea(address, "https://althea.api.chandrastation.com");
   const endPointAccount = generateEndpointAccount(accountAlthea ?? "");
 
   const options = {
     method: "GET",
     headers: { "Content-Type": JSONHeader },
   };
-
-  const addressRawData = await fetch(nodeAddress + endPointAccount, options);
+  
+  const addressRawData = await fetch("https://althea.api.chandrastation.com" + endPointAccount, options);
 
   const addressData = await addressRawData.json();
   return reformatSender(addressData["account"]["base_account"]);

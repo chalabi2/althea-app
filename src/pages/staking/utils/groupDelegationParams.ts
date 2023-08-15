@@ -1,7 +1,7 @@
 import { getValidatorsInfo } from "./allUserValidatorInfo";
 
 export async function getTop10Validators(nodeAddressIP: string) {
-  const validatorsInfo = await getValidatorsInfo(nodeAddressIP);
+  const validatorsInfo = await getValidatorsInfo("https://althea.api.chandrastation.com");
 
   // Calculate average commission
   const averageCommission =
@@ -24,10 +24,10 @@ export async function getTop10Validators(nodeAddressIP: string) {
     }
 
     // Missed blocks score
-    if (validator.missedBlocks <= 500) {
+    if (validator.missedBlocks <= 100) {
       score += 5; // Add 5 points if missed blocks are 500 or below
     } else {
-      score -= validator.missedBlocks - 500; // Subtract 1 point for every block above 500
+      score -= validator.missedBlocks - 100; // Subtract 1 point for every block above 500
     }
 
     // Slashes score
