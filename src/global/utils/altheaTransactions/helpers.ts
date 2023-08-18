@@ -14,6 +14,9 @@ import { Buffer } from "buffer";
 import { BigNumber } from "ethers";
 import { Chain, CosmosMsg, Sender } from "global/config/cosmosConstants";
 import { getCosmosAPIEndpoint } from "../getAddressUtils";
+import { createTxRaw } from '@althea-net/proto'
+import { altheaToEth  } from '@althea-net/address-converter'
+
 
 const JSONHeader = "application/json";
 /**
@@ -61,6 +64,53 @@ function generateRawTx(chain: any, senderObj: any, signature: any, msg: any) {
   );
 }
 
+export async function signWithMetaMask(senderObj: any,  messages: any) {
+
+  // Initialize MetaMask.
+  await window.ethereum.enable();
+  const senderHexAddress = altheaToEth(senderObj.accountAddress);
+
+  const eip712Payload = JSON.stringify(messages.eipToSign);
+
+
+  // Sign the transaction.
+  const signature = await window.ethereum.request({
+      method: 'eth_signTypedData_v4',
+      params: [senderHexAddress, eip712Payload],
+  });
+
+  return signature;
+}
+
+export function createSignedTransaction(tx: any, signature: string) {
+  const signatureBytes = Buffer.from(signature.replace('0x', ''), 'hex');
+  
+  const { signDirect } = tx;
+  const bodyBytes = signDirect.body.toBinary();
+  const authInfoBytes = signDirect.authInfo.toBinary();
+
+  const signedTx = createTxRaw(
+    bodyBytes,
+    authInfoBytes,
+    [signatureBytes],
+  );
+
+  return signedTx;
+}
+
+export async function broadcastTransaction(signedTx: any) {
+  const postOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: generatePostBodyBroadcast(signedTx),
+  };
+  const nodeUrl = "https://althea.api.chandrastation.com"
+  const broadcastEndpoint = `${nodeUrl}${generateEndpointBroadcast()}`;
+  const broadcastPost = await fetch(broadcastEndpoint, postOptions);
+
+  const response = await broadcastPost.json();
+  return response;
+}
 /**
  * Uses the eth hex address, converts it to a althea address,
  * then gets the sender object.

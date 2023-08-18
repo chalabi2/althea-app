@@ -48,57 +48,52 @@ export async function stakingMultipleTx(
   txType: StakingTransactionType,
   params: GeneralStakingParams
 ): Promise<boolean> {
+
   if (!params.account) {
+    console.error("No account provided");
     txStore.setStatus({ error: "No account found" });
     return false;
   }
   if (!params.chainId) {
+    console.error("No chainId provided");
     txStore.setStatus({ error: "No chainId found" });
     return false;
   }
-
   const totalOperators = params.multipOperator.length;
-  const amountBN = ethers.BigNumber.from(params.amount);
+  const totalTokensBN = ethers.BigNumber.from(params.amount);
+
 
   // Calculate the exact individual amount.
-  const individualAmountBN = amountBN.div(totalOperators);
+  const individualAmountBN = totalTokensBN.div(totalOperators);
+
 
   // Calculate the remainder
-  const remainder = amountBN.sub(individualAmountBN.mul(totalOperators));
+  const remainder = totalTokensBN.sub(individualAmountBN.mul(totalOperators));
 
-  // Convert amounts to 2 decimal places and BigNumber again for operations.
-  const roundedIndividualAmount = ethers.BigNumber.from(
-    (parseFloat(ethers.utils.formatEther(individualAmountBN)) * 100).toFixed(0)
-  );
-  const roundedRemainder = ethers.BigNumber.from(
-    (parseFloat(ethers.utils.formatEther(remainder)) * 100).toFixed(0)
-  );
 
   // Create an array to store amounts for each validator.
-  const amountsForValidators: ethers.BigNumber[] = Array(totalOperators).fill(roundedIndividualAmount);
+  const amountsForValidators: ethers.BigNumber[] = Array(totalOperators).fill(individualAmountBN);
+const randomIndex = Math.floor(Math.random() * totalOperators);
+amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(remainder);
 
-  // Add remainder to a random validator.
-  const randomIndex = Math.floor(Math.random() * totalOperators);
-  amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(roundedRemainder);
 
   // Convert the amounts back to ethers format with 2 decimal places
-  const finalAmounts = amountsForValidators.map(amount => 
-    ethers.utils.formatUnits(amount, 18).slice(0, -16)
-  );
+  const finalAmounts = amountsForValidators.map(amount => amount.toString());
+
 
   // Prepare delegate messages for each validator
   const delegateMessages = params.multipOperator.map((op, index) => ({
     type: "delegate",
     operator: op.address,
     amount: finalAmounts[index],
-    symbol: op.name,
+    symbol: "aalthea",
   }));
 
   const transaction = _delegateMultipleTx(
     params.chainId,
     params.account,
     params.multipOperator.map(op => op.address),
-    finalAmounts, // We pass all the split amounts
+    individualAmountBN, // We pass all the split amounts
     getCosmosAPIEndpoint(params.chainId),
     delegateFee,  
     getCosmosChainObj(params.chainId),
@@ -258,7 +253,7 @@ const _delegateMultipleTx = (
   chainId,
   txType: AltheaTransactionType.DELEGATE_MULTIPLE,
   tx: txStakeMultiple,
-  params: [account, operatorAddresses, amounts, endpoint, fee, chain, memo],
+  params: [account, operatorAddresses, amounts, endpoint, fee, chain, memo, extraDetails], // Add extraDetails
   extraDetails,
 });
 const _redelegateTx = (

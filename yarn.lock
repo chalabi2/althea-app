@@ -12,6 +12,69 @@
   "resolved" "https://registry.npmjs.org/@adobe/css-tools/-/css-tools-4.0.1.tgz"
   "version" "4.0.1"
 
+"@althea-net/address-converter@^0.5.2":
+  "integrity" "sha512-r2/5wbRyZXnju4Md5lqhBJO8JkwDa0AwqnOzwCluOsSBCupDiay3N0dxP1Z89K7Lq9JgHr2D6P3yqAXS3X3/iQ=="
+  "resolved" "https://registry.npmjs.org/@althea-net/address-converter/-/address-converter-0.5.2.tgz"
+  "version" "0.5.2"
+  dependencies:
+    "bech32" "^2.0.0"
+    "crypto-addr-codec" "^0.1.7"
+    "link-module-alias" "^1.2.0"
+    "shx" "^0.3.4"
+
+"@althea-net/eip712@^0.5.2":
+  "integrity" "sha512-SycMUCGidiiB5cbamtGas6Hp+oQKJArq7Jx6a+JuA3PnagrlVvh428Is0489wwnhB1WcaQT7tus33T4mHg8FSA=="
+  "resolved" "https://registry.npmjs.org/@althea-net/eip712/-/eip712-0.5.2.tgz"
+  "version" "0.5.2"
+  dependencies:
+    "@althea-net/proto" "^0.2.1"
+    "@cosmjs/proto-signing" "^0.28.13"
+    "@metamask/eth-sig-util" "^4.0.1"
+    "cosmjs-types" "^0.5.1"
+    "link-module-alias" "^1.2.0"
+    "long" "^5.2.0"
+    "shx" "^0.3.4"
+
+"@althea-net/proto@^0.2.1":
+  "integrity" "sha512-KqdNrKZjbsUdtWdm1v2HFtJdrjiNFwCwYnP9Phwt2UZWRxSsTh5ybY8R1ZP1VabMDg/Ar45LwgwhFEa8X0ZzYw=="
+  "resolved" "https://registry.npmjs.org/@althea-net/proto/-/proto-0.2.1.tgz"
+  "version" "0.2.1"
+  dependencies:
+    "@buf/cosmos_cosmos-sdk.bufbuild_es" "^1.0.0-20230125164018-54d184078b88.1"
+    "@buf/cosmos_ibc.bufbuild_es" "^1.0.0-20230127093016-72d4bdec25a0.1"
+    "@buf/evmos_evmos.bufbuild_es" "^1.2.0-20230315212311-c66c6f141d04.1"
+    "@bufbuild/protobuf" "^1.0.0"
+    "@cosmjs/amino" "^0.30.1"
+    "@cosmjs/stargate" "^0.30.1"
+    "@types/node" "^17.0.21"
+    "link-module-alias" "^1.2.0"
+    "sha3" "^2.1.4"
+    "shx" "^0.3.4"
+
+"@althea-net/proto@^0.5.3":
+  "integrity" "sha512-BP850bCC3BFuLX7FmlkAHbR+MbNVAwTKBsD22h4BpDyM9FTG8JcK7ZGFKa+mMEkzBQSEkaYOy8q8GoZXAIN+tg=="
+  "resolved" "https://registry.npmjs.org/@althea-net/proto/-/proto-0.5.3.tgz"
+  "version" "0.5.3"
+  dependencies:
+    "@buf/cosmos_cosmos-sdk.bufbuild_es" "^1.0.0-20230125164018-54d184078b88.1"
+    "@buf/cosmos_ibc.bufbuild_es" "^1.0.0-20230127093016-72d4bdec25a0.1"
+    "@buf/evmos_evmos.bufbuild_es" "^1.2.0-20230315212311-c66c6f141d04.1"
+    "@bufbuild/protobuf" "^1.0.0"
+    "@cosmjs/amino" "^0.30.1"
+    "@cosmjs/stargate" "^0.30.1"
+    "@types/node" "^17.0.21"
+    "link-module-alias" "^1.2.0"
+    "sha3" "^2.1.4"
+    "shx" "^0.3.4"
+
+"@althea-net/provider@^0.5.1":
+  "integrity" "sha512-ciSu2kGcBOJ56XRwRExfKyN0airceMrgs193PmbzaGLo4QTph4as8+hBxLvSsupfTdcyYQtOLbjFPPs70fvS/g=="
+  "resolved" "https://registry.npmjs.org/@althea-net/provider/-/provider-0.5.1.tgz"
+  "version" "0.5.1"
+  dependencies:
+    "link-module-alias" "^1.2.0"
+    "shx" "^0.3.4"
+
 "@ampproject/remapping@^2.1.0":
   "integrity" "sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w=="
   "resolved" "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
@@ -1010,6 +1073,94 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
+"@buf/cosmos_cosmos-proto.bufbuild_es@1.0.0-20211202220400-1935555c206d.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.0.0-20211202220400-1935555c206d.1.tgz"
+  "version" "1.0.0-20211202220400-1935555c206d.1"
+
+"@buf/cosmos_cosmos-proto.bufbuild_es@1.2.0-20211202220400-1935555c206d.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.2.0-20211202220400-1935555c206d.1.tgz"
+  "version" "1.2.0-20211202220400-1935555c206d.1"
+
+"@buf/cosmos_cosmos-sdk.bufbuild_es@^1.0.0-20230125164018-54d184078b88.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20230818140910-f285890151f0.1.tgz"
+  "version" "1.0.0-20230818140910-f285890151f0.1"
+  dependencies:
+    "@buf/cosmos_cosmos-proto.bufbuild_es" "1.0.0-20211202220400-1935555c206d.1"
+    "@buf/cosmos_gogo-proto.bufbuild_es" "1.0.0-20230509103710-5e5b9fdd0180.1"
+    "@buf/googleapis_googleapis.bufbuild_es" "1.0.0-20230502210827-cc916c318597.1"
+
+"@buf/cosmos_cosmos-sdk.bufbuild_es@1.0.0-20230316080531-954f7b05f384.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20230316080531-954f7b05f384.1.tgz"
+  "version" "1.0.0-20230316080531-954f7b05f384.1"
+  dependencies:
+    "@buf/cosmos_cosmos-proto.bufbuild_es" "1.0.0-20211202220400-1935555c206d.1"
+    "@buf/cosmos_gogo-proto.bufbuild_es" "1.0.0-20221020125208-34d970b699f8.1"
+    "@buf/googleapis_googleapis.bufbuild_es" "1.0.0-20221214150216-75b4300737fb.1"
+
+"@buf/cosmos_cosmos-sdk.bufbuild_es@1.2.0-20221115045553-508e19f5f375.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.2.0-20221115045553-508e19f5f375.1.tgz"
+  "version" "1.2.0-20221115045553-508e19f5f375.1"
+  dependencies:
+    "@buf/cosmos_cosmos-proto.bufbuild_es" "1.2.0-20211202220400-1935555c206d.1"
+    "@buf/cosmos_gogo-proto.bufbuild_es" "1.2.0-20221020125208-34d970b699f8.1"
+    "@buf/googleapis_googleapis.bufbuild_es" "1.2.0-20221025150512-783e4b5374fa.1"
+
+"@buf/cosmos_gogo-proto.bufbuild_es@1.0.0-20221020125208-34d970b699f8.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20221020125208-34d970b699f8.1.tgz"
+  "version" "1.0.0-20221020125208-34d970b699f8.1"
+
+"@buf/cosmos_gogo-proto.bufbuild_es@1.0.0-20230509103710-5e5b9fdd0180.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20230509103710-5e5b9fdd0180.1.tgz"
+  "version" "1.0.0-20230509103710-5e5b9fdd0180.1"
+
+"@buf/cosmos_gogo-proto.bufbuild_es@1.2.0-20221020125208-34d970b699f8.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.2.0-20221020125208-34d970b699f8.1.tgz"
+  "version" "1.2.0-20221020125208-34d970b699f8.1"
+
+"@buf/cosmos_ibc.bufbuild_es@^1.0.0-20230127093016-72d4bdec25a0.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_ibc.bufbuild_es/-/cosmos_ibc.bufbuild_es-1.0.0-20230814193404-fc08c08e8082.1.tgz"
+  "version" "1.0.0-20230814193404-fc08c08e8082.1"
+  dependencies:
+    "@buf/cosmos_cosmos-proto.bufbuild_es" "1.0.0-20211202220400-1935555c206d.1"
+    "@buf/cosmos_cosmos-sdk.bufbuild_es" "1.0.0-20230316080531-954f7b05f384.1"
+    "@buf/cosmos_gogo-proto.bufbuild_es" "1.0.0-20221020125208-34d970b699f8.1"
+    "@buf/cosmos_ics23.bufbuild_es" "1.0.0-20221207100654-55085f7c710a.1"
+    "@buf/googleapis_googleapis.bufbuild_es" "1.0.0-20220908150232-8d7204855ec1.1"
+
+"@buf/cosmos_ics23.bufbuild_es@1.0.0-20221207100654-55085f7c710a.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/cosmos_ics23.bufbuild_es/-/cosmos_ics23.bufbuild_es-1.0.0-20221207100654-55085f7c710a.1.tgz"
+  "version" "1.0.0-20221207100654-55085f7c710a.1"
+
+"@buf/evmos_evmos.bufbuild_es@^1.2.0-20230315212311-c66c6f141d04.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/evmos_evmos.bufbuild_es/-/evmos_evmos.bufbuild_es-1.2.0-20230801160638-4e8b73bf9d40.1.tgz"
+  "version" "1.2.0-20230801160638-4e8b73bf9d40.1"
+  dependencies:
+    "@buf/cosmos_cosmos-proto.bufbuild_es" "1.2.0-20211202220400-1935555c206d.1"
+    "@buf/cosmos_cosmos-sdk.bufbuild_es" "1.2.0-20221115045553-508e19f5f375.1"
+    "@buf/cosmos_gogo-proto.bufbuild_es" "1.2.0-20221020125208-34d970b699f8.1"
+    "@buf/googleapis_googleapis.bufbuild_es" "1.2.0-20221025150512-783e4b5374fa.1"
+
+"@buf/googleapis_googleapis.bufbuild_es@1.0.0-20220908150232-8d7204855ec1.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20220908150232-8d7204855ec1.1.tgz"
+  "version" "1.0.0-20220908150232-8d7204855ec1.1"
+
+"@buf/googleapis_googleapis.bufbuild_es@1.0.0-20221214150216-75b4300737fb.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20221214150216-75b4300737fb.1.tgz"
+  "version" "1.0.0-20221214150216-75b4300737fb.1"
+
+"@buf/googleapis_googleapis.bufbuild_es@1.0.0-20230502210827-cc916c318597.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20230502210827-cc916c318597.1.tgz"
+  "version" "1.0.0-20230502210827-cc916c318597.1"
+
+"@buf/googleapis_googleapis.bufbuild_es@1.2.0-20221025150512-783e4b5374fa.1":
+  "resolved" "https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.2.0-20221025150512-783e4b5374fa.1.tgz"
+  "version" "1.2.0-20221025150512-783e4b5374fa.1"
+
+"@bufbuild/protobuf@^1.0.0", "@bufbuild/protobuf@^1.2.0", "@bufbuild/protobuf@^1.3.0":
+  "integrity" "sha512-G372ods0pLt46yxVRsnP/e2btVPuuzArcMPFpIDeIwiGPuuglEs9y75iG0HMvZgncsj5TvbYRWqbVyOe3PLCWQ=="
+  "resolved" "https://registry.npmjs.org/@bufbuild/protobuf/-/protobuf-1.3.0.tgz"
+  "version" "1.3.0"
+
 "@confio/ics23@^0.6.8":
   "integrity" "sha512-wB6uo+3A50m0sW/EWcU64xpV/8wShZ6bMTa7pF8eYsTrSkQA7oLUIJcs/wb8g4y2Oyq701BaGiO6n/ak5WXO1w=="
   "resolved" "https://registry.npmjs.org/@confio/ics23/-/ics23-0.6.8.tgz"
@@ -1028,6 +1179,16 @@
     "@cosmjs/math" "^0.30.1"
     "@cosmjs/utils" "^0.30.1"
 
+"@cosmjs/amino@0.28.13":
+  "integrity" "sha512-IHnH2zGwaY69qT4mVAavr/pfzx6YE+ud1NHJbvVePlbGiz68CXTi5LHR+K0lrKB5mQ7E+ZErWz2mw5U/x+V1wQ=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/amino/-/amino-0.28.13.tgz"
+  "version" "0.28.13"
+  dependencies:
+    "@cosmjs/crypto" "0.28.13"
+    "@cosmjs/encoding" "0.28.13"
+    "@cosmjs/math" "0.28.13"
+    "@cosmjs/utils" "0.28.13"
+
 "@cosmjs/crypto@^0.30.1":
   "integrity" "sha512-rAljUlake3MSXs9xAm87mu34GfBLN0h/1uPPV6jEwClWjNkAMotzjC0ab9MARy5FFAvYHL3lWb57bhkbt2GtzQ=="
   "resolved" "https://registry.npmjs.org/@cosmjs/crypto/-/crypto-0.30.1.tgz"
@@ -1041,10 +1202,32 @@
     "elliptic" "^6.5.4"
     "libsodium-wrappers" "^0.7.6"
 
+"@cosmjs/crypto@0.28.13":
+  "integrity" "sha512-ynKfM0q/tMBQMHJby6ad8lR3gkgBKaelQhIsCZTjClsnuC7oYT9y3ThSZCUWr7Pa9h0J8ahU2YV2oFWFVWJQzQ=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/crypto/-/crypto-0.28.13.tgz"
+  "version" "0.28.13"
+  dependencies:
+    "@cosmjs/encoding" "0.28.13"
+    "@cosmjs/math" "0.28.13"
+    "@cosmjs/utils" "0.28.13"
+    "@noble/hashes" "^1"
+    "bn.js" "^5.2.0"
+    "elliptic" "^6.5.3"
+    "libsodium-wrappers" "^0.7.6"
+
 "@cosmjs/encoding@^0.30.1":
   "integrity" "sha512-rXmrTbgqwihORwJ3xYhIgQFfMSrwLu1s43RIK9I8EBudPx3KmnmyAKzMOVsRDo9edLFNuZ9GIvysUCwQfq3WlQ=="
   "resolved" "https://registry.npmjs.org/@cosmjs/encoding/-/encoding-0.30.1.tgz"
   "version" "0.30.1"
+  dependencies:
+    "base64-js" "^1.3.0"
+    "bech32" "^1.1.4"
+    "readonly-date" "^1.0.0"
+
+"@cosmjs/encoding@0.28.13":
+  "integrity" "sha512-jtXbAYtV77rLHxoIrjGFsvgGjeTKttuHRv6cvuy3toCZzY7JzTclKH5O2g36IIE4lXwD9xwuhGJ2aa6A3dhNkA=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/encoding/-/encoding-0.28.13.tgz"
+  "version" "0.28.13"
   dependencies:
     "base64-js" "^1.3.0"
     "bech32" "^1.1.4"
@@ -1064,6 +1247,26 @@
   "version" "0.30.1"
   dependencies:
     "bn.js" "^5.2.0"
+
+"@cosmjs/math@0.28.13":
+  "integrity" "sha512-PDpL8W/kbyeWi0mQ2OruyqE8ZUAdxPs1xCbDX3WXJwy2oU+X2UTbkuweJHVpS9CIqmZulBoWQAmlf6t6zr1N/g=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/math/-/math-0.28.13.tgz"
+  "version" "0.28.13"
+  dependencies:
+    "bn.js" "^5.2.0"
+
+"@cosmjs/proto-signing@^0.28.13":
+  "integrity" "sha512-nSl/2ZLsUJYz3Ad0RY3ihZUgRHIow2OnYqKsESMu+3RA/jTi9bDYhiBu8mNMHI0xrEJry918B2CyI56pOUHdPQ=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/proto-signing/-/proto-signing-0.28.13.tgz"
+  "version" "0.28.13"
+  dependencies:
+    "@cosmjs/amino" "0.28.13"
+    "@cosmjs/crypto" "0.28.13"
+    "@cosmjs/encoding" "0.28.13"
+    "@cosmjs/math" "0.28.13"
+    "@cosmjs/utils" "0.28.13"
+    "cosmjs-types" "^0.4.0"
+    "long" "^4.0.0"
 
 "@cosmjs/proto-signing@^0.30.1":
   "integrity" "sha512-tXh8pPYXV4aiJVhTKHGyeZekjj+K9s2KKojMB93Gcob2DxUjfKapFYBMJSgfKPuWUPEmyr8Q9km2hplI38ILgQ=="
@@ -1133,6 +1336,11 @@
   "integrity" "sha512-KvvX58MGMWh7xA+N+deCfunkA/ZNDvFLw4YbOmX3f/XBIkqrVY7qlotfy2aNb1kgp6h4B6Yc8YawJPDTfvWX7g=="
   "resolved" "https://registry.npmjs.org/@cosmjs/utils/-/utils-0.30.1.tgz"
   "version" "0.30.1"
+
+"@cosmjs/utils@0.28.13":
+  "integrity" "sha512-dVeMBiyg+46x7XBZEfJK8yTihphbCFpjVYmLJVqmTsHfJwymQ65cpyW/C+V/LgWARGK8hWQ/aX9HM5Ao8QmMSg=="
+  "resolved" "https://registry.npmjs.org/@cosmjs/utils/-/utils-0.28.13.tgz"
+  "version" "0.28.13"
 
 "@emotion/babel-plugin@^11.10.0":
   "integrity" "sha512-xNQ57njWTFVfPAc3cjfuaPdsgLp5QOSuRsj9MA6ndEhH/AzuZM86qIQzt6rq+aGBwj3n5/TkLmU5lhAfdRmogA=="
@@ -1926,6 +2134,17 @@
   "resolved" "https://registry.npmjs.org/@metamask/detect-provider/-/detect-provider-2.0.0.tgz"
   "version" "2.0.0"
 
+"@metamask/eth-sig-util@^4.0.1":
+  "integrity" "sha512-tghyZKLHZjcdlDqCA3gNZmLeR0XvOE9U1qoQO9ohyAZT6Pya+H9vkBPcsyXytmYLNgVoin7CKCmweo/R43V+tQ=="
+  "resolved" "https://registry.npmjs.org/@metamask/eth-sig-util/-/eth-sig-util-4.0.1.tgz"
+  "version" "4.0.1"
+  dependencies:
+    "ethereumjs-abi" "^0.6.8"
+    "ethereumjs-util" "^6.2.1"
+    "ethjs-util" "^0.1.6"
+    "tweetnacl" "^1.0.3"
+    "tweetnacl-util" "^0.15.1"
+
 "@noble/hashes@^1", "@noble/hashes@^1.0.0":
   "integrity" "sha512-ilHEACi9DwqJB0pw7kv+Apvh50jiiSyR/cQ3y4W7lOR5mhvn/50FLUfsnfJz0BDZtl/RR16kXvptiv6q1msYZg=="
   "resolved" "https://registry.npmjs.org/@noble/hashes/-/hashes-1.3.0.tgz"
@@ -2216,6 +2435,13 @@
   "version" "7.18.1"
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/bn.js@^4.11.3":
+  "integrity" "sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg=="
+  "resolved" "https://registry.npmjs.org/@types/bn.js/-/bn.js-4.11.6.tgz"
+  "version" "4.11.6"
+  dependencies:
+    "@types/node" "*"
 
 "@types/bn.js@^5.1.0":
   "integrity" "sha512-qNrYbZqMx0uJAfKnKclPh+dTwK33KfLHYqtyODwd5HnXOjnkhc4qgn3BrK6RWyGZm5+sIFE7Q7Vz6QQtJB7w7g=="
@@ -2605,6 +2831,13 @@
     "json-schema-traverse" "^0.4.1"
     "uri-js" "^4.2.2"
 
+"altheajs@^1.0.0":
+  "integrity" "sha512-zM+Aoqf319KCzwujARiCi8jzdY4Lpb1AgvAWXvpy159JmQP945Y5sbUmK+OjN6XfSZFljHHE71wYyyrapUd86A=="
+  "resolved" "https://registry.npmjs.org/altheajs/-/altheajs-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "@bufbuild/protobuf" "^1.3.0"
+
 "ansi-escapes@^4.2.1":
   "integrity" "sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ=="
   "resolved" "https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz"
@@ -2865,7 +3098,7 @@
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
   "version" "1.0.2"
 
-"base-x@^3.0.2":
+"base-x@^3.0.2", "base-x@^3.0.8":
   "integrity" "sha512-H7JU6iBHTal1gp56aKoaa//YUxEaAOUiydvrV/pILqIHXTtqxSkATOnDA2u+jZ/61sD+L/412+7kzXRtWukhpQ=="
   "resolved" "https://registry.npmjs.org/base-x/-/base-x-3.0.9.tgz"
   "version" "3.0.9"
@@ -2882,6 +3115,16 @@
   "resolved" "https://registry.npmjs.org/bech32/-/bech32-1.1.4.tgz"
   "version" "1.1.4"
 
+"bech32@^2.0.0":
+  "integrity" "sha512-LcknSilhIGatDAsY1ak2I8VtGaHNhgMSYVxFrGLXv+xLHytaKZKcaUJJUE7qmBr7h33o5YQwP55pMI0xmkpJwg=="
+  "resolved" "https://registry.npmjs.org/bech32/-/bech32-2.0.0.tgz"
+  "version" "2.0.0"
+
+"big-integer@1.6.36":
+  "integrity" "sha512-t70bfa7HYEA1D9idDbmuv7YbsbVkQ+Hp+8KFSul4aE5e/i1bjCNIRYJZlA8Q8p0r9T8cF/RVvwUgRA//FydEyg=="
+  "resolved" "https://registry.npmjs.org/big-integer/-/big-integer-1.6.36.tgz"
+  "version" "1.6.36"
+
 "binary-extensions@^2.0.0":
   "integrity" "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA=="
   "resolved" "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz"
@@ -2891,6 +3134,11 @@
   "integrity" "sha512-QXUSXI3QVc/gJME0dBpXrag1kbzOqCjCX8/b54ntNyW6sjtoqxqRk3LTmXzaJoh71zMsDCjM+47jS7XiwN/+fQ=="
   "resolved" "https://registry.npmjs.org/blakejs/-/blakejs-1.2.1.tgz"
   "version" "1.2.1"
+
+"bn.js@^4.11.0", "bn.js@^4.11.8":
+  "integrity" "sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA=="
+  "resolved" "https://registry.npmjs.org/bn.js/-/bn.js-4.12.0.tgz"
+  "version" "4.12.0"
 
 "bn.js@^4.11.9":
   "integrity" "sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA=="
@@ -2949,7 +3197,7 @@
     "node-releases" "^2.0.13"
     "update-browserslist-db" "^1.0.11"
 
-"bs58@^4.0.0":
+"bs58@^4.0.0", "bs58@^4.0.1":
   "integrity" "sha512-Ok3Wdf5vOIlBrgCvTq96gBkJw+JUEzdBgyaza5HLtPm7yTHkjRy8+JzNyHF7BHa0bNWOQIp3m5YF0nnFcOIKLw=="
   "resolved" "https://registry.npmjs.org/bs58/-/bs58-4.0.1.tgz"
   "version" "4.0.1"
@@ -3231,6 +3479,22 @@
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
 
+"cosmjs-types@^0.4.0":
+  "integrity" "sha512-I7E/cHkIgoJzMNQdFF0YVqPlaTqrqKHrskuSTIqlEyxfB5Lf3WKCajSXVK2yHOfOFfSux/RxEdpMzw/eO4DIog=="
+  "resolved" "https://registry.npmjs.org/cosmjs-types/-/cosmjs-types-0.4.1.tgz"
+  "version" "0.4.1"
+  dependencies:
+    "long" "^4.0.0"
+    "protobufjs" "~6.11.2"
+
+"cosmjs-types@^0.5.1":
+  "integrity" "sha512-zxCtIJj8v3Di7s39uN4LNcN3HIE1z0B9Z0SPE8ZNQR0oSzsuSe1ACgxoFkvhkS7WBasCAFcglS11G2hyfd5tPg=="
+  "resolved" "https://registry.npmjs.org/cosmjs-types/-/cosmjs-types-0.5.2.tgz"
+  "version" "0.5.2"
+  dependencies:
+    "long" "^4.0.0"
+    "protobufjs" "~6.11.2"
+
 "cosmjs-types@^0.7.1":
   "integrity" "sha512-vf2uLyktjr/XVAgEq0DjMxeAWh1yYREe7AMHDKd7EiHVqxBPCaBS+qEEQUkXbR9ndnckqr1sUG8BQhazh4X5lA=="
   "resolved" "https://registry.npmjs.org/cosmjs-types/-/cosmjs-types-0.7.2.tgz"
@@ -3270,6 +3534,32 @@
     "path-key" "^3.1.0"
     "shebang-command" "^2.0.0"
     "which" "^2.0.1"
+
+"crypto-addr-codec-vite@^0.1.6":
+  "integrity" "sha512-aqN/rOBRbHZCkX3t88bkMnwjSBQETKU4DzyynYVK89JhRCGtrEcBzfHH8eX1n8bCSP+tjpyCuOpSaeVqLR6b+A=="
+  "resolved" "https://registry.npmjs.org/crypto-addr-codec-vite/-/crypto-addr-codec-vite-0.1.6.tgz"
+  "version" "0.1.6"
+  dependencies:
+    "base-x" "^3.0.8"
+    "big-integer" "1.6.36"
+    "blakejs" "^1.1.0"
+    "bs58" "^4.0.1"
+    "ripemd160-min" "0.0.6"
+    "safe-buffer" "^5.2.0"
+    "sha3" "^2.1.1"
+
+"crypto-addr-codec@^0.1.7":
+  "integrity" "sha512-X4hzfBzNhy4mAc3UpiXEC/L0jo5E8wAa9unsnA8nNXYzXjCcGk83hfC5avJWCSGT8V91xMnAS9AKMHmjw5+XCg=="
+  "resolved" "https://registry.npmjs.org/crypto-addr-codec/-/crypto-addr-codec-0.1.7.tgz"
+  "version" "0.1.7"
+  dependencies:
+    "base-x" "^3.0.8"
+    "big-integer" "1.6.36"
+    "blakejs" "^1.1.0"
+    "bs58" "^4.0.1"
+    "ripemd160-min" "0.0.6"
+    "safe-buffer" "^5.2.0"
+    "sha3" "^2.1.1"
 
 "css.escape@^1.5.1":
   "integrity" "sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg=="
@@ -3427,7 +3717,7 @@
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.490.tgz"
   "version" "1.4.490"
 
-"elliptic@^6.5.4", "elliptic@6.5.4":
+"elliptic@^6.5.2", "elliptic@^6.5.3", "elliptic@^6.5.4", "elliptic@6.5.4":
   "integrity" "sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ=="
   "resolved" "https://registry.npmjs.org/elliptic/-/elliptic-6.5.4.tgz"
   "version" "6.5.4"
@@ -3842,6 +4132,40 @@
     "secp256k1" "^4.0.1"
     "setimmediate" "^1.0.5"
 
+"ethereumjs-abi@^0.6.8":
+  "integrity" "sha512-Tx0r/iXI6r+lRsdvkFDlut0N08jWMnKRZ6Gkq+Nmw75lZe4e6o3EkSnkaBP5NF6+m5PTGAr9JP43N3LyeoglsA=="
+  "resolved" "https://registry.npmjs.org/ethereumjs-abi/-/ethereumjs-abi-0.6.8.tgz"
+  "version" "0.6.8"
+  dependencies:
+    "bn.js" "^4.11.8"
+    "ethereumjs-util" "^6.0.0"
+
+"ethereumjs-util@^6.0.0":
+  "integrity" "sha512-W2Ktez4L01Vexijrm5EB6w7dg4n/TgpoYU4avuT5T3Vmnw/eCRtiBrJfQYS/DCSvDIOLn2k57GcHdeBcgVxAqw=="
+  "resolved" "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-6.2.1.tgz"
+  "version" "6.2.1"
+  dependencies:
+    "@types/bn.js" "^4.11.3"
+    "bn.js" "^4.11.0"
+    "create-hash" "^1.1.2"
+    "elliptic" "^6.5.2"
+    "ethereum-cryptography" "^0.1.3"
+    "ethjs-util" "0.1.6"
+    "rlp" "^2.2.3"
+
+"ethereumjs-util@^6.2.1":
+  "integrity" "sha512-W2Ktez4L01Vexijrm5EB6w7dg4n/TgpoYU4avuT5T3Vmnw/eCRtiBrJfQYS/DCSvDIOLn2k57GcHdeBcgVxAqw=="
+  "resolved" "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-6.2.1.tgz"
+  "version" "6.2.1"
+  dependencies:
+    "@types/bn.js" "^4.11.3"
+    "bn.js" "^4.11.0"
+    "create-hash" "^1.1.2"
+    "elliptic" "^6.5.2"
+    "ethereum-cryptography" "^0.1.3"
+    "ethjs-util" "0.1.6"
+    "rlp" "^2.2.3"
+
 "ethereumjs-util@^7.1.3":
   "integrity" "sha512-SDl5kKrQAudFBUe5OJM9Ac6WmMyYmXX/6sTmLZ3ffG2eY6ZIGBes3pEDxNN6V72WyOw4CPD5RomKdsa8DAAwLg=="
   "resolved" "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-7.1.5.tgz"
@@ -3888,6 +4212,14 @@
     "@ethersproject/wallet" "5.7.0"
     "@ethersproject/web" "5.7.1"
     "@ethersproject/wordlists" "5.7.0"
+
+"ethjs-util@^0.1.6", "ethjs-util@0.1.6":
+  "integrity" "sha512-CUnVOQq7gSpDHZVVrQW8ExxUETWrnrvXYvYz55wOU8Uj4VCgw56XC2B/fVqQN+f7gmrnRHSLVnFAwsCuNwji8w=="
+  "resolved" "https://registry.npmjs.org/ethjs-util/-/ethjs-util-0.1.6.tgz"
+  "version" "0.1.6"
+  dependencies:
+    "is-hex-prefixed" "1.0.0"
+    "strip-hex-prefix" "1.0.0"
 
 "evp_bytestokey@^1.0.3":
   "integrity" "sha512-/f2Go4TognH/KvCISP7OUsHn85hT9nUkxxA9BEWxFn+Oj9o8ZNLm/40hdlgSLyuOimsrTKLUMEorQexp/aPQeA=="
@@ -4510,6 +4842,11 @@
   "version" "4.0.3"
   dependencies:
     "is-extglob" "^2.1.1"
+
+"is-hex-prefixed@1.0.0":
+  "integrity" "sha512-WvtOiug1VFrE9v1Cydwm+FnXd3+w9GaeVUss5W4v/SLy3UW00vP+6iNF2SdnfiBoLy4bTqVdkftNGTUeOFVsbA=="
+  "resolved" "https://registry.npmjs.org/is-hex-prefixed/-/is-hex-prefixed-1.0.0.tgz"
+  "version" "1.0.0"
 
 "is-negative-zero@^2.0.2":
   "integrity" "sha512-dqJvarLawXsFbNDeJW7zAz8ItJ9cd28YufuuFzh0G8pNHjJMnY08Dv7sYX2uF5UpQOwieAeOExEYAWWfu7ZZUA=="
@@ -5247,6 +5584,11 @@
   "integrity" "sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA=="
   "resolved" "https://registry.npmjs.org/long/-/long-4.0.0.tgz"
   "version" "4.0.0"
+
+"long@^5.2.0":
+  "integrity" "sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q=="
+  "resolved" "https://registry.npmjs.org/long/-/long-5.2.3.tgz"
+  "version" "5.2.3"
 
 "loose-envify@^1.0.0", "loose-envify@^1.1.0", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
@@ -6085,6 +6427,11 @@
   dependencies:
     "glob" "^7.1.3"
 
+"ripemd160-min@0.0.6":
+  "integrity" "sha512-+GcJgQivhs6S9qvLogusiTcS9kQUfgR75whKuy5jIhuiOfQuJ8fjqxV6EGD5duH1Y/FawFUMtMhyeq3Fbnib8A=="
+  "resolved" "https://registry.npmjs.org/ripemd160-min/-/ripemd160-min-0.0.6.tgz"
+  "version" "0.0.6"
+
 "ripemd160@^2.0.0", "ripemd160@^2.0.1":
   "integrity" "sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA=="
   "resolved" "https://registry.npmjs.org/ripemd160/-/ripemd160-2.0.2.tgz"
@@ -6093,7 +6440,7 @@
     "hash-base" "^3.0.0"
     "inherits" "^2.0.1"
 
-"rlp@^2.2.4":
+"rlp@^2.2.3", "rlp@^2.2.4":
   "integrity" "sha512-d5gdPmgQ0Z+AklL2NVXr/IoSjNZFfTVvQWzL/AM2AOcSzYP2xjlb0AC8YyCLc41MSNf6P6QVtjgPdmVtzb+4lQ=="
   "resolved" "https://registry.npmjs.org/rlp/-/rlp-2.2.7.tgz"
   "version" "2.2.7"
@@ -6226,7 +6573,7 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
 
-"sha3@^2.1.4":
+"sha3@^2.1.1", "sha3@^2.1.4":
   "integrity" "sha512-S8cNxbyb0UGUM2VhRD4Poe5N58gJnJsLJ5vC7FYWGUmGhcsj4++WaIOBFVDxlG0W3To6xBuiRh+i0Qp2oNCOtg=="
   "resolved" "https://registry.npmjs.org/sha3/-/sha3-2.1.4.tgz"
   "version" "2.1.4"
@@ -6439,6 +6786,13 @@
   "resolved" "https://registry.npmjs.org/strip-final-newline/-/strip-final-newline-2.0.0.tgz"
   "version" "2.0.0"
 
+"strip-hex-prefix@1.0.0":
+  "integrity" "sha512-q8d4ue7JGEiVcypji1bALTos+0pWtyGlivAWyPuTkHzuTCJqrK9sWxYQZUq6Nq3cuyv3bm734IhHvHtGGURU6A=="
+  "resolved" "https://registry.npmjs.org/strip-hex-prefix/-/strip-hex-prefix-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "is-hex-prefixed" "1.0.0"
+
 "strip-indent@^3.0.0":
   "integrity" "sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ=="
   "resolved" "https://registry.npmjs.org/strip-indent/-/strip-indent-3.0.0.tgz"
@@ -6603,6 +6957,16 @@
   "version" "3.21.0"
   dependencies:
     "tslib" "^1.8.1"
+
+"tweetnacl-util@^0.15.1":
+  "integrity" "sha512-RKJBIj8lySrShN4w6i/BonWp2Z/uxwC3h4y7xsRrpP59ZboCd0GpEVsOnMDYLMmKBpYhb5TgHzZXy7wTfYFBRw=="
+  "resolved" "https://registry.npmjs.org/tweetnacl-util/-/tweetnacl-util-0.15.1.tgz"
+  "version" "0.15.1"
+
+"tweetnacl@^1.0.3":
+  "integrity" "sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw=="
+  "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz"
+  "version" "1.0.3"
 
 "type-check@^0.4.0", "type-check@~0.4.0":
   "integrity" "sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew=="

@@ -17,6 +17,10 @@
     "typechain:generate": "npm run typechain --target=ethers-v5 ./src/abi/*.json --out-dir=./gen/types"
   },
   "dependencies": {
+    "@althea-net/address-converter": "^0.5.2",
+    "@althea-net/eip712": "^0.5.2",
+    "@althea-net/proto": "^0.5.3",
+    "@althea-net/provider": "^0.5.1",
     "@cosmjs/stargate": "^0.30.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -24,6 +28,9 @@
     "@tharsis/provider": "^0.2.4",
     "@tharsis/transactions": "^0.2.6",
     "@usedapp/core": "1.2.7",
+    "altheajs": "^1.0.0",
+    "crypto-addr-codec": "^0.1.7",
+    "crypto-addr-codec-vite": "^0.1.6",
     "ethers": "^5.7.2",
     "mixpanel": "^0.16.0",
     "mixpanel-browser": "^2.45.0",
@@ -41,6 +48,9 @@
     "reactjs-popup": "^2.0.5",
     "sass": "^1.54.0",
     "zustand": "^4.0.0"
+  },
+  "resolutions": {
+    "crypto-addr-codec": "npm:@abstract/crypto-addr-codec-vite@0.1.6"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
