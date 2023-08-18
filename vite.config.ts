@@ -22,7 +22,9 @@ export default {
         ],
       }),
   ],
-
+ optimizeDeps: {
+    include: ['crypto-addr-codec']
+  },
   build: {
     rollupOptions: {
       plugins: [

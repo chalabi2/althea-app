@@ -88,6 +88,7 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.0.2",
     "jest-watch-typeahead": "^2.1.1",
+    "npm-force-resolutions": "^0.0.10",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
     "react-test-renderer": "^18.2.0",

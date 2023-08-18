@@ -6,7 +6,7 @@ import {
   createTxRawEIP712,
   signatureToWeb3Extension,
 } from "@tharsis/transactions";
-import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
+import signatureToPubkey from "@hanchon/signature-to-pubkey"
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
 import { BigNumber } from "ethers";
@@ -47,7 +47,7 @@ export async function signAndBroadcastTxMsg(
     method: "POST",
     headers: { "Content-Type": JSONHeader },
     body: generatePostBodyBroadcast(raw),
-  };
+  }; 
 
   const broadcastPost = await fetch(
     nodeAddress + generateEndpointBroadcast(),
