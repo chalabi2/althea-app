@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   generateEndpointAccount,
-  generateEndpointBroadcast,
-  generatePostBodyBroadcast,
 } from "@tharsis/provider";
 import {
   createTxRawEIP712,
@@ -16,7 +14,10 @@ import { Chain, CosmosMsg, Sender } from "global/config/cosmosConstants";
 import { getCosmosAPIEndpoint } from "../getAddressUtils";
 import { createTxRaw } from '@althea-net/proto'
 import { altheaToEth  } from '@althea-net/address-converter'
-
+import {
+  generateEndpointBroadcast,
+  generatePostBodyBroadcast,
+}  from '@althea-net/provider'
 
 const JSONHeader = "application/json";
 /**
