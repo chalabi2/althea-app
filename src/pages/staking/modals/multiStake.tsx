@@ -80,7 +80,7 @@ import ImageButton from "global/components/ImageButton";
           multipOperator: operators,
           operator: operators[0]
       };
-  
+      
       try {
           const success = await stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
           if (!success) {

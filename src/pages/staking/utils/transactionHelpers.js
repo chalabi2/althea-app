@@ -4,6 +4,7 @@ import {
   createTxMsgMultipleWithdrawDelegatorReward,
   createTxMsgBeginRedelegate,
 } from "@tharsis/transactions";
+import { createTxMultipleMsgDelegate } from "../../../althea-tx/multipleDelegate"
 import {
   generateEndpointDistributionRewardsByAddress,
   generateEndpointGetDelegations,
@@ -15,9 +16,12 @@ import {
   getSenderObj,
   signAndBroadcastTxMsg,
   ethToAlthea,
+  signWithMetaMask,
+  createSignedTransaction,
+  broadcastTransaction
 } from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
-import { getTop10Validators } from "./groupDelegationParams";
+
 
 const ACCEPT_APPLICATION_JSON = "application/json";
 /**
@@ -58,25 +62,66 @@ export async function txStake(
   );
 }
 
-export async function txStakeMultiple(account, amount, nodeAddressIP, fee, chain, memo) {
-  const senderObj = await getSenderObj(account, nodeAddressIP);
+export async function txStakeMultiple(account, operatorAddresses, amounts, nodeAddressIP, fee, chain, memo, extraDetails) {
+  try {
+    const senderObj = await getSenderObj(account, nodeAddressIP);
+    
+    if (!senderObj) {
+      throw new Error("Failed to retrieve sender object");
+    }
+
+    // Prepare TxContext
+    const txContext = {
+      chain: chain,
+      sender: {
+        accountAddress: senderObj.accountAddress,
+        sequence: senderObj.sequence,
+        accountNumber: senderObj.accountNumber,
+        pubkey: senderObj.pubkey
+      },              
+      fee: fee,
+      memo: memo || ""              
+    };
+
+    console.log(txContext)
+
+    // Prepare MultipleMsgDelegateParams
+    const delegateParamsArray = extraDetails.delegateMessages.map(delegateMessage => ({
+      validatorAddress: delegateMessage.operator,
+      amount: delegateMessage.amount,
+      denom: "aalthea"
+    }));
+    
+    const params = {
+      values: delegateParamsArray
+    };
   
-  const top10Validators = await getTop10Validators(nodeAddressIP);
-  const individualAmount = amount / top10Validators.length; 
+    // Create the messages
+    const messages = createTxMultipleMsgDelegate(txContext, params);
+    console.log(messages)
+    if (!messages || !messages.signDirect) {
+      throw new Error("No messages were created for delegation");
+    }
 
+console.log(senderObj.accountAddress)
+    // Sign the transaction with MetaMask
+    const signature = await signWithMetaMask(senderObj, messages); 
 
-  const messages = top10Validators.map(validator => {
-    return createTxMsgDelegate(chain, senderObj, fee, memo, {
-      validatorAddress: validator.operator_address,
-      amount: individualAmount,
-      denom: "aalthea",
-    });
-  });
-  console.log(messages, senderObj, chain, nodeAddressIP, account )
-  return await signAndBroadcastTxMsg(messages, senderObj, chain, nodeAddressIP, account);
+    console.log("signature", signature)
 
+    // Create the signed transaction
+    const signedTx = createSignedTransaction(messages, signature);
+    console.log("signedtx", signedTx)
+    // Broadcast the transaction
+    const response = await broadcastTransaction(signedTx); 
+    console.log("response",response)
+    return response;
+
+  } catch (error) {
+    console.error("Error in txStakeMultiple:", error.message || error);
+    throw error;
+  }
 }
-
 /**
  * Transaction that unstakes given amount to the designated validator
  * @param {string} validator validator address string beginning with 'altheavaloper'
