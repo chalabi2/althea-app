@@ -15,9 +15,9 @@ import {
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-  signAndBroadcastMultiTxMsg,
   ethToAlthea
 } from "../../../global/utils/altheaTransactions/helpers";
+import { signAndBroadcastMultiTxMsg } from "../../../global/utils/altheaTransactions/multiHelpers";
 import { BigNumber } from "ethers";
 
 
@@ -101,7 +101,6 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
       throw new Error("No messages were created for delegation");
     }
 
-    console.log(senderObj.accountAddress)
 
     // Sign and Broadcast using the new function
     const response = await signAndBroadcastMultiTxMsg(

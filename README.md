@@ -32,7 +32,7 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ## Installation
 
 
-To install all dependencies make sure you have yarn installed.
+To install all dependencies make sure you have npm installed.
 
 Use node version 16
 
@@ -44,7 +44,7 @@ nvm use 16
 nvm --version
 
 # install dependencies
-yarn
+npm install --legacy-peer-deps
 ```
 
 ## Usage
@@ -55,10 +55,14 @@ yarn
 
 ```bash
 # make sure application build properly
-yarn build
+npm run build
 # application will run on http://localhost:8000
-yarn dev
+npm run dev
 ```
+**Broken Dependencies**
+- react-fade-in // be sure to add `--legacy-peer-deps` to `npm install` on your initial install
+- crypto-codec-addr // navigate to `node_modules/crypto-addr-codec/package.json` change `"module": "dist/index.module.js",` to `"module": "dist/index.js",`
+
 
 ## Testing
 
@@ -68,5 +72,5 @@ All tests are written using the Jest testing library.
 
 ```bash
 # run all tests
-yarn test 
+npm run test 
 ```
