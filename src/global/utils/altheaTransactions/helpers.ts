@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   generateEndpointAccount,
+
 } from "@tharsis/provider";
 import {
   createTxRawEIP712,
@@ -14,10 +15,18 @@ import { Chain, CosmosMsg, Sender } from "global/config/cosmosConstants";
 import { getCosmosAPIEndpoint } from "../getAddressUtils";
 import { createTxRaw } from '@althea-net/proto'
 import { altheaToEth  } from '@althea-net/address-converter'
+import { Message } from 'google-protobuf';
 import {
+
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
-}  from '@althea-net/provider'
+} from "@althea-net/provider";
+
+export interface MessagesGenerated {
+  messages: Message[];
+  path: string;
+}
+
 
 const JSONHeader = "application/json";
 /**
@@ -40,7 +49,7 @@ export async function signAndBroadcastTxMsg(
     method: "eth_signTypedData_v4",
     params: [account, JSON.stringify(msg.eipToSign)],
   });
-
+  console.log('Received signature:', signature);
   const raw = generateRawTx(chain, senderObj, signature, msg);
 
   const postOptions = {
@@ -48,7 +57,7 @@ export async function signAndBroadcastTxMsg(
     headers: { "Content-Type": JSONHeader },
     body: generatePostBodyBroadcast(raw),
   };
-
+console.log(postOptions.body)
   const broadcastPost = await fetch(
     nodeAddress + generateEndpointBroadcast(),
     postOptions
@@ -65,53 +74,63 @@ function generateRawTx(chain: any, senderObj: any, signature: any, msg: any) {
   );
 }
 
-export async function signWithMetaMask(senderObj: any,  messages: any) {
+export async function signAndBroadcastMultiTxMsg(
+  msg: any, 
+  senderObj: any, 
+  chain: any,
+  nodeAddress: string,
+  account: string
+) {
+  try {
+    console.log('Starting signAndBroadcastMultiTxMsg with the following parameters:', { msg, senderObj, chain, nodeAddress, account });
 
-  // Initialize MetaMask.
-  await window.ethereum.enable();
-  const senderHexAddress = altheaToEth(senderObj.accountAddress);
-
-  const eip712Payload = JSON.stringify(messages.eipToSign);
-
-
-  // Sign the transaction.
-  const signature = await window.ethereum.request({
+    const signature = await window.ethereum.request({
       method: 'eth_signTypedData_v4',
-      params: [senderHexAddress, eip712Payload],
-  });
+      params: [account, JSON.stringify(msg.eipToSign)],
+    });
 
-  return signature;
+    console.log('Received signature:', signature);
+
+    // 2. Create the signed transaction
+    const signatureBytes = Buffer.from(signature.replace('0x', ''), 'hex');
+    const { signDirect } = msg;
+    const bodyBytes = signDirect.body.toBinary();
+    const authInfoBytes = signDirect.authInfo.toBinary();
+
+    console.log('Constructing signed transaction with:', { signatureBytes, bodyBytes, authInfoBytes });
+
+    const signedTx = createTxRaw(
+      bodyBytes,
+      authInfoBytes,
+      [signatureBytes]
+    );
+
+    console.log('Constructed signed transaction:', signedTx);
+
+    // 3. Broadcast the transaction
+    const postOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: generatePostBodyBroadcast(signedTx)
+    };
+    const broadcastEndpoint = `${nodeAddress}${generateEndpointBroadcast()}`;
+
+    console.log('Broadcasting to:', broadcastEndpoint, 'with options:', postOptions);
+
+    const broadcastPost = await fetch(broadcastEndpoint, postOptions);
+    const responseJson = await broadcastPost.json();
+
+    console.log('Received response:', responseJson);
+
+    return responseJson;
+    
+  } catch (error) {
+    console.error("Error in signAndBroadcastMultiTxMsg:", error);
+    throw error;
+  }
 }
 
-export function createSignedTransaction(tx: any, signature: string) {
-  const signatureBytes = Buffer.from(signature.replace('0x', ''), 'hex');
-  
-  const { signDirect } = tx;
-  const bodyBytes = signDirect.body.toBinary();
-  const authInfoBytes = signDirect.authInfo.toBinary();
 
-  const signedTx = createTxRaw(
-    bodyBytes,
-    authInfoBytes,
-    [signatureBytes],
-  );
-
-  return signedTx;
-}
-
-export async function broadcastTransaction(signedTx: any) {
-  const postOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: generatePostBodyBroadcast(signedTx),
-  };
-  const nodeUrl = "https://althea.api.chandrastation.com"
-  const broadcastEndpoint = `${nodeUrl}${generateEndpointBroadcast()}`;
-  const broadcastPost = await fetch(broadcastEndpoint, postOptions);
-
-  const response = await broadcastPost.json();
-  return response;
-}
 /**
  * Uses the eth hex address, converts it to a althea address,
  * then gets the sender object.

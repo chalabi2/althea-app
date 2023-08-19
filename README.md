@@ -14,7 +14,6 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ### Staking
 - multi stake tx failing
 - sanity check, missed blocks, slashings, voting power (true Rank), and scoring system
-- multi stake modal load time
 
 ### General
 - done

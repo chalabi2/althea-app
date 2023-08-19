@@ -15,10 +15,8 @@ import {
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-  ethToAlthea,
-  signWithMetaMask,
-  createSignedTransaction,
-  broadcastTransaction
+  signAndBroadcastMultiTxMsg,
+  ethToAlthea
 } from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
 
@@ -103,18 +101,18 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
       throw new Error("No messages were created for delegation");
     }
 
-console.log(senderObj.accountAddress)
-    // Sign the transaction with MetaMask
-    const signature = await signWithMetaMask(senderObj, messages); 
+    console.log(senderObj.accountAddress)
 
-    console.log("signature", signature)
+    // Sign and Broadcast using the new function
+    const response = await signAndBroadcastMultiTxMsg(
+      messages, 
+      senderObj, 
+      chain,
+      nodeAddressIP, 
+      account
+    );
 
-    // Create the signed transaction
-    const signedTx = createSignedTransaction(messages, signature);
-    console.log("signedtx", signedTx)
-    // Broadcast the transaction
-    const response = await broadcastTransaction(signedTx); 
-    console.log("response",response)
+    console.log("response", response);
     return response;
 
   } catch (error) {
