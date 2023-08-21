@@ -23,6 +23,12 @@ export const votingFee = {
   gas: "1000000",
 };
 
+export const multiFee = {
+  amount: "1000000000000000000",
+  denom: "aalthea",
+  gas: "3000000",
+};
+
 export interface Fee {
   amount: string;
   denom: string;

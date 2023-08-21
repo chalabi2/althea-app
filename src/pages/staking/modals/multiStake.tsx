@@ -1,110 +1,110 @@
 import {
-    MasterValidatorProps,
-    StakingTransactionType,
-    TxFeeBalanceCheck,
-    Validator,
-  } from "../config/interfaces";
-  import { StakingModalContainer } from "../components/Styled";
-  import {
-    convertStringToBigNumber,
-    truncateNumber,
-  } from "global/utils/formattingNumbers";
-  import { formatEther, parseEther } from "ethers/lib/utils";
-  import { BigNumber } from "ethers";
-  import { useEffect, useState } from "react";
-  import { OutlinedButton, PrimaryButton, Text, UndelegateButton } from "global/packages/src";
-  import Select from "react-select";
-  import { delegateFee } from "../config/fees";
-  import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-  import "react-tabs/style/react-tabs.css";
-  import { CInput } from "global/packages/src/components/atoms/Input";
-  import styled from "@emotion/styled";
-  import CheckBox from "global/components/checkBox";
-  import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
-  import { TransactionStore } from "global/stores/transactionStore";
-  import { stakingMultipleTx, stakingTx } from "../utils/transactions";
-  import { getTop10Validators } from "../utils/groupDelegationParams";
-  import LoadingComponent from "global/components/loadingComponent";
-  import menuImg from "assets/icons/menu.svg";
+  MasterValidatorProps,
+  StakingTransactionType,
+  TxFeeBalanceCheck,
+  Validator,
+} from "../config/interfaces";
+import { StakingModalContainer } from "../components/Styled";
+import {
+  convertStringToBigNumber,
+  truncateNumber,
+} from "global/utils/formattingNumbers";
+import { formatEther, parseEther } from "ethers/lib/utils";
+import { BigNumber } from "ethers";
+import { useEffect, useState } from "react";
+import { OutlinedButton, PrimaryButton, Text, UndelegateButton } from "global/packages/src";
+import Select from "react-select";
+import { delegateFee } from "../config/fees";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import { CInput } from "global/packages/src/components/atoms/Input";
+import styled from "@emotion/styled";
+import CheckBox from "global/components/checkBox";
+import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
+import { TransactionStore } from "global/stores/transactionStore";
+import { stakingMultipleTx, stakingTx } from "../utils/transactions";
+import { getTop10Validators } from "../utils/groupDelegationParams";
+import LoadingComponent from "global/components/loadingComponent";
+import menuImg from "assets/icons/menu.svg";
 import ImageButton from "global/components/ImageButton";
-  
 
-  interface MultiStakingModalProps {
-    allValidators: Validator[];
-    balance: BigNumber;
-    account?: string;
-    txFeeCheck: TxFeeBalanceCheck;
-    txStore: TransactionStore;
-    chainId: number;
-  }
 
-  interface ValidatorInfo {
-    moniker: string;
-    operator_address: string;
-    tokens: string; 
-    commission: string;
-    missedBlocks: number;
-    score: number;
-    slashings: number;
-    tombstoned: boolean;
-    valcons_address: string;
-    trueRank: number;
-  }
-  
-  export const MultiStakingModal = ({
-    balance,
-    account,
-    txFeeCheck,
-    txStore,
-    chainId,
+interface MultiStakingModalProps {
+  allValidators: Validator[];
+  balance: BigNumber;
+  account?: string;
+  txFeeCheck: TxFeeBalanceCheck;
+  txStore: TransactionStore;
+  chainId: number;
+}
+
+interface ValidatorInfo {
+  moniker: string;
+  operator_address: string;
+  tokens: string; 
+  commission: string;
+  missedBlocks: number;
+  score: number;
+  slashings: number;
+  tombstoned: boolean;
+  valcons_address: string;
+  trueRank: number;
+}
+
+export const MultiStakingModal = ({
+  balance,
+  account,
+  txFeeCheck,
+  txStore,
+  chainId,
 }: MultiStakingModalProps) => {
-    const [amount, setAmount] = useState<string>("");
-    const [isLoading, setIsLoading] = useState(true);
-    const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  const [amount, setAmount] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
-    const handleMultiDelegate = async () => {
-      if (!account) {
-          console.error("Account is not defined");
-          return;
-      }
-  
-      const operators = topValidators.map((validator) => ({
-          address: validator.operator_address,
-          name: validator.moniker,
-      }));
-  
-      const delegationDetails = {
-          account: account, 
-          chainId: chainId,
-          amount: convertStringToBigNumber(amount, 18).toString(),
-          multipOperator: operators,
-          operator: operators[0]
+  const handleMultiDelegate = async () => {
+    if (!account) {
+        console.error("Account is not defined");
+        return;
+    }
+
+    const operators = topValidators.map((validator) => ({
+        address: validator.operator_address,
+        name: validator.moniker,
+    }));
+
+    const delegationDetails = {
+        account: account, 
+        chainId: chainId,
+        amount: convertStringToBigNumber(amount, 18).toString(),
+        multipOperator: operators,
+        operator: operators[0]
+    };
+    
+    try {
+        const success = await stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
+        if (!success) {
+            console.error("Failed to add the staking transaction.");
+        } else {
+            console.log("Staking transaction added successfully.");
+        }
+    } catch (error) {
+        console.error("Error while processing staking transaction:", error);
+    }
+};
+
+  const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]);
+  useEffect(() => {
+      const fetchTopValidators = async () => {
+          setIsLoading(true);
+          const validators = await getTop10Validators("https://althea.api.chandrastation.com");
+          setTopValidators(validators);
+          setIsLoading(false);
       };
       
-      try {
-          const success = await stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
-          if (!success) {
-              console.error("Failed to add the staking transaction.");
-          } else {
-              console.log("Staking transaction added successfully.");
-          }
-      } catch (error) {
-          console.error("Error while processing staking transaction:", error);
-      }
-  };
-
-    const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]);
-    useEffect(() => {
-        const fetchTopValidators = async () => {
-            setIsLoading(true);
-            const validators = await getTop10Validators("https://althea.api.chandrastation.com");
-            setTopValidators(validators);
-            setIsLoading(false);
-        };
-        
-        fetchTopValidators();
-    }, []);
-
+      fetchTopValidators();
+  }, []);
+  
     return (
         <StakingModalContainer>
             <Text size="title2" type="title" className="title">

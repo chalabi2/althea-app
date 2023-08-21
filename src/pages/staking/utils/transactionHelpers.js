@@ -4,7 +4,7 @@ import {
   createTxMsgMultipleWithdrawDelegatorReward,
   createTxMsgBeginRedelegate,
 } from "@tharsis/transactions";
-import { createTxMultipleMsgDelegate } from "../../../althea-tx/multipleDelegate"
+import { createTxMultipleMsgDelegate } from "altheajs/packages/transactions/dist/messages/staking/multipleDelegate"
 import {
   generateEndpointDistributionRewardsByAddress,
   generateEndpointGetDelegations,
@@ -16,11 +16,11 @@ import {
   getSenderObj,
   signAndBroadcastTxMsg,
   ethToAlthea,
-  signWithMetaMask,
-  createSignedTransaction,
-  broadcastTransaction
 } from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
+import { multiFee } from "global/config/cosmosConstants";
+  
+import { signAndBroadcastTxMultiMsg } from "global/utils/altheaTransactions/multiHelpers";
 
 
 const ACCEPT_APPLICATION_JSON = "application/json";
@@ -79,11 +79,11 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
         accountNumber: senderObj.accountNumber,
         pubkey: senderObj.pubkey
       },              
-      fee: fee,
+      fee: multiFee,
       memo: memo || ""              
     };
 
-    console.log(txContext)
+
 
     // Prepare MultipleMsgDelegateParams
     const delegateParamsArray = extraDetails.delegateMessages.map(delegateMessage => ({
@@ -98,23 +98,22 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
   
     // Create the messages
     const messages = createTxMultipleMsgDelegate(txContext, params);
-    console.log(messages)
+
     if (!messages || !messages.signDirect) {
       throw new Error("No messages were created for delegation");
     }
 
-console.log(senderObj.accountAddress)
-    // Sign the transaction with MetaMask
-    const signature = await signWithMetaMask(senderObj, messages); 
 
-    console.log("signature", signature)
+    // Sign and Broadcast using the new function
+    const response = await signAndBroadcastTxMultiMsg(
+      messages, 
+      senderObj, 
+      chain,
+      nodeAddressIP, 
+      account
+    );
 
-    // Create the signed transaction
-    const signedTx = createSignedTransaction(messages, signature);
-    console.log("signedtx", signedTx)
-    // Broadcast the transaction
-    const response = await broadcastTransaction(signedTx); 
-    console.log("response",response)
+
     return response;
 
   } catch (error) {
