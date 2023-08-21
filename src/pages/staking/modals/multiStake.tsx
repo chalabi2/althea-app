@@ -1,5 +1,4 @@
 import {
-  MasterValidatorProps,
   StakingTransactionType,
   TxFeeBalanceCheck,
   Validator,
@@ -7,22 +6,17 @@ import {
 import { StakingModalContainer } from "../components/Styled";
 import {
   convertStringToBigNumber,
-  truncateNumber,
 } from "global/utils/formattingNumbers";
 import { formatEther, parseEther } from "ethers/lib/utils";
 import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
-import { OutlinedButton, PrimaryButton, Text, UndelegateButton } from "global/packages/src";
-import Select from "react-select";
+import { PrimaryButton, Text } from "global/packages/src";
 import { delegateFee } from "../config/fees";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { CInput } from "global/packages/src/components/atoms/Input";
 import styled from "@emotion/styled";
-import CheckBox from "global/components/checkBox";
-import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
 import { TransactionStore } from "global/stores/transactionStore";
-import { stakingMultipleTx, stakingTx } from "../utils/transactions";
+import { stakingMultipleTx } from "../utils/transactions";
 import { getTop10Validators } from "../utils/groupDelegationParams";
 import LoadingComponent from "global/components/loadingComponent";
 import menuImg from "assets/icons/menu.svg";
@@ -109,6 +103,9 @@ export const MultiStakingModal = ({
         <StakingModalContainer>
             <Text size="title2" type="title" className="title">
     Multi-Staking
+    <div
+    className="menu-btn"
+    >
     <ImageButton
               src={menuImg}
               width={27}
@@ -117,6 +114,7 @@ export const MultiStakingModal = ({
               alt="menu"
               onClick={() => setIsDescriptionVisible(!isDescriptionVisible)}
               />
+              </div>
 </Text>
 {isDescriptionVisible && (
         <Description>
@@ -206,8 +204,8 @@ const Description = styled.div`
   font-family: "IBM Plex Sans"; 
   color: var(--primary-color);
   margin-bottom: 15px;
-  max-width: 90%; // This limits the width to 90% of its parent (the modal). Adjust as needed.
-  margin-left: auto; // These two lines center the Description box in the modal.
+  max-width: 90%; 
+  margin-left: auto; 
   margin-right: auto;
 `;
   
@@ -271,4 +269,6 @@ align-items: center;
 height: 300px;
 font-family: IBM Plex Sans; 
 color: var(--primary-color);
+span {
+  margin-left: 40px;
 `;

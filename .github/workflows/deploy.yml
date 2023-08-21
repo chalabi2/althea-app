@@ -17,10 +17,10 @@ jobs:
           node-version: 18.15.0  # replace with your Node.js version
 
       - name: Install Dependencies
-        run: yarn install
+        run: npm install --legacy-peer-deps
 
       - name: Build
-        run: yarn build
+        run: npm build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

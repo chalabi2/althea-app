@@ -11,6 +11,10 @@ export const StakingModalContainer = styled.div`
   border-radius: 4px;
   align-items: center;
 
+  .menu-btn {
+    margin-left: 5px;
+    margin-top: 10px;
+  }
   input {
     text-align: right;
   }
