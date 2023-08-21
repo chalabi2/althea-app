@@ -15,10 +15,12 @@ import {
 import {
   getSenderObj,
   signAndBroadcastTxMsg,
-  ethToAlthea
+  ethToAlthea,
 } from "../../../global/utils/altheaTransactions/helpers";
-import { signAndBroadcastMultiTxMsg } from "../../../global/utils/altheaTransactions/multiHelpers";
 import { BigNumber } from "ethers";
+import { multiFee } from "global/config/cosmosConstants";
+  
+import { signAndBroadcastTxMultiMsg } from "global/utils/altheaTransactions/multiHelpers";
 
 
 const ACCEPT_APPLICATION_JSON = "application/json";
@@ -77,11 +79,11 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
         accountNumber: senderObj.accountNumber,
         pubkey: senderObj.pubkey
       },              
-      fee: fee,
+      fee: multiFee,
       memo: memo || ""              
     };
 
-    console.log(txContext)
+
 
     // Prepare MultipleMsgDelegateParams
     const delegateParamsArray = extraDetails.delegateMessages.map(delegateMessage => ({
@@ -96,14 +98,14 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
   
     // Create the messages
     const messages = createTxMultipleMsgDelegate(txContext, params);
-    console.log(messages)
+
     if (!messages || !messages.signDirect) {
       throw new Error("No messages were created for delegation");
     }
 
 
     // Sign and Broadcast using the new function
-    const response = await signAndBroadcastMultiTxMsg(
+    const response = await signAndBroadcastTxMultiMsg(
       messages, 
       senderObj, 
       chain,

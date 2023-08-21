@@ -21,6 +21,7 @@
     "@althea-net/eip712": "^0.5.2",
     "@althea-net/proto": "^0.5.3",
     "@althea-net/provider": "^0.5.1",
+    "@althea-net/transactions": "^0.6.1",
     "@cosmjs/stargate": "^0.30.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",

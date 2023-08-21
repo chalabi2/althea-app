@@ -1,95 +1,82 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
-    generateEndpointAccount,
-  
-  } from "@tharsis/provider";
-  import {
-    createTxRawEIP712,
-    signatureToWeb3Extension,
-  } from "@tharsis/transactions";
-  import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
-  import { ethers } from "ethers";
-  import { Buffer } from "buffer";
-  import { BigNumber } from "ethers";
-  import { Chain, CosmosMsg, Sender } from "global/config/cosmosConstants";
-  import { getCosmosAPIEndpoint } from "../getAddressUtils";
-  import { createTxRaw } from '@althea-net/proto'
-  import { altheaToEth  } from '@althea-net/address-converter'
-  import { Message } from 'google-protobuf';
-  import {
-    generateEndpointBroadcast,
-    generatePostBodyBroadcast,
-  } from "@althea-net/provider";
-  
-  export interface MessagesGenerated {
-    messages: Message[];
-    path: string;
-  }
+  generateEndpointAccount,
+
+} from "@tharsis/provider";
+import {
+  createTxRawEIP712,
+
+} from "@tharsis/transactions";
+import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
+import { ethers } from "ethers";
+import { Buffer } from "buffer";
+import { BigNumber } from "ethers";
+import { Chain, CosmosMsg, Sender } from "global/config/cosmosConstants";
+import { getCosmosAPIEndpoint } from "../getAddressUtils";
+import { signatureToWeb3Extension } from '@althea-net/transactions';
+import { createTxRaw, createAnyMessage } from '@althea-net/proto';
+import { altheaToEth  } from '@althea-net/address-converter'
+import {
+  generateEndpointBroadcast,
+  generatePostBodyBroadcast,
+}  from '@althea-net/provider'
+
+
   
   
   const JSONHeader = "application/json";
   
-  function generateRawTx(chain: any, senderObj: any, signature: any, msg: any) {
-    const extension = signatureToWeb3Extension(chain, senderObj, signature);
-    return createTxRawEIP712(
-      msg.legacyAmino.body,
-      msg.legacyAmino.authInfo,
-      extension
-    );
-  }
-  
-  export async function signAndBroadcastMultiTxMsg(
-    msg: any, 
-    senderObj: any, 
-    chain: any,
+  export async function signAndBroadcastTxMultiMsg(
+    msg: CosmosMsg,
+    senderObj: Sender,
+    chain: Chain,
     nodeAddress: string,
     account: string
   ) {
-    try {
-      console.log("multistaking",msg.eipToSign)
-    // @ts-ignore
-      const signature = await window.ethereum.request({
-        method: 'eth_signTypedData_v4',
-        params: [account, JSON.stringify(msg.eipToSign)],
-      });
+    // Convert sender's address to hex
   
-      // 2. Create the signed transaction
-      const signatureBytes = Buffer.from(signature.replace('0x', ''), 'hex');
-      const { signDirect } = msg;
+    // Create EIP712 payload
+    const eip712Payload = JSON.stringify(msg.eipToSign);
   
-      const bodyBytes = signDirect.body.toBinary();
-      const authInfoBytes = signDirect.authInfo.toBinary();
+    // Request signature from Metamask
+      // @ts-ignore
+    const signature = await window.ethereum.request({
+        method: "eth_signTypedData_v4",
+        params: [account, eip712Payload],
+    });
+    
   
+    // Convert the signature to a web3 extension
+    const extension = signatureToWeb3Extension(chain, senderObj, signature);
   
-      const signedTx = createTxRaw(
-        bodyBytes,
-        authInfoBytes,
-        [signatureBytes]
-      );
+    // Update the transaction object
+      // @ts-ignore
+    msg.legacyAmino.body.extensionOptions.push(createAnyMessage(extension));
   
-      console.log('Constructed signed transaction:', signedTx);
+    // Serialize body and auth info
+      // @ts-ignore
+    const bodyBytes = msg.legacyAmino.body.toBinary();
+      // @ts-ignore
+    const authInfoBytes = msg.legacyAmino.authInfo.toBinary();
   
-      // 3. Broadcast the transaction
-      const postOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: generatePostBodyBroadcast(signedTx)
-      };
-      const broadcastEndpoint = `${nodeAddress}${generateEndpointBroadcast()}`;
+    // Create the signed transaction
+    const signedTx = createTxRaw(bodyBytes, authInfoBytes, [new Uint8Array()]);
   
-      console.log('Broadcasting to:', broadcastEndpoint, 'with options:', postOptions);
+    // Create the POST options
+    const postOptions = {
+        method: "POST",
+        headers: { "Content-Type": JSONHeader },
+        body: generatePostBodyBroadcast(signedTx),
+    };
   
-      const broadcastPost = await fetch(broadcastEndpoint, postOptions);
-      const responseJson = await broadcastPost.json();
-  
-      console.log('Received response:', responseJson);
-  
-      return responseJson;
-      
-    } catch (error) {
-      console.error("Error in signAndBroadcastMultiTxMsg:", error);
-      throw error;
-    }
+    // Make the broadcast request
+    const broadcastPost = await fetch(
+        nodeAddress + generateEndpointBroadcast(),
+        postOptions
+    );
+    
+    // Return the response
+    return await broadcastPost.json();
   }
   
   
