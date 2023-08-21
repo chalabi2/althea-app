@@ -93,7 +93,7 @@ amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(remain
     params.chainId,
     params.account,
     params.multipOperator.map(op => op.address),
-    individualAmountBN, // We pass all the split amounts
+    finalAmounts, 
     getCosmosAPIEndpoint(params.chainId),
     delegateFee,  
     getCosmosChainObj(params.chainId),
