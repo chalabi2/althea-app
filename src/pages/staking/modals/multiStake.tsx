@@ -143,10 +143,10 @@ export const MultiStakingModal = ({
           return;
       }
       const toEther = (amount: any) => {
-        const etherMultiplier = BigInt(10 ** 18); // 1e18 as a BigInt
+        const etherMultiplier = BigInt(10 ** 18); 
         const [whole, fraction = ""] = String(amount).split(".");
         const wholeEther = BigInt(whole) * etherMultiplier;
-        const fractionEther = BigInt(fraction.padEnd(18, "0")); // pad with zeros to ensure 18 decimals
+        const fractionEther = BigInt(fraction.padEnd(18, "0")); 
         return wholeEther + fractionEther;
     };
     

@@ -30,7 +30,6 @@ import {
     nodeAddress: string,
     account: string
   ) {
-    // Convert sender's address to hex
   
     // Create EIP712 payload
     const eip712Payload = JSON.stringify(msg.eipToSign);

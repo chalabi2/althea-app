@@ -154,6 +154,14 @@ export const createTransactionMessges = (
         success: `successfully ${amount + " ALTHEA"} undelegated from ${token}`,
         error: `unable to undelegate from ${token}`,
       };
+      case AltheaTransactionType.UNDELEGATE_MULTIPLE:
+      return {
+        short: "undelegate",
+        long: `undelegate althea from selected validators`,
+        pending: `undelegating althea from selected validators...`,
+        success: `undelegated althea from selected validators`,
+        error: `unable to undelegate from selected validators`,
+      };
     case AltheaTransactionType.REDELEGATE:
       return {
         short: "redelegate",

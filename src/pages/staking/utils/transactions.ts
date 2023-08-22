@@ -110,7 +110,7 @@ amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(remain
     getCosmosChainObj(params.chainId),
     "",
     {
-      delegateMessages // Pass the messages to the transaction
+      delegateMessages 
     }
   );
 
@@ -155,7 +155,7 @@ const undelegateMessages = validatorAddresses.map((val, index) => ({
   }
 }));
 
-  // Assuming the _undelegateMultipleTx function accepts the same parameters in order as _delegateMultipleTx
+
   const transaction = _undelegateMultipleTx(
     params.chainId,
     params.account,

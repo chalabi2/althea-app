@@ -104,7 +104,6 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
     }
 
 
-    // Sign and Broadcast using the new function
     const response = await signAndBroadcastTxMultiMsg(
       messages, 
       senderObj, 
@@ -162,7 +161,7 @@ export async function txUndelegateMultiple(account, delegations, amounts, nodeAd
       throw new Error("No messages were created for undelegation");
     }
 
-    // Sign and Broadcast using the new function
+
     const response = await signAndBroadcastTxMultiMsg(
       messages, 
       senderObj, 
