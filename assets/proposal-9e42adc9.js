@@ -1,4 +1,4 @@
-import{a as d,e as k,b as A,d as z,f as J,V as P,q as W,P as D,c as E}from"./Styled-69df9a43.js";import{n as C,D as p,a as r,j as t,au as K,J as Q,T as f,P as U,aF as S,H as u,u as v,i as V,B as F,aG as Z,aH as X,aI as ee,aJ as te,aK as oe,f as re,aL as ae,m as ne,R as se,aM as ie,I as le,F as O,ap as ce,Y as de}from"./index-6a32c621.js";import{l as ue,f as pe}from"./transactionHelpers-affd6726.js";import{T as he,u as ve,O as me}from"./index-e1b652de.js";import"./moment-7785d891.js";const T={quorum:"33.4%",threshold:"50%",veto:"33.4%"},ge=C.div`
+import{a as d,e as k,b as A,d as z,f as J,V as P,q as W,P as D,c as E}from"./Styled-aa91e149.js";import{n as C,D as p,a as r,j as t,au as K,J as Q,T as f,P as U,aF as S,H as u,u as v,i as V,B as F,aG as Z,aH as X,aI as ee,aJ as te,aK as oe,f as re,aL as ae,m as ne,R as se,aM as ie,I as le,F as O,ap as ce,Y as de}from"./index-2643c3b6.js";import{l as ue,f as pe}from"./transactionHelpers-9334762b.js";import{T as he,u as ve,O as me}from"./index-de13f699.js";import"./moment-7785d891.js";const T={quorum:"33.4%",threshold:"50%",veto:"33.4%"},ge=C.div`
   background-color: var(--base);
   height: min-content;
   width: 26rem;
