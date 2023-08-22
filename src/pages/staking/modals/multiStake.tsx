@@ -190,7 +190,7 @@ export const MultiStakingModal = ({
 <div className="desc">
 {isDescriptionVisible && (
         <Description>
-          Multi Staking is a tool used to send your delegation to a group of random and performant validators below the top ten. The list is based off a ranking system 
+          Multi Staking is a tool used to delegate to and withdraw from a group of the most performant validators below the top ten. The list is based off a ranking system 
           that considers missed blocks, slashings, commission, voting power, and governance participation. 
         </Description>
       )}
