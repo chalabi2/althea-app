@@ -314,25 +314,31 @@ export const MultiStakingModal = ({
             <span>Finding your delegations...</span>
           </LoadingContainer>
         ) : (
-            <ValidatorTable>
-  <table>
-    <thead>
-      <tr>
-        <th>Validator Address</th> 
-        <th>Amount</th>
-
-      </tr>
-    </thead>
-    <tbody>
-    {userValidators.map((delegation) => (  
-   <tr style={{ backgroundColor: selectedValidators.some(val => val.address === delegation.validator.operator_address) ? 'var(--background-color-start)' : 'var(--base)' }} key={delegation.validator.operator_address} onClick={() => handleValidatorSelection(delegation)}>
-        <td>{delegation.validator.description.moniker}</td>
-        <td>{formatEther(delegation.userDelegations?.balance.amount || '0')}</td>
-    </tr>
-))}
-    </tbody>
-  </table>
-</ValidatorTable>
+          <ValidatorTable>
+          <table>
+            <thead>
+              <tr>
+                <th>Validator Address</th> 
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userValidators.map((delegation) => (  
+                <tr 
+                  style={{ 
+                    cursor: 'pointer',
+                    backgroundColor: selectedValidators.some(val => val.address === delegation.validator.operator_address) ? 'var(--background-color-start)' : 'var(--base)' 
+                  }} 
+                  key={delegation.validator.operator_address} 
+                  onClick={() => handleValidatorSelection(delegation)}
+                >
+                  <td>{delegation.validator.description.moniker}</td>
+                  <td>{formatEther(delegation.userDelegations?.balance.amount || '0')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </ValidatorTable>
    )}
               <UndelegateButton
                 weight="bold"
