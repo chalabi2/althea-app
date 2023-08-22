@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const StakingModalContainer = styled.div`
   background-color: var(--background);
   height: fit-content;
-  max-height: 90vh;
+  max-height: 95vh;
   padding-bottom: 40px;
   width: 33rem;
   display: flex;

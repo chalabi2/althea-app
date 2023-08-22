@@ -1,4 +1,5 @@
 import {
+  MasterValidatorProps,
   StakingTransactionType,
   TxFeeBalanceCheck,
   Validator,
@@ -10,7 +11,7 @@ import {
 import { formatEther, parseEther } from "ethers/lib/utils";
 import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
-import { PrimaryButton, Text } from "global/packages/src";
+import { PrimaryButton, Text, UndelegateButton } from "global/packages/src";
 import { delegateFee } from "../config/fees";
 import { CInput } from "global/packages/src/components/atoms/Input";
 import styled from "@emotion/styled";
@@ -23,6 +24,8 @@ import LoadingComponent from "global/components/loadingComponent";
 import menuImg from "assets/icons/menu.svg";
 import ImageButton from "global/components/ImageButton";
 import CheckBox from "global/components/checkBox";
+import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
+import useStaking from "../hooks/useStaking";
 
 
 interface MultiStakingModalProps {
@@ -45,6 +48,7 @@ interface ValidatorInfo {
   tombstoned: boolean;
   valcons_address: string;
   trueRank: number;
+  isSelected?: boolean;
 }
 
 export const MultiStakingModal = ({
@@ -58,6 +62,28 @@ export const MultiStakingModal = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const [showUndelegateConfimation, setShowUndelegateConfirmation] =
+  useState(false);
+  const { userValidators } = useStaking();
+  const [selectedValidators, setSelectedValidators] = useState<{ address: string; amount: string }[]>([]);
+  console.log(selectedValidators)
+  
+  const handleValidatorSelection = (delegation: MasterValidatorProps) => {
+
+    const isSelected = selectedValidators.some(val => val.address === delegation.validator.operator_address);
+    
+    if (isSelected) {
+
+        setSelectedValidators(prevState => prevState.filter(val => val.address !== delegation.validator.operator_address));
+    } else {
+
+        setSelectedValidators(prevState => [...prevState, {
+            address: delegation.validator.operator_address,
+            amount: formatEther(delegation.userDelegations?.balance.amount || '0')
+        }]);
+    }
+};
+
   const handleMultiDelegate = async () => {
     if (!account) {
         console.error("Account is not defined");
@@ -68,6 +94,8 @@ export const MultiStakingModal = ({
         address: validator.operator_address,
         name: validator.moniker,
     }));
+
+
 
     const delegationDetails = {
         account: account, 
@@ -81,8 +109,6 @@ export const MultiStakingModal = ({
         const success = await stakingMultipleTx(txStore, StakingTransactionType.DELEGATE, delegationDetails);
         if (!success) {
             console.error("Failed to add the staking transaction.");
-        } else {
-            console.log("Staking transaction added successfully.");
         }
     } catch (error) {
         console.error("Error while processing staking transaction:", error);
@@ -143,11 +169,6 @@ export const MultiStakingModal = ({
                   undelegate
                 </Text>
               </Tab>
-              <Tab className={"tab"} selectedClassName="tab-selected">
-                <Text size="text3" type="text" align="left" bold>
-                  redelegate
-                </Text>
-              </Tab>
             </TabList>
 
             <TabPanel className="tabPanel">
@@ -188,9 +209,7 @@ export const MultiStakingModal = ({
 
     )}
       <div   className="amount"
-                style={{
-                  marginTop: "1rem",
-                }}
+               
               >
                     <CInput
                         placeholder="Enter amount to split between validators..."
@@ -232,7 +251,7 @@ export const MultiStakingModal = ({
                 <PrimaryButton
                     weight="bold"
                     height="big"
-                    disabled={!amount || !topValidators.length || !txFeeCheck.delegate}
+                    disabled={!agreed || !amount || !topValidators.length || !txFeeCheck.delegate}
                     className="btn"
                     onClick={handleMultiDelegate}
                 >
@@ -244,6 +263,52 @@ export const MultiStakingModal = ({
                     </Text>
                 )}
 
+            </TabPanel>
+            <TabPanel className="tabPanel">
+            <ValidatorTable>
+  <table>
+    <thead>
+      <tr>
+        <th>Validator Address</th> 
+        <th>Amount</th>
+
+      </tr>
+    </thead>
+    <tbody>
+    {userValidators.map((delegation) => (  
+   <tr style={{ backgroundColor: selectedValidators.some(val => val.address === delegation.validator.operator_address) ? 'var(--background-color-start)' : 'var(--base)' }} key={delegation.validator.operator_address} onClick={() => handleValidatorSelection(delegation)}>
+        <td>{delegation.validator.description.moniker}</td>
+        <td>{formatEther(delegation.userDelegations?.balance.amount || '0')}</td>
+    </tr>
+))}
+    </tbody>
+  </table>
+</ValidatorTable>
+              <UndelegateButton
+                weight="bold"
+                height="big"
+                className="btn"
+                disabled={
+                  Number(amount) == 0 ||
+                  isNaN(Number(amount)) ||
+                   
+                  !txFeeCheck.undelegate
+                }
+                onClick={() => setShowUndelegateConfirmation(true)}
+              >
+                undelegate
+              </UndelegateButton>
+              {!txFeeCheck.undelegate && (
+                <Text type="text" size="text3" style={{ color: "red" }}>
+                  not enough funds for undelegation fee
+                </Text>
+              )}
+              {showUndelegateConfimation && (
+                <ConfirmUndelegationModal
+                  onUndelegate={handleUndelegate}
+                  onCancel={() => setShowUndelegateConfirmation(false)}
+                />
+              )}
             </TabPanel>
             </Tabs>
             </div>
@@ -263,9 +328,9 @@ const Description = styled.div`
   
 const ValidatorTable = styled.div`
   width: 100%; 
-  max-height: 20vh; 
+  max-height: 30vh; 
   overflow-y: scroll;
-  padding-top: 16px;
+  margin-top: 16px;
   
 
   table {
@@ -296,6 +361,9 @@ const ValidatorTable = styled.div`
   }
 
   tbody {
+    tr.selected {
+      background-color: var(--primary-color);
+    }
     tr {
       &:nth-of-type(even) {
         background-color: var(--base);
