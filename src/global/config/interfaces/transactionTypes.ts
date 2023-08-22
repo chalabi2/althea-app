@@ -31,6 +31,7 @@ export enum AltheaTransactionType {
   REDELEGATE = "Redelegate",
   CLAIM_REWARDS_STAKING = "Claim Staking Rewards",
   DELEGATE_MULTIPLE = "Delegate to the 10 safest validators",
+  UNDELEGATE_MULTIPLE = "Manage your undelegations",
 
   //BRIDGING
   SEND_TO_COSMOS = "Send to Cosmos",
@@ -88,13 +89,24 @@ export interface DelegateMessageProps {
   symbol: string;
 }
 
+export interface UndelegateMessageProps {
+  type: string;
+  value: {
+      amount: string;
+      denom: string;
+
+    delegator_address: string;
+    validator_address: string;
+  };
+}
+
 ///////////////////////////////
 interface BaseTx {
   //will let the transaction store if this needs to be signed or skipped
   mustPerform?: boolean; //if not set, default is true
   chainId?: number; // if not set, mainnet defaults are used
   txType: AltheaTransactionType;
-  extraDetails?: ExtraProps | { delegateMessages: DelegateMessageProps[] };
+  extraDetails?: ExtraProps | { delegateMessages: DelegateMessageProps[] } | { undelegateMessages: UndelegateMessageProps[] };
 }
 export interface EVMTx extends BaseTx {
   address: string;

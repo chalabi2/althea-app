@@ -8,9 +8,10 @@ import {
   txRedelegate,
   txStake,
   txUnstake,
-  txStakeMultiple
+  txStakeMultiple,
+  txUndelegateMultiple
 } from "./transactionHelpers";
-import { Chain, Fee } from "global/config/cosmosConstants";
+import { Chain, Fee, multiFee } from "global/config/cosmosConstants";
 import {
   MasterValidatorProps,
   StakingTransactionType,
@@ -43,6 +44,16 @@ interface GeneralStakingParams {
     name: string;
   };
 }
+
+
+
+interface GenralUndelegationParams {
+  account: string;
+  chainId?: number;
+  amount: string[];
+  validatorAddress: string[];
+}
+
 export async function stakingMultipleTx(
   txStore: TransactionStore,
   txType: StakingTransactionType,
@@ -112,7 +123,63 @@ amountsForValidators[randomIndex] = amountsForValidators[randomIndex].add(remain
     }
   );
 }
+export async function undelegateMultipleTx(
+  txStore: TransactionStore,
+  txType: StakingTransactionType,
+  params: GenralUndelegationParams
+): Promise<boolean> {
+console.log(params)
+if (!params.account) {
+  console.error("No account provided");
+  txStore.setStatus({ error: "No account found" });
+  return false;
+}
 
+if (!params.chainId) {
+  console.error("No chainId provided");
+  txStore.setStatus({ error: "No chainId found" });
+  return false;
+}
+
+const validatorAddresses = params.validatorAddress;
+const amounts = params.amount;
+  
+const undelegateMessages = validatorAddresses.map((val, index) => ({
+  type: "cosmos-sdk/MsgUndelegate",
+  value: {
+
+      amount: amounts[index],
+      denom: "aalthea",
+    delegator_address: params.account,
+    validator_address: val
+  }
+}));
+
+  // Assuming the _undelegateMultipleTx function accepts the same parameters in order as _delegateMultipleTx
+  const transaction = _undelegateMultipleTx(
+    params.chainId,
+    params.account,
+    validatorAddresses,
+    amounts,
+    getCosmosAPIEndpoint(params.chainId),
+    multiFee,
+    getCosmosChainObj(params.chainId),
+    "",
+    {
+      undelegateMessages
+    }
+  );
+
+
+  return await txStore.addTransactionList(
+    [transaction],
+    {
+      title: txType,
+      txListMethod: TxMethod.COSMOS,
+      chainId: params.chainId,
+    }
+  );
+}
 export async function stakingTx(
   txStore: TransactionStore,
   txType: StakingTransactionType,
@@ -253,7 +320,34 @@ const _delegateMultipleTx = (
   chainId,
   txType: AltheaTransactionType.DELEGATE_MULTIPLE,
   tx: txStakeMultiple,
-  params: [account, operatorAddresses, amounts, endpoint, fee, chain, memo, extraDetails], // Add extraDetails
+  params: [account, operatorAddresses, amounts, endpoint, fee, chain, memo, extraDetails], 
+  extraDetails,
+});
+const _undelegateMultipleTx = (
+  chainId: number | undefined,
+  account: string,
+  validatorAddress: string[],
+  amounts: string[],
+  endpoint: string,
+  fee: Fee,
+  chain: Chain,
+  memo: string,
+  extraDetails: {
+    undelegateMessages: {
+      type: string;
+      value: {
+          amount: string;
+          denom: string;
+        delegator_address: string;
+        validator_address: string;
+      };
+    }[];
+}
+): CosmosTx => ({
+  chainId,
+  txType: AltheaTransactionType.UNDELEGATE_MULTIPLE,
+  tx: txUndelegateMultiple,
+  params: [account, validatorAddress, amounts, endpoint, fee, chain, memo, extraDetails],
   extraDetails,
 });
 const _redelegateTx = (

@@ -19,7 +19,7 @@ import {
 } from "../../../global/utils/altheaTransactions/helpers";
 import { BigNumber } from "ethers";
 import { multiFee } from "global/config/cosmosConstants";
-  
+import { createTxMultipleMsgUndelegate } from "althea-tx/multiUndelegate";
 import { signAndBroadcastTxMultiMsg } from "global/utils/altheaTransactions/multiHelpers";
 
 
@@ -121,6 +121,64 @@ export async function txStakeMultiple(account, operatorAddresses, amounts, nodeA
     throw error;
   }
 }
+
+export async function txUndelegateMultiple(account, delegations, amounts, nodeAddressIP, fee, chain, memo, extraDetails) {
+  try {
+    const senderObj = await getSenderObj(account, nodeAddressIP);
+    
+    if (!senderObj) {
+      throw new Error("Failed to retrieve sender object");
+    }
+
+    // Prepare TxContext
+    const txContext = {
+      chain: chain,
+      sender: {
+        accountAddress: senderObj.accountAddress,
+        sequence: senderObj.sequence,
+        accountNumber: senderObj.accountNumber,
+        pubkey: senderObj.pubkey
+      },              
+      fee: multiFee,
+      memo: memo || ""              
+    };
+
+    // Prepare MultipleMsgDelegateParams
+    const unDelegateParamsArray = delegations.map((validatorAddress, index) => ({
+      validatorAddress: validatorAddress,
+        amount: amounts[index],
+        denom: "aalthea",
+      delegator_address: account
+    }));
+    
+    const params = {
+      values: unDelegateParamsArray
+    };
+
+    // Create the messages
+    const messages = createTxMultipleMsgUndelegate(txContext, params);
+
+    if (!messages || !messages.signDirect) {
+      throw new Error("No messages were created for undelegation");
+    }
+
+    // Sign and Broadcast using the new function
+    const response = await signAndBroadcastTxMultiMsg(
+      messages, 
+      senderObj, 
+      chain,
+      nodeAddressIP, 
+      account
+    );
+
+    return response;
+
+  } catch (error) {
+    console.error("Error in txUndelegateMultiple:", error.message || error);
+    throw error;
+  }
+}
+
 /**
  * Transaction that unstakes given amount to the designated validator
  * @param {string} validator validator address string beginning with 'altheavaloper'

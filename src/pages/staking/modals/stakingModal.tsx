@@ -22,7 +22,7 @@ import styled from "@emotion/styled";
 import CheckBox from "global/components/checkBox";
 import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
 import { TransactionStore } from "global/stores/transactionStore";
-import { stakingTx, stakingMultipleTx } from "../utils/transactions";
+import { stakingTx } from "../utils/transactions";
 
 interface StakingModalProps {
   validator: MasterValidatorProps;

@@ -18,7 +18,7 @@ import styled from "@emotion/styled";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { TransactionStore } from "global/stores/transactionStore";
-import { stakingMultipleTx } from "../utils/transactions";
+import { stakingMultipleTx, undelegateMultipleTx } from "../utils/transactions";
 import { getTop10Validators } from "../utils/groupDelegationParams";
 import LoadingComponent from "global/components/loadingComponent";
 import menuImg from "assets/icons/menu.svg";
@@ -26,6 +26,9 @@ import ImageButton from "global/components/ImageButton";
 import CheckBox from "global/components/checkBox";
 import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
 import useStaking from "../hooks/useStaking";
+
+import { altheaToEth } from "@althea-net/address-converter"
+import { txUndelegateMultiple } from "../utils/transactionHelpers";
 
 
 interface MultiStakingModalProps {
@@ -66,7 +69,14 @@ export const MultiStakingModal = ({
   useState(false);
   const { userValidators } = useStaking();
   const [selectedValidators, setSelectedValidators] = useState<{ address: string; amount: string }[]>([]);
-  console.log(selectedValidators)
+  const [isUserValidatorsLoading, setUserValidatorsLoading] = useState(true);
+  
+  useEffect(() => {
+
+      if (userValidators && userValidators.length > 0) {
+          setUserValidatorsLoading(false);
+      }
+  }, [userValidators]);
   
   const handleValidatorSelection = (delegation: MasterValidatorProps) => {
 
@@ -127,6 +137,39 @@ export const MultiStakingModal = ({
       fetchTopValidators();
   }, []);
   
+    const handleMultiUnelegate = async () => {
+      if (!account) {
+          console.error("Account is not defined");
+          return;
+      }
+      const toEther = (amount: any) => {
+        const etherMultiplier = BigInt(10 ** 18); // 1e18 as a BigInt
+        const [whole, fraction = ""] = String(amount).split(".");
+        const wholeEther = BigInt(whole) * etherMultiplier;
+        const fractionEther = BigInt(fraction.padEnd(18, "0")); // pad with zeros to ensure 18 decimals
+        return wholeEther + fractionEther;
+    };
+    
+      const validatorAddresses = selectedValidators.map(validator => validator.address);
+      const amounts = selectedValidators.map(validator => toEther(validator.amount).toString());
+  
+      const undelegationDetails = {
+          account: account,
+          chainId: chainId,
+          validatorAddress: validatorAddresses,
+          amount: amounts
+      };
+      
+      
+      try {
+          const success = await undelegateMultipleTx(txStore, StakingTransactionType.UNDELEGATE, undelegationDetails);
+          if (!success) {
+              console.error("Failed to add the undelegation transaction.");
+          }
+      } catch (error) {
+          console.error("Error while processing undelegation transaction:", error);
+      }
+  };
     return (
         <StakingModalContainer>
             <Text size="title2" type="title" className="title">
@@ -265,6 +308,12 @@ export const MultiStakingModal = ({
 
             </TabPanel>
             <TabPanel className="tabPanel">
+            {isUserValidatorsLoading ? (
+          <LoadingContainer>
+            <LoadingComponent size="md" />
+            <span>Finding your delegations...</span>
+          </LoadingContainer>
+        ) : (
             <ValidatorTable>
   <table>
     <thead>
@@ -284,13 +333,13 @@ export const MultiStakingModal = ({
     </tbody>
   </table>
 </ValidatorTable>
+   )}
               <UndelegateButton
                 weight="bold"
                 height="big"
                 className="btn"
                 disabled={
-                  Number(amount) == 0 ||
-                  isNaN(Number(amount)) ||
+                  selectedValidators.length <= 0 ||
                    
                   !txFeeCheck.undelegate
                 }
@@ -305,7 +354,7 @@ export const MultiStakingModal = ({
               )}
               {showUndelegateConfimation && (
                 <ConfirmUndelegationModal
-                  onUndelegate={handleUndelegate}
+                  onUndelegate={handleMultiUnelegate}
                   onCancel={() => setShowUndelegateConfirmation(false)}
                 />
               )}
