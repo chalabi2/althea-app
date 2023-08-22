@@ -13,7 +13,6 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 
 ### Staking
 - sanity check, missed blocks, slashings, voting power (true Rank), and scoring system
-- manage group delegation (undelegate, recaluculate/redelegate?)
 
 ### General
 - done
