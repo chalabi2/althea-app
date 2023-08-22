@@ -12,15 +12,17 @@ import { BigNumber } from "ethers";
 import { useEffect, useState } from "react";
 import { PrimaryButton, Text } from "global/packages/src";
 import { delegateFee } from "../config/fees";
-import "react-tabs/style/react-tabs.css";
 import { CInput } from "global/packages/src/components/atoms/Input";
 import styled from "@emotion/styled";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import { TransactionStore } from "global/stores/transactionStore";
 import { stakingMultipleTx } from "../utils/transactions";
 import { getTop10Validators } from "../utils/groupDelegationParams";
 import LoadingComponent from "global/components/loadingComponent";
 import menuImg from "assets/icons/menu.svg";
 import ImageButton from "global/components/ImageButton";
+import CheckBox from "global/components/checkBox";
 
 
 interface MultiStakingModalProps {
@@ -55,7 +57,7 @@ export const MultiStakingModal = ({
   const [amount, setAmount] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
-
+  const [agreed, setAgreed] = useState(false);
   const handleMultiDelegate = async () => {
     if (!account) {
         console.error("Account is not defined");
@@ -116,36 +118,41 @@ export const MultiStakingModal = ({
               />
               </div>
 </Text>
+<div className="desc">
 {isDescriptionVisible && (
         <Description>
           Multi Staking is a tool used to send your delegation to a group of random and performant validators below the top ten. The list is based off a ranking system 
           that considers missed blocks, slashings, commission, voting power, and governance participation. 
         </Description>
       )}
-            <div className="desc">
-                <div className="amount">
-                    <CInput
-                        placeholder="Enter amount to split between validators..."
-                        value={amount}
-                        onChange={(x) => {
-                            setAmount(x.target.value);
-                        }}
-                    />
-                    <button
-                        className="max"
-                        onClick={() => {
-                            const totalFee = BigNumber.from(delegateFee.amount)
-                                .add(delegateFee.gas)
-                                .add(parseEther("1"));
-                            balance.sub(totalFee).lte(0)
-                                ? setAmount("0")
-                                : setAmount(formatEther(balance.sub(totalFee)));
-                        }}
-                    >
-                        Max
-                    </button>
-                </div>
-                <div className="validators-list">
+      
+        <div className="group">
+          <Tabs
+            disabledTabClassName="disabled"
+            selectedTabClassName="selected"
+            className={"tabs"}
+          >
+            <TabList className={"tablist"}>
+              <Tab className={"tab"} selectedClassName="tab-selected">
+                <Text size="text3" type="text" align="left" bold>
+                  delegate
+                </Text>
+              </Tab>
+              <Tab className={"tab"} selectedClassName="tab-selected">
+                <Text size="text3" type="text" align="left" bold>
+                  undelegate
+                </Text>
+              </Tab>
+              <Tab className={"tab"} selectedClassName="tab-selected">
+                <Text size="text3" type="text" align="left" bold>
+                  redelegate
+                </Text>
+              </Tab>
+            </TabList>
+
+            <TabPanel className="tabPanel">
+              
+
     {isLoading ? (
         <>
             <LoadingContainer>
@@ -180,7 +187,48 @@ export const MultiStakingModal = ({
 </ValidatorTable>
 
     )}
-</div>
+      <div   className="amount"
+                style={{
+                  marginTop: "1rem",
+                }}
+              >
+                    <CInput
+                        placeholder="Enter amount to split between validators..."
+                        value={amount}
+                        onChange={(x) => {
+                            setAmount(x.target.value);
+                        }}
+                    />
+                    <button
+                        className="max"
+                        onClick={() => {
+                            const totalFee = BigNumber.from(delegateFee.amount)
+                                .add(delegateFee.gas)
+                                .add(parseEther("1"));
+                            balance.sub(totalFee).lte(0)
+                                ? setAmount("0")
+                                : setAmount(formatEther(balance.sub(totalFee)));
+                        }}
+                    >
+                        Max
+                    </button>
+                </div>
+<div className="agreement">
+                <div>
+                  
+                  <CheckBox
+                    checked={agreed}
+                    onChange={(value) => {
+                      setAgreed(value);
+                    }}
+                  />
+                </div>
+                <Text size="text3" type="text" align="left">
+                  staking will lock up your funds for at least 21 days once you
+                  undelegate your staked althea, you will need to wait 21 days
+                  for your tokens to be liquid
+                </Text>
+              </div>
                 <PrimaryButton
                     weight="bold"
                     height="big"
@@ -195,6 +243,10 @@ export const MultiStakingModal = ({
                         Not enough funds for delegation fee
                     </Text>
                 )}
+
+            </TabPanel>
+            </Tabs>
+            </div>
             </div>
         </StakingModalContainer>
     );
@@ -204,15 +256,17 @@ const Description = styled.div`
   font-family: "IBM Plex Sans"; 
   color: var(--primary-color);
   margin-bottom: 15px;
-  max-width: 90%; 
+  max-width: 100%; 
   margin-left: auto; 
   margin-right: auto;
 `;
   
 const ValidatorTable = styled.div`
   width: 100%; 
-  max-height: 45vh; 
+  max-height: 20vh; 
   overflow-y: scroll;
+  padding-top: 16px;
+  
 
   table {
     width: 100%;
