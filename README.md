@@ -2,12 +2,12 @@
 
 ## Overview
 
----
+
 
 This is a fork of [canto.io](https://www.canto.io/)
 reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 
----
+
 
 ## To-do
 
@@ -26,7 +26,7 @@ reconfigured to work with [AltheaL1](https://github.com/althea-net/althea-L1)
 ### lending
 - done
 
----
+
 
 ## Installation
 
@@ -48,7 +48,7 @@ npm install --legacy-peer-deps
 
 ## Usage
 
----
+
 
 ### Run application Locally:
 
@@ -65,7 +65,7 @@ npm run dev
 
 ## Testing
 
----
+
 
 All tests are written using the Jest testing library. 
 
