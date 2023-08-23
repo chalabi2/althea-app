@@ -326,7 +326,7 @@ const handleTopValidatorSelection = (validator: ValidatorInfo) => {
                 <PrimaryButton
                     weight="bold"
                     height="big"
-                    disabled={!agreed || !amount || !topValidators.length || !txFeeCheck.delegate}
+                    disabled={!agreed || !amount || !topValidators.length || !txFeeCheck.delegate || !selectedTopValidators.length}
                     className="btn"
                     onClick={handleMultiDelegate}
                 >
