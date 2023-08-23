@@ -27,9 +27,6 @@ import CheckBox from "global/components/checkBox";
 import { ConfirmUndelegationModal } from "./confirmUndelegationModal";
 import useStaking from "../hooks/useStaking";
 
-import { altheaToEth } from "@althea-net/address-converter"
-import { txUndelegateMultiple } from "../utils/transactionHelpers";
-
 
 interface MultiStakingModalProps {
   allValidators: Validator[];
@@ -57,6 +54,17 @@ interface ValidatorInfo {
 interface SelectedValidator {
   operator_address: string;
   moniker: string;
+}
+
+function arraysEqual(a: string | any[] | null, b: string | any[] | null) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }
 
 export const MultiStakingModal = ({
@@ -150,10 +158,6 @@ const handleTopValidatorSelection = (validator: ValidatorInfo) => {
         setIsLoading(true);
         const validators = await getTop10Validators("https://althea.api.chandrastation.com");
         setTopValidators(validators);
-        setSelectedTopValidators(validators.map(validator => ({ 
-          operator_address: validator.operator_address,
-          moniker: validator.moniker 
-      })));
         setIsLoading(false);
     };
       
@@ -250,6 +254,7 @@ const handleTopValidatorSelection = (validator: ValidatorInfo) => {
             
         </>
     ) : (
+      
         <ValidatorTable>
   <table>
     <thead>
@@ -283,6 +288,15 @@ const handleTopValidatorSelection = (validator: ValidatorInfo) => {
 </ValidatorTable>
 
     )}
+    <ButtonContainer>
+  <div></div> 
+     <SelectAllButton 
+    onClick={() => setSelectedTopValidators(topValidators)}
+    disabled={arraysEqual(selectedTopValidators, topValidators)}
+>
+    Select All
+</SelectAllButton>
+</ButtonContainer>
       <div   className="amount"
                
               >
@@ -480,4 +494,34 @@ font-family: IBM Plex Sans;
 color: var(--primary-color);
 span {
   margin-left: 40px;
+`;
+
+const SelectAllButton = styled.button`
+  font-family: "IBM Plex Sans";
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--base); 
+  margin-top: -10px;
+  margin-bottom: -14px;
+  padding: 1px 1px;
+  width: 19%;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: var(--button-highlight);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: var(--background-color-start);
+    color: grey;
+  }
+
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between; 
 `;
