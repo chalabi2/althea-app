@@ -54,6 +54,11 @@ interface ValidatorInfo {
   isSelected?: boolean;
 }
 
+interface SelectedValidator {
+  operator_address: string;
+  moniker: string;
+}
+
 export const MultiStakingModal = ({
   balance,
   account,
@@ -69,6 +74,7 @@ export const MultiStakingModal = ({
   useState(false);
   const { userValidators } = useStaking();
   const [selectedValidators, setSelectedValidators] = useState<{ address: string; amount: string }[]>([]);
+  const [selectedTopValidators, setSelectedTopValidators] = useState<SelectedValidator[]>([]); 
   const [isUserValidatorsLoading, setUserValidatorsLoading] = useState(true);
   
   useEffect(() => {
@@ -94,15 +100,28 @@ export const MultiStakingModal = ({
     }
 };
 
+const handleTopValidatorSelection = (validator: ValidatorInfo) => {
+  const isSelected = selectedTopValidators.some(val => val.operator_address === validator.operator_address);
+
+  if (isSelected) {
+    setSelectedTopValidators(prev => prev.filter(val => val.operator_address !== validator.operator_address));
+  } else {
+    setSelectedTopValidators(prev => [...prev, {
+      operator_address: validator.operator_address,
+      moniker: validator.moniker
+    }]);
+  }
+};
+
   const handleMultiDelegate = async () => {
     if (!account) {
         console.error("Account is not defined");
         return;
     }
 
-    const operators = topValidators.map((validator) => ({
-        address: validator.operator_address,
-        name: validator.moniker,
+    const operators = selectedTopValidators.map(validator => ({
+      address: validator.operator_address,
+      name: validator.moniker
     }));
 
 
@@ -127,15 +146,19 @@ export const MultiStakingModal = ({
 
   const [topValidators, setTopValidators] = useState<ValidatorInfo[]>([]);
   useEffect(() => {
-      const fetchTopValidators = async () => {
-          setIsLoading(true);
-          const validators = await getTop10Validators("https://althea.api.chandrastation.com");
-          setTopValidators(validators);
-          setIsLoading(false);
-      };
+    const fetchTopValidators = async () => {
+        setIsLoading(true);
+        const validators = await getTop10Validators("https://althea.api.chandrastation.com");
+        setTopValidators(validators);
+        setSelectedTopValidators(validators.map(validator => ({ 
+          operator_address: validator.operator_address,
+          moniker: validator.moniker 
+      })));
+        setIsLoading(false);
+    };
       
-      fetchTopValidators();
-  }, []);
+    fetchTopValidators();
+}, []);
   
     const handleMultiUnelegate = async () => {
       if (!account) {
@@ -238,8 +261,17 @@ export const MultiStakingModal = ({
       </tr>
     </thead>
     <tbody>
-      {topValidators.map((validator) => (
-        <tr key={validator.operator_address}>
+                {topValidators.map((validator) => (
+                  <tr
+                    key={validator.operator_address}
+                    style={{ 
+                      cursor: 'pointer',
+                      backgroundColor: selectedTopValidators.some(val => val.operator_address === validator.operator_address)
+                        ? 'var(--background-color-start)' 
+                        : 'var(--base)' 
+                    }} 
+                    onClick={() => handleTopValidatorSelection(validator)}
+                  >
           <td>{validator.moniker}</td>
           <td>{validator.missedBlocks}</td>
           <td>{validator.trueRank}th</td>

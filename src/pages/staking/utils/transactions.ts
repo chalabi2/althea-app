@@ -128,7 +128,6 @@ export async function undelegateMultipleTx(
   txType: StakingTransactionType,
   params: GenralUndelegationParams
 ): Promise<boolean> {
-console.log(params)
 if (!params.account) {
   console.error("No account provided");
   txStore.setStatus({ error: "No account found" });
