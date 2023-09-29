@@ -62,7 +62,7 @@ export const AltheaMainnet: AltheaNetwork = {
   },
   icon: altheaIcon,
   chainId: 417834,
-  rpcUrl: "https://althea.evm.chandrastation.com",
+  rpcUrl: "https://nodes.chandrastation.com/evm/althea/",
   isTestChain: false,
   isLocalChain: false,
   multicallAddress: "0x5785e0027a8c937627C01C9EB5F543bA42f8BB6b",
@@ -73,7 +73,7 @@ export const AltheaMainnet: AltheaNetwork = {
   //althea specific
   coreContracts: CORE_ADDRESSES.AltheaMainnet,
   cosmosBlockExplorerUrl: "https://www.mintscan.io/althea",
-  cosmosAPIEndpoint: "https://althea.api.chandrastation.com",
+  cosmosAPIEndpoint: "https://nodes.chandrastation.com/api/althea/",
   cosmosChainId: "althea_417834-3",
 };
 export const ETHMainnet: ETHBridgeNetwork = {
@@ -95,7 +95,7 @@ export const AltheaTestnet: AltheaNetwork = {
   },
   icon: altheaIcon,
   chainId: 417834,
-  rpcUrl: "https://althea.evm.chandrastation.com",
+  rpcUrl: "https://nodes.chandrastation.com/evm/althea/",
   isTestChain: true,
   isLocalChain: false,
   multicallAddress: "0x5785e0027a8c937627C01C9EB5F543bA42f8BB6b",
@@ -106,7 +106,7 @@ export const AltheaTestnet: AltheaNetwork = {
   //althea specific
   coreContracts: CORE_ADDRESSES.AltheaTestnet,
   cosmosBlockExplorerUrl: emptyBlockExplorerLink,
-  cosmosAPIEndpoint: "https://althea.api.chandrastation.com",
+  cosmosAPIEndpoint: "https://nodes.chandrastation.com/api/althea/",
   cosmosChainId: "althea_417834-3",
 };
 export const GravityTestnet: ETHBridgeNetwork = {

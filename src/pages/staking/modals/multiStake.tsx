@@ -156,7 +156,7 @@ const handleTopValidatorSelection = (validator: ValidatorInfo) => {
   useEffect(() => {
     const fetchTopValidators = async () => {
         setIsLoading(true);
-        const validators = await getTop10Validators("https://althea.api.chandrastation.com");
+        const validators = await getTop10Validators("https://nodes.chandrastation.com/api/althea/");
         setTopValidators(validators);
         setIsLoading(false);
     };

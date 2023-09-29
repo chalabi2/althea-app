@@ -49,8 +49,8 @@ export const calculateTotalStaked = (delegations: DelegationResponse[]) => {
 };
 
 export async function getStakingApr(nodeAddressIP: string) {
-  const urlInflation = "https://althea.api.chandrastation.com" + "/cosmos/mint/v1beta1/annual_provisions";
-  const urlStake = "https://althea.api.chandrastation.com" + "/cosmos/staking/v1beta1/pool";
+  const urlInflation = "https://nodes.chandrastation.com/api/althea/" + "/cosmos/mint/v1beta1/annual_provisions";
+  const urlStake = "https://nodes.chandrastation.com/api/althea/" + "/cosmos/staking/v1beta1/pool";
 
   const options = {
     method: "GET",
@@ -83,7 +83,7 @@ export async function getStakingApr(nodeAddressIP: string) {
 }
 
 export async function getSafeVals(nodeAddressIP: string) {
-  const urlValidators = "https://althea.api.chandrastation.com/cosmos/staking/v1beta1/validators";
+  const urlValidators = "https://nodes.chandrastation.com/api/althea//cosmos/staking/v1beta1/validators";
 
   const options = {
     method: "GET",
@@ -146,7 +146,7 @@ async function getValconsAddressForValidator(
       },
     };
 
-    const url = `https://althea.api.chandrastation.com/cosmos/staking/v1beta1/validators/${operatorAddress}`;
+    const url = `https://nodes.chandrastation.com/api/althea//cosmos/staking/v1beta1/validators/${operatorAddress}`;
     const response = await fetch(url, options);
     const { validator } = await response.json();
     const consensusPubkeyBase64 = validator?.consensus_pubkey?.key;
@@ -179,7 +179,7 @@ const fetchWithRetry = async (url: RequestInfo | URL, options: RequestInit | und
 
 export async function getValconsAddresses(nodeAddressIP: string): Promise<string[]> {
   try {
-      const valoperAddresses = (await getSafeVals("https://althea.api.chandrastation.com")).notJailed;
+      const valoperAddresses = (await getSafeVals("https://nodes.chandrastation.com/api/althea/")).notJailed;
       const valconsPrefix = "althea" + "valcons";
       const options = {
           method: "GET",
@@ -189,7 +189,7 @@ export async function getValconsAddresses(nodeAddressIP: string): Promise<string
       };
 
       const consensusKeysPromises = valoperAddresses.map(async (valoperInfo) => {
-          const url = `https://althea.api.chandrastation.com/cosmos/staking/v1beta1/validators/${valoperInfo.operator_address}`;
+          const url = `https://nodes.chandrastation.com/api/althea//cosmos/staking/v1beta1/validators/${valoperInfo.operator_address}`;
           const responseData = await fetchWithRetry(url, options);
           return responseData?.validator?.consensus_pubkey?.key;
       });
@@ -210,7 +210,7 @@ export async function getValconsAddresses(nodeAddressIP: string): Promise<string
 }
 export async function getSigningInfo(nodeAddressIP: string) {
   try {
-    const valconsAddresses = await getValconsAddresses("https://althea.api.chandrastation.com");
+    const valconsAddresses = await getValconsAddresses("https://nodes.chandrastation.com/api/althea/");
 
     const options = {
       method: "GET",
@@ -221,7 +221,7 @@ export async function getSigningInfo(nodeAddressIP: string) {
 
     const allSigningInfoPromises = valconsAddresses.map(async (address) => {
       try {
-        const urlSigningInfo = `https://althea.api.chandrastation.com/cosmos/slashing/v1beta1/signing_infos/${address}`;
+        const urlSigningInfo = `https://nodes.chandrastation.com/api/althea//cosmos/slashing/v1beta1/signing_infos/${address}`;
         const response = await fetch(urlSigningInfo, options);
         if (response.ok) {
           return await response.json();
@@ -260,7 +260,7 @@ export async function getSigningInfo(nodeAddressIP: string) {
 }
 
 export async function getSlashingInfo(nodeAddressIP: string) {
-  const notJailedValidators = (await getSafeVals("https://althea.api.chandrastation.com")).notJailed;
+  const notJailedValidators = (await getSafeVals("https://nodes.chandrastation.com/api/althea/")).notJailed;
 
   const options = {
     method: "GET",
@@ -270,7 +270,7 @@ export async function getSlashingInfo(nodeAddressIP: string) {
   };
 
   const slashingInfoPromises = notJailedValidators.map(async (valoperInfo) => {
-    const urlSlashingInfo = `https://althea.api.chandrastation.com/cosmos/distribution/v1beta1/validators/${valoperInfo.operator_address}/slashes`;
+    const urlSlashingInfo = `https://nodes.chandrastation.com/api/althea//cosmos/distribution/v1beta1/validators/${valoperInfo.operator_address}/slashes`;
     const response = await fetch(urlSlashingInfo, options);
     const result = await response.json();
 
@@ -289,21 +289,21 @@ export async function getSlashingInfo(nodeAddressIP: string) {
 
 export async function getValidatorsInfo(nodeAddressIP: string) {
   try {
-    const { notJailed: notJailedValidators } = await getSafeVals("https://althea.api.chandrastation.com");
+    const { notJailed: notJailedValidators } = await getSafeVals("https://nodes.chandrastation.com/api/althea/");
     const valconsAddressesMap: { [operator: string]: string } = {};
 
     // Fetch all valcons addresses in parallel
     await Promise.all(
       notJailedValidators.map(async (valoperInfo) => {
-        const valconsAddress = await getValconsAddressForValidator(valoperInfo.operator_address, "https://althea.api.chandrastation.com");
+        const valconsAddress = await getValconsAddressForValidator(valoperInfo.operator_address, "https://nodes.chandrastation.com/api/althea/");
         valconsAddressesMap[valoperInfo.operator_address] = valconsAddress;
       })
     );
 
     // Fetch signing and slashing info concurrently
     const [signingInfos, slashingsInfoResponse] = await Promise.all([
-      getSigningInfo("https://althea.api.chandrastation.com"),
-      getSlashingInfo("https://althea.api.chandrastation.com")
+      getSigningInfo("https://nodes.chandrastation.com/api/althea/"),
+      getSlashingInfo("https://nodes.chandrastation.com/api/althea/")
     ]);
 
     // Map slashing info for easy lookup

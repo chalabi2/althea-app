@@ -39,7 +39,7 @@ const InfoBar = ({ totalStaked, rewards, apr, onRewards, canClaim }: Props) => {
   const { setActiveValidators, open } = validatorModalStore();
   const handleAutoStake = async () => {
     open(ValidatorModalType.AUTO_DELEGATE);
-    const fetchedTopValidators: ValidatorsList = await getTop10Validators("https://althea.api.chandrastation.com");
+    const fetchedTopValidators: ValidatorsList = await getTop10Validators("https://nodes.chandrastation.com/api/althea/");
 
     setTopValidators(fetchedTopValidators);
 

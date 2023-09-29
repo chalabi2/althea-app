@@ -1,7 +1,7 @@
 import { getValidatorsInfo } from "./allUserValidatorInfo";
 
 export async function getTop10Validators(nodeAddressIP: string) {
-  const validatorsInfo = await getValidatorsInfo("https://althea.api.chandrastation.com");
+  const validatorsInfo = await getValidatorsInfo("https://nodes.chandrastation.com/api/althea/");
 
   // Calculate average commission
   const averageCommission =

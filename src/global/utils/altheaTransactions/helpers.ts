@@ -72,7 +72,7 @@ function generateRawTx(chain: any, senderObj: any, signature: any, msg: any) {
  * @return {string} The sender object
  */
 export async function getSenderObj(address: string, nodeAddress: string) {
-  const accountAlthea = await ethToAlthea(address, "https://althea.api.chandrastation.com");
+  const accountAlthea = await ethToAlthea(address, "https://nodes.chandrastation.com/api/althea/");
   const endPointAccount = generateEndpointAccount(accountAlthea ?? "");
 
   const options = {
@@ -80,7 +80,7 @@ export async function getSenderObj(address: string, nodeAddress: string) {
     headers: { "Content-Type": JSONHeader },
   };
   
-  const addressRawData = await fetch("https://althea.api.chandrastation.com" + endPointAccount, options);
+  const addressRawData = await fetch("https://nodes.chandrastation.com/api/althea/" + endPointAccount, options);
 
   const addressData = await addressRawData.json();
   return reformatSender(addressData["account"]["base_account"]);
